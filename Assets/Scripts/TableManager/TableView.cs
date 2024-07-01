@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class TableManager : MonoBehaviour
+public class TableView : MonoBehaviour
 {
+    [SerializeField] private RectTransform _tableRect;
     [SerializeField] private TableCellCreator _cellCreator = new TableCellCreator();
     [Header("CONTAINERS")]
     [SerializeField] private RectTransform _headerContainer;
@@ -23,6 +24,7 @@ public class TableManager : MonoBehaviour
         
     public void CreateTable(Table table)
     {
+        _tableRect.gameObject.SetActive(true);
         ClearTable();
 
         float totalRowsHeight = table.TableCells.GetLength(0) * (_rowHeight + _verticalSpacing);
@@ -71,6 +73,7 @@ public class TableManager : MonoBehaviour
             {
                 var cell = _cellCreator.CreateCell(row);
                 cell.rectTransform.sizeDelta = new Vector2(0, _rowHeight);
+                cell.text.text = tableData[r,c];
             }
         }
     }
@@ -116,7 +119,7 @@ public class TableManager : MonoBehaviour
     }
     private void HandleHorizontalScroll(float value)
     {
-        _headerContainer.anchoredPosition = new Vector2(value * (_headerContainer.rect.width - transform.GetComponent<RectTransform>().rect.width) * -1, _headerContainer.anchoredPosition.y);
+        _headerContainer.anchoredPosition = new Vector2(value * (_headerContainer.rect.width - _tableRect.rect.width) * -1, _headerContainer.anchoredPosition.y);
     }
 }
 public class Table

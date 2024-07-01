@@ -1,6 +1,9 @@
-public class Operation : TableItem
+namespace FactoryManager.Data
 {
-    public Operation() 
+    public class Operation : TableItem
     {
+        public Operation()
+        {
+        }
     }
 }

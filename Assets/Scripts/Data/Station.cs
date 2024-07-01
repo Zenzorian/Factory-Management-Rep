@@ -1,18 +1,21 @@
-/// <summary>
-/// Рабочий участок
-/// </summary>
-[System.Serializable]
-public class Station : TableItem
-{
-    public string type;
-    public int maxWorkers;
-    public int reservedWorkers;
-    public Station()
-    { }
-    public Station(string type, int maxWorkers, int reservedWorkers)
+namespace FactoryManager.Data
+{   
+    /// <summary>
+    /// Рабочий участок
+    /// </summary>
+    [System.Serializable]
+    public class Station : TableItem
     {
-        this.type = type;
-        this.maxWorkers = maxWorkers;
-        this.reservedWorkers = reservedWorkers;
+        public string type;
+        public int maxWorkers;
+        public int reservedWorkers;
+        public Station()
+        { }
+        public Station(string type, int maxWorkers, int reservedWorkers)
+        {
+            this.type = type;
+            this.maxWorkers = maxWorkers;
+            this.reservedWorkers = reservedWorkers;
+        }
     }
 }

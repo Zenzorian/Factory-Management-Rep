@@ -3,53 +3,57 @@ using UnityEngine.UI;
 using System.Reflection;
 using System.Collections.Generic;
 using System;
+using FactoryManager.Data;
 
-public class AdditionView : MonoBehaviour
+namespace FactoryManager
 {
-    public Transform additionPanel;
-    [SerializeField] private Transform _content;
-    [SerializeField] private InputFieldCreator _inputFieldCreator = new InputFieldCreator();
-
-    [SerializeField] private AddationModel _addationModel;
-
-    private TableItem _currentItem; // Текущий обрабатываемый объект
-    private Dictionary<string, InputField> _inputFields = new Dictionary<string, InputField>(); // Словарь для хранения полей ввода
-       
-    public void CreateAdditionPanel(TableItem tableItem)
+    public class AdditionView : MonoBehaviour
     {
-        Clear();
+        public Transform additionPanel;
+        [SerializeField] private Transform _content;
+        [SerializeField] private InputFieldCreator _inputFieldCreator = new InputFieldCreator();
 
-        _currentItem = tableItem;
-        FieldInfo[] fields = _currentItem.GetType().GetFields();
-        _inputFields = _inputFieldCreator.Create(fields, _content);
-    }
+        [SerializeField] private AddationModel _addationModel;
 
-    // Публичный метод для заполнения свойств объекта значениями из полей ввода
-    public void ApplyInputToTableItem()
-    {      
-        FieldInfo[] properties = _currentItem.GetType().GetFields();
+        private TableItem _currentItem; // Текущий обрабатываемый объект
+        private Dictionary<string, InputField> _inputFields = new Dictionary<string, InputField>(); // Словарь для хранения полей ввода
 
-        foreach (var property in properties)
+        public void CreateAdditionPanel(TableItem tableItem)
         {
-            if (_inputFields.ContainsKey(property.Name))
-            {                
-                string inputValue = _inputFields[property.Name].text;
-                property.SetValue(_currentItem, inputValue);
-                Debug.Log(inputValue);
+            Clear();
+
+            _currentItem = tableItem;
+            FieldInfo[] fields = _currentItem.GetType().GetFields();
+            _inputFields = _inputFieldCreator.Create(fields, _content);
+        }
+
+        // Публичный метод для заполнения свойств объекта значениями из полей ввода
+        public void ApplyInputToTableItem()
+        {
+            FieldInfo[] properties = _currentItem.GetType().GetFields();
+
+            foreach (var property in properties)
+            {
+                if (_inputFields.ContainsKey(property.Name))
+                {
+                    string inputValue = _inputFields[property.Name].text;
+                    property.SetValue(_currentItem, inputValue);
+                    Debug.Log(inputValue);
+                }
             }
-        }      
-        _addationModel.AddToList(_currentItem);       
-    }
-    public void Close()
-    {
-        Clear();
-        additionPanel.gameObject.SetActive(false);
-    }
-    private void Clear()
-    {
-        foreach (Transform item in _content)
+            _addationModel.AddToList(_currentItem);
+        }
+        public void Close()
         {
-            Destroy(item.gameObject);
-        }        
+            Clear();
+            additionPanel.gameObject.SetActive(false);
+        }
+        private void Clear()
+        {
+            foreach (Transform item in _content)
+            {
+                Destroy(item.gameObject);
+            }
+        }
     }
 }

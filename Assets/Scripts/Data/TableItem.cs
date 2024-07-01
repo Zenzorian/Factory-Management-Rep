@@ -1,5 +1,7 @@
-
-public abstract class TableItem
+namespace FactoryManager.Data
 {
-   
+    public abstract class TableItem
+    {
+
+    }
 }

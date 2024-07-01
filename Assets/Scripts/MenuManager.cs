@@ -18,6 +18,11 @@ public class MenuManager : MonoBehaviour
         _addationMenu.gameObject.SetActive(false);
         _mainMenu.gameObject.SetActive(true);
     }
+    public void CloseListsMenu()
+    {
+        _listsMenu.gameObject.SetActive(false);
+        _mainMenu.gameObject.SetActive(true);
+    }
     public void OpenAddationMenu()
     {
         _addationMenu.gameObject.SetActive(true);

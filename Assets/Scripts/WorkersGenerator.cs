@@ -1,27 +1,31 @@
+using FactoryManager.Data;
 using System;
 using System.Collections.Generic;
 
-public static class WorkersGenerator
+namespace FactoryManager
 {
-    public static List<Worker> GenerateWorkers(int numberOfWorkers)
+    public static class WorkersGenerator
     {
-        List<Worker> workers = new List<Worker>();
-        Random rnd = new Random();
-
-        string[] firstNames = { "Иван", "Петр", "Сергей", "Алексей", "Дмитрий", "Михаил", "Егор", "Никита", "Александр", "Максим" };
-        string[] lastNames = { "Иванов", "Петров", "Сидоров", "Алексеев", "Дмитриев", "Михайлов", "Егоров", "Никитин", "Александров", "Максимов" };
-        string[] positions = { "Инженер", "Программист", "Менеджер", "Аналитик", "Дизайнер", "Тестировщик", "Администратор", "HR", "Директор", "Разработчик" };
-
-        for (int i = 1; i <= numberOfWorkers; i++)
+        public static List<Worker> GenerateWorkers(int numberOfWorkers)
         {
-            workers.Add(new Worker(
-                i.ToString(),
-                firstNames[rnd.Next(firstNames.Length)],
-                lastNames[rnd.Next(lastNames.Length)],
-                positions[rnd.Next(positions.Length)]
-            ));
-        }
+            List<Worker> workers = new List<Worker>();
+            Random rnd = new Random();
 
-        return workers;
+            string[] firstNames = { "Иван", "Петр", "Сергей", "Алексей", "Дмитрий", "Михаил", "Егор", "Никита", "Александр", "Максим" };
+            string[] lastNames = { "Иванов", "Петров", "Сидоров", "Алексеев", "Дмитриев", "Михайлов", "Егоров", "Никитин", "Александров", "Максимов" };
+            string[] positions = { "Инженер", "Программист", "Менеджер", "Аналитик", "Дизайнер", "Тестировщик", "Администратор", "HR", "Директор", "Разработчик" };
+
+            for (int i = 1; i <= numberOfWorkers; i++)
+            {
+                workers.Add(new Worker(
+                    i.ToString(),
+                    firstNames[rnd.Next(firstNames.Length)],
+                    lastNames[rnd.Next(lastNames.Length)],
+                    positions[rnd.Next(positions.Length)]
+                ));
+            }
+
+            return workers;
+        }
     }
 }
