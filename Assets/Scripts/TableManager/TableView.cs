@@ -23,8 +23,7 @@ public class TableView : MonoBehaviour
     private List<TableCell> _headerColumn = new List<TableCell>();    
         
     public void CreateTable(Table table)
-    {
-        _tableRect.gameObject.SetActive(true);
+    {        
         ClearTable();
 
         float totalRowsHeight = table.TableCells.GetLength(0) * (_rowHeight + _verticalSpacing);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -7,30 +8,53 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Transform _addationMenu;
     [SerializeField] private Transform _listsMenu;
     [SerializeField] private Transform _mainMenu;
+    [SerializeField] private Transform _addationPanel;
+    [SerializeField] private Transform _tableView;
 
+    private GameObject[] _menuStack = new GameObject[4];
+    private int _menuIndex = 0;
 
-    private void Start()
+    private void Awake()
     {
-        _addationMenu.gameObject.SetActive(false);
+        _menuStack[0] = _mainMenu.gameObject;
     }
-    public void CloseAddationMenu()
+    private void Update()
     {
-        _addationMenu.gameObject.SetActive(false);
-        _mainMenu.gameObject.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Back();
+        }
     }
-    public void CloseListsMenu()
+    private void Back()
+    {       
+        if (_menuIndex == 0) return;
+
+        _menuStack[_menuIndex].SetActive(false);
+        _menuIndex--;
+        _menuStack[_menuIndex].SetActive(true);        
+    }
+    private void Forwards(GameObject gameObject)
     {
-        _listsMenu.gameObject.SetActive(false);
-        _mainMenu.gameObject.SetActive(true);
-    }
+        _menuStack[_menuIndex].SetActive(false);
+        _menuIndex++;
+        gameObject.SetActive(true);
+        _menuStack[_menuIndex] = gameObject;       
+    }      
     public void OpenAddationMenu()
-    {
-        _addationMenu.gameObject.SetActive(true);
-        _mainMenu.gameObject.SetActive(false);
+    {     
+        Forwards(_addationMenu.gameObject);
     }
     public void OpenListsMenu()
-    {        
-        _mainMenu.gameObject.SetActive(false);
-        _listsMenu.gameObject.SetActive(true);
+    {
+        Forwards(_listsMenu.gameObject);
     }
+    public void OpenAddationPanel()
+    {
+        Forwards(_addationPanel.gameObject);
+    }
+    public void OpenTableView()
+    {
+        Forwards(_tableView.gameObject);
+    }
+
 }
