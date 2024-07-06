@@ -7,26 +7,26 @@ namespace FactoryManager.Data
     [System.Serializable]
     public class Worker : TableItem
     {
-        public string id;
+        public int id;
 
         public string firstName;
         public string lastName;
-        public string position;
+        public FactoryWorker position;
 
-        public string weeklyNorm;
-        public string overtimeAllowed;
+        public float weeklyNorm;
+        public float overtimeAllowed;
 
-        public string hourlyWage;
-        public string overtimeSurcharge;
-        public string nightShiftSurcharge;
+        public float hourlyWage;
+        public float overtimeSurcharge;
+        public float nightShiftSurcharge;
         public Worker()
         {
 
         }
-        public Worker(string id, string firstName, string lastName, string position,
-                      string weeklyNorm = "40", string overtimeAllowed = "0",
-                      string hourlyWage = "0", string overtimeSurcharge = "0",
-                      string nightShiftSurcharge = "0")
+        public Worker(int id, string firstName, string lastName, FactoryWorker position,
+                      float weeklyNorm = 40, float overtimeAllowed = 0,
+                      float hourlyWage = 0, float overtimeSurcharge = 0,
+                      float nightShiftSurcharge = 0)
         {
             this.id = id;
             this.firstName = firstName;
@@ -38,5 +38,19 @@ namespace FactoryManager.Data
             this.overtimeSurcharge = overtimeSurcharge;
             this.nightShiftSurcharge = nightShiftSurcharge;
         }
+    }
+
+    public enum FactoryWorker
+    {
+        Manager,          // Управляющий
+        Engineer,         // Инженер
+        Technician,       // Техник
+        Welder,           // Сварщик
+        Assembler,        // Сборщик
+        QualityControl,   // Контроль качества
+        Maintenance,      // Обслуживание
+        ForkliftOperator, // Водитель погрузчика
+        Painter,          // Маляр
+        Packer            // Упаковщик
     }
 }

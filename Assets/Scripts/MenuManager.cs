@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+using FactoryManager.Data;
+using FactoryManager.Data.Tools;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private Transform _addationMenu;
-    [SerializeField] private Transform _listsMenu;
     [SerializeField] private Transform _mainMenu;
+
+    [SerializeField] private Transform _addationMenu;
+
+    [SerializeField] private Transform _choicePanel;
+   
     [SerializeField] private Transform _addationPanel;
     [SerializeField] private Transform _tableView;
+    [SerializeField] private Transform _optionsPanel;
+    [SerializeField] private ChoiceOfCategoryMenu _categoryMenu;
+
 
     private GameObject[] _menuStack = new GameObject[4];
     private int _menuIndex = 0;
@@ -39,14 +44,40 @@ public class MenuManager : MonoBehaviour
         _menuIndex++;
         gameObject.SetActive(true);
         _menuStack[_menuIndex] = gameObject;       
-    }      
+    }
+    public void OpenMenu(int value)
+    {
+        var menuType = (MainMenuButtons)value;
+
+        switch (menuType)
+        {
+            case MainMenuButtons.Workspace:
+                
+                break;
+            case MainMenuButtons.Tools:
+                _categoryMenu.Create(typeof(MachineTool));
+                Forwards(_choicePanel.gameObject);
+                break;
+            case MainMenuButtons.Workers:
+                _categoryMenu.Create(typeof(FactoryWorker));
+                Forwards(_choicePanel.gameObject);
+                break;
+            case MainMenuButtons.Parts:
+                break;
+            case MainMenuButtons.Options:
+                Forwards(_optionsPanel.gameObject);
+                break;
+            default:
+                break;
+        }       
+    }
     public void OpenAddationMenu()
     {     
         Forwards(_addationMenu.gameObject);
     }
     public void OpenListsMenu()
     {
-        Forwards(_listsMenu.gameObject);
+        //Forwards(_listsMenu.gameObject);
     }
     public void OpenAddationPanel()
     {
@@ -55,6 +86,13 @@ public class MenuManager : MonoBehaviour
     public void OpenTableView()
     {
         Forwards(_tableView.gameObject);
-    }
-
+    }  
+}
+public enum MainMenuButtons
+{
+    Workspace,
+    Tools,
+    Workers,
+    Parts,
+    Options = 99
 }

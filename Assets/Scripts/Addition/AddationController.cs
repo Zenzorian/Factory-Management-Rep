@@ -37,8 +37,8 @@ namespace FactoryManager
                     _additionView.CreateAdditionPanel(station);
                     break;
                 case DataType.Tool:
-                    var tool = new Tool();
-                    _additionView.CreateAdditionPanel(tool);
+                    //var tool = new Tool();
+                    //_additionView.CreateAdditionPanel(tool);
                     break;
                 case DataType.Worker:
                     var worker = new Worker();

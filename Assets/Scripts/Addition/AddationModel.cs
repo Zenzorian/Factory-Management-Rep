@@ -30,7 +30,7 @@ namespace FactoryManager
                     _globalData.listOfStation.Add((Station)tableItem);
                     break;
                 case "Tool":
-                    _globalData.listOfTool.Add((Tool)tableItem);
+                    //_globalData.listOfTool.Add((Tool)tableItem);
                     break;
                 case "Worker":
                     _globalData.listOfWorkers.Add((Worker)tableItem);

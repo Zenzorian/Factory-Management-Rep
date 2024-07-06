@@ -15,15 +15,15 @@ namespace FactoryManager
             string[] lastNames = { "Иванов", "Петров", "Сидоров", "Алексеев", "Дмитриев", "Михайлов", "Егоров", "Никитин", "Александров", "Максимов" };
             string[] positions = { "Инженер", "Программист", "Менеджер", "Аналитик", "Дизайнер", "Тестировщик", "Администратор", "HR", "Директор", "Разработчик" };
 
-            for (int i = 1; i <= numberOfWorkers; i++)
-            {
-                workers.Add(new Worker(
-                    i.ToString(),
-                    firstNames[rnd.Next(firstNames.Length)],
-                    lastNames[rnd.Next(lastNames.Length)],
-                    positions[rnd.Next(positions.Length)]
-                ));
-            }
+            //for (int i = 1; i <= numberOfWorkers; i++)
+            //{
+            //    workers.Add(new Worker(
+            //        i.ToString(),
+            //        firstNames[rnd.Next(firstNames.Length)],
+            //        lastNames[rnd.Next(lastNames.Length)],
+            //        positions[rnd.Next(positions.Length)]
+            //    ));
+            //}
 
             return workers;
         }
