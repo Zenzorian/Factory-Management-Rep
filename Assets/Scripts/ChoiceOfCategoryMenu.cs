@@ -1,30 +1,35 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-public class ChoiceOfCategoryMenu : MonoBehaviour
+namespace FactoryManager
 {
-    [SerializeField] private ButtonCreator _buttonCreator;
-
-    [SerializeField] private Transform _content;
-    public void Create(Type type)
+    public class ChoiceOfCategoryMenu : MonoBehaviour
     {
-        string[] names = Enum.GetNames(type);
+        [SerializeField] private TableController _tableController;
 
-        var buttons = _buttonCreator.Create(names, _content);
+        [SerializeField] private ButtonCreator _buttonCreator;
 
-        for (int i = 0; i < buttons.Count; i++)
+        [SerializeField] private Transform _content;
+
+        private Type _type;
+        public void Create(Type type)
         {
-            int index = i;
-            var myButton = buttons[index].GetComponent<Button>();
-            myButton.onClick.AddListener(delegate { ButtonPressed(index); });
+            _type = type;
+            string[] names = Enum.GetNames(type);
+
+            var buttons = _buttonCreator.Create(names, _content);
+
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                int index = i;
+                var myButton = buttons[index].GetComponent<Button>();
+                myButton.onClick.AddListener(delegate { ButtonPressed(index); });
+            }
         }
-    }
+        public void ButtonPressed(int index)
+        {
+            _tableController.OpenTableWithFilter(_type, index);
+        }
 
-    public void ButtonPressed(int index)
-    {
-        Debug.Log(index);
     }
-
 }
-
-

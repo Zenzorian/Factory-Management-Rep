@@ -7,8 +7,8 @@
     {
         public string Description { get; set; }
 
-        public OtherConsumable(string marking, string description, string note)
-            : base(marking, note)
+        public OtherConsumable(string marking, string description, string note, MachineTool type)
+            : base(marking, note,type)
         {
             Description = description;
         }

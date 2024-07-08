@@ -10,8 +10,8 @@
         public double VMin { get; set; }
         public double VMax { get; set; }
 
-        public TapTool(string marking, MeasurementSystem measurement, double pitch, double vMin, double vMax, string note)
-            : base(marking, note)
+        public TapTool(string marking, MeasurementSystem measurement, double pitch, double vMin, double vMax, string note, MachineTool type)
+            : base(marking, note, type)
         {
             Measurement = measurement;
             Pitch = pitch;

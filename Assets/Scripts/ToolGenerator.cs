@@ -52,7 +52,8 @@ namespace FactoryManager.Data.Tools
                 vMin: UnityEngine.Random.Range(100f, 200f),
                 vMax: UnityEngine.Random.Range(200f, 400f),
                 cost: (decimal)UnityEngine.Random.Range(10f, 100f),
-                note: "Random note for Turning Roughing Tool"
+                note: "Random note for Turning Roughing Tool",
+                type: MachineTool.MillingCNC
                 );
 
             return tool;
@@ -68,7 +69,8 @@ namespace FactoryManager.Data.Tools
                 vMax: UnityEngine.Random.Range(200f, 400f),
                 width: UnityEngine.Random.Range(1f, 100f),
                 cost: (decimal)UnityEngine.Random.Range(10f, 100f),
-                note: "Random note for Turning Roughing Tool"
+                note: "Random note for Turning Roughing Tool",
+                type: MachineTool.Grooving
                 );
 
             return tool;
@@ -83,7 +85,8 @@ namespace FactoryManager.Data.Tools
                 vMin: UnityEngine.Random.Range(50f, 100f),
                 vMax: UnityEngine.Random.Range(100f, 200f),
                 pitch: UnityEngine.Random.Range(0.5f, 2f),
-                note: "Random note for Threading Tool"
+                note: "Random note for Threading Tool",
+                type: MachineTool.ThreadingMachines
                 );
 
             return tool;
@@ -97,8 +100,9 @@ namespace FactoryManager.Data.Tools
                 measurement: (MeasurementSystem)UnityEngine.Random.Range(0, 2),
                 pitch: UnityEngine.Random.Range(0.5f, 2f),
                 vMin: UnityEngine.Random.Range(50f, 100f),
-                vMax: UnityEngine.Random.Range(100f, 200f),
-                note: "Random note for Tap"
+                vMax: UnityEngine.Random.Range(100f, 200f),                
+                note: "Random note for Tap",
+                type: MachineTool.Taps
                 );
             return tool;
         }
@@ -108,7 +112,8 @@ namespace FactoryManager.Data.Tools
             var tool = new OtherConsumable(
                 marking: GenerateRandomString(),
                 description: "Random description",
-                note: "Random note for Other Consumable"
+                note: "Random note for Other Consumable",
+                type: MachineTool.Other
                 );
 
             return tool;

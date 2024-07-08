@@ -7,11 +7,12 @@ namespace FactoryManager.Data.Tools
     {
         public string Marking { get; set; }
         public string Note { get; set; }
-
-        public Tool(string marking, string note)
+        public MachineTool ToolType { get; set; }
+        public Tool(string marking, string note, MachineTool toolType)
         {
             Marking = marking;
             Note = note;
+            ToolType = toolType;
         }
     }
     public interface IToolWithFeedAndSpeed
@@ -30,7 +31,8 @@ namespace FactoryManager.Data.Tools
         ThreadingMachines,    // Резьбовые станки
         Drills,               // Свёрла
         MillingCutters,       // Фрезы
-        Taps                  // Метчики
+        Taps,                  // Метчики
+        Other
     }
     public interface IToolWithCost
     {

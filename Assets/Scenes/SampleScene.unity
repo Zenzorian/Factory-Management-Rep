@@ -7222,6 +7222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca4f5e7cb7dc3f43985d6eab595befe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tableController: {fileID: 1689672747}
   _buttonCreator:
     _buttonPrefab: {fileID: 3672220197509270898, guid: 558fb56bf76f1d2419884425e19e2031, type: 3}
   _content: {fileID: 719329550}
