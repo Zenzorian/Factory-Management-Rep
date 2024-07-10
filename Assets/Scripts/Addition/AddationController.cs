@@ -33,7 +33,7 @@ namespace FactoryManager
                     _additionView.CreateAdditionPanel(part);
                     break;
                 case DataType.Station:
-                    var station = new Station();
+                    var station = new Workstation();
                     _additionView.CreateAdditionPanel(station);
                     break;
                 case DataType.Tool:

@@ -1,5 +1,6 @@
 ﻿namespace FactoryManager.Data.Tools
 {
+    [System.Serializable]
     public abstract class ToolWithFeedSpeedAndCost : Tool, IToolWithFeedAndSpeed, IToolWithCost
     {
         public double FMin { get; set; }

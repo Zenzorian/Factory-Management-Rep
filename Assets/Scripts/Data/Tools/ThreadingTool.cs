@@ -3,6 +3,7 @@
     /// <summary>
     /// Резьбовой инструмент
     /// </summary>
+    [System.Serializable]
     public class ThreadingTool : Tool
     {
         public enum LocationType { External, Internal }

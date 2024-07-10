@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfPart: []
   listOfStation: []
-  listOfTool: []
   listOfWorkers: []

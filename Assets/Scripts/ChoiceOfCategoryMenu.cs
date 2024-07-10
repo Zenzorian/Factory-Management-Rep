@@ -6,7 +6,7 @@ namespace FactoryManager
     public class ChoiceOfCategoryMenu : MonoBehaviour
     {
         [SerializeField] private TableController _tableController;
-
+        [SerializeField] private MenuManager _menuManager;
         [SerializeField] private ButtonCreator _buttonCreator;
 
         [SerializeField] private Transform _content;
@@ -14,6 +14,8 @@ namespace FactoryManager
         private Type _type;
         public void Create(Type type)
         {
+            Clear();
+
             _type = type;
             string[] names = Enum.GetNames(type);
 
@@ -29,6 +31,14 @@ namespace FactoryManager
         public void ButtonPressed(int index)
         {
             _tableController.OpenTableWithFilter(_type, index);
+            _menuManager.OpenTableView();
+        }
+        private void Clear() 
+        {
+            foreach (Transform item in _content)
+            {
+                Destroy(item.gameObject);
+            }
         }
 
     }

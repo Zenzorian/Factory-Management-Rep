@@ -1,3 +1,5 @@
+using FactoryManager.Data.Tools;
+
 namespace FactoryManager.Data
 {
     /// <summary>
@@ -6,18 +8,18 @@ namespace FactoryManager.Data
     [System.Serializable]
     public class Part : TableItem
     {
-        public Operation[] operations;
-        public string tool;
-        public string statistics;
+        public string Name { get; set; }
+        public Operation[] Operations { get; set; }        
+        public string Statistics { get; set; }
         public Part()
         {
 
         }
-        public Part(Operation[] operations, string tool, string statistics)
+        public Part(string name, Operation[] operations, string statistics)
         {
-            this.operations = operations;
-            this.tool = tool;
-            this.statistics = statistics;
+            Name = name;
+            Operations = operations;           
+            Statistics = statistics;
         }
     }
 }

@@ -1,11 +1,9 @@
 using FactoryManager.Data;
 using FactoryManager.Data.Tools;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace FactoryManager
 {
@@ -13,17 +11,13 @@ namespace FactoryManager
     {
         [SerializeField] private TableView _tableManager;
         [SerializeField] private GlobalData _globalData;       
-       
-        private void Awake()
-        {
-            _globalData.listOfWorkers = WorkersGenerator.GenerateWorkers(30);
-        }
+              
         public void SetList(Type type, int value)
-        {
+        {            
             switch (type.Name)
             {
                 case "FactoryWorkspace":
-                   
+                    ShowTable(Filter((FactoryWorkspace)value));
                     break;
                 case "MachineTool":                  
                     ShowTable(Filter((MachineTool)value));
@@ -38,66 +32,69 @@ namespace FactoryManager
                     break;
             }
         }
-        //private void WorkspaceFilter(List<Workspace> list, FactoryWorkspace factoryWorkspace)
-        //{
-        //    foreach (var item in list)
-        //    {
-        //        if()
-        //        _temporaryList
-        //    }
-        //}
+        private List<Workstation> Filter(FactoryWorkspace type)
+        {
+            var temporaryList = new List<Workstation>();
+            foreach (var item in _globalData.listOfWorkstation)
+            {               
+                if (item.WorkspaceType == type)
+                    temporaryList.Add(item);
+            }
+            return temporaryList;
+        }
 
         private List<Tool> Filter(MachineTool type)
         {
             var temporaryList = new List<Tool>();
             foreach (var item in _globalData.listOfTool)
             {
+                Debug.Log(item.ToolType);
                 if (item.ToolType == type)
                     temporaryList.Add(item);
             }
-            return temporaryList;
+            return temporaryList;                      
         }
         private List<Worker> Filter(FactoryWorker type)
         {
             var temporaryList = new List<Worker>();
             foreach (var item in _globalData.listOfWorkers)
             {
-                if (item.position == type)
+                if (item.Position == type)
                     temporaryList.Add(item);
             }
             return temporaryList;
         }
         private void ShowTable<T>(List<T> list)
         {
-            
+            _tableManager.ClearTable();
+
             if (list.Count == 0)
             {
                 Debug.Log($"{list} is empty");
                 return;
             }
 
-            FieldInfo[] fields = list[0].GetType().GetFields();
-            List<string> fieldsNames = new List<string>();
+            PropertyInfo[] properties = list[0].GetType().GetProperties();
+            List<string> propertyNames = new List<string>();
 
-
-            foreach (var item in fields)
+            foreach (var item in properties)
             {
-                fieldsNames.Add(item.Name);
+                propertyNames.Add(item.Name);
             }
-            var tableData = new string[list.Count, fieldsNames.Count];
-              
+
+            var tableData = new string[list.Count, propertyNames.Count];
 
             for (int i = 0; i < list.Count; i++)
             {
-                FieldInfo[] currentFields = list[i].GetType().GetFields();
-                for (int j = 0; j < currentFields.Length; j++)
+                PropertyInfo[] currentProperties = list[i].GetType().GetProperties();
+                for (int j = 0; j < currentProperties.Length; j++)
                 {
-                    Debug.Log(currentFields[j].GetValue(list[i]));
-                    tableData[i, j] = currentFields[j].GetValue(list[i]).ToString();
+                    var value = currentProperties[j].GetValue(list[i]);
+                    tableData[i, j] = value != null ? value.ToString() : string.Empty;
                 }
             }
 
-            Table table = new Table(fieldsNames.ToArray(), tableData);
+            Table table = new Table(propertyNames.ToArray(), tableData);
             _tableManager.CreateTable(table);
         }
     }

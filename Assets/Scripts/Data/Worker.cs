@@ -7,18 +7,18 @@ namespace FactoryManager.Data
     [System.Serializable]
     public class Worker : TableItem
     {
-        public int id;
+        public int Id { get; set; }
 
-        public string firstName;
-        public string lastName;
-        public FactoryWorker position;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public FactoryWorker Position { get; set; }
 
-        public float weeklyNorm;
-        public float overtimeAllowed;
+        public float WeeklyNorm { get; set; }
+        public float OvertimeAllowed { get; set; }
 
-        public float hourlyWage;
-        public float overtimeSurcharge;
-        public float nightShiftSurcharge;
+        public float HourlyWage { get; set; }
+        public float OvertimeSurcharge { get; set; }
+        public float NightShiftSurcharge { get; set; }
         public Worker()
         {
 
@@ -28,15 +28,15 @@ namespace FactoryManager.Data
                       float hourlyWage = 0, float overtimeSurcharge = 0,
                       float nightShiftSurcharge = 0)
         {
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.position = position;
-            this.weeklyNorm = weeklyNorm;
-            this.overtimeAllowed = overtimeAllowed;
-            this.hourlyWage = hourlyWage;
-            this.overtimeSurcharge = overtimeSurcharge;
-            this.nightShiftSurcharge = nightShiftSurcharge;
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Position = position;
+            WeeklyNorm = weeklyNorm;
+            OvertimeAllowed = overtimeAllowed;
+            HourlyWage = hourlyWage;
+            OvertimeSurcharge = overtimeSurcharge;
+            NightShiftSurcharge = nightShiftSurcharge;
         }
     }
 

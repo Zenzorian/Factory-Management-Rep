@@ -3,6 +3,7 @@
     /// <summary>
     /// Мечик
     /// </summary>
+    [System.Serializable]
     public class TapTool : Tool
     {
         public MeasurementSystem Measurement { get; set; }

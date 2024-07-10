@@ -53,7 +53,8 @@ namespace FactoryManager
             switch (menuType)
             {
                 case MainMenuButtons.Workspace:
-
+                    _categoryMenu.Create(typeof(FactoryWorkspace));
+                    Forwards(_choicePanel.gameObject);
                     break;
                 case MainMenuButtons.Tools:
                     _categoryMenu.Create(typeof(MachineTool));

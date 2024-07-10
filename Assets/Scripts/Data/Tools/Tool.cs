@@ -3,7 +3,8 @@ namespace FactoryManager.Data.Tools
     /// <summary>
     /// Базовый класс для содания инструментов
     /// </summary>
-    public abstract class Tool
+    [System.Serializable]
+    public abstract class Tool: TableItem
     {
         public string Marking { get; set; }
         public string Note { get; set; }

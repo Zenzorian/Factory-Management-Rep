@@ -27,7 +27,7 @@ namespace FactoryManager
                     _globalData.listOfPart.Add((Part)tableItem);
                     break;
                 case "Station":
-                    _globalData.listOfStation.Add((Station)tableItem);
+                    _globalData.listOfWorkstation.Add((Workstation)tableItem);
                     break;
                 case "Tool":
                     //_globalData.listOfTool.Add((Tool)tableItem);

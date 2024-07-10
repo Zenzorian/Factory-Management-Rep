@@ -405,7 +405,7 @@ RectTransform:
   m_Father: {fileID: 1375861429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.193, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1156,8 +1156,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1481732248}
   m_HandleRect: {fileID: 1481732247}
   m_Direction: 2
-  m_Value: 0.00000019002228
-  m_Size: 0
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1486,8 +1486,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -22.499573}
-  m_SizeDelta: {x: 0, y: -45}
+  m_AnchoredPosition: {x: 0, y: -22.499817}
+  m_SizeDelta: {x: 0, y: -44.999573}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &344808688
 MonoBehaviour:
@@ -2036,7 +2036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 642.3999}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &483281598
@@ -4395,7 +4395,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 25690067}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.193
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4605,26 +4605,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 940988231}
-  - component: {fileID: 940988230}
+  - component: {fileID: 940988232}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DataGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &940988230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940988229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f1a73c7c6a8125468b30426952293b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &940988231
 Transform:
   m_ObjectHideFlags: 0
@@ -4640,6 +4628,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &940988232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940988229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2deea7f45ffbc9e43b5d6aec84817cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _globalData: {fileID: 11400000, guid: 43b2f033f6be9cf4baf30cccfd883c49, type: 2}
 --- !u!1 &964367634
 GameObject:
   m_ObjectHideFlags: 0
@@ -6053,8 +6054,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 964367635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.00000019002228}
-  m_AnchorMax: {x: 1, y: 0.00000019002228}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6464,7 +6465,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -44.99945}
+  m_AnchoredPosition: {x: 0, y: -44.999573}
   m_SizeDelta: {x: -20, y: -170.00049}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1525909524
@@ -7187,11 +7188,10 @@ MonoBehaviour:
     _textPadding: {x: 2, y: 2, z: 2, w: 2}
   _headerContainer: {fileID: 539515955}
   _tableContainer: {fileID: 460667232}
-  _horizontalSpacing: 3
-  _verticalSpacing: 3
-  _rowHeight: 80
-  _columnWidth: 500
-  _offset: {x: 5, y: 5, z: 30, w: 5}
+  _horizontalSpacing: 10
+  _verticalSpacing: 10
+  _rowHeight: 100
+  _columnWidth: 300
   _scrollRect: {fileID: 344808688}
 --- !u!1 &1701589727
 GameObject:
@@ -7223,6 +7223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tableController: {fileID: 1689672747}
+  _menuManager: {fileID: 1171616355}
   _buttonCreator:
     _buttonPrefab: {fileID: 3672220197509270898, guid: 558fb56bf76f1d2419884425e19e2031, type: 3}
   _content: {fileID: 719329550}

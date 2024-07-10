@@ -3,6 +3,7 @@
     /// <summary>
     /// Другие расходные материалы
     /// </summary>
+    [System.Serializable]
     public class OtherConsumable : Tool
     {
         public string Description { get; set; }

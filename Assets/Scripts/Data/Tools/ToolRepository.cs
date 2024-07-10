@@ -2,6 +2,7 @@
 
 namespace FactoryManager.Data.Tools
 {
+    [System.Serializable]
     public class ToolRepository
     {
         private List<Tool> tools = new List<Tool>();

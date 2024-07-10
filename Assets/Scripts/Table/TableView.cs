@@ -16,16 +16,14 @@ public class TableView : MonoBehaviour
 
     [SerializeField] private float _rowHeight = 35;
     [SerializeField] private float _columnWidth = 200;
-    [SerializeField] private Vector4 _offset = new Vector4(5,5,25,5);
+    //[SerializeField] private Vector4 _offset = new Vector4(5,5,25,5);
     [Header("SCROLL VIEW")]
     [SerializeField] private ScrollRect _scrollRect;
 
     private List<TableCell> _headerColumn = new List<TableCell>();    
-        
+            
     public void CreateTable(Table table)
-    {        
-        ClearTable();
-
+    {  
         float totalRowsHeight = table.TableCells.GetLength(0) * (_rowHeight + _verticalSpacing);
         float totalColumnsWidth = table.TableCells.GetLength(1) * (_columnWidth + _horizontalSpacing);        
 
@@ -39,6 +37,9 @@ public class TableView : MonoBehaviour
         _scrollRect.transform.GetComponent<RectTransform>().offsetMax = new Vector2(0, (_rowHeight + _verticalSpacing) * -1);
 
         _scrollRect.horizontalScrollbar.onValueChanged.AddListener(HandleHorizontalScroll);
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_headerContainer);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_tableContainer);
     }
     private void CreateHeaderColumns(string[] fields)
     {
@@ -62,7 +63,10 @@ public class TableView : MonoBehaviour
         int rows = tableData.GetLength(0);
         int columns = tableData.GetLength(1);
 
-        AddVerticallLayoutGroup(_tableContainer.gameObject);
+        var scrolWidth = _scrollRect.verticalScrollbar.transform.GetComponent<RectTransform>().rect.width;       
+        var layoutGroup = AddVerticallLayoutGroup(_tableContainer.gameObject);
+
+        layoutGroup.padding.right = (int)scrolWidth;
 
         for (int r = 0; r < rows; r++)
         {
@@ -72,18 +76,24 @@ public class TableView : MonoBehaviour
             {
                 var cell = _cellCreator.CreateCell(row);
                 cell.rectTransform.sizeDelta = new Vector2(0, _rowHeight);
-                cell.text.text = tableData[r,c];
+                cell.text.text = tableData[r, c];
+               
+                cell.rectTransform.localScale = Vector3.one;
             }
         }
     }
     public RectTransform AddRow(Transform container)
     {
         var row = new GameObject("Row");
-       
-        var rect = row.AddComponent<RectTransform>();       
-        rect.sizeDelta = new Vector2(0, _rowHeight);
+        var rectTransform = row.AddComponent<RectTransform>();
         row.transform.SetParent(container);
-        return rect;
+                
+        rectTransform.localScale = Vector3.one;
+                
+        var rect = rectTransform.rect;
+        rect.height = _rowHeight;
+
+        return rectTransform;
     }
     private HorizontalLayoutGroup AddHorizontalLayoutGroup(GameObject container)
     {
@@ -93,19 +103,22 @@ public class TableView : MonoBehaviour
         var layoutCroup = container.AddComponent<HorizontalLayoutGroup>();
         layoutCroup.spacing = _horizontalSpacing;
         layoutCroup.childControlHeight = false;
-        //layoutCroup.childControlWidth = false;
+        layoutCroup.childControlWidth = true;
         return layoutCroup;
     }
-    private void AddVerticallLayoutGroup(GameObject container)
+    private VerticalLayoutGroup AddVerticallLayoutGroup(GameObject container)
     {
-        if (container.GetComponent<VerticalLayoutGroup>() == true) return;
+        if (container.GetComponent<VerticalLayoutGroup>() == true)
+            return container.GetComponent<VerticalLayoutGroup>(); ;
 
         var layoutCroup = container.AddComponent<VerticalLayoutGroup>();
         layoutCroup.spacing = _verticalSpacing;
         layoutCroup.childControlHeight = false;
-        layoutCroup.childForceExpandHeight = false;        
+        layoutCroup.childForceExpandHeight = false;
+
+        return layoutCroup;
     }
-    private void ClearTable()
+    public void ClearTable()
     {
         foreach (Transform item in _headerContainer)
         {
@@ -119,7 +132,7 @@ public class TableView : MonoBehaviour
     private void HandleHorizontalScroll(float value)
     {
         _headerContainer.anchoredPosition = new Vector2(value * (_headerContainer.rect.width - _tableRect.rect.width) * -1, _headerContainer.anchoredPosition.y);
-    }
+    }   
 }
 public class Table
 {
