@@ -1,4 +1,5 @@
 using FactoryManager.Data;
+using FactoryManager.Data.Tools;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,18 +20,15 @@ namespace FactoryManager
             {
                 case "Consumable":
                     _globalData.listOfConsumable.Add((Consumable)tableItem);
-                    break;
-                case "Operation":
-                    _globalData.listOfOperation.Add((Operation)tableItem);
-                    break;
+                    break;               
                 case "Part":
-                    _globalData.listOfPart.Add((Part)tableItem);
+                    _globalData.listOfParts.Add((Part)tableItem);
                     break;
                 case "Station":
-                    _globalData.listOfWorkstation.Add((Workstation)tableItem);
+                    _globalData.listOfWorkstations.Add((Workstation)tableItem);
                     break;
                 case "Tool":
-                    //_globalData.listOfTool.Add((Tool)tableItem);
+                    _globalData.listOfTools.Add((Tool)tableItem);
                     break;
                 case "Worker":
                     _globalData.listOfWorkers.Add((Worker)tableItem);

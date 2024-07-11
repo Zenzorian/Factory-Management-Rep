@@ -6,6 +6,7 @@ namespace FactoryManager.Data
     {
         public string Name { get; set; }
         public Tool[] Tools { get; set; }
+        public override string Type { get; set; }
 
         public Operation()
         {

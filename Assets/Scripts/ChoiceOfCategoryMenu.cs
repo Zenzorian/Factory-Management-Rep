@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 namespace FactoryManager
@@ -12,14 +13,11 @@ namespace FactoryManager
         [SerializeField] private Transform _content;
 
         private Type _type;
-        public void Create(Type type)
+        public void Create(List<string> list)
         {
             Clear();
-
-            _type = type;
-            string[] names = Enum.GetNames(type);
-
-            var buttons = _buttonCreator.Create(names, _content);
+             
+            var buttons = _buttonCreator.Create(list.ToArray(), _content);
 
             for (int i = 0; i < buttons.Count; i++)
             {

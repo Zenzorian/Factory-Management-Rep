@@ -11,7 +11,7 @@ namespace FactoryManager.Data
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public FactoryWorker Position { get; set; }
+        public override string  Type { get; set; }
 
         public float WeeklyNorm { get; set; }
         public float OvertimeAllowed { get; set; }
@@ -23,7 +23,7 @@ namespace FactoryManager.Data
         {
 
         }
-        public Worker(int id, string firstName, string lastName, FactoryWorker position,
+        public Worker(int id, string firstName, string lastName, string position,
                       float weeklyNorm = 40, float overtimeAllowed = 0,
                       float hourlyWage = 0, float overtimeSurcharge = 0,
                       float nightShiftSurcharge = 0)
@@ -31,26 +31,12 @@ namespace FactoryManager.Data
             Id = id;
             FirstName = firstName;
             LastName = lastName;
-            Position = position;
+            Type = position;
             WeeklyNorm = weeklyNorm;
             OvertimeAllowed = overtimeAllowed;
             HourlyWage = hourlyWage;
             OvertimeSurcharge = overtimeSurcharge;
             NightShiftSurcharge = nightShiftSurcharge;
         }
-    }
-
-    public enum FactoryWorker
-    {
-        Manager,          // Управляющий
-        Engineer,         // Инженер
-        Technician,       // Техник
-        Welder,           // Сварщик
-        Assembler,        // Сборщик
-        QualityControl,   // Контроль качества
-        Maintenance,      // Обслуживание
-        ForkliftOperator, // Водитель погрузчика
-        Painter,          // Маляр
-        Packer            // Упаковщик
-    }
+    }   
 }

@@ -53,18 +53,20 @@ namespace FactoryManager
             switch (menuType)
             {
                 case MainMenuButtons.Workspace:
-                    _categoryMenu.Create(typeof(FactoryWorkspace));
+                    _categoryMenu.Create(GlobalData.typesOfWorkspaces);
                     Forwards(_choicePanel.gameObject);
                     break;
                 case MainMenuButtons.Tools:
-                    _categoryMenu.Create(typeof(MachineTool));
+                    _categoryMenu.Create(GlobalData.typesOfTools);
                     Forwards(_choicePanel.gameObject);
                     break;
                 case MainMenuButtons.Workers:
-                    _categoryMenu.Create(typeof(FactoryWorker));
+                    _categoryMenu.Create(GlobalData.typesOfWorkers);
                     Forwards(_choicePanel.gameObject);
                     break;
                 case MainMenuButtons.Parts:
+                    _categoryMenu.Create(GlobalData.typesOfParts);
+                    Forwards(_choicePanel.gameObject);
                     break;
                 case MainMenuButtons.Options:
                     Forwards(_optionsPanel.gameObject);

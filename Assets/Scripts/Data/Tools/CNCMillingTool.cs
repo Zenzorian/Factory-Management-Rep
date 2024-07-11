@@ -7,8 +7,7 @@ namespace FactoryManager.Data.Tools
     {
         public CNCMillingToolType CNCMillingToolType { get; set; }
 
-
-        public CNCMillingTool(string marking, double fMin, double fMax, double vMin, double vMax, decimal cost, string note,MachineTool type) : base(marking, fMin, fMax, vMin, vMax, cost, note,type)
+        public CNCMillingTool(string marking, string note, string type, ToolStatistic manufacturerRecommendedSettings, decimal cost) : base(marking, note, type,manufacturerRecommendedSettings, cost)
         {
 
         }

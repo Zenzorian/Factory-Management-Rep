@@ -7,10 +7,9 @@
     {
         public double Width { get; set; }
 
-        public GroovingTool(string marking, double fMin, double fMax, double vMin, double vMax, double width, decimal cost, string note, MachineTool type)
-            : base(marking, fMin, fMax, vMin, vMax, cost, note,type)
+        public GroovingTool(string marking, string note, string type, ToolStatistic manufacturerRecommendedSettings, double width, decimal cost) : base(marking, note, type, manufacturerRecommendedSettings, cost)
         {
-            Width = width;
+            Width = width;           
         }
     }
 }

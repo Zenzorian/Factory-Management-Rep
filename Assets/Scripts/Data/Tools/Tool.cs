@@ -1,40 +1,28 @@
+using System.Collections.Generic;
+
 namespace FactoryManager.Data.Tools
 {
     /// <summary>
     /// Базовый класс для содания инструментов
     /// </summary>
     [System.Serializable]
-    public abstract class Tool: TableItem
+    public abstract class Tool : TableItem
     {
         public string Marking { get; set; }
         public string Note { get; set; }
-        public MachineTool ToolType { get; set; }
-        public Tool(string marking, string note, MachineTool toolType)
+        public override string Type { get; set; }
+        public Tool(string marking, string note, string toolType)
         {
             Marking = marking;
             Note = note;
-            ToolType = toolType;
+            Type = toolType;
         }
     }
     public interface IToolWithFeedAndSpeed
-    {
-        double FMin { get; set; }
-        double FMax { get; set; }
-        double VMin { get; set; }
-        double VMax { get; set; }
-    }
-    public enum MachineTool
-    {
-        LatheCNC,             // Токарный ЧПУ
-        MillingCNC,           // Фрезерный ЧПУ
-        Cutting,              // Отрезные станки
-        Grooving,             // Канавочные станки
-        ThreadingMachines,    // Резьбовые станки
-        Drills,               // Свёрла
-        MillingCutters,       // Фрезы
-        Taps,                  // Метчики
-        Other
-    }
+    {     
+        List<ToolStatistic> ToolStatistics { get; set; }
+        ToolStatistic ManufacturerRecommendedSettings { get; set; }
+}   
     public interface IToolWithCost
     {
         decimal Cost { get; set; }
@@ -43,11 +31,28 @@ namespace FactoryManager.Data.Tools
     {
         Metric,
         Imperial
-
     }
     public enum CNCMillingToolType
     {
         Rough,
         Bottoming
+    }
+    [System.Serializable]
+    public class ToolStatistic
+    {
+        double FMin { get; set; }
+        double FMax { get; set; }
+        double VMin { get; set; }
+        double VMax { get; set; }
+
+        int PartCount { get; set; }
+
+        public ToolStatistic(double fMin, double fMax, double vMin, double vMax, int partCount)
+        {
+            FMin = fMin;
+            FMax = fMax;
+            VMin = vMin;
+            VMax = vMax;
+        }       
     }
 }

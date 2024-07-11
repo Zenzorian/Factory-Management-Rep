@@ -7,6 +7,6 @@ namespace FactoryManager.Data
     /// </summary>
     public class Consumable : TableItem
     {
-
+        public override string Type { get; set; }
     }
 }

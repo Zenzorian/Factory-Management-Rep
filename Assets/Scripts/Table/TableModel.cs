@@ -13,57 +13,37 @@ namespace FactoryManager
         [SerializeField] private GlobalData _globalData;       
               
         public void SetList(Type type, int value)
-        {            
+        {
+            Debug.Log(type);
             switch (type.Name)
             {
                 case "FactoryWorkspace":
-                    ShowTable(Filter((FactoryWorkspace)value));
+                    ShowTable(Filter(GlobalData.typesOfWorkspaces[value], _globalData.listOfWorkstations));
                     break;
                 case "MachineTool":                  
-                    ShowTable(Filter((MachineTool)value));
+                    ShowTable(Filter(GlobalData.typesOfTools[value], _globalData.listOfTools));
                     break;
                 case "FactoryWorker":                    
-                    ShowTable(Filter((FactoryWorker)value));
+                    ShowTable(Filter(GlobalData.typesOfWorkers[value], _globalData.listOfWorkers));
                     break;
-                case "Parts":
-
+                case "PartType":
+                    ShowTable(Filter(GlobalData.typesOfParts[value], _globalData.listOfParts));
                     break;
                 default:
                     break;
             }
         }
-        private List<Workstation> Filter(FactoryWorkspace type)
+        private List<T> Filter<T>(string type, List<T> list) where T : TableItem
         {
-            var temporaryList = new List<Workstation>();
-            foreach (var item in _globalData.listOfWorkstation)
+            var temporaryList = new List<T>();
+            foreach (var item in list)
             {               
-                if (item.WorkspaceType == type)
+                if (item.Type == type)
                     temporaryList.Add(item);
             }
             return temporaryList;
         }
 
-        private List<Tool> Filter(MachineTool type)
-        {
-            var temporaryList = new List<Tool>();
-            foreach (var item in _globalData.listOfTool)
-            {
-                Debug.Log(item.ToolType);
-                if (item.ToolType == type)
-                    temporaryList.Add(item);
-            }
-            return temporaryList;                      
-        }
-        private List<Worker> Filter(FactoryWorker type)
-        {
-            var temporaryList = new List<Worker>();
-            foreach (var item in _globalData.listOfWorkers)
-            {
-                if (item.Position == type)
-                    temporaryList.Add(item);
-            }
-            return temporaryList;
-        }
         private void ShowTable<T>(List<T> list)
         {
             _tableManager.ClearTable();

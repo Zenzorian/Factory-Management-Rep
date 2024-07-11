@@ -12,9 +12,41 @@ public class GlobalDataGenerator : MonoBehaviour
     private void Start()
     {
         _globalData.listOfWorkers = GenerateWorkers(50);
-        _globalData.listOfTool = GenerateRandomTools(50);
-        _globalData.listOfWorkstation = GenerateWorkstations(15);
+        _globalData.listOfTools = GenerateRandomTools(50);
+        _globalData.listOfWorkstations = GenerateWorkstations(15);
+        _globalData.listOfParts = GenerateParts(50);
 
+    }
+    public List<Part> GenerateParts(int count)
+    {
+        List<Part> parts = new List<Part>();
+
+        for (int i = 0; i < count; i++)
+        {
+            string name = $"Part {i + 1}";
+            Operation[] operations = GenerateRandomOperations(Random.Range(1, 5)).ToArray();
+            string statistics = $"Statistics for part {i + 1}";
+            string partType = GlobalData.typesOfParts[Random.Range(1, 6)];
+
+            parts.Add(new Part(name, partType, operations, statistics));
+        }
+
+        return parts;
+    }
+
+    private List<Operation> GenerateRandomOperations(int count)
+    {
+        List<Operation> operations = new List<Operation>();
+
+        for (int i = 0; i < count; i++)
+        {
+            string name = $"Operation {i + 1}";
+            Tool[] tools = GenerateRandomTools(Random.Range(1, 3)).ToArray();
+
+            operations.Add(new Operation(name, tools));
+        }
+
+        return operations;
     }
     public List<Worker> GenerateWorkers(int numberOfWorkers)
     {
@@ -29,7 +61,7 @@ public class GlobalDataGenerator : MonoBehaviour
                 i,
                 firstNames[Random.Range(0,firstNames.Length)],
                 lastNames[Random.Range(0,lastNames.Length)],
-                (FactoryWorker)UnityEngine.Random.Range(0, 10)
+                GlobalData.typesOfWorkers[UnityEngine.Random.Range(0, 10)]
             ));
         }
 
@@ -76,7 +108,7 @@ public class GlobalDataGenerator : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            var type = (FactoryWorkspace)Random.Range(1, 9);
+            var type = GlobalData.typesOfWorkspaces[Random.Range(1, 9)];
             Tool[] tools = GenerateRandomTools(Random.Range(1, 3)).ToArray();
             int maxWorkers = Random.Range(1, 20);
             int reservedWorkers = Random.Range(0, maxWorkers);
@@ -90,13 +122,15 @@ public class GlobalDataGenerator : MonoBehaviour
     {
         var tool = new CNCMillingTool(
             marking: GenerateRandomString(),
-            fMin: UnityEngine.Random.Range(0.1f, 1f),
+            note: "Random note for Turning Roughing Tool",
+            type: "MillingCNC",
+            new ToolStatistic(fMin: UnityEngine.Random.Range(0.1f, 1f),
             fMax: UnityEngine.Random.Range(1f, 3f),
             vMin: UnityEngine.Random.Range(100f, 200f),
             vMax: UnityEngine.Random.Range(200f, 400f),
-            cost: (decimal)UnityEngine.Random.Range(10f, 100f),
-            note: "Random note for Turning Roughing Tool",
-            type: MachineTool.MillingCNC
+            partCount: UnityEngine.Random.Range(1, 100)),           
+            cost: (decimal)UnityEngine.Random.Range(10f, 100f)
+            
             );
 
         return tool;
@@ -106,14 +140,15 @@ public class GlobalDataGenerator : MonoBehaviour
     {
         var tool = new GroovingTool(
             marking: GenerateRandomString(),
-            fMin: UnityEngine.Random.Range(0.1f, 1f),
+            note: "Random note for Turning Roughing Tool",
+            type: "Grooving",
+            new ToolStatistic(fMin: UnityEngine.Random.Range(0.1f, 1f),
             fMax: UnityEngine.Random.Range(1f, 3f),
             vMin: UnityEngine.Random.Range(100f, 200f),
             vMax: UnityEngine.Random.Range(200f, 400f),
+            partCount: UnityEngine.Random.Range(1, 100)),
             width: UnityEngine.Random.Range(1f, 100f),
-            cost: (decimal)UnityEngine.Random.Range(10f, 100f),
-            note: "Random note for Turning Roughing Tool",
-            type: MachineTool.Grooving
+            cost: (decimal)UnityEngine.Random.Range(10f, 100f)            
             );
 
         return tool;
@@ -129,7 +164,7 @@ public class GlobalDataGenerator : MonoBehaviour
             vMax: UnityEngine.Random.Range(100f, 200f),
             pitch: UnityEngine.Random.Range(0.5f, 2f),
             note: "Random note for Threading Tool",
-            type: MachineTool.ThreadingMachines
+            type: "ThreadingMachines"
             );
 
         return tool;
@@ -145,7 +180,7 @@ public class GlobalDataGenerator : MonoBehaviour
             vMin: UnityEngine.Random.Range(50f, 100f),
             vMax: UnityEngine.Random.Range(100f, 200f),
             note: "Random note for Tap",
-            type: MachineTool.Taps
+            type: "Taps"
             );
         return tool;
     }
@@ -156,7 +191,7 @@ public class GlobalDataGenerator : MonoBehaviour
             marking: GenerateRandomString(),
             description: "Random description",
             note: "Random note for Other Consumable",
-            type: MachineTool.Other
+            type: "Other"
             );
 
         return tool;
