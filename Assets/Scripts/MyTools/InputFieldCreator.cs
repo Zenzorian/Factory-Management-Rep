@@ -7,25 +7,44 @@ using UnityEngine.UI;
 [System.Serializable]
 public class InputFieldCreator
 {
-    [SerializeField] private GameObject inputFieldPrefab; // Префаб поля ввода
-    [SerializeField] private GameObject textPrefab; // Префаб текста
+    [SerializeField] private GameObject _inputFieldPrefab; // Префаб поля ввода
+    [SerializeField] private GameObject _textPrefab; // Префаб текста
 
+    [SerializeField] private Vector2 _elementSize;
     public Dictionary<string, InputField> Create(FieldInfo[] properties, Transform panelTransform)
     {
         Dictionary<string, InputField> inputFields = new Dictionary<string, InputField>();
 
         foreach (var property in properties)
         {
-            // Создаем текст с названием свойства
-            GameObject textGO = GameObject.Instantiate(textPrefab, panelTransform);
-            Text textComponent = textGO.GetComponent<Text>();
-            textComponent.text = property.Name;
-
-            // Создаем поле ввода для свойства
-            GameObject inputFieldGO = GameObject.Instantiate(inputFieldPrefab, panelTransform);
-            InputField inputField = inputFieldGO.GetComponent<InputField>();
+            InputField inputField = CreateElement(property.Name, panelTransform);
             inputFields.Add(property.Name, inputField);
         }
+
         return inputFields;
     }
+
+    public InputField Create(string title, Transform panelTransform)
+    {
+        return CreateElement($"Add type of {title}", panelTransform);
+    }
+
+    private InputField CreateElement(string title, Transform panelTransform)
+    {        
+        GameObject textGO = GameObject.Instantiate(_textPrefab, panelTransform);
+        Text textComponent = textGO.GetComponent<Text>();
+        textComponent.text = title;
+
+        RectTransform textRectTransform = textGO.GetComponent<RectTransform>();
+        textRectTransform.sizeDelta = _elementSize;
+        
+        GameObject inputFieldGO = GameObject.Instantiate(_inputFieldPrefab, panelTransform);
+        InputField inputField = inputFieldGO.GetComponent<InputField>();
+
+        RectTransform inputFieldRectTransform = inputFieldGO.GetComponent<RectTransform>();
+        inputFieldRectTransform.sizeDelta = _elementSize;
+
+        return inputField;
+    }
 }
+

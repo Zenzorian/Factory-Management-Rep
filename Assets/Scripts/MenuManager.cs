@@ -1,13 +1,14 @@
 using FactoryManager.Data;
 using FactoryManager.Data.Tools;
+using System.Collections.Generic;
 using UnityEngine;
 namespace FactoryManager
 {
     public class MenuManager : MonoBehaviour
     {
-        [SerializeField] private Transform _mainMenu;
 
-        [SerializeField] private Transform _addationMenu;
+        [SerializeField] private GlobalData _globalData;
+        [SerializeField] private Transform _mainMenu;       
 
         [SerializeField] private Transform _choicePanel;
 
@@ -19,10 +20,11 @@ namespace FactoryManager
 
         private GameObject[] _menuStack = new GameObject[4];
         private int _menuIndex = 0;
-
+        
         private void Awake()
         {
             _menuStack[0] = _mainMenu.gameObject;
+            AddationManager.instance.OnAdded.AddListener(Back);            
         }
         private void Update()
         {
@@ -47,37 +49,36 @@ namespace FactoryManager
             _menuStack[_menuIndex] = gameObject;
         }
         public void OpenMenu(int value)
-        {
-            var menuType = (MainMenuButtons)value;
+        {            
+            var menuType = (MainMenuTypes)value;
+            List<string> selectedList = null;
 
             switch (menuType)
             {
-                case MainMenuButtons.Workspace:
-                    _categoryMenu.Create(GlobalData.typesOfWorkspaces);
-                    Forwards(_choicePanel.gameObject);
+                case MainMenuTypes.Workspace:
+                    selectedList = _globalData.typesOfWorkspaces;
                     break;
-                case MainMenuButtons.Tools:
-                    _categoryMenu.Create(GlobalData.typesOfTools);
-                    Forwards(_choicePanel.gameObject);
+                case MainMenuTypes.Tools:
+                    selectedList = _globalData.typesOfTools;
                     break;
-                case MainMenuButtons.Workers:
-                    _categoryMenu.Create(GlobalData.typesOfWorkers);
-                    Forwards(_choicePanel.gameObject);
+                case MainMenuTypes.Workers:
+                    selectedList = _globalData.typesOfWorkers;
                     break;
-                case MainMenuButtons.Parts:
-                    _categoryMenu.Create(GlobalData.typesOfParts);
-                    Forwards(_choicePanel.gameObject);
+                case MainMenuTypes.Parts:
+                    selectedList = _globalData.typesOfParts;
                     break;
-                case MainMenuButtons.Options:
+                case MainMenuTypes.Options:
                     Forwards(_optionsPanel.gameObject);
-                    break;
+                    return;
                 default:
                     break;
             }
-        }
-        public void OpenAddationMenu()
-        {
-            Forwards(_addationMenu.gameObject);
+
+            if (selectedList != null)
+            {
+                _categoryMenu.Create(selectedList, menuType);
+                Forwards(_choicePanel.gameObject);
+            }
         }
         public void OpenListsMenu()
         {
@@ -92,7 +93,7 @@ namespace FactoryManager
             Forwards(_tableView.gameObject);
         }
     }
-    public enum MainMenuButtons
+    public enum MainMenuTypes
     {
         Workspace,
         Tools,

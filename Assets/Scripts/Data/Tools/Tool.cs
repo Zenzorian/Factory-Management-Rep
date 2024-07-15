@@ -9,8 +9,7 @@ namespace FactoryManager.Data.Tools
     public abstract class Tool : TableItem
     {
         public string Marking { get; set; }
-        public string Note { get; set; }
-        public override string Type { get; set; }
+        public string Note { get; set; }        
         public Tool(string marking, string note, string toolType)
         {
             Marking = marking;

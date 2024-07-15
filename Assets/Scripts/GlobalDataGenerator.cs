@@ -26,7 +26,7 @@ public class GlobalDataGenerator : MonoBehaviour
             string name = $"Part {i + 1}";
             Operation[] operations = GenerateRandomOperations(Random.Range(1, 5)).ToArray();
             string statistics = $"Statistics for part {i + 1}";
-            string partType = GlobalData.typesOfParts[Random.Range(1, 6)];
+            string partType = _globalData.typesOfParts[Random.Range(1, 6)];
 
             parts.Add(new Part(name, partType, operations, statistics));
         }
@@ -61,7 +61,7 @@ public class GlobalDataGenerator : MonoBehaviour
                 i,
                 firstNames[Random.Range(0,firstNames.Length)],
                 lastNames[Random.Range(0,lastNames.Length)],
-                GlobalData.typesOfWorkers[UnityEngine.Random.Range(0, 10)]
+                _globalData.typesOfWorkers[UnityEngine.Random.Range(0, 10)]
             ));
         }
 
@@ -108,7 +108,7 @@ public class GlobalDataGenerator : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            var type = GlobalData.typesOfWorkspaces[Random.Range(1, 9)];
+            var type = _globalData.typesOfWorkspaces[Random.Range(1, 9)];
             Tool[] tools = GenerateRandomTools(Random.Range(1, 3)).ToArray();
             int maxWorkers = Random.Range(1, 20);
             int reservedWorkers = Random.Range(0, maxWorkers);

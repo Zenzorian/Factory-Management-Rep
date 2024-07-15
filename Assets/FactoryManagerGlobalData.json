@@ -1,0 +1,930 @@
+{
+    "listOfParts": [
+        {
+            "Type": "Bushing",
+            "Name": "Part 1",
+            "Statistics": "Statistics for part 1"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 2",
+            "Statistics": "Statistics for part 2"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 3",
+            "Statistics": "Statistics for part 3"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 4",
+            "Statistics": "Statistics for part 4"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 5",
+            "Statistics": "Statistics for part 5"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 6",
+            "Statistics": "Statistics for part 6"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 7",
+            "Statistics": "Statistics for part 7"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 8",
+            "Statistics": "Statistics for part 8"
+        },
+        {
+            "Type": "Bushing",
+            "Name": "Part 9",
+            "Statistics": "Statistics for part 9"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 10",
+            "Statistics": "Statistics for part 10"
+        },
+        {
+            "Type": "Bushing",
+            "Name": "Part 11",
+            "Statistics": "Statistics for part 11"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 12",
+            "Statistics": "Statistics for part 12"
+        },
+        {
+            "Type": "Bushing",
+            "Name": "Part 13",
+            "Statistics": "Statistics for part 13"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 14",
+            "Statistics": "Statistics for part 14"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 15",
+            "Statistics": "Statistics for part 15"
+        },
+        {
+            "Type": "Bushing",
+            "Name": "Part 16",
+            "Statistics": "Statistics for part 16"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 17",
+            "Statistics": "Statistics for part 17"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 18",
+            "Statistics": "Statistics for part 18"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 19",
+            "Statistics": "Statistics for part 19"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 20",
+            "Statistics": "Statistics for part 20"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 21",
+            "Statistics": "Statistics for part 21"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 22",
+            "Statistics": "Statistics for part 22"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 23",
+            "Statistics": "Statistics for part 23"
+        },
+        {
+            "Type": "Bushing",
+            "Name": "Part 24",
+            "Statistics": "Statistics for part 24"
+        },
+        {
+            "Type": "Bushing",
+            "Name": "Part 25",
+            "Statistics": "Statistics for part 25"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 26",
+            "Statistics": "Statistics for part 26"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 27",
+            "Statistics": "Statistics for part 27"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 28",
+            "Statistics": "Statistics for part 28"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 29",
+            "Statistics": "Statistics for part 29"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 30",
+            "Statistics": "Statistics for part 30"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 31",
+            "Statistics": "Statistics for part 31"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 32",
+            "Statistics": "Statistics for part 32"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 33",
+            "Statistics": "Statistics for part 33"
+        },
+        {
+            "Type": "Bushing",
+            "Name": "Part 34",
+            "Statistics": "Statistics for part 34"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 35",
+            "Statistics": "Statistics for part 35"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 36",
+            "Statistics": "Statistics for part 36"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 37",
+            "Statistics": "Statistics for part 37"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 38",
+            "Statistics": "Statistics for part 38"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 39",
+            "Statistics": "Statistics for part 39"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 40",
+            "Statistics": "Statistics for part 40"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 41",
+            "Statistics": "Statistics for part 41"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 42",
+            "Statistics": "Statistics for part 42"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 43",
+            "Statistics": "Statistics for part 43"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 44",
+            "Statistics": "Statistics for part 44"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 45",
+            "Statistics": "Statistics for part 45"
+        },
+        {
+            "Type": "Bracket",
+            "Name": "Part 46",
+            "Statistics": "Statistics for part 46"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 47",
+            "Statistics": "Statistics for part 47"
+        },
+        {
+            "Type": "Cylinder",
+            "Name": "Part 48",
+            "Statistics": "Statistics for part 48"
+        },
+        {
+            "Type": "Housing",
+            "Name": "Part 49",
+            "Statistics": "Statistics for part 49"
+        },
+        {
+            "Type": "Gear",
+            "Name": "Part 50",
+            "Statistics": "Statistics for part 50"
+        }
+    ],
+    "listOfWorkstations": [
+        {
+            "Type": "Welding",
+            "MaxWorkers": 17,
+            "ReservedWorkers": 14
+        },
+        {
+            "Type": "Painting",
+            "MaxWorkers": 8,
+            "ReservedWorkers": 1
+        },
+        {
+            "Type": "Storage",
+            "MaxWorkers": 14,
+            "ReservedWorkers": 4
+        },
+        {
+            "Type": "Storage",
+            "MaxWorkers": 11,
+            "ReservedWorkers": 1
+        },
+        {
+            "Type": "Maintenance",
+            "MaxWorkers": 2,
+            "ReservedWorkers": 0
+        },
+        {
+            "Type": "QualityControl",
+            "MaxWorkers": 10,
+            "ReservedWorkers": 7
+        },
+        {
+            "Type": "Storage",
+            "MaxWorkers": 12,
+            "ReservedWorkers": 2
+        },
+        {
+            "Type": "Welding",
+            "MaxWorkers": 17,
+            "ReservedWorkers": 16
+        },
+        {
+            "Type": "Storage",
+            "MaxWorkers": 19,
+            "ReservedWorkers": 12
+        },
+        {
+            "Type": "CNC",
+            "MaxWorkers": 5,
+            "ReservedWorkers": 2
+        },
+        {
+            "Type": "QualityControl",
+            "MaxWorkers": 8,
+            "ReservedWorkers": 4
+        },
+        {
+            "Type": "Painting",
+            "MaxWorkers": 6,
+            "ReservedWorkers": 5
+        },
+        {
+            "Type": "Painting",
+            "MaxWorkers": 1,
+            "ReservedWorkers": 0
+        },
+        {
+            "Type": "Painting",
+            "MaxWorkers": 16,
+            "ReservedWorkers": 13
+        },
+        {
+            "Type": "Storage",
+            "MaxWorkers": 17,
+            "ReservedWorkers": 11
+        }
+    ],
+    "listOfWorkers": [
+        {
+            "Type": "Maintenance",
+            "Id": 1,
+            "FirstName": "Alexander",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "QualityControl",
+            "Id": 2,
+            "FirstName": "Max",
+            "LastName": "Mikhailov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Packer",
+            "Id": 3,
+            "FirstName": "George",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Welder",
+            "Id": 4,
+            "FirstName": "Alex",
+            "LastName": "Alexeev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Maintenance",
+            "Id": 5,
+            "FirstName": "Sergey",
+            "LastName": "Mikhailov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Assembler",
+            "Id": 6,
+            "FirstName": "Alex",
+            "LastName": "Georgiev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Technician",
+            "Id": 7,
+            "FirstName": "George",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Technician",
+            "Id": 8,
+            "FirstName": "Dmitry",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Technician",
+            "Id": 9,
+            "FirstName": "Nick",
+            "LastName": "Mikhailov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Packer",
+            "Id": 10,
+            "FirstName": "Alex",
+            "LastName": "Alexeev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "QualityControl",
+            "Id": 11,
+            "FirstName": "Alexander",
+            "LastName": "Dmitriev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Manager",
+            "Id": 12,
+            "FirstName": "Sergey",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Packer",
+            "Id": 13,
+            "FirstName": "Alex",
+            "LastName": "Maxwell",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Technician",
+            "Id": 14,
+            "FirstName": "Alexander",
+            "LastName": "Alexandrov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Maintenance",
+            "Id": 15,
+            "FirstName": "Peter",
+            "LastName": "Johnson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 16,
+            "FirstName": "George",
+            "LastName": "Maxwell",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Assembler",
+            "Id": 17,
+            "FirstName": "John",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Painter",
+            "Id": 18,
+            "FirstName": "Max",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "QualityControl",
+            "Id": 19,
+            "FirstName": "Nick",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Manager",
+            "Id": 20,
+            "FirstName": "Dmitry",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 21,
+            "FirstName": "Dmitry",
+            "LastName": "Johnson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Welder",
+            "Id": 22,
+            "FirstName": "Alex",
+            "LastName": "Georgiev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 23,
+            "FirstName": "Alexander",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Welder",
+            "Id": 24,
+            "FirstName": "Max",
+            "LastName": "Mikhailov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Maintenance",
+            "Id": 25,
+            "FirstName": "Alex",
+            "LastName": "Maxwell",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Packer",
+            "Id": 26,
+            "FirstName": "George",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Technician",
+            "Id": 27,
+            "FirstName": "John",
+            "LastName": "Georgiev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 28,
+            "FirstName": "Michael",
+            "LastName": "Mikhailov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 29,
+            "FirstName": "Peter",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Maintenance",
+            "Id": 30,
+            "FirstName": "Alex",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Painter",
+            "Id": 31,
+            "FirstName": "John",
+            "LastName": "Dmitriev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Packer",
+            "Id": 32,
+            "FirstName": "Peter",
+            "LastName": "Alexandrov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Assembler",
+            "Id": 33,
+            "FirstName": "George",
+            "LastName": "Alexeev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 34,
+            "FirstName": "Peter",
+            "LastName": "Smith",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Engineer",
+            "Id": 35,
+            "FirstName": "Peter",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Assembler",
+            "Id": 36,
+            "FirstName": "Alex",
+            "LastName": "Alexandrov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Assembler",
+            "Id": 37,
+            "FirstName": "Sergey",
+            "LastName": "Alexandrov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Painter",
+            "Id": 38,
+            "FirstName": "Peter",
+            "LastName": "Dmitriev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 39,
+            "FirstName": "Alex",
+            "LastName": "Mikhailov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 40,
+            "FirstName": "Sergey",
+            "LastName": "Dmitriev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 41,
+            "FirstName": "Nick",
+            "LastName": "Georgiev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Technician",
+            "Id": 42,
+            "FirstName": "John",
+            "LastName": "Nikitsin",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Packer",
+            "Id": 43,
+            "FirstName": "Sergey",
+            "LastName": "Georgiev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Assembler",
+            "Id": 44,
+            "FirstName": "Alexander",
+            "LastName": "Johnson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Maintenance",
+            "Id": 45,
+            "FirstName": "Max",
+            "LastName": "Georgiev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Packer",
+            "Id": 46,
+            "FirstName": "John",
+            "LastName": "Alexandrov",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "ForkliftOperator",
+            "Id": 47,
+            "FirstName": "Michael",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "QualityControl",
+            "Id": 48,
+            "FirstName": "Peter",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Manager",
+            "Id": 49,
+            "FirstName": "Sergey",
+            "LastName": "Peterson",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Type": "Assembler",
+            "Id": 50,
+            "FirstName": "George",
+            "LastName": "Georgiev",
+            "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        }
+    ],
+    "typesOfTools": [
+        "LatheCNC",
+        "MillingCNC",
+        "Cutting",
+        "Grooving",
+        "ThreadingMachines",
+        "Drills",
+        "MillingCutters",
+        "Taps",
+        "Other"
+    ],
+    "typesOfWorkers": [
+        "Manager",
+        "Engineer",
+        "Technician",
+        "Welder",
+        "Assembler",
+        "QualityControl",
+        "Maintenance",
+        "ForkliftOperator",
+        "Painter",
+        "Packer"
+    ],
+    "typesOfWorkspaces": [
+        "AssemblyLine",
+        "CNC",
+        "Painting",
+        "QualityControl",
+        "Packaging",
+        "Maintenance",
+        "Storage",
+        "Welding",
+        "Inspection",
+        "ResearchAndDevelopment"
+    ],
+    "typesOfParts": [
+        "Shaft",
+        "Gear",
+        "Housing",
+        "Bracket",
+        "Bushing",
+        "Cylinder",
+        "Pulley",
+        "Plate",
+        "Spacer",
+        "Ring"
+    ]
+}

@@ -10,9 +10,9 @@ namespace FactoryManager
         //{
         //    _tableModel.SetList((DataType)value);
         //}
-        public void OpenTableWithFilter(Type type, int value)
+        public void OpenTableWithFilter(MainMenuTypes menuType, int value)
         {
-            _tableModel.SetList(type,value);
+            _tableModel.SetList(menuType,value);
         }
     }
 }

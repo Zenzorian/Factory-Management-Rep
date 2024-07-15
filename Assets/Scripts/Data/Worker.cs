@@ -7,18 +7,17 @@ namespace FactoryManager.Data
     [System.Serializable]
     public class Worker : TableItem
     {
-        public int Id { get; set; }
+        public int Id;
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public override string  Type { get; set; }
+        public string FirstName;
+        public string LastName;      
 
-        public float WeeklyNorm { get; set; }
-        public float OvertimeAllowed { get; set; }
+        public float WeeklyNorm;
+        public float OvertimeAllowed;
 
-        public float HourlyWage { get; set; }
-        public float OvertimeSurcharge { get; set; }
-        public float NightShiftSurcharge { get; set; }
+        public float HourlyWage;
+        public float OvertimeSurcharge;
+        public float NightShiftSurcharge;
         public Worker()
         {
 

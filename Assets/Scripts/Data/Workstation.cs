@@ -8,10 +8,9 @@ namespace FactoryManager.Data
     [System.Serializable]
     public class Workstation : TableItem
     {
-        public override string Type { get; set; }
-        public Tool[] Tools { get; set; }
-        public int MaxWorkers { get; set; }
-        public int ReservedWorkers { get; set; }
+        public Tool[] Tools;
+        public int MaxWorkers;
+        public int ReservedWorkers;
         public Workstation()
         { }
         public Workstation(string type,Tool[] tools,int maxWorkers, int reservedWorkers)

@@ -1,7 +1,8 @@
 namespace FactoryManager.Data
 {
+    [System.Serializable]
     public abstract class TableItem
     {
-        public abstract string Type { get; set; }
+        public string Type;
     }
 }

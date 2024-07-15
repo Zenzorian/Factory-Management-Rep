@@ -1,6 +1,4 @@
 using FactoryManager.Data;
-using FactoryManager.Data.Tools;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -12,22 +10,21 @@ namespace FactoryManager
         [SerializeField] private TableView _tableManager;
         [SerializeField] private GlobalData _globalData;       
               
-        public void SetList(Type type, int value)
-        {
-            Debug.Log(type);
-            switch (type.Name)
+        public void SetList(MainMenuTypes menuType, int value)
+        {            
+            switch (menuType)
             {
-                case "FactoryWorkspace":
-                    ShowTable(Filter(GlobalData.typesOfWorkspaces[value], _globalData.listOfWorkstations));
+                case MainMenuTypes.Workspace:
+                    ShowTable(Filter(_globalData.typesOfWorkspaces[value], _globalData.listOfWorkstations));
                     break;
-                case "MachineTool":                  
-                    ShowTable(Filter(GlobalData.typesOfTools[value], _globalData.listOfTools));
+                case MainMenuTypes.Tools:                  
+                    ShowTable(Filter(_globalData.typesOfTools[value], _globalData.listOfTools));
                     break;
-                case "FactoryWorker":                    
-                    ShowTable(Filter(GlobalData.typesOfWorkers[value], _globalData.listOfWorkers));
+                case MainMenuTypes.Workers:                    
+                    ShowTable(Filter(_globalData.typesOfWorkers[value], _globalData.listOfWorkers));
                     break;
-                case "PartType":
-                    ShowTable(Filter(GlobalData.typesOfParts[value], _globalData.listOfParts));
+                case MainMenuTypes.Parts:
+                    ShowTable(Filter(_globalData.typesOfParts[value], _globalData.listOfParts));
                     break;
                 default:
                     break;
@@ -54,27 +51,27 @@ namespace FactoryManager
                 return;
             }
 
-            PropertyInfo[] properties = list[0].GetType().GetProperties();
-            List<string> propertyNames = new List<string>();
+            FieldInfo[] fields = list[0].GetType().GetFields();
+            List<string> fieldNames = new List<string>();
 
-            foreach (var item in properties)
+            foreach (var item in fields)
             {
-                propertyNames.Add(item.Name);
+                fieldNames.Add(item.Name);
             }
 
-            var tableData = new string[list.Count, propertyNames.Count];
+            var tableData = new string[list.Count, fieldNames.Count];
 
             for (int i = 0; i < list.Count; i++)
             {
-                PropertyInfo[] currentProperties = list[i].GetType().GetProperties();
-                for (int j = 0; j < currentProperties.Length; j++)
+                FieldInfo[] currentFields = list[i].GetType().GetFields();
+                for (int j = 0; j < currentFields.Length; j++)
                 {
-                    var value = currentProperties[j].GetValue(list[i]);
+                    var value = currentFields[j].GetValue(list[i]);
                     tableData[i, j] = value != null ? value.ToString() : string.Empty;
                 }
             }
 
-            Table table = new Table(propertyNames.ToArray(), tableData);
+            Table table = new Table(fieldNames.ToArray(), tableData);
             _tableManager.CreateTable(table);
         }
     }

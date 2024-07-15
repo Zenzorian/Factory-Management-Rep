@@ -12,9 +12,21 @@ namespace FactoryManager
 
         [SerializeField] private Transform _content;
 
-        private Type _type;
-        public void Create(List<string> list)
+        private List<string> _selectedCategories = new List<string>();
+        public static MainMenuTypes MenuType { get; private set; }
+        private void Awake()
+        {            
+            AddationManager.instance.OnAdded.AddListener(SomethingAdded);
+        }
+        private void SomethingAdded() 
         {
+            Create(_selectedCategories, MenuType);
+        }
+        public void Create(List<string> list,MainMenuTypes menuType)
+        {
+            _selectedCategories = list;
+            MenuType = menuType;
+
             Clear();
              
             var buttons = _buttonCreator.Create(list.ToArray(), _content);
@@ -28,7 +40,7 @@ namespace FactoryManager
         }
         public void ButtonPressed(int index)
         {
-            _tableController.OpenTableWithFilter(_type, index);
+            _tableController.OpenTableWithFilter(MenuType, index);
             _menuManager.OpenTableView();
         }
         private void Clear() 

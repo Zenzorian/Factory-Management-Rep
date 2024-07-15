@@ -4,10 +4,9 @@ namespace FactoryManager.Data
 {
     public class Operation : TableItem
     {
-        public string Name { get; set; }
-        public Tool[] Tools { get; set; }
-        public override string Type { get; set; }
-
+        public string Name;
+        public Tool[] Tools;
+        
         public Operation()
         {
             
