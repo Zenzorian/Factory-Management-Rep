@@ -18,10 +18,9 @@ namespace FactoryManager.Data.Tools
         }
     }
     public interface IToolWithFeedAndSpeed
-    {     
-        List<ToolStatistic> ToolStatistics { get; set; }
-        ToolStatistic ManufacturerRecommendedSettings { get; set; }
-}   
+    {
+        ManufacturersRecomendedParametrs ManufacturerRecommendedSettings { get; set; }
+    }   
     public interface IToolWithCost
     {
         decimal Cost { get; set; }
@@ -37,7 +36,7 @@ namespace FactoryManager.Data.Tools
         Bottoming
     }
     [System.Serializable]
-    public class ToolStatistic
+    public class ManufacturersRecomendedParametrs
     {
         double FMin { get; set; }
         double FMax { get; set; }
@@ -46,7 +45,7 @@ namespace FactoryManager.Data.Tools
 
         int PartCount { get; set; }
 
-        public ToolStatistic(double fMin, double fMax, double vMin, double vMax, int partCount)
+        public ManufacturersRecomendedParametrs(double fMin, double fMax, double vMin, double vMax, int partCount)
         {
             FMin = fMin;
             FMax = fMax;

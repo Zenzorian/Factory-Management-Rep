@@ -18,11 +18,8 @@ namespace FactoryManager.Data
         public float HourlyWage;
         public float OvertimeSurcharge;
         public float NightShiftSurcharge;
-        public Worker()
-        {
-
-        }
-        public Worker(int id, string firstName, string lastName, string position,
+        
+        public Worker(int id, string firstName, string lastName, string type,
                       float weeklyNorm = 40, float overtimeAllowed = 0,
                       float hourlyWage = 0, float overtimeSurcharge = 0,
                       float nightShiftSurcharge = 0)
@@ -30,7 +27,7 @@ namespace FactoryManager.Data
             Id = id;
             FirstName = firstName;
             LastName = lastName;
-            Type = position;
+            Type = type;
             WeeklyNorm = weeklyNorm;
             OvertimeAllowed = overtimeAllowed;
             HourlyWage = hourlyWage;

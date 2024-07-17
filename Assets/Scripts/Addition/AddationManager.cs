@@ -11,19 +11,30 @@ namespace FactoryManager
         public static AddationManager instance;
         public UnityEvent OnAdded;
 
+        [SerializeField] private GlobalData _globalData;
+        [SerializeField] private Transform _content;
+        [SerializeField] private InputFieldCreator _inputFieldCreator = new InputFieldCreator();
         [SerializeField] private ChioceListAddation _chioceListAddation;
+        [SerializeField] private TableItemAddation _tableItemAddation;
         [SerializeField] private Button _addButton;
 
         private void Awake()
         {
             if (instance == null)
-                instance = this;           
-        }
-        public void AddChioceList() 
-        {
-            _chioceListAddation.Set(ChoiceOfCategoryMenu.MenuType,_addButton);
-        }
-        
+                instance = this;
 
+            _chioceListAddation.Init(_inputFieldCreator, _content, _globalData);
+            _tableItemAddation.Init(_inputFieldCreator, _content, _globalData);
+        }
+
+        public void AddChioceList()
+        {            
+            _chioceListAddation.Set(ChoiceOfCategoryMenu.MenuType, _addButton);
+        }
+
+        public void AddTableItem()
+        {
+            _tableItemAddation.Set(ChoiceOfCategoryMenu.MenuType, _addButton);
+        }
     }
 }

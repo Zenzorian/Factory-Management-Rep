@@ -8,19 +8,35 @@ namespace FactoryManager.Data
     [System.Serializable]
     public class Part : TableItem
     {
-        public string Name;
-        public Operation[] Operations;       
-        public string Statistics;
+        public string Name;        
+        public Statistics Statistics;
         public Part()
         {
 
         }
-        public Part(string name, string partType, Operation[] operations, string statistics)
+        public Part(string name, string partType)
         {
             Name = name;
-            Type = partType;
-            Operations = operations;           
-            Statistics = statistics;
+            Type = partType;            
         }
-    }    
+    }
+    public class Statistics
+    {
+        public Tool Tool;
+        public ProcessingType ProcessingType;
+        public StatisticData[] Data;
+    }
+    public enum ProcessingType
+    {
+        Finishing, 
+        Roughing,
+        NotSpecified
+    }
+    public class StatisticData
+    {
+        public double FMin;
+        public double VMin;
+        public int[] PartCount;
+
+    }
 }

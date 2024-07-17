@@ -24,30 +24,15 @@ public class GlobalDataGenerator : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             string name = $"Part {i + 1}";
-            Operation[] operations = GenerateRandomOperations(Random.Range(1, 5)).ToArray();
-            string statistics = $"Statistics for part {i + 1}";
+            
             string partType = _globalData.typesOfParts[Random.Range(1, 6)];
 
-            parts.Add(new Part(name, partType, operations, statistics));
+            parts.Add(new Part(name, partType));
         }
 
         return parts;
     }
-
-    private List<Operation> GenerateRandomOperations(int count)
-    {
-        List<Operation> operations = new List<Operation>();
-
-        for (int i = 0; i < count; i++)
-        {
-            string name = $"Operation {i + 1}";
-            Tool[] tools = GenerateRandomTools(Random.Range(1, 3)).ToArray();
-
-            operations.Add(new Operation(name, tools));
-        }
-
-        return operations;
-    }
+   
     public List<Worker> GenerateWorkers(int numberOfWorkers)
     {
         List<Worker> workers = new List<Worker>();       
@@ -124,7 +109,7 @@ public class GlobalDataGenerator : MonoBehaviour
             marking: GenerateRandomString(),
             note: "Random note for Turning Roughing Tool",
             type: "MillingCNC",
-            new ToolStatistic(fMin: UnityEngine.Random.Range(0.1f, 1f),
+            new ManufacturersRecomendedParametrs(fMin: UnityEngine.Random.Range(0.1f, 1f),
             fMax: UnityEngine.Random.Range(1f, 3f),
             vMin: UnityEngine.Random.Range(100f, 200f),
             vMax: UnityEngine.Random.Range(200f, 400f),
@@ -142,7 +127,7 @@ public class GlobalDataGenerator : MonoBehaviour
             marking: GenerateRandomString(),
             note: "Random note for Turning Roughing Tool",
             type: "Grooving",
-            new ToolStatistic(fMin: UnityEngine.Random.Range(0.1f, 1f),
+            new ManufacturersRecomendedParametrs(fMin: UnityEngine.Random.Range(0.1f, 1f),
             fMax: UnityEngine.Random.Range(1f, 3f),
             vMin: UnityEngine.Random.Range(100f, 200f),
             vMax: UnityEngine.Random.Range(200f, 400f),
