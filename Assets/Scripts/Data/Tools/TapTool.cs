@@ -6,10 +6,10 @@
     [System.Serializable]
     public class TapTool : Tool
     {
-        public MeasurementSystem Measurement { get; set; }
-        public double Pitch { get; set; }
-        public double VMin { get; set; }
-        public double VMax { get; set; }
+        public MeasurementSystem Measurement;
+        public double Pitch;
+        public double VMin;
+        public double VMax;
 
         public TapTool(string marking, MeasurementSystem measurement, double pitch, double vMin, double vMax, string note, string type)
             : base(marking, note, type)
@@ -20,4 +20,5 @@
             VMax = vMax;
         }
     }
+
 }

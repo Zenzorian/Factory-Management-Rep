@@ -1,4 +1,5 @@
 using FactoryManager.Data;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -26,6 +27,12 @@ namespace FactoryManager
                 case MainMenuTypes.Parts:
                     ShowTable(Filter(_globalData.typesOfParts[value], _globalData.listOfParts));
                     break;
+                case MainMenuTypes.StatisticPart:
+                    ShowTable(Filter(_globalData.typesOfParts[value], _globalData.listOfParts));
+                    break;
+                case MainMenuTypes.StatisticTool:
+                    ShowTable(Filter(_globalData.typesOfTools[value], _globalData.listOfTools));
+                    break;
                 default:
                     break;
             }
@@ -40,8 +47,16 @@ namespace FactoryManager
             }
             return temporaryList;
         }
+        public void CellSelected(int index,Type type)
+        {
+            //if (type == typeof(Part))
+            //{ 
+            //    var cellData = _globalData.lis
+            //}
+        
+        }
 
-        private void ShowTable<T>(List<T> list)
+        private void ShowTable<T>(List<T> list) where T : TableItem
         {
             _tableManager.ClearTable();
 
@@ -49,30 +64,8 @@ namespace FactoryManager
             {
                 Debug.Log($"{list} is empty");
                 return;
-            }
-
-            FieldInfo[] fields = list[0].GetType().GetFields();
-            List<string> fieldNames = new List<string>();
-
-            foreach (var item in fields)
-            {
-                fieldNames.Add(item.Name);
-            }
-
-            var tableData = new string[list.Count, fieldNames.Count];
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                FieldInfo[] currentFields = list[i].GetType().GetFields();
-                for (int j = 0; j < currentFields.Length; j++)
-                {
-                    var value = currentFields[j].GetValue(list[i]);
-                    tableData[i, j] = value != null ? value.ToString() : string.Empty;
-                }
-            }
-
-            Table table = new Table(fieldNames.ToArray(), tableData);
-            _tableManager.CreateTable(table);
+            }            
+            _tableManager.SetTableData(list);
         }
     }
 }

@@ -14,8 +14,8 @@ public class GlobalDataGenerator : MonoBehaviour
         _globalData.listOfWorkers = GenerateWorkers(50);
         _globalData.listOfTools = GenerateRandomTools(50);
         _globalData.listOfWorkstations = GenerateWorkstations(15);
-        _globalData.listOfParts = GenerateParts(50);
 
+        _globalData.listOfParts = GenerateParts(3);
     }
     public List<Part> GenerateParts(int count)
     {
@@ -23,16 +23,49 @@ public class GlobalDataGenerator : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            string name = $"Part {i + 1}";
-            
-            string partType = _globalData.typesOfParts[Random.Range(1, 6)];
+            var part = new Part();
+            part.Type = _globalData.typesOfParts[Random.Range(1, 6)];
+            part.Name = $"Part {part.Type} {i + 1}";
+            part.Statistics = GenerateStatisticsList(_globalData.listOfTools[0],ProcessingType.Finishing,10,3);
 
-            parts.Add(new Part(name, partType));
+            parts.Add(part);
         }
 
         return parts;
     }
-   
+    public static List<Statistics> GenerateStatisticsList(Tool tool, ProcessingType processingType, int numberOfDataPointsPerStatistic, int numberOfStatistics)
+    {
+        List<Statistics> statisticsList = new List<Statistics>();
+
+        System.Random random = new System.Random();
+
+        for (int i = 0; i < numberOfStatistics; i++)
+        {            
+            Statistics statistics = new Statistics(tool, processingType);
+
+            for (int j = 0; j < numberOfDataPointsPerStatistic; j++)
+            {
+                List<int> ints = new List<int>();
+                for (int k = 0; k < 20; k++)
+                {
+                    ints.Add(random.Next(50, 150));
+                }
+                StatisticData data = new StatisticData
+                {
+                    F = System.Math.Round(random.NextDouble() * 100, 3), // Example: Random F value between 0 and 100
+                    V = System.Math.Round(random.NextDouble() * 100, 3), // Example: Random V value between 0 and 100
+                    PartCounter = ints// Example: Random PartCounter values
+                };
+               
+
+                statistics.Data.Add(data);
+            }
+
+            statisticsList.Add(statistics);
+        }
+
+        return statisticsList;
+    }
     public List<Worker> GenerateWorkers(int numberOfWorkers)
     {
         List<Worker> workers = new List<Worker>();       

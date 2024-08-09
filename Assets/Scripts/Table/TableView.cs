@@ -1,10 +1,16 @@
+using FactoryManager;
+using FactoryManager.Data;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using FactoryManager.Data.Tools;
 
 [System.Serializable]
 public class TableView : MonoBehaviour
 {
+    [SerializeField] private TableModel _tableModel;
     [SerializeField] private RectTransform _tableRect;
     [SerializeField] private TableCellCreator _cellCreator = new TableCellCreator();
     [Header("CONTAINERS")]
@@ -20,12 +26,42 @@ public class TableView : MonoBehaviour
     [Header("SCROLL VIEW")]
     [SerializeField] private ScrollRect _scrollRect;
 
-    private List<TableCell> _headerColumn = new List<TableCell>();    
-            
+    private List<TableCell> _headerColumn = new List<TableCell>();
+       
+    private List<TableItem> _tableItems;
+    public void SetTableData<T>(List<T> list) where T : TableItem
+    {
+        _tableItems = list.Cast<TableItem>().ToList();
+        FieldInfo[] fields = list[0].GetType().GetFields();
+        List<string> fieldNames = new List<string>();
+
+        foreach (var item in fields)
+        {
+            fieldNames.Add(item.Name);
+        }
+
+        var tableData = new string[list.Count, fieldNames.Count];
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            FieldInfo[] currentFields = list[i].GetType().GetFields();
+            for (int j = 0; j < currentFields.Length; j++)
+            {
+                var value = currentFields[j].GetValue(list[i]);
+                tableData[i, j] = value != null ? value.ToString() : string.Empty;
+            }
+        }
+
+        Table table = new Table(fieldNames.ToArray(), tableData);
+
+        CreateTable(table);
+    }
     public void CreateTable(Table table)
-    {  
+    {
         float totalRowsHeight = table.TableCells.GetLength(0) * (_rowHeight + _verticalSpacing);
-        float totalColumnsWidth = table.TableCells.GetLength(1) * (_columnWidth + _horizontalSpacing);        
+        float totalColumnsWidth = table.TableCells.GetLength(1) * (_columnWidth + _horizontalSpacing);
+
+        totalColumnsWidth = totalColumnsWidth < Screen.width ? Screen.width : totalColumnsWidth;
 
         _tableContainer.sizeDelta = new Vector2(totalColumnsWidth, totalRowsHeight);
         _headerContainer.sizeDelta = new Vector2(totalColumnsWidth, _rowHeight);
@@ -50,9 +86,9 @@ public class TableView : MonoBehaviour
         var scrolWidth = _scrollRect.verticalScrollbar.transform.GetComponent<RectTransform>().rect.width;
         layoutGroup.padding.right = (int)scrolWidth;
 
-        foreach (var item in fields)       
+        foreach (var item in fields)
         {
-            var cell = _cellCreator.CreateCell(_headerContainer,true);
+            var cell = _cellCreator.CreateCell(_headerContainer, true);
             cell.text.text = item;
             cell.rectTransform.sizeDelta = new Vector2(0, _rowHeight);
             _headerColumn.Add(cell);
@@ -63,7 +99,7 @@ public class TableView : MonoBehaviour
         int rows = tableData.GetLength(0);
         int columns = tableData.GetLength(1);
 
-        var scrolWidth = _scrollRect.verticalScrollbar.transform.GetComponent<RectTransform>().rect.width;       
+        var scrolWidth = _scrollRect.verticalScrollbar.transform.GetComponent<RectTransform>().rect.width;
         var layoutGroup = AddVerticallLayoutGroup(_tableContainer.gameObject);
 
         layoutGroup.padding.right = (int)scrolWidth;
@@ -77,9 +113,25 @@ public class TableView : MonoBehaviour
                 var cell = _cellCreator.CreateCell(row);
                 cell.rectTransform.sizeDelta = new Vector2(0, _rowHeight);
                 cell.text.text = tableData[r, c];
-               
                 cell.rectTransform.localScale = Vector3.one;
+
+                // Добавляем слушатель нажатий на ячейки таблицы
+                int currentRow = r; // фиксируем текущее значение строки
+                cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => OnCellClicked(currentRow));
             }
+        }
+    }
+    private void OnCellClicked(int rowIndex)
+    {       
+        if (_tableItems[rowIndex] is Part)
+        {            
+            var data = (Part)_tableItems[rowIndex];            
+            MenuManager.instance.OnPartSelected.Invoke(data);
+        }
+        if (_tableItems[rowIndex] is Tool)
+        {
+            var data = (Tool)_tableItems[rowIndex];            
+            MenuManager.instance.OnToolSelected.Invoke(data);          
         }
     }
     public RectTransform AddRow(Transform container)

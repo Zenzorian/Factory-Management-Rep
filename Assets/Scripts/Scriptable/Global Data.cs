@@ -13,7 +13,7 @@ namespace FactoryManager
         public List<Part> listOfParts = new List<Part>();
         public List<Workstation> listOfWorkstations = new List<Workstation>();
         public List<Tool> listOfTools = new List<Tool>();
-        public List<Worker> listOfWorkers = new List<Worker>();
+        public List<Worker> listOfWorkers = new List<Worker>();      
 
         public List<string> typesOfTools;
         public List<string> typesOfWorkers;

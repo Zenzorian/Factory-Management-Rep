@@ -6,10 +6,10 @@
     [System.Serializable]
     public class OtherConsumable : Tool
     {
-        public string Description { get; set; }
+        public string Description;
 
         public OtherConsumable(string marking, string description, string note, string type)
-            : base(marking, note,type)
+            : base(marking, note, type)
         {
             Description = description;
         }

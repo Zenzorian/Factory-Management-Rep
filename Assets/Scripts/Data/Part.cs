@@ -1,4 +1,5 @@
 using FactoryManager.Data.Tools;
+using System.Collections.Generic;
 
 namespace FactoryManager.Data
 {
@@ -9,7 +10,7 @@ namespace FactoryManager.Data
     public class Part : TableItem
     {
         public string Name;        
-        public Statistics Statistics;
+        public List<Statistics> Statistics = new List<Statistics>();
         public Part()
         {
 
@@ -20,23 +21,32 @@ namespace FactoryManager.Data
             Type = partType;            
         }
     }
+    [System.Serializable]
     public class Statistics
     {
+        public Statistics(Tool tool, ProcessingType processingType)
+        {
+            Tool = tool;
+            ProcessingType = processingType;           
+        }
+
         public Tool Tool;
         public ProcessingType ProcessingType;
-        public StatisticData[] Data;
+        public List<StatisticData> Data = new List<StatisticData>();
     }
+    [System.Serializable]
     public enum ProcessingType
     {
+        NotSpecified,
         Finishing, 
-        Roughing,
-        NotSpecified
+        Roughing       
     }
+    [System.Serializable]
     public class StatisticData
     {
-        public double FMin;
-        public double VMin;
-        public int[] PartCount;
+        public double F;
+        public double V;
+        public List<int> PartCounter = new List<int>();
 
     }
 }

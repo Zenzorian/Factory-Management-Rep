@@ -2,29 +2,49 @@ using FactoryManager.Data;
 using FactoryManager.Data.Tools;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 namespace FactoryManager
 {
     public class MenuManager : MonoBehaviour
     {
+        public static MenuManager instance;
+        public MainMenuTypes menuType;
+
+        public UnityEvent<Part> OnPartSelected;
+        public UnityEvent<Tool> OnToolSelected;
 
         [SerializeField] private GlobalData _globalData;
-        [SerializeField] private Transform _mainMenu;       
+        [SerializeField] private Transform _mainMenu;
 
         [SerializeField] private Transform _choicePanel;
 
         [SerializeField] private Transform _addationPanel;
         [SerializeField] private Transform _tableView;
         [SerializeField] private Transform _optionsPanel;
+        [SerializeField] private Transform _statisticPanel;
+        [SerializeField] private Transform _statisticInputPanel;
         [SerializeField] private ChoiceOfCategoryMenu _categoryMenu;
 
+        [SerializeField] private StatisticsPanelController _statisticsPanelController;
+        [SerializeField] private ConfirmationPanel _confirmationPanel;
+        [SerializeField] private StatisticsInputManager _statisticsInputManager;
 
         private GameObject[] _menuStack = new GameObject[4];
         private int _menuIndex = 0;
-        
+
+
+
+        private bool _StatisticisOpen;
+
         private void Awake()
         {
+            if (instance == null)
+                instance = this;
+
             _menuStack[0] = _mainMenu.gameObject;
-            AddationManager.instance.OnAdded.AddListener(Back);            
+            AddationManager.instance.OnAdded.AddListener(Back);
+            OnPartSelected.AddListener(PartSelected);
+            OnToolSelected.AddListener(ToolSelected);
         }
         private void Update()
         {
@@ -49,8 +69,8 @@ namespace FactoryManager
             _menuStack[_menuIndex] = gameObject;
         }
         public void OpenMenu(int value)
-        {            
-            var menuType = (MainMenuTypes)value;
+        {
+            menuType = (MainMenuTypes)value;
             List<string> selectedList = null;
 
             switch (menuType)
@@ -66,6 +86,15 @@ namespace FactoryManager
                     break;
                 case MainMenuTypes.Parts:
                     selectedList = _globalData.typesOfParts;
+                    break;
+                case MainMenuTypes.Statistic:
+                    Forwards(_statisticPanel.gameObject);
+                    break;
+                case MainMenuTypes.StatisticPart:
+                    selectedList = _globalData.typesOfParts;
+                    break;
+                case MainMenuTypes.StatisticTool:
+                    selectedList = _globalData.typesOfTools;
                     break;
                 case MainMenuTypes.Options:
                     Forwards(_optionsPanel.gameObject);
@@ -92,6 +121,43 @@ namespace FactoryManager
         {
             Forwards(_tableView.gameObject);
         }
+        public void OpenProcessingTypeMenu(int index)
+        {
+            var part = _globalData.listOfParts[index];
+            //_categoryMenu.Create(part., MainMenuTypes.Statistic);
+            Forwards(_choicePanel.gameObject);
+        }
+        public void PartSelected(Part part)
+        {
+            Debug.Log(menuType);
+            if (menuType != MainMenuTypes.StatisticPart) return;
+            Back();
+            Back();
+
+            _statisticsPanelController.OnPartSelected(part);
+        }
+        public void ToolSelected(Tool tool)
+        {
+            if (menuType != MainMenuTypes.StatisticTool) return;
+            Back();
+            Back();
+            _statisticsPanelController.OnToolSelected(tool);
+        }
+        public void ShowConfirmationPanel()
+        {
+            _confirmationPanel.Show();
+        }
+        public void OpenStatisticChoiceCategory(List<StatisticData> list)
+        { 
+            _categoryMenu.CreateForStatistic(list);
+                Forwards(_choicePanel.gameObject);
+        
+        }       
+        public void OpenStatisticInputPanel(StatisticData data)
+        {
+            _statisticsInputManager.ShowPanel(data);
+            Forwards(_statisticInputPanel.gameObject);
+        }
     }
     public enum MainMenuTypes
     {
@@ -99,6 +165,9 @@ namespace FactoryManager
         Tools,
         Workers,
         Parts,
-        Options = 99
+        Statistic,
+        Options = 99,
+        StatisticPart,
+        StatisticTool
     }
 }
