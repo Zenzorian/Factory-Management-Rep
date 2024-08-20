@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using TriangleNet.Geometry;
+using TriangleNet;
 
 public class GraphData
 {
@@ -16,27 +18,23 @@ public class GraphData
     public float averageCountOfParts;
 }
 
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class GraphPlane : MonoBehaviour
 {
-    [SerializeField] private GameObject _plane; // Already existing plane
-    [SerializeField] private float _planeSize; // Desired size of the plane
-    [SerializeField] private GameObject _cylinderPrefab; // Prefab of the cylinder
-    [SerializeField] private float maxColumnHeight; // Maximum possible height of the columns
-    [SerializeField] private Material xAxisMaterial; // Material for the X axis
-    [SerializeField] private Material yAxisMaterial; // Material for the Y axis
-    [SerializeField] private Material zAxisMaterial; // Material for the Z axis
+    [SerializeField] private Material planeMaterial;
+    [SerializeField] private float _planeSize = 20f; // Размер плоскости   
 
-    private Vector3 realPlaneSize;
+    [SerializeField] private float maxColumnHeight = 100f; // Максимальная высота вершины
 
-    private void Start()
-    {
-        // Get the real size of the plane
-        realPlaneSize = GetRealPlaneSize();
+    [SerializeField] private GameObject _cylinderPrefab;
+    [SerializeField] private float _axisScaleFactor = 0.1f;
 
-        // Scale the plane to the desired size
-        ScalePlane();
-    }
+    [SerializeField] private Material xAxisMaterial;
+    [SerializeField] private Material yAxisMaterial;
+    [SerializeField] private Material zAxisMaterial;
+
+    [SerializeField] private float tickDiameter = 0.2f;
+    [SerializeField] private GameObject _labelPrefab;
+    [SerializeField] private GameObject _labelSpherePrefab;
 
     public void Generate(List<GraphData> data)
     {
@@ -44,88 +42,220 @@ public class GraphPlane : MonoBehaviour
         {
             Debug.LogError("Data list cannot be null or empty");
             return;
-        }
+        }       
 
-        // Find the maximum fValue and vValue to determine the scaling factor
+        // Найти максимальное значение averageCountOfParts для масштабирования высот
+        float maxAverageCountOfParts = data.Max(d => d.averageCountOfParts);
+
+        // Найти максимальные значения fValue и vValue для нормализации
         double maxFValue = data.Max(d => d.fValue);
         double maxVValue = data.Max(d => d.vValue);
 
-        // Calculate scaling factors
-        float scaleFactorX = realPlaneSize.x / (float)maxFValue;
-        float scaleFactorZ = realPlaneSize.z / (float)maxVValue;
+        List<Vector3> vertices = new List<Vector3>();
 
-        // Calculate the offset to center the grid on the plane
-        float offsetX = realPlaneSize.x / 2;
-        float offsetZ = realPlaneSize.z / 2;
-
-        // Find the maximum averageCountOfParts to scale the column heights
-        float maxAverageCountOfParts = data.Max(d => d.averageCountOfParts);
-
+        // Преобразуем каждую точку данных
         foreach (var graphData in data)
         {
-            // Calculate the position on the plane
-            float x = (float)(graphData.fValue * scaleFactorX) - offsetX;
-            float z = (float)(graphData.vValue * scaleFactorZ) - offsetZ;
+            // Нормализуем координаты fValue и vValue в диапазон [0, 1]
+            float normalizedX = (float)(graphData.fValue / maxFValue);
+            float normalizedZ = (float)(graphData.vValue / maxVValue);
 
-            // Calculate the height of the cylinder based on the percentage of maxAverageCountOfParts
+            // Преобразуем нормализованные координаты в координаты Terrain
+            float xCoord = normalizedX * _planeSize;
+            float zCoord = normalizedZ * _planeSize;
+
+            // Определяем высоту холма для данной точки как процент от максимальной высоты
             float height = (graphData.averageCountOfParts / maxAverageCountOfParts) * maxColumnHeight;
 
-            // Create the cylinder
-            GameObject cylinder = Instantiate(_cylinderPrefab);
-            cylinder.transform.position = new Vector3(x, 0, z);
-            cylinder.transform.localScale = new Vector3(1, height, 1);
-            cylinder.transform.SetParent(_plane.transform, true);
+            vertices.Add(new Vector3(xCoord, height, zCoord));
+        }
+        vertices = vertices.OrderBy(v => v.z).ThenBy(v => v.x).ToList();
+
+        var planeMeshSize = CreatePlaneFromVertices(vertices).bounds.size;
+
+        foreach (var pos in vertices)
+        {
+            Instantiate(_labelSpherePrefab, pos, Quaternion.identity, this.transform);
+        }
+        // Рисуем оси
+        DrawAxes(new Vector3(planeMeshSize.x, maxColumnHeight, planeMeshSize.z));
+    }
+    private Mesh CreatePlaneFromVertices(List<Vector3> vertices)
+    {
+        if (vertices.Count < 3)
+        {
+            Debug.LogError("Недостаточно точек для создания полигона!");
+            return null;
+        }        
+
+        // Преобразуем List<Vector3> в List<Vector2> для Delaunay Triangulation
+        List<Vector2> points2D = vertices.Select(v => new Vector2(v.x, v.z)).ToList();
+
+        Polygon poly = new Polygon();
+        foreach (var point in points2D)
+        {
+            poly.Add(point);
         }
 
-        var ZeroPoint = new Vector3(-offsetX, 0, -offsetZ);
-        // Draw the coordinate axes with their respective materials
-        CreateAxis(ZeroPoint, new Vector3(offsetX, 0, -offsetZ), xAxisMaterial, "X Axis");
-        CreateAxis(ZeroPoint, new Vector3(-offsetX, maxColumnHeight * 2f, -offsetZ), yAxisMaterial, "Y Axis");
-        CreateAxis(ZeroPoint, new Vector3(-offsetX, 0, offsetZ), zAxisMaterial, "Z Axis");
+        var triangleNetMesh = (TriangleNetMesh)poly.Triangulate();
+
+        // Применяем меш к MeshFilter и MeshRenderer
+        GameObject planeObject = new GameObject("GeneratedPlane");       
+        MeshFilter meshFilter = planeObject.AddComponent<MeshFilter>();
+        MeshRenderer meshRenderer = planeObject.AddComponent<MeshRenderer>();
+        
+        var mesh = triangleNetMesh.GenerateUnityMesh();
+
+        var temporaryVertices = mesh.vertices;
+
+        for (int i = 0; i < temporaryVertices.Length; i++)
+        {
+            Debug.Log(mesh.vertices[i]);
+            temporaryVertices[i] = vertices[i];
+            Debug.Log(mesh.vertices[i]);
+        }
+        mesh.vertices = temporaryVertices;
+
+        meshFilter.mesh = mesh;
+        meshRenderer.material = planeMaterial;
+            
+        planeObject.transform.SetParent(this.transform, false);
+
+        meshFilter.mesh.RecalculateNormals();
+        meshFilter.mesh.RecalculateBounds();
+
+        return mesh;
     }
 
+    private void CorrectNormals(Mesh mesh)
+    {
+        Vector3[] normals = mesh.normals;
+        for (int i = 0; i < normals.Length; i++)
+        {
+            normals[i] = Vector3.up; // Устанавливаем нормаль в направлении вверх
+        }
+        mesh.normals = normals;
+    }
+
+
+    private void DrawAxes(Vector3 size)
+    {
+        // Проверяем существование осей перед их созданием
+        if (!GameObject.Find("XAxis"))
+        {
+            CreateAxis(
+                new Vector3(0, 0, 0),
+                new Vector3(size.x, 0, 0),
+                xAxisMaterial,
+                "XAxis"
+            );
+        }
+
+        if (!GameObject.Find("ZAxisLeft"))
+        {
+            CreateAxis(
+                new Vector3(0, 0, 0),
+                new Vector3(0, 0, size.z),
+                zAxisMaterial,
+                "ZAxisLeft"
+            );
+        }
+
+        if (!GameObject.Find("YAxisLeft"))
+        {
+            CreateAxis(
+                new Vector3(0, 0, 0),
+                new Vector3(0, size.y, 0),
+                yAxisMaterial,
+                "YAxisLeft"
+            );
+        }
+
+        // Добавляем подписи на оси
+        AddAxisLabel(new Vector3(size.x, 0, 0), "X", xAxisMaterial.color);
+        AddAxisLabel(new Vector3(0, size.y, 0), "Y", yAxisMaterial.color);
+        AddAxisLabel(new Vector3(0, 0, size.z), "Z", zAxisMaterial.color);
+
+        // Добавляем градуировки на оси
+        AddAxisTicks(new Vector3(size.x, 0, 0), xAxisMaterial.color, 'X');
+        AddAxisTicks(new Vector3(0, size.y, 0), yAxisMaterial.color, 'Y');
+        AddAxisTicks(new Vector3(0, 0, size.z), zAxisMaterial.color, 'Z');
+    }
+
+    private void AddAxisTicks(Vector3 axisEnd, Color color, char axis)
+    {
+        // Определяем шаг градуировки в зависимости от длины оси
+        float axisLength = axisEnd.magnitude;
+        float step = axisLength > 10 ? 5f : axisLength > 1 ? 1f : 0.05f;
+        int numberOfTicks = Mathf.CeilToInt(axisLength / step);
+
+        for (int i = 0; i <= numberOfTicks; i++)
+        {
+            float position = i * step;
+            Vector3 tickPosition = Vector3.zero;
+            Vector3 tickRotation= Vector3.zero;
+
+            if (axis == 'X')
+            {
+                tickRotation = new Vector3(0,0,90);
+                tickPosition = new Vector3(position, 0, 0);
+            }
+            else if (axis == 'Y')
+            {
+                tickRotation = new Vector3(0, 90, 0);
+                tickPosition = new Vector3(0, position, 0);
+            }
+            else if (axis == 'Z')
+            {
+                tickRotation = new Vector3(90,0, 0);
+                tickPosition = new Vector3(0, 0, position);
+            }
+
+            // Создание градуировки
+            GameObject tick = Instantiate(_cylinderPrefab, tickPosition, Quaternion.identity, this.transform);
+            tick.transform.localScale = new Vector3(tickDiameter + _axisScaleFactor, 0.02f, tickDiameter + _axisScaleFactor); // Ширина градуировки больше основной оси
+            tick.transform.localEulerAngles = tickRotation;
+            MeshRenderer tickRenderer = tick.GetComponentInChildren<MeshRenderer>();
+            if (tickRenderer != null)
+            {
+                tickRenderer.material.color = color;
+            }
+
+            // Создание текстовой метки
+            Vector3 labelPosition = tickPosition + new Vector3(0, 0.1f, 0); // Позиция метки выше градуировки
+            AddAxisLabel(labelPosition, position.ToString("0.0"), color);
+        }
+    }
+
+    private void AddAxisLabel(Vector3 position, string text, Color color)
+    {
+        GameObject labelObject = Instantiate(_labelPrefab, position, Quaternion.identity, this.transform);
+        TextMesh textMesh = labelObject.GetComponent<TextMesh>();
+        if (textMesh != null)
+        {
+            textMesh.text = text;
+            textMesh.color = color;
+            textMesh.alignment = TextAlignment.Center;
+            textMesh.anchor = TextAnchor.MiddleCenter;
+        }
+    }
     private void CreateAxis(Vector3 start, Vector3 end, Material material, string name)
     {
         Vector3 direction = end - start;
-        float length = direction.magnitude;
+        float length = Vector3.Distance(start, end);
 
         GameObject axisCylinder = Instantiate(_cylinderPrefab);
         axisCylinder.name = name;
-        axisCylinder.transform.SetParent(_plane.transform, true);
+        axisCylinder.transform.SetParent(this.transform, true);
         axisCylinder.transform.position = start;
-        axisCylinder.transform.localScale = new Vector3(0.1f, length / 2, 0.1f);
+        axisCylinder.transform.localScale = new Vector3(_axisScaleFactor, length/2, _axisScaleFactor); // Ширина оси и высота оси
         axisCylinder.transform.up = direction.normalized;
 
-        // Apply the material to the cylinder
+        // Применяем материал к цилиндру
         MeshRenderer renderer = axisCylinder.GetComponentInChildren<MeshRenderer>();
         if (renderer != null)
         {
             renderer.material = material;
         }
-    }
-
-    private Vector3 GetRealPlaneSize()
-    {
-        MeshFilter meshFilter = _plane.GetComponent<MeshFilter>();
-        if (meshFilter != null)
-        {
-            Mesh mesh = meshFilter.sharedMesh;
-            Vector3 size = mesh.bounds.size;
-            Vector3 scale = _plane.transform.localScale;
-            return new Vector3(size.x * scale.x, size.y * scale.y, size.z * scale.z);
-        }
-        return Vector3.zero;
-    }
-
-    private void ScalePlane()
-    {
-        if (_plane == null)
-        {
-            Debug.LogError("Plane object is not assigned");
-            return;
-        }
-
-        // Assuming the plane is a unit plane (1x1 size), scale it to the desired size
-        _plane.transform.localScale = new Vector3(_planeSize, 1, _planeSize);
     }
 }

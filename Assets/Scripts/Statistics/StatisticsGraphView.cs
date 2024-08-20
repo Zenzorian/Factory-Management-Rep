@@ -28,8 +28,7 @@ public class StatisticsGraphView : MonoBehaviour
         foreach (int number in numbers)
         {
             sum += number;
-        }
-
+        }       
         return (float)sum / numbers.Count;
     }
 }

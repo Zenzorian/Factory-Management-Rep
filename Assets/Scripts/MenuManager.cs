@@ -3,6 +3,7 @@ using FactoryManager.Data.Tools;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 namespace FactoryManager
 {
     public class MenuManager : MonoBehaviour
@@ -29,7 +30,9 @@ namespace FactoryManager
         [SerializeField] private ConfirmationPanel _confirmationPanel;
         [SerializeField] private StatisticsInputManager _statisticsInputManager;
 
-        private GameObject[] _menuStack = new GameObject[4];
+        [SerializeField] private Button _backButton;
+
+       private GameObject[] _menuStack = new GameObject[4];
         private int _menuIndex = 0;
 
 
@@ -44,16 +47,19 @@ namespace FactoryManager
             _menuStack[0] = _mainMenu.gameObject;
             AddationManager.instance.OnAdded.AddListener(Back);
             OnPartSelected.AddListener(PartSelected);
-            OnToolSelected.AddListener(ToolSelected);
+            OnToolSelected.AddListener(ToolSelected);            
         }
         private void Update()
         {
+            if(_menuIndex == 0) _backButton.gameObject.SetActive(false);
+            else _backButton.gameObject.SetActive(true);
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Back();
             }
         }
-        private void Back()
+        public void Back()
         {
             if (_menuIndex == 0) return;
 
