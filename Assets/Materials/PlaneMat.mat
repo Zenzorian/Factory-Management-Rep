@@ -117,7 +117,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Height: 3.73
+    - _Height: 4.5
     - _HeightMultiplier: 1
     - _Metallic: 0
     - _Mode: 0
@@ -126,7 +126,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: -20
+    - _Smoothness: -15
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

@@ -46,15 +46,15 @@ public class GlobalDataGenerator : MonoBehaviour
             for (int j = 0; j < numberOfDataPointsPerStatistic; j++)
             {
                 List<int> ints = new List<int>();
-                for (int k = 0; k < 20; k++)
+                for (int k = 0; k < 5; k++)
                 {
-                    ints.Add(random.Next(50, 150));
+                    ints.Add(random.Next(50, 250));
                 }
                 StatisticData data = new StatisticData
                 {
-                    F = System.Math.Round(random.NextDouble() * 100, 3), // Example: Random F value between 0 and 100
-                    V = System.Math.Round(random.NextDouble() * 100, 3), // Example: Random V value between 0 and 100
-                    PartCounter = ints// Example: Random PartCounter values
+                    F = System.Math.Round(Random.Range(0f,5f), 3), 
+                    V = System.Math.Round(Random.Range(0f,5f), 3), 
+                    PartCounter = ints
                 };
                
 

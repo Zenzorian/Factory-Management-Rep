@@ -9,6 +9,9 @@ public class StatisticsPanelController : MonoBehaviour
 {
     [SerializeField] private GlobalData _globalData;
 
+    [SerializeField] private Transform _menuConvas;
+    [SerializeField] private Transform _statisticConvas;
+
     [SerializeField] private StatisticsGraphView _statisticsGraphView;
 
     [SerializeField] private Text _partText;
@@ -115,7 +118,11 @@ public class StatisticsPanelController : MonoBehaviour
     private void OnGoToStatisticsButtonClicked()
     {
         if (Check() == null) OpenConfirmationAndAddationMenu();
-        else OpenCurrentStatistic(Check());
+        else { 
+            OpenCurrentStatistic(Check());
+            _menuConvas.gameObject.SetActive(false);
+            _statisticConvas.gameObject.SetActive(true);
+        }
     }   
     private void OpenConfirmationAndAddationMenu()
     {
@@ -138,5 +145,10 @@ public class StatisticsPanelController : MonoBehaviour
         }       
         CurrentStatisticDataList = Check().Data;
         MenuManager.instance.OpenStatisticChoiceCategory(CurrentStatisticDataList);
+    }
+    public void CloseStatistic()
+    {
+        _menuConvas.gameObject.SetActive(true);
+        _statisticConvas.gameObject.SetActive(true);
     }
 }
