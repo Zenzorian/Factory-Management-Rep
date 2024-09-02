@@ -14,7 +14,6 @@ namespace FactoryManager
         [SerializeField] private InputFieldCreator _inputFieldCreator = new InputFieldCreator();
         private ChioceListAddation _chioceListAddation = new ChioceListAddation();
         private TableItemAddation _tableItemAddation = new TableItemAddation();
-        [SerializeField]private WorkerAddation _workerAddation = new WorkerAddation();
         private StatisticDataItemAddation _statisticDataItemAddation = new StatisticDataItemAddation();
         [SerializeField] private Button _addButton;
 

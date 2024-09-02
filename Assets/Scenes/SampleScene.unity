@@ -2485,7 +2485,7 @@ MonoBehaviour:
   OnAdded:
     m_PersistentCalls:
       m_Calls: []
-  _globalData: {fileID: 11400000, guid: 43b2f033f6be9cf4baf30cccfd883c49, type: 2}
+  typeValue: 0
   _content: {fileID: 713494510}
   _inputFieldCreator:
     _inputFieldPrefab: {fileID: 541719770140481207, guid: e5810ed271324504ab0a92ef21af3aae, type: 3}
@@ -6251,15 +6251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169dd322ac7f1364a948963adde06562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idInputField: {fileID: 1657118535}
-  typeDropdown: {fileID: 382335270}
-  firstNameInputField: {fileID: 808682430}
-  lastNameInputField: {fileID: 468282526}
-  weeklyNormInputField: {fileID: 869905091}
-  overtimeAllowedInputField: {fileID: 630884126}
-  hourlyWageInputField: {fileID: 770876164}
-  overtimeSurchargeInputField: {fileID: 1639562055}
-  nightShiftSurchargeInputField: {fileID: 980197278}
 --- !u!1 &738263396
 GameObject:
   m_ObjectHideFlags: 0
@@ -13051,6 +13042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tableModel: {fileID: 1689672745}
   _addButton: {fileID: 316108509}
+  _addationManager: {fileID: 0}
 --- !u!114 &1689672748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13186,6 +13178,7 @@ MonoBehaviour:
   _menuManager: {fileID: 1171616355}
   _buttonCreator:
     _buttonPrefab: {fileID: 3672220197509270898, guid: 558fb56bf76f1d2419884425e19e2031, type: 3}
+  _addationManager: {fileID: 294838035}
   _content: {fileID: 719329550}
 --- !u!4 &1701589729
 Transform:

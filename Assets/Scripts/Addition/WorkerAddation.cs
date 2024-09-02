@@ -39,7 +39,7 @@ namespace FactoryManager
                 id: id.Value,
                 firstName: firstName,
                 lastName: lastName,
-                type: ""/*_workerForm.typeDropdown.options[_workerForm.typeDropdown.value].text*/,
+                type: inputFields["Type"].text,
                 weeklyNorm: (float)weeklyNorm.Value,
                 overtimeAllowed: (float)overtimeAllowed.Value,
                 hourlyWage: (float)hourlyWage.Value,

@@ -9,10 +9,22 @@ namespace FactoryManager
     public class TableModel : MonoBehaviour
     {
         [SerializeField] private TableView _tableManager;
-        [SerializeField] private GlobalData _globalData;       
-              
-        public void SetList(MainMenuTypes menuType, int value)
+        [SerializeField] private GlobalData _globalData; 
+        private MainMenuTypes _temporaryMenuType;
+        private int _temporaryValue;
+
+        private void Awake()
         {            
+            AddationManager.instance.OnAdded.AddListener(SomethingAdded);
+        }       
+        private void SomethingAdded() 
+        {
+           SetList(_temporaryMenuType, _temporaryValue);
+        }
+        public void SetList(MainMenuTypes menuType, int value)
+        {   
+            _temporaryMenuType = menuType;
+            _temporaryValue = value;         
             switch (menuType)
             {
                 case MainMenuTypes.Workspace:
