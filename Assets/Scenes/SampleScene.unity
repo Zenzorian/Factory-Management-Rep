@@ -1633,7 +1633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7140318557642757594, guid: e5810ed271324504ab0a92ef21af3aae, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.99993896
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7140318557642757594, guid: e5810ed271324504ab0a92ef21af3aae, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2492,8 +2492,6 @@ MonoBehaviour:
     _textPrefab: {fileID: 8780541787957823919, guid: c7069ffecdda09845ab410ff1bf2d4c3, type: 3}
     _elementSize: {x: 650, y: 125}
     _parentHeight: 100
-  _workerAddation:
-    _workerForm: {fileID: 728890518}
   _addButton: {fileID: 2137339689}
 --- !u!224 &307134662 stripped
 RectTransform:
@@ -3469,7 +3467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 195949168728969088, guid: 558fb56bf76f1d2419884425e19e2031, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.9998779
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 195949168728969088, guid: 558fb56bf76f1d2419884425e19e2031, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6063,8 +6061,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -12.5}
+  m_SizeDelta: {x: -40, y: -25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &713494511
 MonoBehaviour:

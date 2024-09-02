@@ -793,6 +793,15 @@ MonoBehaviour:
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
+  - Type: Manager
+    Id: 7878
+    FirstName: Bob
+    LastName: Gu
+    WeeklyNorm: 40
+    OvertimeAllowed: 0
+    HourlyWage: 0
+    OvertimeSurcharge: 0
+    NightShiftSurcharge: 0
   typesOfTools:
   - LatheCNC
   - MillingCNC

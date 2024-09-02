@@ -11,10 +11,7 @@ namespace FactoryManager
         private List<StatisticData> _list;
         private InputField _f;
         private InputField _v;
-        public override void Set(MainMenuTypes types, Button addButton)
-        {
-           
-        }
+      
         public void SetStatistic(List<StatisticData> list , Button addButton)
         {
             Clear();

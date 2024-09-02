@@ -62,6 +62,10 @@ namespace FactoryManager
         {
             return _globalData.typesOfTools;
         }
+        public List<string> GetTypesOfParts()
+        {
+            return _globalData.typesOfParts;
+        }
         public void AddWorker(Worker worker)
         {
             _globalData.listOfWorkers.Add(worker);

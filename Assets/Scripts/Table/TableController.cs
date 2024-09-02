@@ -7,14 +7,10 @@ namespace FactoryManager
     {
         [SerializeField] private TableModel _tableModel;
         [SerializeField] private Transform _addButton;
-        //public void OpenTable(int value)
-        //{
-        //    _tableModel.SetList((DataType)value);
-        //}
+        [SerializeField] private AddationManager _addationManager;
         public void OpenTableWithFilter(MainMenuTypes menuType, int value)
         {
-            _tableModel.SetList(menuType,value);
-
+            _tableModel.SetList(menuType,value);           
             if (menuType == MainMenuTypes.StatisticTool ||
                 menuType == MainMenuTypes.StatisticPart)
                 _addButton.gameObject.SetActive(false);

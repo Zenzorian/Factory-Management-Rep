@@ -13,14 +13,19 @@ public class InputFieldCreator
     [SerializeField] private Vector2 _elementSize = new Vector2(100, 100); // Размер по умолчанию
     [SerializeField] private float _parentHeight = 100; // Высота родительского объекта по умолчанию
 
-    public Dictionary<string, InputField> Create(Type type, Transform panelTransform)
+    public Dictionary<string, InputField> Create(Type type, Transform panelTransform, string elementType = null)
     {
         Dictionary<string, InputField> inputFields = new Dictionary<string, InputField>();
         FieldInfo[] fields = type.GetFields();
-
+       
         foreach (var field in fields)
-        {
+        {            
             InputField inputField = CreateElement(field.Name, field.FieldType, panelTransform);
+            if (field.Name == "Type")
+            {
+                inputField.text = elementType;
+                inputField.interactable = false;
+            }
             inputFields.Add(field.Name, inputField);
         }
 
@@ -33,7 +38,7 @@ public class InputFieldCreator
     }
 
     private InputField CreateElement(string title, Type fieldType, Transform panelTransform)
-    {
+    {     
         GameObject parentGO = new GameObject(title + "_Parent", typeof(RectTransform));
         parentGO.transform.SetParent(panelTransform, false);
         RectTransform parentRectTransform = parentGO.GetComponent<RectTransform>();
@@ -50,13 +55,13 @@ public class InputFieldCreator
         textRectTransform.anchorMax = new Vector2(0.45f, 0.5f);
         textRectTransform.pivot = new Vector2(0.5f, 0.5f);
         textRectTransform.sizeDelta = new Vector2(0, _parentHeight); // Растягиваем по высоте родительского объекта
-        textRectTransform.anchoredPosition = Vector2.zero;
+        textRectTransform.anchoredPosition = Vector2.zero;       
 
         GameObject inputFieldGO = GameObject.Instantiate(_inputFieldPrefab, parentGO.transform);
         InputField inputField = inputFieldGO.GetComponent<InputField>();
         RectTransform inputFieldRectTransform = inputFieldGO.GetComponent<RectTransform>();
         inputFieldRectTransform.anchorMin = new Vector2(0.55f, 0.5f);
-        inputFieldRectTransform.anchorMax = new Vector2(0.95f, 0.5f);
+        inputFieldRectTransform.anchorMax = new Vector2(1, 0.5f);
         inputFieldRectTransform.pivot = new Vector2(0.5f, 0.5f);
         inputFieldRectTransform.sizeDelta = new Vector2(0, _parentHeight); // Растягиваем по высоте родительского объекта
         inputFieldRectTransform.anchoredPosition = Vector2.zero;

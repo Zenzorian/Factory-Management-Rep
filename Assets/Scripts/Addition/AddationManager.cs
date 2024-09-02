@@ -8,8 +8,8 @@ namespace FactoryManager
     {
         public static AddationManager instance;
         public UnityEvent OnAdded;
+        public int typeValue;
 
-        [SerializeField] private GlobalData _globalData;
         [SerializeField] private Transform _content;
         [SerializeField] private InputFieldCreator _inputFieldCreator = new InputFieldCreator();
         private ChioceListAddation _chioceListAddation = new ChioceListAddation();
@@ -18,14 +18,15 @@ namespace FactoryManager
         private StatisticDataItemAddation _statisticDataItemAddation = new StatisticDataItemAddation();
         [SerializeField] private Button _addButton;
 
+       
         private void Awake()
         {
             if (instance == null)
                 instance = this;
 
-            _chioceListAddation.Init(_inputFieldCreator, _content, _globalData);
-            _tableItemAddation.Init(_inputFieldCreator, _content, _globalData);
-            _statisticDataItemAddation.Init(_inputFieldCreator, _content, _globalData);
+            _chioceListAddation.Init(_inputFieldCreator, _content);
+            _tableItemAddation.Init(_inputFieldCreator, _content);
+            _statisticDataItemAddation.Init(_inputFieldCreator, _content);
         }
 
         public void AddChioceList()
@@ -39,11 +40,10 @@ namespace FactoryManager
             else
             _chioceListAddation.Set(ChoiceOfCategoryMenu.MenuType, _addButton);
         }
-
+       
         public void AddTableItem()
-        {            
-            //_tableItemAddation.Set(ChoiceOfCategoryMenu.MenuType, _addButton);
-            _workerAddation.Set(ChoiceOfCategoryMenu.MenuType, _addButton);
+        {
+            _tableItemAddation.Set(ChoiceOfCategoryMenu.MenuType, _addButton, typeValue);           
         }       
     }
 }

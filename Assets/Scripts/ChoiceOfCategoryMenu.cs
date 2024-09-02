@@ -12,7 +12,7 @@ namespace FactoryManager
         [SerializeField] private TableController _tableController;
         [SerializeField] private MenuManager _menuManager;
         [SerializeField] private ButtonCreator _buttonCreator;
-
+        [SerializeField] private AddationManager _addationManager;
         [SerializeField] private Transform _content;
 
         private List<string> _selectedCategories = new List<string>();
@@ -84,6 +84,7 @@ namespace FactoryManager
         public void ButtonPressed(int index)
         {
             _tableController.OpenTableWithFilter(MenuType, index);
+            _addationManager.typeValue = index;
             _menuManager.OpenTableView();
         }
         public void StatisticButtonPressed(int index)

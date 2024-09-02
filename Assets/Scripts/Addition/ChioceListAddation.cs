@@ -9,7 +9,7 @@ namespace FactoryManager
     {
         private List<string> _list;
 
-        public override void Set(MainMenuTypes types, Button addButton)
+        public void Set(MainMenuTypes types, Button addButton)
         {            
             _button = addButton;
             _button.onClick.AddListener(AddToList);
@@ -17,16 +17,16 @@ namespace FactoryManager
             switch (types)
             {
                 case MainMenuTypes.Workspace:
-                    _list = _globalData.typesOfWorkspaces;
+                    _list = DataManager.instance.GetTypesOfWorkspaces();
                     break;
                 case MainMenuTypes.Tools:
-                    _list = _globalData.typesOfTools;
+                    _list = DataManager.instance.GetTypesOfTools();
                     break;
                 case MainMenuTypes.Workers:
-                    _list = _globalData.typesOfWorkers;
+                    _list = DataManager.instance.GetTypesOfWorkers();
                     break;
                 case MainMenuTypes.Parts:
-                    _list = _globalData.typesOfParts;
+                    _list = DataManager.instance.GetTypesOfParts();
                     break;
                 default:
                     break;

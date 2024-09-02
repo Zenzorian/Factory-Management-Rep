@@ -14,28 +14,35 @@ namespace FactoryManager
     {       
         private Dictionary<string, InputField> _inputFields = new Dictionary<string, InputField>();
         
-        public override void Set(MainMenuTypes types, Button addButton)
-        {              
+        private WorkerAddation _workerAddation = new WorkerAddation();
+        public void Set(MainMenuTypes types, Button addButton,int value)
+        {  
             _button = addButton;
             _button.onClick.RemoveAllListeners();
+
+            string elementType;
 
             switch (types)
             {
                 case MainMenuTypes.Workspace:
-                    BuildAdditionPanel(typeof(Workstation));
-                    _button.onClick.AddListener(AddWorkstation);
+                    elementType = DataManager.instance.GetTypesOfWorkspaces()[value];
+                    BuildAdditionPanel(typeof(Workstation),elementType);
+                    _button.onClick.AddListener(AddWorkstation);                   
                     break;
                 case MainMenuTypes.Tools:
-                    BuildAdditionPanel(typeof(Tool));
-                    _button.onClick.AddListener(AddTool);
+                    elementType = DataManager.instance.GetTypesOfTools()[value];
+                    BuildAdditionPanel(typeof(Tool), elementType);
+                    _button.onClick.AddListener(AddTool);                    
                     break;
                 case MainMenuTypes.Workers:
-                    BuildAdditionPanel(typeof(Worker));
-                    _button.onClick.AddListener(AddWorker);
+                    elementType = DataManager.instance.GetTypesOfWorkers()[value];
+                    BuildAdditionPanel(typeof(Worker), elementType);
+                    _button.onClick.AddListener(AddWorker);                    
                     break;
                 case MainMenuTypes.Parts:
-                    BuildAdditionPanel(typeof(Part));
-                    _button.onClick.AddListener(AddPart);
+                    elementType = DataManager.instance.GetTypesOfParts()[value];
+                    BuildAdditionPanel(typeof(Part), elementType);
+                    _button.onClick.AddListener(AddPart);                    
                     break;
                 default:
                     break;
@@ -49,25 +56,14 @@ namespace FactoryManager
                 tools: new Tool[] { },
                 maxWorkers: int.Parse(_inputFields["MaxWorkers"].text),
                 reservedWorkers: int.Parse(_inputFields["ReservedWorkers"].text)
-            );           
-            _globalData.listOfWorkstations.Add(newWorkstation);
+            );                       
             Added();
         }
-        private void AddWorker()
+        private async void AddWorker()
         {
-            var newWorker = new Worker
-            (
-                id: int.Parse(_inputFields["Id"].text),
-                firstName: _inputFields["FirstName"].text,
-                lastName: _inputFields["LastName"].text,
-                type: _inputFields["Type"].text,
-                weeklyNorm: float.Parse(_inputFields["WeeklyNorm"].text),
-                overtimeAllowed: float.Parse(_inputFields["OvertimeAllowed"].text),
-                hourlyWage: float.Parse(_inputFields["HourlyWage"].text),
-                overtimeSurcharge: float.Parse(_inputFields["OvertimeSurcharge"].text),
-                nightShiftSurcharge: float.Parse(_inputFields["NightShiftSurcharge"].text)
-            );
-            _globalData.listOfWorkers.Add(newWorker);
+            var sucsess = await _workerAddation.ValidateAndCreateWorker(_inputFields);
+
+            if (sucsess == false) return;
 
             Added();
 
@@ -79,7 +75,7 @@ namespace FactoryManager
                 name: _inputFields["Name"].text,
                 partType: _inputFields["PartType"].text                
             );           
-            _globalData.listOfParts.Add(newPart);
+           
             Added();
         }
         private void AddTool()
@@ -92,10 +88,10 @@ namespace FactoryManager
             _button.onClick.RemoveAllListeners();
         }
 
-        public override void BuildAdditionPanel(Type type)
-        {
+        public override void BuildAdditionPanel(Type type,string elementType)
+        {            
             Clear();            
-            _inputFields = _inputFieldCreator.Create(type, _content);
+            _inputFields = _inputFieldCreator.Create(type, _content,elementType);
         }        
     }
 }
