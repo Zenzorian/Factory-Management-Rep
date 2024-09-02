@@ -32,7 +32,7 @@ namespace FactoryManager
 
         [SerializeField] private Button _backButton;
 
-       private GameObject[] _menuStack = new GameObject[4];
+        private GameObject[] _menuStack = new GameObject[4];
         private int _menuIndex = 0;
 
 

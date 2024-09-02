@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -8,10 +7,12 @@ using UnityEngine.UI;
 [System.Serializable]
 public class InputFieldCreator
 {
-    [SerializeField] private GameObject _inputFieldPrefab; // Префаб поля ввода
-    [SerializeField] private GameObject _textPrefab; // Префаб текста
+    [SerializeField] private GameObject _inputFieldPrefab;
+    [SerializeField] private GameObject _textPrefab;
 
-    [SerializeField] private Vector2 _elementSize;
+    [SerializeField] private Vector2 _elementSize = new Vector2(100, 100); // Р Р°Р·РјРµСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+    [SerializeField] private float _parentHeight = 100; // Р’С‹СЃРѕС‚Р° СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+
     public Dictionary<string, InputField> Create(Type type, Transform panelTransform)
     {
         Dictionary<string, InputField> inputFields = new Dictionary<string, InputField>();
@@ -33,20 +34,33 @@ public class InputFieldCreator
 
     private InputField CreateElement(string title, Type fieldType, Transform panelTransform)
     {
-        GameObject textGO = GameObject.Instantiate(_textPrefab, panelTransform);
+        GameObject parentGO = new GameObject(title + "_Parent", typeof(RectTransform));
+        parentGO.transform.SetParent(panelTransform, false);
+        RectTransform parentRectTransform = parentGO.GetComponent<RectTransform>();
+        parentRectTransform.sizeDelta = new Vector2(panelTransform.GetComponent<RectTransform>().rect.width - 40, _parentHeight);
+        parentRectTransform.anchorMin = new Vector2(0, 0.5f);
+        parentRectTransform.anchorMax = new Vector2(1, 0.5f);
+        parentRectTransform.pivot = new Vector2(0.5f, 0.5f);
+       
+        GameObject textGO = GameObject.Instantiate(_textPrefab, parentGO.transform);
         Text textComponent = textGO.GetComponent<Text>();
         textComponent.text = title;
-
         RectTransform textRectTransform = textGO.GetComponent<RectTransform>();
-        textRectTransform.sizeDelta = _elementSize;
+        textRectTransform.anchorMin = new Vector2(0.05f, 0.5f);
+        textRectTransform.anchorMax = new Vector2(0.45f, 0.5f);
+        textRectTransform.pivot = new Vector2(0.5f, 0.5f);
+        textRectTransform.sizeDelta = new Vector2(0, _parentHeight); // Р Р°СЃС‚СЏРіРёРІР°РµРј РїРѕ РІС‹СЃРѕС‚Рµ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕР±СЉРµРєС‚Р°
+        textRectTransform.anchoredPosition = Vector2.zero;
 
-        GameObject inputFieldGO = GameObject.Instantiate(_inputFieldPrefab, panelTransform);
+        GameObject inputFieldGO = GameObject.Instantiate(_inputFieldPrefab, parentGO.transform);
         InputField inputField = inputFieldGO.GetComponent<InputField>();
-
         RectTransform inputFieldRectTransform = inputFieldGO.GetComponent<RectTransform>();
-        inputFieldRectTransform.sizeDelta = _elementSize;
-
-        // Настройка типа контента InputField в зависимости от типа поля
+        inputFieldRectTransform.anchorMin = new Vector2(0.55f, 0.5f);
+        inputFieldRectTransform.anchorMax = new Vector2(0.95f, 0.5f);
+        inputFieldRectTransform.pivot = new Vector2(0.5f, 0.5f);
+        inputFieldRectTransform.sizeDelta = new Vector2(0, _parentHeight); // Р Р°СЃС‚СЏРіРёРІР°РµРј РїРѕ РІС‹СЃРѕС‚Рµ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕР±СЉРµРєС‚Р°
+        inputFieldRectTransform.anchoredPosition = Vector2.zero;
+        
         if (fieldType == typeof(int))
         {
             inputField.contentType = InputField.ContentType.IntegerNumber;
@@ -54,10 +68,6 @@ public class InputFieldCreator
         else if (fieldType == typeof(float) || fieldType == typeof(double))
         {
             inputField.contentType = InputField.ContentType.DecimalNumber;
-        }
-        else if (fieldType == typeof(string))
-        {
-            inputField.contentType = InputField.ContentType.Standard;
         }
         else
         {
@@ -67,4 +77,3 @@ public class InputFieldCreator
         return inputField;
     }
 }
-

@@ -1,5 +1,4 @@
 using System;
-
 using System.Globalization;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -45,11 +44,9 @@ namespace FactoryManager
         {
             if (string.IsNullOrEmpty(input))
                 return null;
-
-            // Заменяем запятую на точку для унификации
+          
             string processedText = input.Replace(',', '.');
-
-            // Преобразуем текст в double с использованием инвариантной культуры
+          
             if (double.TryParse(processedText, NumberStyles.Float, CultureInfo.InvariantCulture, out double result))
             {
                 return result;
@@ -60,19 +57,15 @@ namespace FactoryManager
                 return null;
             }
         }
-
-        // Асинхронный метод для обработки InputField
+       
         public async Task<double?> ProcessInputFieldAsync(InputField inputField, bool isDecimal = false)
         {
-            // Проверяем, если текст пустой
             string inputText = inputField.text;
             if (string.IsNullOrEmpty(inputText))
-            {
+            {                
                 await FlashRed(inputField);
                 return null;
             }
-
-            // Если работает с дробями, используем ConvertTextToDouble
             if (isDecimal)
             {
                 double? result = ConvertTextToDouble(inputText);
@@ -98,11 +91,10 @@ namespace FactoryManager
         }
         public async Task<string> ProcessInputFieldAsync(InputField inputField)
         {
-            // Проверяем, если текст пустой
             string inputText = inputField.text;
             if (string.IsNullOrEmpty(inputText))
             {
-                await FlashRed(inputField);
+                await FlashRed(inputField);                
                 return null;
             }
             else return inputText;
@@ -113,6 +105,35 @@ namespace FactoryManager
             inputField.image.color = Color.red;
             await Task.Delay(500);
             inputField.image.color = originalColor;
+        }
+        public async Task<int?> ValidateIntInput(InputField inputField)
+        {
+            string input = await ProcessInputFieldAsync(inputField);
+            if (input == null || !int.TryParse(input, out int result))
+            {
+                return null;
+            }
+            return result;
+        }
+
+        public async Task<string> ValidateStringInput(InputField inputField)
+        {
+            string input = await ProcessInputFieldAsync(inputField);
+            if (string.IsNullOrEmpty(input))
+            {                
+                return null;
+            }
+            return input;
+        }
+
+        public async Task<double?> ValidateDoubleInput(InputField inputField)
+        {
+            double? input = await ProcessInputFieldAsync(inputField, true);
+            if (!input.HasValue)
+            {                
+                return null;
+            }
+            return input;
         }
     }    
 }
