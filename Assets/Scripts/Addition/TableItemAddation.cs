@@ -2,8 +2,6 @@ using FactoryManager.Data;
 using FactoryManager.Data.Tools;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +13,9 @@ namespace FactoryManager
         private Dictionary<string, InputField> _inputFields = new Dictionary<string, InputField>();
         
         private WorkerAddation _workerAddation = new WorkerAddation();
+        private ToolAddation _toolAddation = new ToolAddation();
+        private PartAddation _partAddation = new PartAddation();
+        private WorkstationAddation _workstationAddation = new WorkstationAddation();
         public void Set(MainMenuTypes types, Button addButton,int value)
         {  
             _button = addButton;
@@ -27,7 +28,8 @@ namespace FactoryManager
                 case MainMenuTypes.Workspace:
                     elementType = DataManager.instance.GetTypesOfWorkspaces()[value];
                     BuildAdditionPanel(typeof(Workstation),elementType);
-                    _button.onClick.AddListener(AddWorkstation);                   
+                    _button.onClick.AddListener(AddWorkstation);     
+                    _workstationAddation.Init(_inputFields);              
                     break;
                 case MainMenuTypes.Tools:
                     elementType = DataManager.instance.GetTypesOfTools()[value];
@@ -48,17 +50,6 @@ namespace FactoryManager
                     break;
             }           
         }
-        private void AddWorkstation()
-        {
-            var newWorkstation = new Workstation
-            (
-                type: _inputFields["Type"].text,
-                tools: new Tool[] { },
-                maxWorkers: int.Parse(_inputFields["MaxWorkers"].text),
-                reservedWorkers: int.Parse(_inputFields["ReservedWorkers"].text)
-            );                       
-            Added();
-        }
         private async void AddWorker()
         {
             var sucsess = await _workerAddation.ValidateAndCreateWorker(_inputFields);
@@ -68,20 +59,31 @@ namespace FactoryManager
             Added();
 
         }
-        private void AddPart()
+        private async void AddPart()
         {
-            var newPart = new Part
-            (
-                name: _inputFields["Name"].text,
-                partType: _inputFields["PartType"].text                
-            );           
+            var sucsess = await _partAddation.ValidateAndCreatePart(_inputFields);
+
+            if (sucsess == false) return;    
            
             Added();
         }
-        private void AddTool()
+        private async void AddTool()
         {
+            var sucsess = await _toolAddation.ValidateAndCreateTool(_inputFields);
+
+            if (sucsess == false) return;
+
+             Added();
         }
 
+        private async void AddWorkstation()
+        {
+            var sucsess = await _workstationAddation.ValidateAndCreateWorkstation(_inputFields);
+
+            if (sucsess == false) return;
+
+             Added();
+        }
         public void Added()
         {            
             AddationManager.instance.OnAdded.Invoke();

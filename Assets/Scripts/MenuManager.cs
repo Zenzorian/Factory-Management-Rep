@@ -32,12 +32,8 @@ namespace FactoryManager
 
         [SerializeField] private Button _backButton;
 
-        private GameObject[] _menuStack = new GameObject[4];
+        private GameObject[] _menuStack = new GameObject[50];
         private int _menuIndex = 0;
-
-
-
-        private bool _StatisticisOpen;
 
         private void Awake()
         {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using FactoryManager.Data;
+using FactoryManager.Data.Tools;
 using UnityEngine;
 
 namespace FactoryManager
@@ -69,6 +70,17 @@ namespace FactoryManager
         public void AddWorker(Worker worker)
         {
             _globalData.listOfWorkers.Add(worker);
+        }        
+        public void AddWorkstation(Workstation workstation)
+        {
+            _globalData.listOfWorkstations.Add(workstation);
+        }
+        public void AddPart(Part part)
+        {
+            _globalData.listOfParts.Add(part);
+        } public void AddTool(Tool tool)
+        {
+            _globalData.listOfTools.Add(tool);
         }
     }
 }
