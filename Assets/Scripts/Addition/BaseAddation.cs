@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace FactoryManager
@@ -12,23 +14,26 @@ namespace FactoryManager
         protected InputFieldCreator _inputFieldCreator;
         protected Button _button;
         protected InputField _inputField;
-        public virtual void Init(InputFieldCreator inputFieldCreator, Transform content)
+        protected UnityEvent _OnAdded;
+        public BaseAddition(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded,Button button)
         {
             _inputFieldCreator = inputFieldCreator;
-            _content = content;           
+            _content = content;  
+            _OnAdded = OnAdded;  
+            _button = button;      
         }    
-        public virtual void BuildAdditionPanel(MainMenuTypes menuTypes)
-        {
-            Clear();
-            string title = menuTypes.ToString();
-            _inputField = _inputFieldCreator.Create(title, _content);
+        public void Added()
+        {            
+            _OnAdded.Invoke();
+            _button.onClick.RemoveAllListeners();
         }
-        public virtual void BuildAdditionPanel(Type type, string elementType = null)
+        public Dictionary<string, InputField> BuildAdditionPanel(Type type, string elementType = null)
         {
-            Clear();
-            string title = type.ToString();
-            _inputField = _inputFieldCreator.Create(title, _content);
+            Clear();            
+            var inputFields = _inputFieldCreator.Create(type, _content,elementType);
+            return inputFields;
         }
+        
         public virtual void Clear()
         {
             foreach (Transform item in _content)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace FactoryManager
@@ -11,13 +12,16 @@ namespace FactoryManager
         private List<StatisticData> _list;
         private InputField _f;
         private InputField _v;
-      
-        public void SetStatistic(List<StatisticData> list , Button addButton)
+
+        public StatisticDataItemAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button) : base(inputFieldCreator, content, OnAdded, button)
+        {
+        }
+
+        public void Open(List<StatisticData> list)
         {
             Clear();
 
-            _list = list;
-            _button = addButton;
+            _list = list;            
             _button.onClick.AddListener(AddToList);
 
             _f = _inputFieldCreator.Create("F = ", _content);
@@ -45,7 +49,7 @@ namespace FactoryManager
                 };
 
                 _list.Add(data);
-                AddationManager.instance.OnAdded.Invoke();
+                _OnAdded.Invoke();
                 _button.onClick.RemoveListener(AddToList);
             }
             else

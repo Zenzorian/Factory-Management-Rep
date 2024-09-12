@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using FactoryManager.Data;
 using FactoryManager.Data.Tools;
 using UnityEngine;
@@ -55,9 +57,9 @@ namespace FactoryManager
         {
             return _globalData.typesOfWorkers;
         }
-        public List<string> GetTypesOfWorkspaces()
+        public List<string> GetTypesOfWorkstation()
         {
-            return _globalData.typesOfWorkspaces;
+            return _globalData.typesOfWorkstation;
         }
         public List<string> GetTypesOfTools()
         {
@@ -78,9 +80,30 @@ namespace FactoryManager
         public void AddPart(Part part)
         {
             _globalData.listOfParts.Add(part);
-        } public void AddTool(Tool tool)
+        } 
+        public void AddTool(Tool tool)
         {
             _globalData.listOfTools.Add(tool);
         }
+        public int CountItemsByType(MainMenuTypes menuType, string type)
+        {              
+            var menuTypeToListMap = new Dictionary<MainMenuTypes, IEnumerable<TableItem>>
+            {
+                { MainMenuTypes.Workstations, _globalData.listOfWorkstations },
+                { MainMenuTypes.Tools, _globalData.listOfTools },
+                { MainMenuTypes.Workers, _globalData.listOfWorkers },
+                { MainMenuTypes.Parts, _globalData.listOfParts },                 
+                { MainMenuTypes.StatisticPart, _globalData.listOfParts},
+                { MainMenuTypes.StatisticTool, _globalData.listOfTools}
+            };
+
+            if (!menuTypeToListMap.TryGetValue(menuType, out var list))
+            {
+                throw new ArgumentException("Invalid MainMenuType provided");
+            }
+
+            return list?.Where(item => item.Type == type).Count() ?? 0;
+        }
+
     }
 }

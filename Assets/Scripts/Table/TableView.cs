@@ -34,9 +34,9 @@ public class TableView : MonoBehaviour
         _tableItems = list.Cast<TableItem>().ToList();
         FieldInfo[] fields = list[0].GetType().GetFields();
         List<string> fieldNames = new List<string>();
-
+            
         foreach (var item in fields)
-        {
+        {          
             fieldNames.Add(item.Name);
         }
 
@@ -114,9 +114,8 @@ public class TableView : MonoBehaviour
                 cell.rectTransform.sizeDelta = new Vector2(0, _rowHeight);
                 cell.text.text = tableData[r, c];
                 cell.rectTransform.localScale = Vector3.one;
-
-                // Добавляем слушатель нажатий на ячейки таблицы
-                int currentRow = r; // фиксируем текущее значение строки
+              
+                int currentRow = r;
                 cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => OnCellClicked(currentRow));
             }
         }

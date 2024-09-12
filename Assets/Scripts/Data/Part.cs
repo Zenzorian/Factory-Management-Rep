@@ -3,28 +3,22 @@ using System.Collections.Generic;
 
 namespace FactoryManager.Data
 {
-    /// <summary>
-    /// Желаемая деталь
-    /// </summary>
     [System.Serializable]
     public class Part : TableItem
     {
-        public string Name;        
-        public List<Statistics> Statistics = new List<Statistics>();
-        public Part()
+        public List<Statistic> Statistic = new List<Statistic>();
+        
+        public Part(int id,string name, string type):base(id,name,type)
         {
-
-        }
-        public Part(string name, string partType)
-        {
+            Id = id;    
             Name = name;
-            Type = partType;            
+            Type = type;            
         }
     }
     [System.Serializable]
-    public class Statistics
+    public class Statistic
     {
-        public Statistics(Tool tool, ProcessingType processingType)
+        public Statistic(Tool tool, ProcessingType processingType)
         {
             Tool = tool;
             ProcessingType = processingType;           

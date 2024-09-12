@@ -15,7 +15,7 @@ public class GlobalDataGenerator : MonoBehaviour
         _globalData.listOfTools = GenerateRandomTools(50);
         _globalData.listOfWorkstations = GenerateWorkstations(15);
 
-        _globalData.listOfParts = GenerateParts(3);
+        _globalData.listOfParts = GenerateParts(15);
     }
     public List<Part> GenerateParts(int count)
     {
@@ -23,25 +23,27 @@ public class GlobalDataGenerator : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            var part = new Part();
-            part.Type = _globalData.typesOfParts[Random.Range(1, 6)];
-            part.Name = $"Part {part.Type} {i + 1}";
-            part.Statistics = GenerateStatisticsList(_globalData.listOfTools[0],ProcessingType.Finishing,10,3);
+            var part = new Part(
+                id:i,
+                type : _globalData.typesOfParts[Random.Range(1, 6)],
+                name : $"Part {_globalData.typesOfParts[Random.Range(1, 6)]} {i + 1}"           
+            );
+            part.Statistic = GenerateStatisticsList(_globalData.listOfTools[0],ProcessingType.Finishing,10,3);
 
             parts.Add(part);
         }
 
         return parts;
     }
-    public static List<Statistics> GenerateStatisticsList(Tool tool, ProcessingType processingType, int numberOfDataPointsPerStatistic, int numberOfStatistics)
+    public static List<Statistic> GenerateStatisticsList(Tool tool, ProcessingType processingType, int numberOfDataPointsPerStatistic, int numberOfStatistics)
     {
-        List<Statistics> statisticsList = new List<Statistics>();
+        List<Statistic> statisticsList = new List<Statistic>();
 
         System.Random random = new System.Random();
 
         for (int i = 0; i < numberOfStatistics; i++)
         {            
-            Statistics statistics = new Statistics(tool, processingType);
+            Statistic statistics = new Statistic(tool, processingType);
 
             for (int j = 0; j < numberOfDataPointsPerStatistic; j++)
             {
@@ -77,8 +79,7 @@ public class GlobalDataGenerator : MonoBehaviour
         {
             workers.Add(new Worker(
                 i,
-                firstNames[Random.Range(0,firstNames.Length)],
-                lastNames[Random.Range(0,lastNames.Length)],
+                name:$"{firstNames[Random.Range(0,firstNames.Length)]} {lastNames[Random.Range(0,lastNames.Length)]}",
                 _globalData.typesOfWorkers[UnityEngine.Random.Range(0, 10)]
             ));
         }
@@ -125,13 +126,20 @@ public class GlobalDataGenerator : MonoBehaviour
         List<Workstation> workstations = new List<Workstation>();
 
         for (int i = 0; i < count; i++)
-        {
-            var type = _globalData.typesOfWorkspaces[Random.Range(1, 9)];
+        {            
+            var type = _globalData.typesOfWorkstation[Random.Range(1, 9)];
             Tool[] tools = GenerateRandomTools(Random.Range(1, 3)).ToArray();
             int maxWorkers = Random.Range(1, 20);
             int reservedWorkers = Random.Range(0, maxWorkers);
 
-            workstations.Add(new Workstation(type, tools, maxWorkers, reservedWorkers));
+            workstations.Add(new Workstation(
+                i,
+                name : $"Workstation {_globalData.typesOfWorkstation[Random.Range(1, 6)]} {i + 1}",
+                type,
+                tools,
+                maxWorkers,
+                reservedWorkers
+                ));
         }
 
         return workstations;
@@ -139,7 +147,8 @@ public class GlobalDataGenerator : MonoBehaviour
     CNCMillingTool CreateTurningRoughingTool()
     {
         var tool = new CNCMillingTool(
-            marking: GenerateRandomString(),
+            id:Random.Range(0,100),
+            name: GenerateRandomString(),
             note: "Random note for Turning Roughing Tool",
             type: "MillingCNC",
             new ManufacturersRecomendedParametrs(fMin: UnityEngine.Random.Range(0.1f, 1f),
@@ -157,7 +166,8 @@ public class GlobalDataGenerator : MonoBehaviour
     GroovingTool CreateGroovingTool()
     {
         var tool = new GroovingTool(
-            marking: GenerateRandomString(),
+            id:Random.Range(0,100),
+            name: GenerateRandomString(),
             note: "Random note for Turning Roughing Tool",
             type: "Grooving",
             new ManufacturersRecomendedParametrs(fMin: UnityEngine.Random.Range(0.1f, 1f),
@@ -175,7 +185,8 @@ public class GlobalDataGenerator : MonoBehaviour
     ThreadingTool CreateThreadingTool()
     {
         var tool = new ThreadingTool(
-            marking: GenerateRandomString(),
+            id:Random.Range(0,100),
+            name: GenerateRandomString(),
             location: (ThreadingTool.LocationType)UnityEngine.Random.Range(0, 2),
             measurement: (MeasurementSystem)UnityEngine.Random.Range(0, 2),
             vMin: UnityEngine.Random.Range(50f, 100f),
@@ -192,7 +203,8 @@ public class GlobalDataGenerator : MonoBehaviour
     TapTool CreateTap()
     {
         var tool = new TapTool(
-             marking: GenerateRandomString(),
+            id:Random.Range(0,100),
+            name: GenerateRandomString(),
             measurement: (MeasurementSystem)UnityEngine.Random.Range(0, 2),
             pitch: UnityEngine.Random.Range(0.5f, 2f),
             vMin: UnityEngine.Random.Range(50f, 100f),
@@ -206,7 +218,8 @@ public class GlobalDataGenerator : MonoBehaviour
     OtherConsumable CreateOtherConsumable()
     {
         var tool = new OtherConsumable(
-            marking: GenerateRandomString(),
+             id:Random.Range(0,100),
+            name: GenerateRandomString(),
             description: "Random description",
             note: "Random note for Other Consumable",
             type: "Other"

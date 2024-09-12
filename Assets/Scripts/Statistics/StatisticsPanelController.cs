@@ -97,17 +97,17 @@ public class StatisticsPanelController : MonoBehaviour
     public void OnToolSelected(Tool tool)
     {
         _selectedTool = tool;
-        _toolText.text = $"Selected Tool: {_selectedTool.Marking}";
+        _toolText.text = $"Selected Tool: {_selectedTool.Name}";
         _goToStatisticsButton.gameObject.SetActive(true);
         _statisticsEditingButton.gameObject.SetActive(true);
     }
-    private Statistics Check()
+    private Statistic Check()
     {
-        if (_selectedPart.Statistics.Count == 0 || _selectedPart.Statistics == null) return null;       
+        if (_selectedPart.Statistic.Count == 0 || _selectedPart.Statistic == null) return null;       
        
-        foreach (var item in _selectedPart.Statistics)
+        foreach (var item in _selectedPart.Statistic)
         {
-            if (item.ProcessingType == _selectedProcessingType && item.Tool.Marking == _selectedTool.Marking)
+            if (item.ProcessingType == _selectedProcessingType && item.Tool.Name == _selectedTool.Name)
             {                
                 return item;                    
             }
@@ -119,7 +119,14 @@ public class StatisticsPanelController : MonoBehaviour
     {
         if (Check() == null) OpenConfirmationAndAddationMenu();
         else { 
-            OpenCurrentStatistic(Check());
+            var item = Check();
+
+            if(item.Data.Count < 4)
+            {
+                UIPopupMessage.instance.ShowMessage("Insufficient data. Complete the statistics");
+                return;
+            }
+            else OpenCurrentStatistic(item);
             _menuConvas.gameObject.SetActive(false);
             _statisticConvas.gameObject.SetActive(true);
         }
@@ -128,13 +135,13 @@ public class StatisticsPanelController : MonoBehaviour
     {
         MenuManager.instance.ShowConfirmationPanel();
     }
-    private void OpenCurrentStatistic(Statistics statistics)
+    private void OpenCurrentStatistic(Statistic statistics)
     {
         _statisticsGraphView.Init(statistics);
     }
     private void OnConfirmation()
     {
-        _selectedPart.Statistics.Add(new Statistics(_selectedTool, _selectedProcessingType));        
+        _selectedPart.Statistic.Add(new Statistic(_selectedTool, _selectedProcessingType));        
     }
     private void OnStatisticsEditingButtonClicked()
     {

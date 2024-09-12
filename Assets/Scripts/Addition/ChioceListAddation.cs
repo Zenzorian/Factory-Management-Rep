@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace FactoryManager
@@ -9,38 +10,28 @@ namespace FactoryManager
     {
         private List<string> _list;
 
-        public void Set(MainMenuTypes types, Button addButton)
-        {            
-            _button = addButton;
-            _button.onClick.AddListener(AddToList);
-
-            switch (types)
-            {
-                case MainMenuTypes.Workspace:
-                    _list = DataManager.instance.GetTypesOfWorkspaces();
-                    break;
-                case MainMenuTypes.Tools:
-                    _list = DataManager.instance.GetTypesOfTools();
-                    break;
-                case MainMenuTypes.Workers:
-                    _list = DataManager.instance.GetTypesOfWorkers();
-                    break;
-                case MainMenuTypes.Parts:
-                    _list = DataManager.instance.GetTypesOfParts();
-                    break;
-                default:
-                    break;
-            }
-
-            BuildAdditionPanel(types);
+        public ChioceListAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button) : base(inputFieldCreator, content, OnAdded, button)
+        {
+            
         }
 
-        public void AddToList()
+        public void Open(List<string> list)
+        {      
+            _list = list;              
+            _button.onClick.AddListener(AddToList);
+            
+            Clear();
+            string title = "Set the name of a new category";
+            _inputField = _inputFieldCreator.Create(title, _content);
+        }
+
+        public async void AddToList()
         {
-            if (_inputField == null || string.IsNullOrEmpty(_inputField.text)) return;
-            Debug.Log(_inputField.text);
+            string name = await ValidateStringInput(_inputField);
+            if (name == null) return;
+                    
             _list.Add(_inputField.text);
-            AddationManager.instance.OnAdded.Invoke();
+            _OnAdded.Invoke();
             _button.onClick.RemoveListener(AddToList);
         }            
     }

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using FactoryManager.Data;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -8,41 +11,54 @@ namespace FactoryManager
     {
         public static AddationManager instance;
         public UnityEvent OnAdded;
-        public int typeValue;
-
         [SerializeField] private Transform _content;
         [SerializeField] private InputFieldCreator _inputFieldCreator = new InputFieldCreator();
-        private ChioceListAddation _chioceListAddation = new ChioceListAddation();
-        private TableItemAddation _tableItemAddation = new TableItemAddation();
-        private StatisticDataItemAddation _statisticDataItemAddation = new StatisticDataItemAddation();
+        private ChioceListAddation _chioceListAddation;
+        private StatisticDataItemAddation _statisticDataItemAddation;
         [SerializeField] private Button _addButton;
 
-       
-        private void Awake()
+        public void Awake()
         {
-            if (instance == null)
-                instance = this;
+            if(instance == null)
+            instance = this;
 
-            _chioceListAddation.Init(_inputFieldCreator, _content);
-            _tableItemAddation.Init(_inputFieldCreator, _content);
-            _statisticDataItemAddation.Init(_inputFieldCreator, _content);
+            _chioceListAddation = new ChioceListAddation(_inputFieldCreator, _content, OnAdded,_addButton);            
+            _statisticDataItemAddation= new StatisticDataItemAddation(_inputFieldCreator, _content, OnAdded,_addButton);           
         }
 
-        public void AddChioceList()
-        {
-            if (MenuManager.instance.menuType == MainMenuTypes.StatisticTool)
+        public void Open(MainMenuTypes menuTupe, string TemporaryTableItemType)
+        {            
+            Debug.Log("Table Item Addation");
+            
+            _addButton.onClick.RemoveAllListeners();
+           
+            switch (menuTupe)
             {
-                var list = StatisticsPanelController.CurrentStatisticDataList;
-                Debug.Log(list);
-                _statisticDataItemAddation.SetStatistic(list, _addButton);
-            }
-            else
-            _chioceListAddation.Set(ChoiceOfCategoryMenu.MenuType, _addButton);
+                case MainMenuTypes.Workstations:
+                    var workstationAddation = new WorkstationAddation(_inputFieldCreator, _content, OnAdded,_addButton,TemporaryTableItemType);                            
+                    break;
+                case MainMenuTypes.Tools:
+                    var toolAddation = new ToolAddation(_inputFieldCreator, _content, OnAdded,_addButton,TemporaryTableItemType);                    
+                    break;
+                case MainMenuTypes.Workers:
+                    var workerAddation = new WorkerAddation(_inputFieldCreator, _content, OnAdded,_addButton,TemporaryTableItemType);          
+                    break;
+                case MainMenuTypes.Parts:
+                    var partAddation = new PartAddation(_inputFieldCreator, _content, OnAdded,_addButton,TemporaryTableItemType);             
+                    break;
+                default:
+                    break;
+            }           
         }
-       
-        public void AddTableItem()
+        public void Open(List<string> list)
         {
-            _tableItemAddation.Set(ChoiceOfCategoryMenu.MenuType, _addButton, typeValue);           
-        }       
+            _chioceListAddation.Open(list); 
+            Debug.Log("Chioce List Addation");
+        }
+        public void Open(List<StatisticData> list)
+        {
+            _statisticDataItemAddation.Open(list);
+            Debug.Log("Statistic Data Item Addation");
+        }           
     }
 }

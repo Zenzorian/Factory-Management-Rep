@@ -9,6 +9,10 @@ namespace FactoryManager
     public class MenuManager : MonoBehaviour
     {
         public static MenuManager instance;
+
+        public List<string> TemporaryListOfCategory{private get; set;}
+        public string TemporaryTableItemType{private get; set;}
+        public List<StatisticData> TemporaryListOfStatisticData{private get; set;}
         public MainMenuTypes menuType;
 
         public UnityEvent<Part> OnPartSelected;
@@ -25,6 +29,7 @@ namespace FactoryManager
         [SerializeField] private Transform _statisticPanel;
         [SerializeField] private Transform _statisticInputPanel;
         [SerializeField] private ChoiceOfCategoryMenu _categoryMenu;
+        [SerializeField] private AddationManager _addationManager;
 
         [SerializeField] private StatisticsPanelController _statisticsPanelController;
         [SerializeField] private ConfirmationPanel _confirmationPanel;
@@ -35,15 +40,16 @@ namespace FactoryManager
         private GameObject[] _menuStack = new GameObject[50];
         private int _menuIndex = 0;
 
+        public bool statisticPanelIsOpen = false;
         private void Awake()
         {
+            Screen.fullScreen = false;
+            
             if (instance == null)
                 instance = this;
 
-            _menuStack[0] = _mainMenu.gameObject;
-            AddationManager.instance.OnAdded.AddListener(Back);
-            OnPartSelected.AddListener(PartSelected);
-            OnToolSelected.AddListener(ToolSelected);            
+            _menuStack[0] = _mainMenu.gameObject;            
+            OnPartSelected.AddListener(PartSelected);                 
         }
         private void Update()
         {
@@ -75,10 +81,19 @@ namespace FactoryManager
             menuType = (MainMenuTypes)value;
             List<string> selectedList = null;
 
+            if(value >=4) 
+            {
+                OnToolSelected.RemoveAllListeners();
+                OnToolSelected.AddListener(ToolSelected);       
+                
+                statisticPanelIsOpen = true;
+            }
+            else statisticPanelIsOpen = false;
+
             switch (menuType)
             {
-                case MainMenuTypes.Workspace:
-                    selectedList = _globalData.typesOfWorkspaces;
+                case MainMenuTypes.Workstations:
+                    selectedList = _globalData.typesOfWorkstation;
                     break;
                 case MainMenuTypes.Tools:
                     selectedList = _globalData.typesOfTools;
@@ -107,6 +122,7 @@ namespace FactoryManager
 
             if (selectedList != null)
             {
+                TemporaryListOfCategory = selectedList;
                 _categoryMenu.Create(selectedList, menuType);
                 Forwards(_choicePanel.gameObject);
             }
@@ -115,9 +131,37 @@ namespace FactoryManager
         {
             //Forwards(_listsMenu.gameObject);
         }
-        public void OpenAddationPanel()
+        public void OpenAddationPanel(string addationType)
         {
-            Forwards(_addationPanel.gameObject);
+            switch(addationType)
+            {
+                case "ChoiceMenu":
+                    if(TemporaryListOfCategory == null)
+                    {
+                        Debug.Log("TemporaryListOfCategory not found");
+                        return;
+                    }
+                    _addationManager.Open(TemporaryListOfCategory);
+                break;
+                case "Table":
+                    if(TemporaryTableItemType== null)
+                    {
+                        Debug.Log("TemporaryListOfTableItem not found");
+                        return;
+                    }
+                    _addationManager.Open(menuType,TemporaryTableItemType);
+                break;
+                case "Statistic":
+                    if(TemporaryListOfStatisticData == null)
+                    {
+                        Debug.Log("TemporaryListOfStatisticData not found");
+                        return;
+                    }
+                    _addationManager.Open(TemporaryListOfStatisticData);
+                break;
+            }
+
+           Forwards(_addationPanel.gameObject);
         }
         public void OpenTableView()
         {
@@ -163,7 +207,7 @@ namespace FactoryManager
     }
     public enum MainMenuTypes
     {
-        Workspace,
+        Workstations,
         Tools,
         Workers,
         Parts,

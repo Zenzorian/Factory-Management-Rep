@@ -6,8 +6,8 @@
         public ManufacturersRecomendedParametrs ManufacturerRecommendedSettings;
         public decimal Cost;
 
-        public ToolWithFeedSpeedAndCost(string marking, string note, string type, ManufacturersRecomendedParametrs manufacturerRecommendedSettings, decimal cost)
-            : base(marking, note, type)
+        public ToolWithFeedSpeedAndCost(int id,string name, string note, string type, ManufacturersRecomendedParametrs manufacturerRecommendedSettings, decimal cost)
+            : base(id,name, note, type)
         {
             ManufacturerRecommendedSettings = manufacturerRecommendedSettings;
             Cost = cost;

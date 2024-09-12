@@ -24,34 +24,41 @@ namespace FactoryManager
         public void SetList(MainMenuTypes menuType, int value)
         {   
             _temporaryMenuType = menuType;
-            _temporaryValue = value;         
+            _temporaryValue = value;      
+            List<TableItem> temporaryList = new List<TableItem>();   
             switch (menuType)
             {
-                case MainMenuTypes.Workspace:
-                    ShowTable(Filter(_globalData.typesOfWorkspaces[value], _globalData.listOfWorkstations));
+                case MainMenuTypes.Workstations:
+                    temporaryList = Filter(_globalData.typesOfWorkstation[value], _globalData.listOfWorkstations);
+                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfWorkstation[value];
                     break;
                 case MainMenuTypes.Tools:                  
-                    ShowTable(Filter(_globalData.typesOfTools[value], _globalData.listOfTools));
+                    temporaryList = Filter(_globalData.typesOfTools[value], _globalData.listOfTools);
+                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfTools[value];
                     break;
                 case MainMenuTypes.Workers:                    
-                    ShowTable(Filter(_globalData.typesOfWorkers[value], _globalData.listOfWorkers));
+                    temporaryList = Filter(_globalData.typesOfWorkers[value], _globalData.listOfWorkers);
+                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfWorkers[value];
                     break;
                 case MainMenuTypes.Parts:
-                    ShowTable(Filter(_globalData.typesOfParts[value], _globalData.listOfParts));
+                    temporaryList = Filter(_globalData.typesOfParts[value], _globalData.listOfParts);
+                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfParts[value];
                     break;
                 case MainMenuTypes.StatisticPart:
-                    ShowTable(Filter(_globalData.typesOfParts[value], _globalData.listOfParts));
+                    temporaryList = Filter(_globalData.typesOfParts[value], _globalData.listOfParts);
                     break;
                 case MainMenuTypes.StatisticTool:
-                    ShowTable(Filter(_globalData.typesOfTools[value], _globalData.listOfTools));
+                    temporaryList = Filter(_globalData.typesOfTools[value], _globalData.listOfTools);
                     break;
                 default:
                     break;
             }
+             ShowTable(temporaryList);
+            
         }
-        private List<T> Filter<T>(string type, List<T> list) where T : TableItem
+        private List<TableItem> Filter<T>(string type, List<T> list) where T : TableItem
         {
-            var temporaryList = new List<T>();
+            var temporaryList = new List<TableItem>();
             foreach (var item in list)
             {               
                 if (item.Type == type)
@@ -74,7 +81,7 @@ namespace FactoryManager
 
             if (list.Count == 0)
             {
-                Debug.Log($"{list} is empty");
+                UIPopupMessage.instance.ShowMessage($"{list} is empty");
                 return;
             }            
             _tableManager.SetTableData(list);

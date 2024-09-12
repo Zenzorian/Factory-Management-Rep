@@ -1,17 +1,14 @@
 namespace FactoryManager.Data.Tools
-{
-    /// <summary>
-    /// Базовый класс для содания инструментов
-    /// </summary>
+{   
     [System.Serializable]   
     public class Tool : TableItem
-    {
-        public string Marking;
+    {       
         public string Note;
 
-        public Tool(string marking, string note, string type)
+        public Tool(int id, string name, string note, string type):base(id,name,type)
         {
-            Marking = marking;
+            Id = id;
+            Name = name;
             Note = note;
             Type = type;
         }

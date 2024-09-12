@@ -3,8 +3,7 @@ using UnityEngine;
 using FactoryManager.Data;
 using FactoryManager.Data.Tools;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
+using UnityEngine.Events;
 
 namespace FactoryManager
 {
@@ -12,10 +11,23 @@ namespace FactoryManager
     public class WorkstationAddation : BaseAddition
     {
         private Dictionary<string, InputField> _inputFields;
-        private List<Tool> _selectedTools = new List<Tool>(); 
+        private List<Tool> _selectedTools = new List<Tool>();
+
+        public WorkstationAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button,string elementType) : base(inputFieldCreator, content, OnAdded, button)
+        {
+            _inputFields = BuildAdditionPanel(typeof(Workstation),elementType);
+            button.onClick.AddListener(Addation);
+            Init(_inputFields);
+        }
+        private void Addation()
+        {
+            ValidateAndCreateWorkstation(_inputFields);
+        }
+
         public void Init(Dictionary<string, InputField> inputFields)
         {           
             _selectedTools.Clear();
+            MenuManager.instance.OnToolSelected.RemoveAllListeners();
             MenuManager.instance.OnToolSelected.AddListener(SetTools);
             _inputFields = inputFields;
             var toolInput = inputFields["Tools"];
@@ -24,7 +36,7 @@ namespace FactoryManager
             colorBlock.disabledColor = Color.white; // Задаем желаемый цвет для состояния "Disabled"
             toolInput.colors = colorBlock;
             toolInput.text = "Select Tools";            
-            var selectedListener= toolInput.transform.AddComponent<InputFieldSelectListener>();
+            var selectedListener= toolInput.gameObject.AddComponent<InputFieldSelectListener>();
             selectedListener.onSelectAction = OpenToolTable;                   
         }
         private void OpenToolTable()
@@ -33,29 +45,35 @@ namespace FactoryManager
         }
         private void SetTools(Tool tool)
         {
+            Debug.Log("Tool Event");
             _selectedTools.Add(tool);
             UIPopupMessage.instance.ShowMessage("Tool successfully added");
             MenuManager.instance.Back();
-            MenuManager.instance.Back();
+            MenuManager.instance.Back();           
         }
-        public async Task<bool> ValidateAndCreateWorkstation(Dictionary<string, InputField> inputFields)
-        {
+        public async void ValidateAndCreateWorkstation(Dictionary<string, InputField> inputFields)
+        {                  
+            int? id = await ValidateIntInput(inputFields["Id"]);
+            if (!id.HasValue) return;
+
+            string name = await ValidateStringInput(inputFields["Name"]);
+            if (name == null) return;        
+
             string type = await ValidateStringInput(inputFields["Type"]);
-            if (type == null) return false;
+            if (type == null) return;
 
             Tool[] tools = _selectedTools.ToArray();
             int? maxWorkers = await ValidateIntInput(inputFields["MaxWorkers"]);
-            if (!maxWorkers.HasValue) return false;
+            if (!maxWorkers.HasValue) return;
 
             int? reservedWorkers = await ValidateIntInput(inputFields["ReservedWorkers"]);
-            if (!reservedWorkers.HasValue) return false;
+            if (!reservedWorkers.HasValue) return;
 
-            Workstation newWorkstation = new Workstation(type, tools, maxWorkers.Value, reservedWorkers.Value);
+            Workstation newWorkstation = new Workstation(id.Value, name, type, tools, maxWorkers.Value, reservedWorkers.Value);
           
             DataManager.instance.AddWorkstation(newWorkstation);  
 
-            MenuManager.instance.OnToolSelected.RemoveListener(SetTools);
-            return true;
+            Added();
         }
     }
 }

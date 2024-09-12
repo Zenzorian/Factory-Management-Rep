@@ -1,9 +1,8 @@
 using FactoryManager.Data;
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 namespace FactoryManager
 {
     public class ChoiceOfCategoryMenu : MonoBehaviour
@@ -12,7 +11,6 @@ namespace FactoryManager
         [SerializeField] private TableController _tableController;
         [SerializeField] private MenuManager _menuManager;
         [SerializeField] private ButtonCreator _buttonCreator;
-        [SerializeField] private AddationManager _addationManager;
         [SerializeField] private Transform _content;
 
         private List<string> _selectedCategories = new List<string>();
@@ -47,11 +45,17 @@ namespace FactoryManager
                 int index = i;
                 var myButton = buttons[index].GetComponent<Button>();
                 myButton.onClick.AddListener(delegate { ButtonPressed(index); });
+                var buttonText = myButton.GetComponentInChildren<Text>();
+                var count = DataManager.instance.CountItemsByType(menuType, list[i]);
+                buttonText.text = $"{buttonText.text} - ({count})";
+                if((menuType == MainMenuTypes.StatisticTool||
+                menuType == MainMenuTypes.StatisticPart)&& count == 0)
+                myButton.gameObject.SetActive(false);                
             }
            
             if(menuType == MainMenuTypes.StatisticTool||
                 menuType == MainMenuTypes.StatisticPart)
-            _addButton.gameObject.SetActive(false);
+                _addButton.gameObject.SetActive(false);
             else _addButton.gameObject.SetActive(true);
         }
         public void CreateForStatistic(List<StatisticData> list)
@@ -84,7 +88,7 @@ namespace FactoryManager
         public void ButtonPressed(int index)
         {
             _tableController.OpenTableWithFilter(MenuType, index);
-            _addationManager.typeValue = index;
+            //_addationManager.typeValue = index;
             _menuManager.OpenTableView();
         }
         public void StatisticButtonPressed(int index)
@@ -105,7 +109,6 @@ namespace FactoryManager
             {
                 Destroy(item.gameObject);
             }
-        }
-
+        }       
     }
 }

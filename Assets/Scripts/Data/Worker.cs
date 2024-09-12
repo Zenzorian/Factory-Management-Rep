@@ -1,17 +1,9 @@
 
 namespace FactoryManager.Data
-{
-    /// <summary>
-    /// Работник
-    /// </summary>
+{    
     [System.Serializable]
     public class Worker : TableItem
-    {
-        public int Id;
-
-        public string FirstName;
-        public string LastName;      
-
+    {        
         public float WeeklyNorm;
         public float OvertimeAllowed;
 
@@ -19,14 +11,12 @@ namespace FactoryManager.Data
         public float OvertimeSurcharge;
         public float NightShiftSurcharge;
         
-        public Worker(int id, string firstName, string lastName, string type,
+        public Worker(int id, string name, string type,
                       float weeklyNorm = 40, float overtimeAllowed = 0,
                       float hourlyWage = 0, float overtimeSurcharge = 0,
-                      float nightShiftSurcharge = 0)
+                      float nightShiftSurcharge = 0):base(id,name,type)
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
+            Id = id;            
             Type = type;
             WeeklyNorm = weeklyNorm;
             OvertimeAllowed = overtimeAllowed;

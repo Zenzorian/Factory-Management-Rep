@@ -6,9 +6,9 @@ public class StatisticsGraphView : MonoBehaviour
 {
     [SerializeField] private GraphPlane _graphPlane;
 
-    private Statistics _currentStatistic;
+    private Statistic _currentStatistic;
     private List<GraphData> _gpaphDatas = new List<GraphData>();
-    public void Init(Statistics statistics)
+    public void Init(Statistic statistics)
     {
         _currentStatistic = statistics;
 

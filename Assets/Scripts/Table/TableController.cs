@@ -6,8 +6,7 @@ namespace FactoryManager
     public class TableController : MonoBehaviour
     {
         [SerializeField] private TableModel _tableModel;
-        [SerializeField] private Transform _addButton;
-        [SerializeField] private AddationManager _addationManager;
+        [SerializeField] private Transform _addButton;        
         public void OpenTableWithFilter(MainMenuTypes menuType, int value)
         {
             _tableModel.SetList(menuType,value);           

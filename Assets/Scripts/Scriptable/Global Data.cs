@@ -17,7 +17,7 @@ namespace FactoryManager
 
         public List<string> typesOfTools;
         public List<string> typesOfWorkers;
-        public List<string> typesOfWorkspaces;
+        public List<string> typesOfWorkstation;
         public List<string> typesOfParts;
     }
     public enum DataType

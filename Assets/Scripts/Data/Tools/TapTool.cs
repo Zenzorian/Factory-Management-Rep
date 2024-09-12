@@ -1,8 +1,5 @@
 ﻿namespace FactoryManager.Data.Tools
 {
-    /// <summary>
-    /// Мечик
-    /// </summary>
     [System.Serializable]
     public class TapTool : Tool
     {
@@ -11,8 +8,8 @@
         public double VMin;
         public double VMax;
 
-        public TapTool(string marking, MeasurementSystem measurement, double pitch, double vMin, double vMax, string note, string type)
-            : base(marking, note, type)
+        public TapTool(int id, string name, MeasurementSystem measurement, double pitch, double vMin, double vMax, string note, string type)
+            : base(id,name, note, type)
         {
             Measurement = measurement;
             Pitch = pitch;
