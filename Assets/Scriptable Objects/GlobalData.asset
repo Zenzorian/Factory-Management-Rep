@@ -13,790 +13,2375 @@ MonoBehaviour:
   m_Name: GlobalData
   m_EditorClassIdentifier: 
   listOfParts:
-  - Type: Bushing
-    Name: Part Bushing 2
-    Statistics:
+  - Id: 0
+    Name: Part Bracket 1
+    Type: Bracket
+    Statistic:
     - Tool:
-        Type: ThreadingMachines
-        Marking: FTUERDLS
-        Note: Random note for Threading Tool
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
       ProcessingType: 1
       Data:
-      - F: 0
-        V: 0
-        PartCounter: 28000000
-      - F: 0
-        V: 1
-        PartCounter: 3c000000
-      - F: 0
-        V: 2
-        PartCounter: 28000000
-      - F: 0
+      - F: 4.976
+        V: 0.827
+        PartCounter: 9b0000003700000045000000f1000000dc000000
+      - F: 3.309
+        V: 4.599
+        PartCounter: 96000000ec00000079000000b200000065000000
+      - F: 0.187
+        V: 4.076
+        PartCounter: 6b0000009b0000006b0000008a0000009b000000
+      - F: 4.635
+        V: 3.06
+        PartCounter: bb00000043000000f7000000d600000043000000
+      - F: 4.595
+        V: 1.772
+        PartCounter: 5c000000a2000000d0000000dd000000a6000000
+      - F: 0.941
+        V: 4.15
+        PartCounter: a0000000e20000007f00000085000000ca000000
+      - F: 1.254
+        V: 0.52
+        PartCounter: a1000000d7000000b0000000d2000000a6000000
+      - F: 1.206
+        V: 2.093
+        PartCounter: 3d00000089000000ab000000c6000000d9000000
+      - F: 3.794
+        V: 2.765
+        PartCounter: 7b000000870000007c000000d2000000b20000007b000000
+      - F: 3.292
+        V: 2.422
+        PartCounter: d0000000e2000000b60000006d000000c7000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.935
+        V: 2.45
+        PartCounter: a30000005c000000960000008b000000dc000000
+      - F: 2.964
+        V: 3.193
+        PartCounter: f200000061000000610000007c0000006d000000
+      - F: 4.592
+        V: 2.003
+        PartCounter: ae0000009f000000ed000000e1000000bd000000
+      - F: 4.535
+        V: 2.871
+        PartCounter: 8d000000e400000093000000de0000008f000000
+      - F: 1.725
+        V: 2.444
+        PartCounter: 630000009100000063000000f6000000c2000000
+      - F: 3.439
+        V: 3.504
+        PartCounter: cf00000057000000f80000005c000000d0000000
+      - F: 2.088
+        V: 4.061
+        PartCounter: b70000005d00000043000000b700000059000000
+      - F: 4.747
+        V: 3.789
+        PartCounter: 770000007300000056000000f0000000ad000000
+      - F: 4.035
+        V: 4.082
+        PartCounter: d60000005a000000600000008a0000005d000000
+      - F: 3.785
+        V: 2.878
+        PartCounter: d500000093000000950000004600000057000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.494
+        V: 1.388
+        PartCounter: e500000081000000d2000000d700000096000000
+      - F: 4.115
+        V: 3.883
+        PartCounter: 43000000f300000099000000c30000003e000000
+      - F: 0.149
+        V: 4.895
+        PartCounter: cd0000006200000036000000a6000000b0000000
+      - F: 0.179
+        V: 1.258
+        PartCounter: 820000008d00000068000000b900000078000000
+      - F: 0.679
+        V: 3.521
+        PartCounter: 4b000000bf0000009d00000062000000b3000000
+      - F: 1.825
+        V: 4.76
+        PartCounter: 3a00000063000000d2000000cb000000e6000000
+      - F: 1.798
+        V: 1.397
+        PartCounter: 6e000000bc000000e300000037000000e4000000
+      - F: 0.056
+        V: 3.948
+        PartCounter: 6800000085000000650000005200000048000000
+      - F: 3.955
+        V: 4.399
+        PartCounter: 7e000000d30000008d000000e3000000da000000
+      - F: 1.155
+        V: 3.17
+        PartCounter: a500000055000000b3000000d4000000d4000000
+  - Id: 1
+    Name: Part Bracket 2
+    Type: Gear
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.131
+        V: 4.913
+        PartCounter: d9000000870000009d00000081000000be000000
+      - F: 3.919
+        V: 3.249
+        PartCounter: bc0000007a000000bb0000008a000000ee000000
+      - F: 1.135
+        V: 0.66
+        PartCounter: ea00000094000000b6000000790000004f000000
+      - F: 0.067
+        V: 2.075
+        PartCounter: 6f0000007d00000073000000cb00000086000000
+      - F: 4.716
+        V: 3.198
+        PartCounter: e900000036000000a300000062000000ac000000
+      - F: 1.933
+        V: 1.119
+        PartCounter: 5a000000d4000000f800000093000000f0000000
+      - F: 0.001
+        V: 4.107
+        PartCounter: d60000006d0000004f000000c70000008c000000
+      - F: 1.097
+        V: 2.365
+        PartCounter: 620000008b0000006c000000a3000000bd000000
+      - F: 4.074
+        V: 3.513
+        PartCounter: 8a000000bb0000005700000097000000640000007b000000
+      - F: 3.326
+        V: 3.383
+        PartCounter: 63000000e300000078000000be00000044000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 2.801
+        V: 0.774
+        PartCounter: 3900000032000000580000006700000083000000
+      - F: 2.387
+        V: 1.246
+        PartCounter: d4000000dd0000006c000000cf00000095000000
+      - F: 3.944
+        V: 2.12
+        PartCounter: e20000007c0000005a000000930000004a000000
+      - F: 0.972
+        V: 4.881
+        PartCounter: af00000076000000e8000000e6000000e6000000
+      - F: 3.005
+        V: 4.198
+        PartCounter: dd00000042000000c90000003f000000f5000000
+      - F: 2.01
+        V: 4.895
+        PartCounter: 60000000d90000003e000000f80000007a000000
+      - F: 4.45
+        V: 3.759
+        PartCounter: 700000008d0000006c00000081000000e8000000
+      - F: 1.062
+        V: 4.003
+        PartCounter: d500000046000000e200000075000000b2000000
+      - F: 1.685
+        V: 1.133
+        PartCounter: 7f000000500000009700000040000000d4000000
+      - F: 4.021
+        V: 1.983
+        PartCounter: 4000000093000000bd0000007f000000ae000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 4.895
+        V: 0.792
+        PartCounter: e7000000f50000008c000000d100000060000000
+      - F: 3.631
+        V: 0.871
+        PartCounter: f1000000630000004b0000006b00000055000000
+      - F: 3.732
+        V: 2.082
+        PartCounter: f4000000d10000006e0000008700000056000000
+      - F: 4.119
+        V: 0.591
+        PartCounter: 8700000042000000d2000000a50000006e000000
+      - F: 0.297
+        V: 3.615
+        PartCounter: 9a0000008d000000a40000006500000099000000
+      - F: 2.775
+        V: 3.137
+        PartCounter: bf000000a5000000bb00000064000000e7000000
+      - F: 0.648
+        V: 3.974
+        PartCounter: c60000004e000000b90000007c0000008d000000
+      - F: 0.16
+        V: 1.109
+        PartCounter: 75000000320000009400000053000000f1000000
+      - F: 3.977
+        V: 1.23
+        PartCounter: a4000000f5000000a900000052000000b7000000
+      - F: 0.247
+        V: 4.672
+        PartCounter: a8000000dc00000041000000e30000007f000000
+    - Tool:
+        Id: 54
+        Name: U42BTJDE
+        Type: Grooving
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1
         V: 3
-        PartCounter: 50000000
-      - F: 1
-        V: 0
-        PartCounter: 37000000
-      - F: 1
-        V: 1
-        PartCounter: 41000000
-      - F: 1
-        V: 2
-        PartCounter: 4b000000
+        PartCounter: 
       - F: 1
         V: 3
-        PartCounter: 78000000
-      - F: 2
-        V: 0
-        PartCounter: 3c000000
-  listOfWorkstations:
-  - Type: Packaging
-    Tools:
-    - Type: MillingCNC
-      Marking: Y1M8KZ5H
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 3
-    ReservedWorkers: 2
-  - Type: Inspection
-    Tools:
-    - Type: Grooving
-      Marking: 4HRI1NWZ
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 11
-    ReservedWorkers: 4
-  - Type: Painting
-    Tools:
-    - Type: Grooving
-      Marking: 8QIGPJIF
-      Note: Random note for Turning Roughing Tool
-    - Type: ThreadingMachines
-      Marking: PC2QA5YM
-      Note: Random note for Threading Tool
-    MaxWorkers: 15
-    ReservedWorkers: 9
-  - Type: CNC
-    Tools:
-    - Type: Grooving
-      Marking: X5KZLD86
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 8
-    ReservedWorkers: 0
-  - Type: Inspection
-    Tools:
-    - Type: Taps
-      Marking: 9M4J14WL
-      Note: Random note for Tap
-    - Type: Taps
-      Marking: 5NUGPUJQ
-      Note: Random note for Tap
-    MaxWorkers: 8
-    ReservedWorkers: 5
-  - Type: QualityControl
-    Tools:
-    - Type: MillingCNC
-      Marking: ZNCTJPRU
-      Note: Random note for Turning Roughing Tool
-    - Type: Grooving
-      Marking: 7FEUHLMV
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 16
-    ReservedWorkers: 8
-  - Type: Packaging
-    Tools:
-    - Type: Taps
-      Marking: D2FTD2B4
-      Note: Random note for Tap
-    - Type: ThreadingMachines
-      Marking: TZQJVHDP
-      Note: Random note for Threading Tool
-    MaxWorkers: 2
-    ReservedWorkers: 0
-  - Type: Storage
-    Tools:
-    - Type: Taps
-      Marking: 1UWV2SKU
-      Note: Random note for Tap
-    MaxWorkers: 19
-    ReservedWorkers: 11
-  - Type: Welding
-    Tools:
-    - Type: MillingCNC
-      Marking: TX8CK9VC
-      Note: Random note for Turning Roughing Tool
-    - Type: MillingCNC
-      Marking: E3LIEQ3I
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 8
-    ReservedWorkers: 6
-  - Type: QualityControl
-    Tools:
-    - Type: ThreadingMachines
-      Marking: CZ9050R2
-      Note: Random note for Threading Tool
-    - Type: MillingCNC
-      Marking: 1AIB09AU
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 17
-    ReservedWorkers: 4
-  - Type: Storage
-    Tools:
-    - Type: MillingCNC
-      Marking: MXTVOHU2
-      Note: Random note for Turning Roughing Tool
-    - Type: Taps
-      Marking: ZXPVRWB9
-      Note: Random note for Tap
-    MaxWorkers: 8
-    ReservedWorkers: 2
-  - Type: CNC
-    Tools:
-    - Type: Taps
-      Marking: S2W9T53E
-      Note: Random note for Tap
-    - Type: Grooving
-      Marking: CN7JY9TV
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 6
-    ReservedWorkers: 2
-  - Type: CNC
-    Tools:
-    - Type: Grooving
-      Marking: Q79M7ZGI
-      Note: Random note for Turning Roughing Tool
-    - Type: MillingCNC
-      Marking: G2RV0AEF
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 7
-    ReservedWorkers: 6
-  - Type: Welding
-    Tools:
-    - Type: Grooving
-      Marking: FB2UCXSD
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 18
-    ReservedWorkers: 15
-  - Type: CNC
-    Tools:
-    - Type: Grooving
-      Marking: D3Z0Y5Z3
-      Note: Random note for Turning Roughing Tool
-    MaxWorkers: 14
-    ReservedWorkers: 11
+        PartCounter: 
+      - F: 34
+        V: 42
+        PartCounter: 
+      - F: 4
+        V: 4
+        PartCounter: 
+      - F: 4
+        V: 4
+        PartCounter: 
+      - F: 12
+        V: 11
+        PartCounter: 
+      - F: 22
+        V: 32
+        PartCounter: 
+      - F: 32
+        V: 12
+        PartCounter: 7b000000d500000038010000
+      - F: 23
+        V: 21
+        PartCounter: 
+      - F: 23
+        V: 21
+        PartCounter: 
+      - F: 12
+        V: 3
+        PartCounter: 
+      - F: 212
+        V: 32
+        PartCounter: dc520000
+      - F: 212
+        V: 2222
+        PartCounter: 7b0000007b00000020000000
+  - Id: 2
+    Name: Part Cylinder 3
+    Type: Cylinder
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.491
+        V: 1.807
+        PartCounter: 89000000f8000000d2000000760000009c000000
+      - F: 4.902
+        V: 1.899
+        PartCounter: af00000070000000ad000000f0000000f4000000
+      - F: 0.734
+        V: 2.096
+        PartCounter: 98000000e0000000750000005600000052000000
+      - F: 3.424
+        V: 3.263
+        PartCounter: 4700000078000000a20000007b00000076000000
+      - F: 0.436
+        V: 3.542
+        PartCounter: 92000000c20000004b000000e5000000c4000000
+      - F: 0.84
+        V: 3.127
+        PartCounter: 3500000080000000ba000000b300000076000000
+      - F: 0.659
+        V: 3.584
+        PartCounter: 99000000f20000009b0000006a0000006c000000
+      - F: 1.902
+        V: 4.575
+        PartCounter: 7b000000e70000008b000000c80000008c000000
+      - F: 3.946
+        V: 2.036
+        PartCounter: e3000000e1000000b7000000c600000057000000
+      - F: 2.703
+        V: 1.339
+        PartCounter: 6e0000003a000000b90000008d000000b4000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.933
+        V: 0.435
+        PartCounter: 7b00000070000000d900000093000000b5000000
+      - F: 0.162
+        V: 0.777
+        PartCounter: c0000000df000000e6000000ab00000098000000
+      - F: 0.283
+        V: 3.609
+        PartCounter: 60000000b0000000f4000000ab0000008d000000
+      - F: 0.714
+        V: 4.557
+        PartCounter: a0000000770000003d000000e4000000d0000000
+      - F: 0.845
+        V: 4.243
+        PartCounter: 5a000000e6000000d4000000e80000008d000000
+      - F: 2.85
+        V: 4.885
+        PartCounter: aa0000003c0000007e000000c000000088000000
+      - F: 0.664
+        V: 2.701
+        PartCounter: f5000000c10000005f000000f8000000f4000000
+      - F: 3.231
+        V: 0.405
+        PartCounter: 5a0000004a00000039000000ae000000a5000000
+      - F: 2.599
+        V: 4.299
+        PartCounter: 9600000032000000da000000610000005d000000
+      - F: 3.762
+        V: 4.807
+        PartCounter: 64000000e60000003e0000006b000000b1000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 4.394
+        V: 2.009
+        PartCounter: f1000000f7000000cf000000b60000008c000000
+      - F: 0.484
+        V: 0.71
+        PartCounter: 8f00000095000000ea000000380000003c000000
+      - F: 2.747
+        V: 0.376
+        PartCounter: b60000009200000058000000540000009d000000
+      - F: 1.166
+        V: 4.502
+        PartCounter: 9900000083000000f6000000b100000064000000
+      - F: 3.788
+        V: 2.417
+        PartCounter: 870000006f00000088000000700000006c000000
+      - F: 2.09
+        V: 2.69
+        PartCounter: 590000003d000000a5000000bd0000005a000000
+      - F: 3.615
+        V: 1.045
+        PartCounter: be000000f8000000450000004100000091000000
+      - F: 3.298
+        V: 0.103
+        PartCounter: f7000000eb000000a20000009d00000097000000
+      - F: 1.042
+        V: 2.59
+        PartCounter: be0000005900000033000000a4000000e9000000
+      - F: 2.925
+        V: 0.487
+        PartCounter: 35000000d4000000b7000000be000000be000000
+  - Id: 3
+    Name: Part Housing 4
+    Type: Cylinder
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.387
+        V: 0.815
+        PartCounter: 7f000000e2000000d900000060000000b1000000
+      - F: 3.258
+        V: 2.194
+        PartCounter: a600000089000000920000004a00000076000000
+      - F: 2.865
+        V: 0.483
+        PartCounter: 6500000066000000dc0000005b000000dc000000
+      - F: 0.812
+        V: 4.413
+        PartCounter: 86000000a5000000df000000da0000009b000000
+      - F: 0.524
+        V: 4.745
+        PartCounter: 8f000000e400000096000000b6000000f6000000
+      - F: 0.678
+        V: 4.5
+        PartCounter: 570000007c0000009f000000b1000000a2000000
+      - F: 4.963
+        V: 0.498
+        PartCounter: e60000007b0000008f000000a60000008f000000
+      - F: 3.414
+        V: 1.189
+        PartCounter: a80000004e000000a5000000e2000000cd000000
+      - F: 2.335
+        V: 1.226
+        PartCounter: 5b00000041000000f5000000d000000070000000
+      - F: 4.129
+        V: 1.109
+        PartCounter: 5a0000003f000000f30000005800000051000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.221
+        V: 4.816
+        PartCounter: 8b00000071000000e9000000c00000008b000000
+      - F: 2.3
+        V: 3.197
+        PartCounter: 940000007d00000054000000640000008b000000
+      - F: 4.211
+        V: 2.287
+        PartCounter: 5b000000e4000000da000000a200000089000000
+      - F: 0.292
+        V: 4.126
+        PartCounter: e3000000d100000068000000c600000065000000
+      - F: 3.291
+        V: 2.21
+        PartCounter: 6a00000032000000f70000003f00000072000000
+      - F: 2.119
+        V: 3.85
+        PartCounter: 80000000e9000000c000000078000000cd000000
+      - F: 3.451
+        V: 4.883
+        PartCounter: 4a00000082000000780000009200000048000000
+      - F: 2.943
+        V: 2.585
+        PartCounter: a70000008c000000c90000004c000000f4000000
+      - F: 4.854
+        V: 1.819
+        PartCounter: 5d000000f30000007200000088000000a3000000
+      - F: 2.257
+        V: 4.29
+        PartCounter: 7000000061000000850000007800000087000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.217
+        V: 4.571
+        PartCounter: 83000000d00000005e000000ed000000e0000000
+      - F: 3.998
+        V: 4.717
+        PartCounter: 8b00000073000000db0000007f0000003d000000
+      - F: 2.34
+        V: 2.582
+        PartCounter: a4000000b7000000d60000009000000073000000
+      - F: 1.11
+        V: 4.513
+        PartCounter: d30000009e000000790000008c000000dc000000
+      - F: 3.644
+        V: 1.114
+        PartCounter: 88000000390000004d000000cb0000003a000000
+      - F: 2.752
+        V: 0.849
+        PartCounter: 70000000ba000000a10000009600000034000000
+      - F: 2.605
+        V: 0.925
+        PartCounter: 510000009500000079000000eb0000007c000000
+      - F: 4.164
+        V: 4.94
+        PartCounter: 730000005600000085000000ac000000b6000000
+      - F: 2.383
+        V: 4.422
+        PartCounter: 65000000ab0000007b0000004100000081000000
+      - F: 0.163
+        V: 2.761
+        PartCounter: 9f0000004f000000dc00000047000000c9000000
+  - Id: 4
+    Name: Part Housing 5
+    Type: Cylinder
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.372
+        V: 1.849
+        PartCounter: 810000009900000095000000c7000000df000000
+      - F: 3.038
+        V: 3.618
+        PartCounter: f7000000d1000000ec000000d0000000bc000000
+      - F: 0.352
+        V: 3.468
+        PartCounter: c9000000540000004b000000de000000f9000000
+      - F: 2.884
+        V: 1.938
+        PartCounter: e0000000880000003e0000008c00000066000000
+      - F: 1.142
+        V: 1.769
+        PartCounter: 8b000000a10000007c0000009e0000004e000000
+      - F: 4.973
+        V: 1.222
+        PartCounter: c00000008b00000070000000d50000008a000000
+      - F: 1.813
+        V: 3.385
+        PartCounter: 4a00000071000000c5000000d00000006a000000
+      - F: 0.942
+        V: 1.566
+        PartCounter: 77000000bf0000008b000000c900000052000000
+      - F: 1.954
+        V: 3.325
+        PartCounter: a0000000490000007800000073000000bd000000
+      - F: 0.448
+        V: 2.387
+        PartCounter: c60000003f00000077000000ad00000074000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.759
+        V: 3.004
+        PartCounter: eb0000005b0000008f000000d1000000ec000000
+      - F: 2.488
+        V: 4.101
+        PartCounter: d90000004e000000f1000000ab00000050000000
+      - F: 1.942
+        V: 2.151
+        PartCounter: 9d000000930000004900000077000000a3000000
+      - F: 1.911
+        V: 3.076
+        PartCounter: 8a0000008900000074000000a5000000b3000000
+      - F: 1.633
+        V: 2.292
+        PartCounter: 52000000f70000006f0000006c000000c0000000
+      - F: 0.635
+        V: 2.403
+        PartCounter: 730000005a0000003b000000db00000081000000
+      - F: 3.272
+        V: 3.869
+        PartCounter: b300000046000000bc0000009200000099000000
+      - F: 0.323
+        V: 4.01
+        PartCounter: e9000000dc000000ed000000de0000008b000000
+      - F: 4.313
+        V: 4.147
+        PartCounter: 5b000000c8000000d9000000ab000000ae000000
+      - F: 3.113
+        V: 0.997
+        PartCounter: 3e0000003200000033000000ca00000065000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.34
+        V: 1.016
+        PartCounter: 6e000000c5000000cb000000f400000054000000
+      - F: 4.557
+        V: 3.398
+        PartCounter: ee000000e60000005400000043000000aa000000
+      - F: 2.871
+        V: 1.809
+        PartCounter: b100000044000000480000005b00000097000000
+      - F: 2.237
+        V: 3.328
+        PartCounter: 89000000d1000000b0000000d8000000b4000000
+      - F: 0.636
+        V: 4.373
+        PartCounter: a700000095000000900000004c00000089000000
+      - F: 3.761
+        V: 1.725
+        PartCounter: 840000004f000000bd000000b7000000b4000000
+      - F: 1.329
+        V: 1.672
+        PartCounter: 72000000590000006b000000a800000045000000
+      - F: 2.649
+        V: 3.999
+        PartCounter: e700000075000000c10000006f000000a5000000
+      - F: 1.938
+        V: 1.611
+        PartCounter: 34000000b9000000dc00000065000000d3000000
+      - F: 2.299
+        V: 4.323
+        PartCounter: 48000000b2000000b00000004500000057000000
+  - Id: 5
+    Name: Part Housing 6
+    Type: Bracket
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.536
+        V: 3.024
+        PartCounter: 8f000000dd00000058000000c6000000cc000000
+      - F: 2.379
+        V: 2.988
+        PartCounter: dc000000e6000000d7000000de00000061000000
+      - F: 2.794
+        V: 3.781
+        PartCounter: 750000009900000057000000700000004f000000
+      - F: 0.808
+        V: 3.605
+        PartCounter: ef000000a6000000640000006b00000073000000
+      - F: 2.333
+        V: 1.638
+        PartCounter: 3200000098000000900000006800000090000000
+      - F: 1.027
+        V: 3.949
+        PartCounter: 390000003a0000006b000000f2000000ec000000
+      - F: 2.873
+        V: 2.611
+        PartCounter: db00000059000000c70000007e0000005b000000
+      - F: 1.022
+        V: 2.741
+        PartCounter: c500000079000000d50000005a000000a1000000
+      - F: 4.498
+        V: 2.126
+        PartCounter: 8100000036000000e7000000a80000009f000000
+      - F: 0.75
+        V: 2.171
+        PartCounter: b5000000a90000008a000000ab000000f2000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.823
+        V: 0.553
+        PartCounter: d7000000ce0000009f000000bd0000004f000000
+      - F: 3.426
+        V: 0.646
+        PartCounter: f10000007e000000e900000067000000c5000000
+      - F: 2.095
+        V: 2.793
+        PartCounter: d4000000ac000000de000000ec0000007f000000
+      - F: 0.528
+        V: 2.113
+        PartCounter: 4d000000cb000000d20000004700000084000000
+      - F: 1.059
+        V: 0.751
+        PartCounter: a7000000cb0000003b000000c3000000ec000000
+      - F: 3.474
+        V: 1.41
+        PartCounter: f5000000aa000000e1000000c2000000d4000000
+      - F: 4.421
+        V: 3.119
+        PartCounter: 89000000a9000000b9000000f900000046000000
+      - F: 0.211
+        V: 4.266
+        PartCounter: 3f000000b40000003b0000006100000063000000
+      - F: 1.484
+        V: 4.847
+        PartCounter: 780000008a0000009f0000008f000000c7000000
+      - F: 1.575
+        V: 1.55
+        PartCounter: cf00000051000000f50000005b00000084000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 2.149
+        V: 2.009
+        PartCounter: e4000000d100000075000000590000007c000000
+      - F: 4.312
+        V: 0.046
+        PartCounter: 3e000000c4000000d6000000cb00000054000000
+      - F: 3.895
+        V: 3.639
+        PartCounter: 7900000096000000580000008d0000006d000000
+      - F: 2.749
+        V: 0.798
+        PartCounter: 5c000000ec000000df000000d700000072000000
+      - F: 1.496
+        V: 4.53
+        PartCounter: 93000000c1000000a3000000dd0000003e000000
+      - F: 2.909
+        V: 2.482
+        PartCounter: 4f0000005d000000a5000000f50000004f000000
+      - F: 1.174
+        V: 2.409
+        PartCounter: d5000000ae000000b800000070000000e9000000
+      - F: 4.58
+        V: 2.017
+        PartCounter: b10000006600000092000000af00000039000000
+      - F: 0.716
+        V: 2.788
+        PartCounter: 74000000d80000006a0000003e000000e4000000
+      - F: 0.362
+        V: 3.532
+        PartCounter: db0000006300000043000000530000009c000000
+  - Id: 6
+    Name: Part Gear 7
+    Type: Bracket
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 4.041
+        V: 1.252
+        PartCounter: e20000008000000051000000ee00000098000000
+      - F: 2.34
+        V: 1.1
+        PartCounter: 7c0000007f000000e3000000c900000035000000
+      - F: 2.915
+        V: 4.284
+        PartCounter: bc00000059000000db000000f800000034000000
+      - F: 0.649
+        V: 4.23
+        PartCounter: 57000000b5000000320000008f000000f3000000
+      - F: 0.614
+        V: 2.357
+        PartCounter: 48000000cc00000073000000bc0000003b000000
+      - F: 3.007
+        V: 4.422
+        PartCounter: a80000008e000000b500000098000000ec000000
+      - F: 1.457
+        V: 3.358
+        PartCounter: 8200000080000000f8000000f100000095000000
+      - F: 1.543
+        V: 2.851
+        PartCounter: 3b0000003c000000e30000009e000000ab000000
+      - F: 3.911
+        V: 4.545
+        PartCounter: 82000000ed0000009b0000008200000095000000
+      - F: 2.15
+        V: 2.452
+        PartCounter: eb000000e700000044000000af00000053000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 4.418
+        V: 2.817
+        PartCounter: d4000000d9000000620000005b000000bc000000
+      - F: 1.11
+        V: 0.744
+        PartCounter: 470000003e0000008f000000e5000000ea000000
+      - F: 4.964
+        V: 4.741
+        PartCounter: e7000000c30000007c000000d7000000ac000000
+      - F: 4.372
+        V: 2.486
+        PartCounter: 6e0000005b000000e300000094000000f3000000
+      - F: 3.807
+        V: 1.209
+        PartCounter: 4d000000cb0000008d000000dd000000a3000000
+      - F: 4.095
+        V: 1.029
+        PartCounter: 5400000063000000eb000000580000004a000000
+      - F: 3.874
+        V: 1.18
+        PartCounter: bb0000007c000000370000007600000049000000
+      - F: 2.921
+        V: 3.5
+        PartCounter: a300000050000000cf000000660000007f000000
+      - F: 4.214
+        V: 3.188
+        PartCounter: f6000000a6000000f8000000ae000000be000000
+      - F: 1.853
+        V: 4.69
+        PartCounter: b9000000a2000000be000000cf00000059000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 4.442
+        V: 3.302
+        PartCounter: c200000035000000a9000000b600000038000000
+      - F: 1.611
+        V: 4.182
+        PartCounter: 3a0000007d0000007e000000b200000099000000
+      - F: 2.906
+        V: 2.564
+        PartCounter: dd0000004d00000069000000cc00000060000000
+      - F: 2.425
+        V: 1.301
+        PartCounter: 9c000000bd00000037000000bf0000003b000000
+      - F: 4.629
+        V: 4.53
+        PartCounter: 5000000086000000af00000046000000f6000000
+      - F: 3.022
+        V: 0.707
+        PartCounter: a0000000cd000000d800000050000000e4000000
+      - F: 2.019
+        V: 2.609
+        PartCounter: ab0000009f0000004d000000f900000082000000
+      - F: 1.824
+        V: 1.826
+        PartCounter: b7000000cd0000007b0000007000000040000000
+      - F: 1.213
+        V: 1.283
+        PartCounter: 57000000cb0000004e000000c70000009c000000
+      - F: 4.901
+        V: 4.233
+        PartCounter: db0000006f0000005d0000007f00000053000000
+  - Id: 7
+    Name: Part Housing 8
+    Type: Bracket
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 2.387
+        V: 0.609
+        PartCounter: 8000000070000000f100000074000000e8000000
+      - F: 2.916
+        V: 3.246
+        PartCounter: 60000000790000009c0000006300000046000000
+      - F: 1.208
+        V: 3.876
+        PartCounter: 3d0000005a000000c2000000b80000008d000000
+      - F: 4.08
+        V: 2.831
+        PartCounter: 8300000051000000ed000000ca0000009c000000
+      - F: 4.984
+        V: 2.232
+        PartCounter: d600000091000000e4000000d200000095000000
+      - F: 3.848
+        V: 0.956
+        PartCounter: ba000000900000009500000090000000ab000000
+      - F: 2.715
+        V: 2.35
+        PartCounter: a10000003300000080000000830000004e000000
+      - F: 4.62
+        V: 3.699
+        PartCounter: bc000000b8000000c70000006000000054000000
+      - F: 3.909
+        V: 1.212
+        PartCounter: 55000000f7000000d5000000e7000000cd000000
+      - F: 2.721
+        V: 2.671
+        PartCounter: c7000000cb000000a9000000bb0000009a000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.153
+        V: 3.404
+        PartCounter: 5e0000005a0000008a00000052000000e2000000
+      - F: 2.124
+        V: 3.168
+        PartCounter: e80000008600000050000000d800000060000000
+      - F: 2.52
+        V: 3.238
+        PartCounter: c9000000dd0000003d000000b20000009e000000
+      - F: 1.209
+        V: 0.014
+        PartCounter: 3c000000d4000000710000009c000000ca000000
+      - F: 3.364
+        V: 4.494
+        PartCounter: c400000083000000be000000a700000079000000
+      - F: 4.839
+        V: 0.354
+        PartCounter: d9000000b6000000f600000037000000c8000000
+      - F: 1.348
+        V: 4.912
+        PartCounter: e8000000e1000000d4000000ef0000007e000000
+      - F: 3.393
+        V: 3.874
+        PartCounter: 78000000a20000005f0000009a0000005f000000
+      - F: 0.803
+        V: 3.357
+        PartCounter: 680000009a000000e9000000f900000085000000
+      - F: 4.116
+        V: 4.126
+        PartCounter: 71000000eb000000550000007b000000c3000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 2.639
+        V: 0.214
+        PartCounter: ed0000008b0000003f000000ea000000cf000000
+      - F: 2.169
+        V: 2.459
+        PartCounter: d500000095000000dc000000d20000003a000000
+      - F: 0.077
+        V: 3.801
+        PartCounter: 64000000890000004a0000004200000071000000
+      - F: 0.424
+        V: 0.313
+        PartCounter: e10000003b000000470000006500000057000000
+      - F: 4.246
+        V: 0.117
+        PartCounter: 93000000a6000000d00000006e00000093000000
+      - F: 3.823
+        V: 4.001
+        PartCounter: 5c00000094000000bf000000540000003a000000
+      - F: 4.242
+        V: 3.948
+        PartCounter: e700000092000000ad0000006e000000d4000000
+      - F: 3.337
+        V: 3.767
+        PartCounter: 8e000000d4000000e300000052000000a3000000
+      - F: 0.875
+        V: 4.059
+        PartCounter: dd000000c00000008700000091000000f5000000
+      - F: 4.299
+        V: 4.462
+        PartCounter: d900000081000000d8000000ba0000009d000000
+  - Id: 8
+    Name: Part Cylinder 9
+    Type: Bracket
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 2.286
+        V: 2.662
+        PartCounter: 550000003e000000c50000006800000097000000
+      - F: 3.58
+        V: 0.788
+        PartCounter: 7e000000b10000004b000000b6000000e3000000
+      - F: 2.197
+        V: 4.623
+        PartCounter: 4000000035000000600000006500000045000000
+      - F: 4.979
+        V: 2.53
+        PartCounter: 5500000054000000d3000000520000004d000000
+      - F: 4.853
+        V: 0.876
+        PartCounter: 4e000000e60000006b0000008f000000a8000000
+      - F: 1.372
+        V: 0.612
+        PartCounter: d600000080000000d3000000c1000000bd000000
+      - F: 0.629
+        V: 3.816
+        PartCounter: 7100000059000000660000004e000000f7000000
+      - F: 2.884
+        V: 3.74
+        PartCounter: 7c000000b2000000e90000004800000050000000
+      - F: 2.407
+        V: 1.806
+        PartCounter: 33000000a800000078000000e4000000f6000000
+      - F: 4.48
+        V: 2.523
+        PartCounter: c9000000c60000003f0000008400000038000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.2
+        V: 0.716
+        PartCounter: 3800000052000000b900000037000000e5000000
+      - F: 3.454
+        V: 4.366
+        PartCounter: 69000000cc00000067000000ba000000ba000000
+      - F: 0.997
+        V: 2.569
+        PartCounter: f8000000d700000083000000f3000000a4000000
+      - F: 4.459
+        V: 3.814
+        PartCounter: e0000000c90000004400000068000000c2000000
+      - F: 4.987
+        V: 1.867
+        PartCounter: 9d00000064000000bc000000330000004b000000
+      - F: 4.962
+        V: 3.207
+        PartCounter: a00000009f0000008000000093000000d8000000
+      - F: 3.11
+        V: 2.364
+        PartCounter: 410000007200000080000000ba000000b6000000
+      - F: 2.227
+        V: 2.262
+        PartCounter: 510000009a0000006000000062000000c0000000
+      - F: 0.171
+        V: 3.737
+        PartCounter: aa0000007d000000600000008700000051000000
+      - F: 2.254
+        V: 0.693
+        PartCounter: 56000000560000007f0000007200000047000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.376
+        V: 4.6
+        PartCounter: 32000000b4000000d1000000bc00000095000000
+      - F: 4.439
+        V: 2.217
+        PartCounter: cd0000008f000000b7000000e600000076000000
+      - F: 3.121
+        V: 0.856
+        PartCounter: c30000007d000000ce000000dc000000ab000000
+      - F: 3.762
+        V: 1.831
+        PartCounter: b700000088000000c30000006f00000085000000
+      - F: 3.642
+        V: 3.649
+        PartCounter: 780000009b000000db000000a10000004a000000
+      - F: 3.063
+        V: 4.734
+        PartCounter: 520000003600000066000000db000000ef000000
+      - F: 2.324
+        V: 4.08
+        PartCounter: 7b00000052000000400000007d000000d8000000
+      - F: 2.355
+        V: 3.745
+        PartCounter: 870000009b000000be00000056000000e2000000
+      - F: 2.84
+        V: 3.389
+        PartCounter: bb000000dc00000074000000e5000000f6000000
+      - F: 1.199
+        V: 0.316
+        PartCounter: 5e000000a80000007e000000d600000094000000
+  - Id: 9
+    Name: Part Cylinder 10
+    Type: Gear
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.254
+        V: 0.517
+        PartCounter: 4000000037000000e3000000b200000042000000
+      - F: 0.91
+        V: 0.09
+        PartCounter: e9000000820000004c000000a100000090000000
+      - F: 1.979
+        V: 2.708
+        PartCounter: d50000008d000000ab000000a400000048000000
+      - F: 4.064
+        V: 2.587
+        PartCounter: 4e0000007a0000003d000000b300000087000000
+      - F: 1.487
+        V: 4.375
+        PartCounter: c3000000a500000096000000b4000000b4000000
+      - F: 0.366
+        V: 0.895
+        PartCounter: cb0000009a000000e3000000f10000007e000000
+      - F: 1.303
+        V: 2.804
+        PartCounter: e0000000920000007e000000e400000050000000
+      - F: 3.625
+        V: 1.557
+        PartCounter: 40000000d500000069000000a800000061000000
+      - F: 3.599
+        V: 2.053
+        PartCounter: 7f000000a1000000f800000075000000b0000000
+      - F: 4.144
+        V: 1.012
+        PartCounter: de000000b10000005f0000006c0000003b000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.368
+        V: 0.477
+        PartCounter: 7d0000009d000000b500000082000000a0000000
+      - F: 2.729
+        V: 4.012
+        PartCounter: 950000009b00000061000000f700000070000000
+      - F: 0.721
+        V: 2.789
+        PartCounter: 80000000990000005400000054000000aa000000
+      - F: 2.439
+        V: 4.742
+        PartCounter: 7500000040000000c00000008500000039000000
+      - F: 4.629
+        V: 4.801
+        PartCounter: 72000000430000008e0000008300000039000000
+      - F: 3.859
+        V: 0.94
+        PartCounter: 54000000a60000005300000035000000d0000000
+      - F: 1.896
+        V: 0.034
+        PartCounter: 4c0000006d000000a8000000e700000033000000
+      - F: 2.455
+        V: 2.447
+        PartCounter: 74000000d6000000f500000076000000b5000000
+      - F: 0.215
+        V: 0.246
+        PartCounter: 9f000000a60000006b0000006a000000db000000
+      - F: 2.969
+        V: 3.302
+        PartCounter: e00000007e000000d5000000c40000006d000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.147
+        V: 1.395
+        PartCounter: cf000000ea000000d300000064000000c3000000
+      - F: 4.922
+        V: 1.456
+        PartCounter: 6b00000040000000640000007b0000007e000000
+      - F: 3.957
+        V: 4.115
+        PartCounter: e80000007a0000005e0000005900000056000000
+      - F: 0.958
+        V: 4.644
+        PartCounter: 45000000ea000000660000005300000067000000
+      - F: 0.133
+        V: 0.59
+        PartCounter: 99000000440000007c000000ca00000093000000
+      - F: 3.536
+        V: 0.081
+        PartCounter: c6000000d200000056000000a200000052000000
+      - F: 4.899
+        V: 3.48
+        PartCounter: cf000000cb00000088000000c200000032000000
+      - F: 2.983
+        V: 4.929
+        PartCounter: 5b000000930000007500000056000000c2000000
+      - F: 0.053
+        V: 2.963
+        PartCounter: 65000000a3000000ac000000f2000000c6000000
+      - F: 3.236
+        V: 3.938
+        PartCounter: 570000007a0000004300000045000000c7000000
+  - Id: 10
+    Name: Part Housing 11
+    Type: Bushing
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 4.895
+        V: 2.588
+        PartCounter: 50000000580000008f000000f7000000d1000000
+      - F: 1.18
+        V: 3.805
+        PartCounter: 59000000c50000003e000000f2000000d6000000
+      - F: 0.486
+        V: 4.661
+        PartCounter: b50000005f000000f3000000b600000068000000
+      - F: 1.254
+        V: 1.942
+        PartCounter: 4e0000003a0000008f000000f2000000d7000000
+      - F: 2.121
+        V: 1.035
+        PartCounter: b9000000ef00000052000000a8000000f8000000
+      - F: 4.769
+        V: 3.135
+        PartCounter: 7b000000f7000000be000000ed0000005d000000
+      - F: 4.755
+        V: 4.151
+        PartCounter: e1000000e80000008e00000071000000e1000000
+      - F: 1.607
+        V: 4.151
+        PartCounter: 8e000000df000000e7000000ae0000008e000000
+      - F: 3.164
+        V: 1.966
+        PartCounter: a4000000b2000000d700000083000000e4000000
+      - F: 1.741
+        V: 3.269
+        PartCounter: e900000087000000ec0000004e00000052000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.306
+        V: 0.377
+        PartCounter: ce000000730000007c000000b8000000ac000000
+      - F: 0.227
+        V: 4.953
+        PartCounter: 5a00000038000000e1000000f800000087000000
+      - F: 0.577
+        V: 2.343
+        PartCounter: 5c000000390000004a000000c7000000ee000000
+      - F: 0.424
+        V: 4.636
+        PartCounter: c6000000ca000000b4000000cf000000d3000000
+      - F: 2.764
+        V: 4.623
+        PartCounter: 680000004c000000da0000009500000065000000
+      - F: 2.048
+        V: 0.324
+        PartCounter: 390000004a000000c9000000bd00000041000000
+      - F: 0.692
+        V: 1.681
+        PartCounter: ed0000003c000000a1000000cc00000088000000
+      - F: 3.802
+        V: 4.33
+        PartCounter: a00000009e000000cf000000bf000000b8000000
+      - F: 0.718
+        V: 3.881
+        PartCounter: 88000000f8000000e80000005800000064000000
+      - F: 3.449
+        V: 0.354
+        PartCounter: 9c00000099000000420000008e00000050000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.306
+        V: 3.262
+        PartCounter: 50000000cd0000004f00000074000000e3000000
+      - F: 0.077
+        V: 2.036
+        PartCounter: b400000092000000e100000085000000a4000000
+      - F: 1.395
+        V: 0.217
+        PartCounter: 410000006900000055000000e900000093000000
+      - F: 4.564
+        V: 1.161
+        PartCounter: 5200000092000000780000007000000080000000
+      - F: 1.488
+        V: 1.201
+        PartCounter: 5a000000f4000000ef000000480000007d000000
+      - F: 2.226
+        V: 3.404
+        PartCounter: 6a0000005e000000b400000062000000c2000000
+      - F: 1.035
+        V: 0.862
+        PartCounter: 9a0000003a0000006c0000009f000000ea000000
+      - F: 3.054
+        V: 4.213
+        PartCounter: 52000000e70000005e000000e2000000ce000000
+      - F: 0.568
+        V: 0.426
+        PartCounter: 3f000000b60000007c0000004c000000a8000000
+      - F: 0.574
+        V: 4.576
+        PartCounter: 51000000d4000000f8000000bf00000044000000
+  - Id: 11
+    Name: Part Cylinder 12
+    Type: Gear
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.203
+        V: 1.827
+        PartCounter: d7000000e9000000990000006200000091000000
+      - F: 2.453
+        V: 4.807
+        PartCounter: 9c000000f500000032000000e0000000f4000000
+      - F: 2.367
+        V: 3.95
+        PartCounter: e2000000510000007700000078000000ef000000
+      - F: 4.429
+        V: 0.669
+        PartCounter: 4b000000a6000000e50000005f00000060000000
+      - F: 1.509
+        V: 0.822
+        PartCounter: 9a00000053000000650000008e000000d7000000
+      - F: 0.291
+        V: 2.155
+        PartCounter: 82000000b9000000660000008400000037000000
+      - F: 3.483
+        V: 1.184
+        PartCounter: 81000000cf000000ad000000500000009d000000
+      - F: 2.933
+        V: 4.064
+        PartCounter: 9d000000ba0000005d000000a1000000e4000000
+      - F: 2.966
+        V: 2.782
+        PartCounter: a2000000e1000000370000007f000000ce000000
+      - F: 3.828
+        V: 3.25
+        PartCounter: 750000003e000000a3000000f4000000f2000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 2.531
+        V: 0.963
+        PartCounter: 9900000053000000f40000006d0000009c000000
+      - F: 0.933
+        V: 3.379
+        PartCounter: b6000000b60000003d0000008400000040000000
+      - F: 4.791
+        V: 0.344
+        PartCounter: dc000000c1000000a8000000db000000a4000000
+      - F: 3.35
+        V: 2.931
+        PartCounter: 440000009e00000058000000d400000083000000
+      - F: 0.068
+        V: 2.756
+        PartCounter: 8b0000007a0000007600000074000000b8000000
+      - F: 1.192
+        V: 1.699
+        PartCounter: b30000004e000000e0000000b900000094000000
+      - F: 2.025
+        V: 4.2
+        PartCounter: 76000000470000006b0000008b00000097000000
+      - F: 3.816
+        V: 0.249
+        PartCounter: 5f000000d500000072000000ae000000e1000000
+      - F: 3.931
+        V: 0.486
+        PartCounter: e1000000ae000000d30000009200000039000000
+      - F: 2.654
+        V: 4.67
+        PartCounter: da0000006a00000055000000d4000000bc000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.199
+        V: 4.965
+        PartCounter: d1000000df000000c9000000a200000099000000
+      - F: 2.227
+        V: 3.296
+        PartCounter: 50000000d6000000b1000000ae000000e3000000
+      - F: 0.96
+        V: 4.171
+        PartCounter: 9a000000cf0000007d000000ea000000c4000000
+      - F: 1.327
+        V: 0.48
+        PartCounter: c7000000880000004f0000007600000076000000
+      - F: 0.055
+        V: 0.17
+        PartCounter: 690000005e000000a4000000ed0000009c000000
+      - F: 0.591
+        V: 1.323
+        PartCounter: d6000000a1000000dd0000006c000000d7000000
+      - F: 0.476
+        V: 2.046
+        PartCounter: 7a000000f20000003e000000f6000000bd000000
+      - F: 4.828
+        V: 4.964
+        PartCounter: 9100000078000000c2000000ec00000078000000
+      - F: 2.938
+        V: 4.525
+        PartCounter: 8300000055000000bd000000c400000078000000
+      - F: 3.822
+        V: 4.424
+        PartCounter: 4300000063000000e3000000c80000006c000000
+  - Id: 12
+    Name: Part Housing 13
+    Type: Bushing
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.864
+        V: 1.024
+        PartCounter: d1000000c70000004f000000d1000000a1000000
+      - F: 4.465
+        V: 4.803
+        PartCounter: d80000006f000000d9000000e700000078000000
+      - F: 2.339
+        V: 1.881
+        PartCounter: db000000ca000000e7000000ad000000ec000000
+      - F: 0.607
+        V: 3.252
+        PartCounter: 65000000a10000006a000000d100000090000000
+      - F: 3.464
+        V: 0.571
+        PartCounter: 97000000da00000034000000af0000005f000000
+      - F: 1.045
+        V: 0.001
+        PartCounter: 6b000000f5000000470000005a00000091000000
+      - F: 0.132
+        V: 2.284
+        PartCounter: 980000009c000000e700000044000000c4000000
+      - F: 1.078
+        V: 0.291
+        PartCounter: c60000009700000085000000b5000000bf000000
+      - F: 4.19
+        V: 3.926
+        PartCounter: 950000005c0000009100000053000000a9000000
+      - F: 4.468
+        V: 4.529
+        PartCounter: c2000000f8000000a800000069000000ba000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.674
+        V: 1.215
+        PartCounter: c6000000d6000000e6000000320000007e000000
+      - F: 4.433
+        V: 0.761
+        PartCounter: f0000000c50000009a000000a400000068000000
+      - F: 0.064
+        V: 1.566
+        PartCounter: dd00000059000000b000000088000000d9000000
+      - F: 1.966
+        V: 3.832
+        PartCounter: 70000000dd000000d5000000e200000058000000
+      - F: 4.46
+        V: 1.7
+        PartCounter: c70000004d000000af00000043000000f4000000
+      - F: 4.609
+        V: 2.265
+        PartCounter: 6c0000007b000000db0000003800000096000000
+      - F: 3.044
+        V: 3.696
+        PartCounter: 6d0000007e000000d80000009a000000c5000000
+      - F: 3.281
+        V: 0.71
+        PartCounter: bc000000af000000e7000000bf000000cd000000
+      - F: 4.089
+        V: 0.253
+        PartCounter: 33000000f7000000da0000007f000000dc000000
+      - F: 2.851
+        V: 1.592
+        PartCounter: 6d000000a60000003a000000730000006a000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.799
+        V: 1.687
+        PartCounter: df00000054000000bf00000043000000ed000000
+      - F: 3.716
+        V: 1.24
+        PartCounter: aa00000059000000d50000003700000044000000
+      - F: 1.977
+        V: 4.57
+        PartCounter: a7000000e3000000930000003f000000f5000000
+      - F: 0.939
+        V: 0.854
+        PartCounter: 900000007b00000048000000bd0000004f000000
+      - F: 4.181
+        V: 0.089
+        PartCounter: bb000000ef000000480000004700000057000000
+      - F: 4.391
+        V: 0.499
+        PartCounter: ca0000006c0000006200000061000000b8000000
+      - F: 2.675
+        V: 0.371
+        PartCounter: c00000007200000099000000c8000000b0000000
+      - F: 2.115
+        V: 0.798
+        PartCounter: 4a000000b9000000c6000000a70000004c000000
+      - F: 0.341
+        V: 2.499
+        PartCounter: 95000000d4000000e2000000ad00000058000000
+      - F: 1.305
+        V: 0.518
+        PartCounter: 4900000095000000cd000000840000007d000000
+  - Id: 13
+    Name: Part Gear 14
+    Type: Cylinder
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 3.741
+        V: 2.095
+        PartCounter: 51000000c5000000b00000006f000000ab000000
+      - F: 3.182
+        V: 0.606
+        PartCounter: 6c000000a8000000e000000033000000ce000000
+      - F: 0.153
+        V: 2.764
+        PartCounter: d0000000ea00000083000000b40000004e000000
+      - F: 0.969
+        V: 4.305
+        PartCounter: d7000000620000008b0000006100000059000000
+      - F: 3.806
+        V: 1.132
+        PartCounter: 7400000053000000f1000000de000000cc000000
+      - F: 2.132
+        V: 3.464
+        PartCounter: e8000000a0000000d0000000690000008c000000
+      - F: 4.722
+        V: 2.783
+        PartCounter: ce0000009d000000ee000000cb0000006c000000
+      - F: 0.399
+        V: 1.986
+        PartCounter: b80000003900000070000000de00000068000000
+      - F: 3.658
+        V: 4.305
+        PartCounter: 9500000090000000f60000006a0000007d000000
+      - F: 2.29
+        V: 2.811
+        PartCounter: e0000000f60000006e0000003c000000b4000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.919
+        V: 1.487
+        PartCounter: bb0000008a0000003a0000005400000093000000
+      - F: 3.322
+        V: 0.082
+        PartCounter: f8000000cd000000cb0000009d000000bd000000
+      - F: 0.02
+        V: 0.517
+        PartCounter: c6000000d1000000a8000000a0000000f9000000
+      - F: 0.461
+        V: 1.283
+        PartCounter: 64000000f5000000b10000007a0000008f000000
+      - F: 1.153
+        V: 2.493
+        PartCounter: d0000000eb000000a6000000f2000000bd000000
+      - F: 4.519
+        V: 0.09
+        PartCounter: dd00000056000000b800000092000000e5000000
+      - F: 4.91
+        V: 0.767
+        PartCounter: ec00000064000000c6000000ae000000ca000000
+      - F: 0.094
+        V: 3.777
+        PartCounter: 7600000095000000cc0000006a0000006e000000
+      - F: 3.213
+        V: 1.995
+        PartCounter: e400000067000000cd000000530000009c000000
+      - F: 1.144
+        V: 4.988
+        PartCounter: bd000000e2000000870000006b0000004b000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 0.437
+        V: 0.172
+        PartCounter: e400000076000000ed000000a6000000de000000
+      - F: 4.468
+        V: 1.997
+        PartCounter: c9000000dd0000004200000090000000b0000000
+      - F: 4.715
+        V: 1.789
+        PartCounter: d3000000460000006a000000b1000000cb000000
+      - F: 2.426
+        V: 3.075
+        PartCounter: 940000003d000000f4000000d0000000b5000000
+      - F: 4.328
+        V: 1.963
+        PartCounter: c80000005b000000790000003e000000a4000000
+      - F: 0.942
+        V: 3.265
+        PartCounter: 9b00000050000000850000008800000032000000
+      - F: 3.564
+        V: 3.769
+        PartCounter: f4000000c80000007f0000007900000032000000
+      - F: 3.831
+        V: 1.406
+        PartCounter: a70000007000000052000000ca00000032000000
+      - F: 0.659
+        V: 0.977
+        PartCounter: 92000000850000006d000000b400000094000000
+      - F: 1.123
+        V: 4.598
+        PartCounter: d0000000f60000004d0000008200000039000000
+  - Id: 14
+    Name: Part Cylinder 15
+    Type: Gear
+    Statistic:
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 4.129
+        V: 1.705
+        PartCounter: cf000000ca0000009b00000072000000ee000000
+      - F: 4.977
+        V: 3.726
+        PartCounter: c30000006100000080000000ea00000063000000
+      - F: 4.376
+        V: 0.626
+        PartCounter: f5000000620000003300000095000000e5000000
+      - F: 2.866
+        V: 4.178
+        PartCounter: e1000000d400000053000000ee000000b7000000
+      - F: 2.725
+        V: 0.753
+        PartCounter: 860000006100000071000000c10000005f000000
+      - F: 4.191
+        V: 1.197
+        PartCounter: 6a0000007100000057000000370000005f000000
+      - F: 0.542
+        V: 3.057
+        PartCounter: 66000000bc0000007a0000009b000000e0000000
+      - F: 0.039
+        V: 3.33
+        PartCounter: cd0000006200000055000000b8000000ad000000
+      - F: 3.787
+        V: 2.027
+        PartCounter: f00000003e00000072000000b600000078000000
+      - F: 3.964
+        V: 3.214
+        PartCounter: f700000033000000c7000000dd000000c8000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 1.097
+        V: 0.865
+        PartCounter: 88000000880000005b000000d9000000f0000000
+      - F: 4.046
+        V: 4.096
+        PartCounter: a00000008b000000d300000044000000b5000000
+      - F: 3.494
+        V: 0.321
+        PartCounter: 840000003b0000007b000000bc000000f7000000
+      - F: 1.71
+        V: 2.771
+        PartCounter: 6a000000e100000091000000af0000004a000000
+      - F: 2.172
+        V: 1.667
+        PartCounter: b1000000b10000009500000072000000c1000000
+      - F: 1.438
+        V: 2.619
+        PartCounter: 7a000000e8000000b50000007b00000062000000
+      - F: 0.905
+        V: 0.057
+        PartCounter: 68000000a30000007300000068000000d1000000
+      - F: 4.793
+        V: 3.327
+        PartCounter: d7000000930000009b000000a500000072000000
+      - F: 0.947
+        V: 3.33
+        PartCounter: 740000008900000042000000350000005a000000
+      - F: 3.492
+        V: 4.506
+        PartCounter: e6000000bd000000b0000000b80000003f000000
+    - Tool:
+        Id: 26
+        Name: 6B60NTLK
+        Type: MillingCNC
+        Note: Random note for Turning Roughing Tool
+      ProcessingType: 1
+      Data:
+      - F: 4.324
+        V: 0.797
+        PartCounter: 470000009c00000049000000c500000049000000
+      - F: 1.838
+        V: 1.785
+        PartCounter: d0000000ed000000e20000004a000000a7000000
+      - F: 3.223
+        V: 4.699
+        PartCounter: b1000000d000000089000000dc0000007e000000
+      - F: 2.822
+        V: 3.955
+        PartCounter: da000000c200000044000000e400000052000000
+      - F: 0.606
+        V: 1.03
+        PartCounter: d100000078000000e60000006f000000d0000000
+      - F: 1.898
+        V: 1.009
+        PartCounter: 59000000a0000000920000004a000000d4000000
+      - F: 4.928
+        V: 0.378
+        PartCounter: b70000006a000000f60000006d0000004c000000
+      - F: 3.148
+        V: 4.842
+        PartCounter: c60000008c000000a70000005100000032000000
+      - F: 0.511
+        V: 1.181
+        PartCounter: e3000000aa00000083000000f7000000ba000000
+      - F: 0.517
+        V: 4.399
+        PartCounter: 9d000000f900000060000000b000000079000000
+  listOfWorkstations: []
   listOfTools:
-  - Type: ThreadingMachines
-    Marking: FTUERDLS
+  - Id: 26
+    Name: 6B60NTLK
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 14
+    Name: EOTMDPUG
+    Type: Taps
+    Note: Random note for Tap
+  - Id: 44
+    Name: SMG9M0Y2
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 45
+    Name: 82FDF5AQ
+    Type: ThreadingMachines
     Note: Random note for Threading Tool
-  - Type: Grooving
-    Marking: P4B9OV3A
-    Note: Random note for Turning Roughing Tool
-  - Type: MillingCNC
-    Marking: D0S5O4EY
-    Note: Random note for Turning Roughing Tool
-  - Type: MillingCNC
-    Marking: Z71ETU8Q
-    Note: Random note for Turning Roughing Tool
-  - Type: Grooving
-    Marking: IWM5A08G
-    Note: Random note for Turning Roughing Tool
-  - Type: MillingCNC
-    Marking: 1LA3DP4B
-    Note: Random note for Turning Roughing Tool
-  - Type: ThreadingMachines
-    Marking: MCK757Y5
+  - Id: 22
+    Name: CCO0KF38
+    Type: ThreadingMachines
     Note: Random note for Threading Tool
-  - Type: Grooving
-    Marking: 8JLAELFO
+  - Id: 4
+    Name: XLPMEKCI
+    Type: MillingCNC
     Note: Random note for Turning Roughing Tool
-  - Type: MillingCNC
-    Marking: G1EASU5J
-    Note: Random note for Turning Roughing Tool
-  - Type: MillingCNC
-    Marking: W36OHV2N
-    Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: UIZEWQ6R
+  - Id: 31
+    Name: 23RC5Z5G
+    Type: Taps
     Note: Random note for Tap
-  - Type: MillingCNC
-    Marking: 5CQVBGSM
+  - Id: 54
+    Name: U42BTJDE
+    Type: Grooving
     Note: Random note for Turning Roughing Tool
-  - Type: Grooving
-    Marking: DPJ1KK6A
-    Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: ZQAKL22L
+  - Id: 1
+    Name: 7CI1SS7Q
+    Type: Taps
     Note: Random note for Tap
-  - Type: ThreadingMachines
-    Marking: T4PEQUNM
+  - Id: 70
+    Name: FUQXKS8B
+    Type: Taps
+    Note: Random note for Tap
+  - Id: 0
+    Name: 2JZ21N4F
+    Type: ThreadingMachines
     Note: Random note for Threading Tool
-  - Type: MillingCNC
-    Marking: BQB9PIZB
+  - Id: 45
+    Name: 493YTQTY
+    Type: Grooving
     Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: CC3D69CJ
-    Note: Random note for Tap
-  - Type: Grooving
-    Marking: HMUWFIO4
+  - Id: 21
+    Name: 2M8NC4B7
+    Type: Grooving
     Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: MOKD1I1Y
-    Note: Random note for Tap
-  - Type: Grooving
-    Marking: 0HN082DF
+  - Id: 72
+    Name: 4E6CBMCO
+    Type: MillingCNC
     Note: Random note for Turning Roughing Tool
-  - Type: Grooving
-    Marking: ULJAYWPZ
-    Note: Random note for Turning Roughing Tool
-  - Type: Grooving
-    Marking: 6ARP72VW
-    Note: Random note for Turning Roughing Tool
-  - Type: Grooving
-    Marking: JLIMGVR9
-    Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: DGH5L9TT
-    Note: Random note for Tap
-  - Type: MillingCNC
-    Marking: RVOET3SL
-    Note: Random note for Turning Roughing Tool
-  - Type: Grooving
-    Marking: 4X85DS32
-    Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: 7PLEZ2XB
-    Note: Random note for Tap
-  - Type: Grooving
-    Marking: KLP6K8K1
-    Note: Random note for Turning Roughing Tool
-  - Type: ThreadingMachines
-    Marking: FPERA5Q1
+  - Id: 74
+    Name: GR2018LT
+    Type: ThreadingMachines
     Note: Random note for Threading Tool
-  - Type: ThreadingMachines
-    Marking: 21TLUX8R
-    Note: Random note for Threading Tool
-  - Type: Grooving
-    Marking: K7YITPHA
+  - Id: 2
+    Name: FBGUKASK
+    Type: MillingCNC
     Note: Random note for Turning Roughing Tool
-  - Type: ThreadingMachines
-    Marking: TBJWDA2M
-    Note: Random note for Threading Tool
-  - Type: Grooving
-    Marking: JIYU3T59
+  - Id: 8
+    Name: VF9QLGIW
+    Type: Grooving
     Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: EVVZAI1R
+  - Id: 10
+    Name: FDIUT10K
+    Type: Taps
     Note: Random note for Tap
-  - Type: Grooving
-    Marking: 7RF59Q5W
-    Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: HKIP9E0H
-    Note: Random note for Tap
-  - Type: MillingCNC
-    Marking: LM3GZDPI
-    Note: Random note for Turning Roughing Tool
-  - Type: Taps
-    Marking: VDDBNT5T
-    Note: Random note for Tap
-  - Type: ThreadingMachines
-    Marking: 2DTWKE2G
+  - Id: 59
+    Name: QLA7ZD9T
+    Type: ThreadingMachines
     Note: Random note for Threading Tool
-  - Type: Taps
-    Marking: 8ON7L78L
-    Note: Random note for Tap
-  - Type: MillingCNC
-    Marking: HWKYSNTP
+  - Id: 8
+    Name: 6MRVPECA
+    Type: MillingCNC
     Note: Random note for Turning Roughing Tool
-  - Type: MillingCNC
-    Marking: 7BYXZCUQ
+  - Id: 32
+    Name: SCWL556X
+    Type: MillingCNC
     Note: Random note for Turning Roughing Tool
-  - Type: ThreadingMachines
-    Marking: CYIKF26K
+  - Id: 86
+    Name: 21PAK7L8
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 6
+    Name: KJ40AOXZ
+    Type: ThreadingMachines
     Note: Random note for Threading Tool
-  - Type: Taps
-    Marking: QCLWMASP
+  - Id: 82
+    Name: 1T07L9EV
+    Type: Grooving
+    Note: Random note for Turning Roughing Tool
+  - Id: 58
+    Name: M3I2BSXV
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 22
+    Name: MEGRM6WQ
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 94
+    Name: N4FSYWCW
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 51
+    Name: GZXFPI8O
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 6
+    Name: 91ZOYT2G
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 97
+    Name: RUV755QQ
+    Type: Taps
     Note: Random note for Tap
-  - Type: MillingCNC
-    Marking: 4HUT67GJ
+  - Id: 12
+    Name: EV4F9EED
+    Type: Grooving
     Note: Random note for Turning Roughing Tool
-  - Type: Grooving
-    Marking: LVDAC542
+  - Id: 75
+    Name: 9Z8W7YGD
+    Type: MillingCNC
     Note: Random note for Turning Roughing Tool
-  - Type: Grooving
-    Marking: WZM13ALU
+  - Id: 73
+    Name: H27AHR4V
+    Type: MillingCNC
     Note: Random note for Turning Roughing Tool
-  - Type: ThreadingMachines
-    Marking: NTIHYTQR
+  - Id: 91
+    Name: 3OU0S2OB
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 41
+    Name: L35J6PN4
+    Type: MillingCNC
+    Note: Random note for Turning Roughing Tool
+  - Id: 40
+    Name: K6D3N8D4
+    Type: Taps
+    Note: Random note for Tap
+  - Id: 45
+    Name: M44GXCRN
+    Type: Grooving
+    Note: Random note for Turning Roughing Tool
+  - Id: 47
+    Name: RTHV3B1N
+    Type: Grooving
+    Note: Random note for Turning Roughing Tool
+  - Id: 14
+    Name: P6G2HZLE
+    Type: Grooving
+    Note: Random note for Turning Roughing Tool
+  - Id: 3
+    Name: 2I8IKCQS
+    Type: Taps
+    Note: Random note for Tap
+  - Id: 70
+    Name: IX1P1YGS
+    Type: ThreadingMachines
     Note: Random note for Threading Tool
-  - Type: Grooving
-    Marking: LOWYG0BV
+  - Id: 14
+    Name: 1AGEKU6J
+    Type: MillingCNC
     Note: Random note for Turning Roughing Tool
-  - Type: MillingCNC
-    Marking: 2WYJ69JG
+  - Id: 3
+    Name: WGBX9E4S
+    Type: Taps
+    Note: Random note for Tap
+  - Id: 23
+    Name: W1X8L0HW
+    Type: ThreadingMachines
+    Note: Random note for Threading Tool
+  - Id: 0
+    Name: LL2HAFO6
+    Type: Grooving
     Note: Random note for Turning Roughing Tool
+  - Id: 77
+    Name: AVDZFFG6
+    Type: Grooving
+    Note: Random note for Turning Roughing Tool
+  - Id: 66
+    Name: 71RC1J24
+    Type: Grooving
+    Note: Random note for Turning Roughing Tool
+  - Id: 66
+    Name: K0O3OX9C
+    Type: Grooving
+    Note: Random note for Turning Roughing Tool
+  - Id: 33
+    Name: E1J6D8UA
+    Type: ThreadingMachines
+    Note: Random note for Threading Tool
+  - Id: 16
+    Name: T44XK3D0
+    Type: ThreadingMachines
+    Note: Random note for Threading Tool
   listOfWorkers:
-  - Type: Welder
-    Id: 1
-    FirstName: Max
-    LastName: Georgiev
+  - Id: 1
+    Name: Max Peterson
+    Type: ForkliftOperator
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Welder
-    Id: 2
-    FirstName: George
-    LastName: Georgiev
+  - Id: 2
+    Name: George Dmitriev
+    Type: QualityControl
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: ForkliftOperator
-    Id: 3
-    FirstName: Dmitry
-    LastName: Peterson
+  - Id: 3
+    Name: John Alexeev
+    Type: Packer
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Packer
-    Id: 4
-    FirstName: Sergey
-    LastName: Alexandrov
+  - Id: 4
+    Name: Alexander Alexandrov
+    Type: Manager
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 5
-    FirstName: John
-    LastName: Johnson
+  - Id: 5
+    Name: Max Peterson
+    Type: Painter
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 6
-    FirstName: Dmitry
-    LastName: Nikitsin
+  - Id: 6
+    Name: Sergey Maxwell
+    Type: ForkliftOperator
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: QualityControl
-    Id: 7
-    FirstName: Nick
-    LastName: Peterson
+  - Id: 7
+    Name: Michael Alexandrov
+    Type: ForkliftOperator
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Welder
-    Id: 8
-    FirstName: Michael
-    LastName: Peterson
+  - Id: 8
+    Name: Michael Smith
+    Type: Technician
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Engineer
-    Id: 9
-    FirstName: Nick
-    LastName: Johnson
+  - Id: 9
+    Name: Dmitry Dmitriev
+    Type: Assembler
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Packer
-    Id: 10
-    FirstName: Nick
-    LastName: Mikhailov
+  - Id: 10
+    Name: Michael Maxwell
+    Type: Packer
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Packer
-    Id: 11
-    FirstName: John
-    LastName: Smith
+  - Id: 11
+    Name: Sergey Peterson
+    Type: Packer
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Technician
-    Id: 12
-    FirstName: Alexander
-    LastName: Maxwell
+  - Id: 12
+    Name: Peter Dmitriev
+    Type: Technician
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 13
-    FirstName: Alexander
-    LastName: Mikhailov
+  - Id: 13
+    Name: Peter Mikhailov
+    Type: Packer
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 14
-    FirstName: Alex
-    LastName: Alexeev
+  - Id: 14
+    Name: Sergey Johnson
+    Type: QualityControl
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Technician
-    Id: 15
-    FirstName: Nick
-    LastName: Smith
+  - Id: 15
+    Name: Max Maxwell
+    Type: QualityControl
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Technician
-    Id: 16
-    FirstName: Max
-    LastName: Alexandrov
+  - Id: 16
+    Name: Max Nikitsin
+    Type: ForkliftOperator
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Engineer
-    Id: 17
-    FirstName: Nick
-    LastName: Mikhailov
+  - Id: 17
+    Name: John Mikhailov
+    Type: Technician
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Manager
-    Id: 18
-    FirstName: Alexander
-    LastName: Peterson
+  - Id: 18
+    Name: John Alexeev
+    Type: Technician
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Welder
-    Id: 19
-    FirstName: Nick
-    LastName: Johnson
+  - Id: 19
+    Name: John Alexandrov
+    Type: ForkliftOperator
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Welder
-    Id: 20
-    FirstName: George
-    LastName: Alexandrov
+  - Id: 20
+    Name: John Georgiev
+    Type: Manager
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Manager
-    Id: 21
-    FirstName: Peter
-    LastName: Alexandrov
+  - Id: 21
+    Name: Peter Smith
+    Type: QualityControl
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Maintenance
-    Id: 22
-    FirstName: Nick
-    LastName: Peterson
+  - Id: 22
+    Name: George Smith
+    Type: Painter
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Packer
-    Id: 23
-    FirstName: Max
-    LastName: Smith
+  - Id: 23
+    Name: Nick Mikhailov
+    Type: Packer
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 24
-    FirstName: Max
-    LastName: Dmitriev
+  - Id: 24
+    Name: Nick Alexeev
+    Type: ForkliftOperator
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Packer
-    Id: 25
-    FirstName: George
-    LastName: Georgiev
+  - Id: 25
+    Name: Sergey Johnson
+    Type: Painter
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: ForkliftOperator
-    Id: 26
-    FirstName: Nick
-    LastName: Dmitriev
+  - Id: 26
+    Name: Dmitry Maxwell
+    Type: Welder
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 27
-    FirstName: Sergey
-    LastName: Dmitriev
+  - Id: 27
+    Name: John Maxwell
+    Type: Assembler
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Maintenance
-    Id: 28
-    FirstName: George
-    LastName: Georgiev
+  - Id: 28
+    Name: Alexander Mikhailov
+    Type: Maintenance
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Technician
-    Id: 29
-    FirstName: Nick
-    LastName: Mikhailov
+  - Id: 29
+    Name: John Alexeev
+    Type: Manager
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 30
-    FirstName: George
-    LastName: Smith
+  - Id: 30
+    Name: Sergey Nikitsin
+    Type: Assembler
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Maintenance
-    Id: 31
-    FirstName: Alexander
-    LastName: Peterson
+  - Id: 31
+    Name: Max Smith
+    Type: Welder
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: ForkliftOperator
-    Id: 32
-    FirstName: Alexander
-    LastName: Alexandrov
+  - Id: 32
+    Name: Alex Alexeev
+    Type: Technician
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 33
-    FirstName: Nick
-    LastName: Smith
+  - Id: 33
+    Name: Max Alexandrov
+    Type: Manager
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Maintenance
-    Id: 34
-    FirstName: Michael
-    LastName: Smith
+  - Id: 34
+    Name: Alexander Mikhailov
+    Type: Painter
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Maintenance
-    Id: 35
-    FirstName: Michael
-    LastName: Maxwell
+  - Id: 35
+    Name: Alexander Alexandrov
+    Type: QualityControl
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Manager
-    Id: 36
-    FirstName: Alex
-    LastName: Maxwell
+  - Id: 36
+    Name: Alexander Peterson
+    Type: Painter
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: QualityControl
-    Id: 37
-    FirstName: Peter
-    LastName: Maxwell
+  - Id: 37
+    Name: George Johnson
+    Type: Assembler
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Welder
-    Id: 38
-    FirstName: John
-    LastName: Smith
+  - Id: 38
+    Name: Sergey Peterson
+    Type: Manager
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 39
-    FirstName: Dmitry
-    LastName: Mikhailov
+  - Id: 39
+    Name: Alex Alexeev
+    Type: Welder
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 40
-    FirstName: Alexander
-    LastName: Smith
+  - Id: 40
+    Name: Alexander Dmitriev
+    Type: Maintenance
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 41
-    FirstName: George
-    LastName: Dmitriev
+  - Id: 41
+    Name: Alexander Johnson
+    Type: Maintenance
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Maintenance
-    Id: 42
-    FirstName: Sergey
-    LastName: Alexeev
+  - Id: 42
+    Name: Max Mikhailov
+    Type: Welder
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Maintenance
-    Id: 43
-    FirstName: George
-    LastName: Dmitriev
+  - Id: 43
+    Name: Nick Mikhailov
+    Type: Welder
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: QualityControl
-    Id: 44
-    FirstName: Peter
-    LastName: Nikitsin
+  - Id: 44
+    Name: Alex Dmitriev
+    Type: QualityControl
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 45
-    FirstName: Michael
-    LastName: Maxwell
+  - Id: 45
+    Name: Peter Alexandrov
+    Type: Welder
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Assembler
-    Id: 46
-    FirstName: Peter
-    LastName: Maxwell
+  - Id: 46
+    Name: Michael Alexeev
+    Type: Technician
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Painter
-    Id: 47
-    FirstName: Nick
-    LastName: Maxwell
+  - Id: 47
+    Name: Peter Smith
+    Type: Manager
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Manager
-    Id: 48
-    FirstName: John
-    LastName: Mikhailov
+  - Id: 48
+    Name: Peter Johnson
+    Type: Packer
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Manager
-    Id: 49
-    FirstName: John
-    LastName: Maxwell
+  - Id: 49
+    Name: Michael Mikhailov
+    Type: Manager
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
     OvertimeSurcharge: 0
     NightShiftSurcharge: 0
-  - Type: Manager
-    Id: 50
-    FirstName: Alex
-    LastName: Mikhailov
-    WeeklyNorm: 40
-    OvertimeAllowed: 0
-    HourlyWage: 0
-    OvertimeSurcharge: 0
-    NightShiftSurcharge: 0
-  - Type: Manager
-    Id: 541
-    FirstName: Alexx
-    LastName: Alexx
-    WeeklyNorm: 0
-    OvertimeAllowed: 0
-    HourlyWage: 0
-    OvertimeSurcharge: 0
-    NightShiftSurcharge: 0
-  - Type: Manager
-    Id: 7878
-    FirstName: Bob
-    LastName: Gu
+  - Id: 50
+    Name: Nick Dmitriev
+    Type: Manager
     WeeklyNorm: 40
     OvertimeAllowed: 0
     HourlyWage: 0
@@ -823,7 +2408,7 @@ MonoBehaviour:
   - ForkliftOperator
   - Painter
   - Packer
-  typesOfWorkspaces:
+  typesOfWorkstation:
   - AssemblyLine
   - CNC
   - Painting
@@ -844,5 +2429,4 @@ MonoBehaviour:
   - Pulley
   - Plate
   - Spacer
-  - Ring
   - Block

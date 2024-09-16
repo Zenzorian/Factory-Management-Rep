@@ -49,7 +49,7 @@ namespace FactoryManager
                 instance = this;
 
             _menuStack[0] = _mainMenu.gameObject;            
-            OnPartSelected.AddListener(PartSelected);                 
+            OnPartSelected.AddListener(PartSelected);                    
         }
         private void Update()
         {
@@ -133,34 +133,34 @@ namespace FactoryManager
         }
         public void OpenAddationPanel(string addationType)
         {
-            switch(addationType)
+            if(addationType == "Table")
             {
-                case "ChoiceMenu":
-                    if(TemporaryListOfCategory == null)
-                    {
-                        Debug.Log("TemporaryListOfCategory not found");
-                        return;
-                    }
-                    _addationManager.Open(TemporaryListOfCategory);
-                break;
-                case "Table":
-                    if(TemporaryTableItemType== null)
+                if(TemporaryTableItemType== null)
                     {
                         Debug.Log("TemporaryListOfTableItem not found");
                         return;
                     }
                     _addationManager.Open(menuType,TemporaryTableItemType);
-                break;
-                case "Statistic":
-                    if(TemporaryListOfStatisticData == null)
-                    {
-                        Debug.Log("TemporaryListOfStatisticData not found");
-                        return;
-                    }
-                    _addationManager.Open(TemporaryListOfStatisticData);
-                break;
             }
-
+            else if(addationType == "ChoiceMenu" && menuType == MainMenuTypes.StatisticTool)
+            { 
+                if(TemporaryListOfStatisticData == null)
+                {
+                    Debug.Log("TemporaryListOfStatisticData not found");
+                    return;
+                }
+                _addationManager.Open(TemporaryListOfStatisticData);
+            } 
+            else if(addationType == "ChoiceMenu" && menuType != MainMenuTypes.StatisticTool)
+            {
+                if(TemporaryListOfCategory == null)
+                {
+                    Debug.Log("TemporaryListOfCategory not found");
+                    return;
+                }
+                _addationManager.Open(TemporaryListOfCategory);
+            }
+            
            Forwards(_addationPanel.gameObject);
         }
         public void OpenTableView()
@@ -174,8 +174,7 @@ namespace FactoryManager
             Forwards(_choicePanel.gameObject);
         }
         public void PartSelected(Part part)
-        {
-            Debug.Log(menuType);
+        {           
             if (menuType != MainMenuTypes.StatisticPart) return;
             Back();
             Back();
@@ -195,9 +194,9 @@ namespace FactoryManager
         }
         public void OpenStatisticChoiceCategory(List<StatisticData> list)
         { 
+            TemporaryListOfStatisticData = list;
             _categoryMenu.CreateForStatistic(list);
-                Forwards(_choicePanel.gameObject);
-        
+                Forwards(_choicePanel.gameObject);        
         }       
         public void OpenStatisticInputPanel(StatisticData data)
         {

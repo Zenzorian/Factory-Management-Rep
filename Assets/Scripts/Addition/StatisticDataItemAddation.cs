@@ -48,9 +48,10 @@ namespace FactoryManager
                     V = vValue
                 };
 
-                _list.Add(data);
-                _OnAdded.Invoke();
+                _list.Add(data);               
                 _button.onClick.RemoveListener(AddToList);
+
+                Added();
             }
             else
             {

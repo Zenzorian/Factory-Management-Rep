@@ -46,7 +46,7 @@ namespace FactoryManager
                 var myButton = buttons[index].GetComponent<Button>();
                 myButton.onClick.AddListener(delegate { ButtonPressed(index); });
                 var buttonText = myButton.GetComponentInChildren<Text>();
-                var count = DataManager.instance.CountItemsByType(menuType, list[i]);
+                var count = DataManager.instance.GetItemsCount(menuType, list[i]);
                 buttonText.text = $"{buttonText.text} - ({count})";
                 if((menuType == MainMenuTypes.StatisticTool||
                 menuType == MainMenuTypes.StatisticPart)&& count == 0)
@@ -87,21 +87,8 @@ namespace FactoryManager
         
         public void ButtonPressed(int index)
         {
-            _tableController.OpenTableWithFilter(MenuType, index);
-            //_addationManager.typeValue = index;
+            _tableController.OpenTableWithFilter(MenuType, index);            
             _menuManager.OpenTableView();
-        }
-        public void StatisticButtonPressed(int index)
-        {
-            //var data = _selectedStatisticList[index];
-
-            //_menuManager.OpenTableView();
-
-            Debug.Log("StatisticButtonPressed");
-        }
-        public void StatisticDataButtonPressed(int index)
-        {
-            Debug.Log("StatisticDataButtonPressed");
         }
         private void Clear() 
         {

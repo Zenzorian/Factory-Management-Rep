@@ -65,17 +65,8 @@ namespace FactoryManager
                     temporaryList.Add(item);
             }
             return temporaryList;
-        }
-        public void CellSelected(int index,Type type)
-        {
-            //if (type == typeof(Part))
-            //{ 
-            //    var cellData = _globalData.lis
-            //}
-        
-        }
-
-        private void ShowTable<T>(List<T> list) where T : TableItem
+        }       
+        private void ShowTable(List<TableItem> list)
         {
             _tableManager.ClearTable();
 

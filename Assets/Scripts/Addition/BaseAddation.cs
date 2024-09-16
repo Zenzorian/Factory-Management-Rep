@@ -26,6 +26,11 @@ namespace FactoryManager
         {            
             _OnAdded.Invoke();
             _button.onClick.RemoveAllListeners();
+            if(MenuManager.instance != null)
+            {
+                Debug.Log("Something is added");
+                MenuManager.instance.Back();
+            }
         }
         public Dictionary<string, InputField> BuildAdditionPanel(Type type, string elementType = null)
         {

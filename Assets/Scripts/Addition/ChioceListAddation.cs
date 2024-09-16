@@ -30,9 +30,9 @@ namespace FactoryManager
             string name = await ValidateStringInput(_inputField);
             if (name == null) return;
                     
-            _list.Add(_inputField.text);
-            _OnAdded.Invoke();
+            _list.Add(_inputField.text);        
             _button.onClick.RemoveListener(AddToList);
+            Added();
         }            
     }
 }

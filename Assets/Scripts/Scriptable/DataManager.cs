@@ -85,7 +85,7 @@ namespace FactoryManager
         {
             _globalData.listOfTools.Add(tool);
         }
-        public int CountItemsByType(MainMenuTypes menuType, string type)
+        public int GetItemsCount(MainMenuTypes menuType, string type = null)
         {              
             var menuTypeToListMap = new Dictionary<MainMenuTypes, IEnumerable<TableItem>>
             {
@@ -100,9 +100,11 @@ namespace FactoryManager
             if (!menuTypeToListMap.TryGetValue(menuType, out var list))
             {
                 throw new ArgumentException("Invalid MainMenuType provided");
-            }
-
-            return list?.Where(item => item.Type == type).Count() ?? 0;
+            }            
+            if(type!=null)
+                return list?.Where(item => item.Type == type).Count() ?? 0;
+            else
+                return list.Count();
         }
 
     }
