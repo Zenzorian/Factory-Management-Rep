@@ -1,8 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
-using FactoryManager.Data.Tools;
+using FactoryManager.Data;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine.Events;
 
 namespace FactoryManager
@@ -38,7 +37,7 @@ namespace FactoryManager
             // Логика для создания объекта Tool
             Tool newTool = new Tool(id.Value, marking, note, type);
             // Вызов метода для добавления инструмента в систему
-            DataManager.instance.AddTool(newTool);  
+            DataManager.Instance.AddItem(MainMenuTypes.Tools,newTool);  
             Added();
         }
     }

@@ -71,7 +71,7 @@ namespace FactoryManager
 
             Workstation newWorkstation = new Workstation(id.Value, name, type, tools, maxWorkers.Value, reservedWorkers.Value);
           
-            DataManager.instance.AddWorkstation(newWorkstation);  
+            DataManager.Instance.AddItem(MainMenuTypes.Workstations,newWorkstation);  
 
             Added();
         }

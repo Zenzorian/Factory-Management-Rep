@@ -46,7 +46,7 @@ namespace FactoryManager
                 var myButton = buttons[index].GetComponent<Button>();
                 myButton.onClick.AddListener(delegate { ButtonPressed(index); });
                 var buttonText = myButton.GetComponentInChildren<Text>();
-                var count = DataManager.instance.GetItemsCount(menuType, list[i]);
+                var count = DataManager.Instance.GetItemsCount(menuType, list[i]);
                 buttonText.text = $"{buttonText.text} - ({count})";
                 if((menuType == MainMenuTypes.StatisticTool||
                 menuType == MainMenuTypes.StatisticPart)&& count == 0)

@@ -1,4 +1,3 @@
-using FactoryManager.Data.Tools;
 using System.Collections.Generic;
 
 namespace FactoryManager.Data

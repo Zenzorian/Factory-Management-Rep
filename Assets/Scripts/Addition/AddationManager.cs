@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using FactoryManager.Data;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -15,6 +14,7 @@ namespace FactoryManager
         [SerializeField] private InputFieldCreator _inputFieldCreator = new InputFieldCreator();
         private ChioceListAddation _chioceListAddation;
         private StatisticDataItemAddation _statisticDataItemAddation;
+        private TableItemAddation _tableItemAddation;
         [SerializeField] private Button _addButton;
 
         public void Awake()
@@ -23,32 +23,15 @@ namespace FactoryManager
             instance = this;
 
             _chioceListAddation = new ChioceListAddation(_inputFieldCreator, _content, OnAdded,_addButton);            
-            _statisticDataItemAddation= new StatisticDataItemAddation(_inputFieldCreator, _content, OnAdded,_addButton);           
+            _statisticDataItemAddation= new StatisticDataItemAddation(_inputFieldCreator, _content, OnAdded,_addButton);  
+            _tableItemAddation = new TableItemAddation(_inputFieldCreator, _content, OnAdded,_addButton);      
         }
 
-        public void Open(MainMenuTypes menuTupe, string TemporaryTableItemType)
-        {            
-            Debug.Log("Table Item Addation");
-            
-            _addButton.onClick.RemoveAllListeners();
-           
-            switch (menuTupe)
-            {
-                case MainMenuTypes.Workstations:
-                    var workstationAddation = new WorkstationAddation(_inputFieldCreator, _content, OnAdded,_addButton,TemporaryTableItemType);                            
-                    break;
-                case MainMenuTypes.Tools:
-                    var toolAddation = new ToolAddation(_inputFieldCreator, _content, OnAdded,_addButton,TemporaryTableItemType);                    
-                    break;
-                case MainMenuTypes.Workers:
-                    var workerAddation = new WorkerAddation(_inputFieldCreator, _content, OnAdded,_addButton,TemporaryTableItemType);          
-                    break;
-                case MainMenuTypes.Parts:
-                    var partAddation = new PartAddation(_inputFieldCreator, _content, OnAdded,_addButton,TemporaryTableItemType);             
-                    break;
-                default:
-                    break;
-            }           
+        public void Open(MainMenuTypes menuType, string TemporaryTableItemType)
+        {                    
+            _tableItemAddation.Open(menuType,TemporaryTableItemType);  
+                         
+           Debug.Log("Table Item Addation");            
         }
         public void Open(List<string> list)
         {

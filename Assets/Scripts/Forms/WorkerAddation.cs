@@ -54,7 +54,7 @@ namespace FactoryManager
                 nightShiftSurcharge: (float)nightShiftSurcharge.Value
             );
 
-            DataManager.instance.AddWorker(newWorker);  
+            DataManager.Instance.AddItem(MainMenuTypes.Workers,newWorker);  
             Added();
         }
 

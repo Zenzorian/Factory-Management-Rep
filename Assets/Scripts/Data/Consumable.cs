@@ -1,6 +1,4 @@
-﻿
-
-namespace FactoryManager.Data
+﻿namespace FactoryManager.Data
 {
     /// <summary>
     /// Расходный материал

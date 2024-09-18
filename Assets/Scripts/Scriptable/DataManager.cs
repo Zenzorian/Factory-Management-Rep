@@ -3,18 +3,33 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FactoryManager.Data;
-using FactoryManager.Data.Tools;
 using UnityEngine;
 
 namespace FactoryManager
 {
     public class DataManager : MonoBehaviour
     {
-        public static DataManager instance;
+        private static DataManager _instance;
+        public static DataManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindFirstObjectByType<DataManager>();
+                    if (_instance == null)
+                    {
+                        var go = new GameObject("DataManager");
+                        _instance = go.AddComponent<DataManager>();
+                    }
+                }
+                return _instance;
+            }
+        }
         private const string fileName = "FactoryManagerGlobalData.json";
-        private string filePath;
-
+        private string filePath;        
         [SerializeField] private GlobalData _globalData;
+        public GlobalData GlobalData{get; private set;}
 
         private void Awake()
         {
@@ -23,9 +38,7 @@ namespace FactoryManager
 #else
             filePath = Path.Combine(Application.dataPath, fileName);
 #endif
-            LoadData();
-
-            if (instance == null) instance = this;
+            LoadData();            
         }
 
         private void OnApplicationQuit()
@@ -69,43 +82,62 @@ namespace FactoryManager
         {
             return _globalData.typesOfParts;
         }
-        public void AddWorker(Worker worker)
+        public void AddItem(MainMenuTypes menuType, TableItem item)
         {
-            _globalData.listOfWorkers.Add(worker);
-        }        
-        public void AddWorkstation(Workstation workstation)
-        {
-            _globalData.listOfWorkstations.Add(workstation);
-        }
-        public void AddPart(Part part)
-        {
-            _globalData.listOfParts.Add(part);
-        } 
-        public void AddTool(Tool tool)
-        {
-            _globalData.listOfTools.Add(tool);
+            switch (menuType)
+            {
+                case MainMenuTypes.Workstations:                    
+                    var workstation = new Workstation(item.Id, item.Name, item.Type);
+                    _globalData.listOfWorkstations.Add(workstation);
+                    break;
+                    
+                case MainMenuTypes.Tools:                    
+                    var tool = new Tool(item.Id, item.Name, item.Type);
+                    _globalData.listOfTools.Add(tool);
+                    break;
+
+                case MainMenuTypes.Workers:                    
+                    var worker = new Worker(item.Id, item.Name, item.Type);
+                    _globalData.listOfWorkers.Add(worker);
+                    break;
+
+                case MainMenuTypes.Parts:                    
+                    var part = new Part(item.Id, item.Name, item.Type);
+                    _globalData.listOfParts.Add(part);
+                    break;
+                default:
+                    Debug.LogWarning("Unsupported MainMenuType");
+                    break;
+            }
         }
         public int GetItemsCount(MainMenuTypes menuType, string type = null)
-        {              
-            var menuTypeToListMap = new Dictionary<MainMenuTypes, IEnumerable<TableItem>>
-            {
-                { MainMenuTypes.Workstations, _globalData.listOfWorkstations },
-                { MainMenuTypes.Tools, _globalData.listOfTools },
-                { MainMenuTypes.Workers, _globalData.listOfWorkers },
-                { MainMenuTypes.Parts, _globalData.listOfParts },                 
-                { MainMenuTypes.StatisticPart, _globalData.listOfParts},
-                { MainMenuTypes.StatisticTool, _globalData.listOfTools}
-            };
-
-            if (!menuTypeToListMap.TryGetValue(menuType, out var list))
-            {
-                throw new ArgumentException("Invalid MainMenuType provided");
-            }            
+        {       
+            var list = GetItemsListByType(menuType);
             if(type!=null)
                 return list?.Where(item => item.Type == type).Count() ?? 0;
             else
                 return list.Count();
+        }        
+        public IEnumerable<TableItem> GetItemsListByType(MainMenuTypes menuType)
+        {
+            switch (menuType)
+            {
+                case MainMenuTypes.Workstations:
+                    return _globalData.listOfWorkstations;
+                case MainMenuTypes.Tools:
+                    return _globalData.listOfTools;
+                case MainMenuTypes.Workers:
+                    return _globalData.listOfWorkers;
+                case MainMenuTypes.Parts:
+                    return _globalData.listOfParts;
+                case MainMenuTypes.StatisticPart:
+                    return _globalData.listOfParts;
+                case MainMenuTypes.StatisticTool:
+                    return _globalData.listOfTools;
+                default:
+                    Debug.LogWarning($"Unhandled MainMenuType: {menuType}");
+                    return null;
+            }
         }
-
     }
 }

@@ -56,7 +56,7 @@ namespace FactoryManager
                 type: partType
             );
             // Вызов метода для добавления детали в систему
-            DataManager.instance.AddPart(newPart);  
+            DataManager.Instance.AddItem(MainMenuTypes.Parts,newPart);  
 
             Added();
         }

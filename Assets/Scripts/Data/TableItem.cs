@@ -1,7 +1,7 @@
 namespace FactoryManager.Data
 {
     [System.Serializable]
-    public abstract class TableItem
+    public class TableItem
     {
         public TableItem(int id, string name, string type)
         {

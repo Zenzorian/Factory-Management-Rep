@@ -1,10 +1,16 @@
-namespace FactoryManager.Data.Tools
+namespace FactoryManager.Data
 {   
     [System.Serializable]   
     public class Tool : TableItem
     {       
         public string Note;
 
+        public Tool(int id, string name,string type):base(id,name,type)
+        {
+            Id = id;
+            Name = name;            
+            Type = type;
+        }
         public Tool(int id, string name, string note, string type):base(id,name,type)
         {
             Id = id;

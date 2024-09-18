@@ -1,4 +1,3 @@
-
 namespace FactoryManager.Data
 {    
     [System.Serializable]
@@ -10,7 +9,12 @@ namespace FactoryManager.Data
         public float HourlyWage;
         public float OvertimeSurcharge;
         public float NightShiftSurcharge;
-        
+        public Worker(int id, string name, string type):base(id,name,type)
+        {
+            Id = id;
+            Name = name;            
+            Type = type;
+        }
         public Worker(int id, string name, string type,
                       float weeklyNorm = 40, float overtimeAllowed = 0,
                       float hourlyWage = 0, float overtimeSurcharge = 0,
