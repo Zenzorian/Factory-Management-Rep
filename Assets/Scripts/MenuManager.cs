@@ -1,5 +1,4 @@
 using FactoryManager.Data;
-using FactoryManager.Data.Tools;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,8 +7,23 @@ namespace FactoryManager
 {
     public class MenuManager : MonoBehaviour
     {
-        public static MenuManager instance;
-
+        private static MenuManager _instance;        
+        public static MenuManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindFirstObjectByType<MenuManager>();
+                    if (_instance == null)
+                    {
+                        var go = new GameObject("DataManager");
+                        _instance = go.AddComponent<MenuManager>();
+                    }
+                }
+                return _instance;
+            }
+        }
         public List<string> TemporaryListOfCategory{private get; set;}
         public string TemporaryTableItemType{private get; set;}
         public List<StatisticData> TemporaryListOfStatisticData{private get; set;}
@@ -18,12 +32,15 @@ namespace FactoryManager
         public UnityEvent<Part> OnPartSelected;
         public UnityEvent<Tool> OnToolSelected;
 
+        public UnityEvent<TableItem, MainMenuTypes> OnTableItemEdit;
+
         [SerializeField] private GlobalData _globalData;
         [SerializeField] private Transform _mainMenu;
 
         [SerializeField] private Transform _choicePanel;
 
         [SerializeField] private Transform _addationPanel;
+        [SerializeField] private Transform _editPanel;
         [SerializeField] private Transform _tableView;
         [SerializeField] private Transform _optionsPanel;
         [SerializeField] private Transform _statisticPanel;
@@ -43,13 +60,11 @@ namespace FactoryManager
         public bool statisticPanelIsOpen = false;
         private void Awake()
         {
-            Screen.fullScreen = false;
-            
-            if (instance == null)
-                instance = this;
+            Screen.fullScreen = false;           
 
             _menuStack[0] = _mainMenu.gameObject;            
-            OnPartSelected.AddListener(PartSelected);                    
+            OnPartSelected.AddListener(PartSelected);
+            OnTableItemEdit.AddListener(OpenEditPanel);
         }
         private void Update()
         {
@@ -69,12 +84,16 @@ namespace FactoryManager
             _menuIndex--;
             _menuStack[_menuIndex].SetActive(true);
         }
-        private void Forwards(GameObject gameObject)
+        private void Forward(GameObject gameObject)
         {
             _menuStack[_menuIndex].SetActive(false);
             _menuIndex++;
             gameObject.SetActive(true);
             _menuStack[_menuIndex] = gameObject;
+        }
+        private void OpenEditPanel(TableItem item,MainMenuTypes menuTypes)
+        {
+            Forward(_editPanel.gameObject);
         }
         public void OpenMenu(int value)
         {
@@ -105,7 +124,7 @@ namespace FactoryManager
                     selectedList = _globalData.typesOfParts;
                     break;
                 case MainMenuTypes.Statistic:
-                    Forwards(_statisticPanel.gameObject);
+                    Forward(_statisticPanel.gameObject);
                     break;
                 case MainMenuTypes.StatisticPart:
                     selectedList = _globalData.typesOfParts;
@@ -114,7 +133,7 @@ namespace FactoryManager
                     selectedList = _globalData.typesOfTools;
                     break;
                 case MainMenuTypes.Options:
-                    Forwards(_optionsPanel.gameObject);
+                    Forward(_optionsPanel.gameObject);
                     return;
                 default:
                     break;
@@ -124,7 +143,7 @@ namespace FactoryManager
             {
                 TemporaryListOfCategory = selectedList;
                 _categoryMenu.Create(selectedList, menuType);
-                Forwards(_choicePanel.gameObject);
+                Forward(_choicePanel.gameObject);
             }
         }
         public void OpenListsMenu()
@@ -161,17 +180,17 @@ namespace FactoryManager
                 _addationManager.Open(TemporaryListOfCategory);
             }
             
-           Forwards(_addationPanel.gameObject);
+           Forward(_addationPanel.gameObject);
         }
         public void OpenTableView()
         {
-            Forwards(_tableView.gameObject);
+            Forward(_tableView.gameObject);
         }
         public void OpenProcessingTypeMenu(int index)
         {
             var part = _globalData.listOfParts[index];
             //_categoryMenu.Create(part., MainMenuTypes.Statistic);
-            Forwards(_choicePanel.gameObject);
+            Forward(_choicePanel.gameObject);
         }
         public void PartSelected(Part part)
         {           
@@ -196,12 +215,12 @@ namespace FactoryManager
         { 
             TemporaryListOfStatisticData = list;
             _categoryMenu.CreateForStatistic(list);
-                Forwards(_choicePanel.gameObject);        
+                Forward(_choicePanel.gameObject);        
         }       
         public void OpenStatisticInputPanel(StatisticData data)
         {
             _statisticsInputManager.ShowPanel(data);
-            Forwards(_statisticInputPanel.gameObject);
+            Forward(_statisticInputPanel.gameObject);
         }
     }
     public enum MainMenuTypes

@@ -2,18 +2,17 @@ using UnityEngine.UI;
 using UnityEngine;
 using FactoryManager.Data;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using UnityEngine.Events;
 
 namespace FactoryManager
 {
     [System.Serializable]
-    public class PartAddation : BaseAddition
+    public class PartForm : BaseAddition
     {
+        private Part _part;
         private Dictionary<string, InputField> _inputFields;
-        public PartAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button,string elementType) : base(inputFieldCreator, content, OnAdded, button)
+        public PartForm(InputFieldCreator inputFieldCreator, Transform content, Button button) : base(inputFieldCreator, content, button)
         {
-            _inputFields = BuildAdditionPanel(typeof(Part),elementType);
+            _inputFields = BuildAdditionPanel(typeof(Part));
             button.onClick.AddListener(Addation);
             Init(_inputFields);
         }
@@ -21,7 +20,15 @@ namespace FactoryManager
         {
             ValidateAndCreatePart(_inputFields);
         }
+        public void Open(List<Part> parts, TableItem currentPart)
+        {
+            var desiredPart = (Part)currentPart;
+            _part = parts[parts.IndexOf(desiredPart)];
 
+            _inputFields["Id"].text = _part.Id.ToString();
+            _inputFields["Name"].text = _part.Name;
+            _inputFields["Type"].text = _part.Type;
+        }
         public void Init(Dictionary<string, InputField> inputFields)
         {              
             _inputFields = inputFields;
@@ -40,25 +47,19 @@ namespace FactoryManager
         }
         public async void ValidateAndCreatePart(Dictionary<string, InputField> inputFields)
         {
-            int? id = await ValidateIntInput(inputFields["Id"]);
+            int? id = await _validator.ValidateIntInput(inputFields["Id"]);
             if (!id.HasValue) return;
 
-            string name = await ValidateStringInput(inputFields["Name"]);
+            string name = await _validator.ValidateStringInput(inputFields["Name"]);
             if (name == null) return;
 
-            string partType = await ValidateStringInput(inputFields["Type"]);
+            string partType = await _validator.ValidateStringInput(inputFields["Type"]);
             if (partType == null) return;
 
-            // Логика для создания объекта Part
-            Part newPart = new Part( 
-                id: id.Value,
-                name: name,
-                type: partType
-            );
-            // Вызов метода для добавления детали в систему
-            DataManager.Instance.AddItem(MainMenuTypes.Parts,newPart);  
+            _part.Id = id.Value;
+            _part.Name = name;  
+            _part.Type = partType;
 
-            Added();
         }
     }
 }

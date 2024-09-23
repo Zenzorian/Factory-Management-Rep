@@ -13,7 +13,7 @@ namespace FactoryManager
         private InputField _f;
         private InputField _v;
 
-        public StatisticDataItemAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button) : base(inputFieldCreator, content, OnAdded, button)
+        public StatisticDataItemAddation(InputFieldCreator inputFieldCreator, Transform content, Button button, UnityEvent OnAdded) : base(inputFieldCreator, content, button, OnAdded)
         {
         }
 

@@ -22,9 +22,9 @@ namespace FactoryManager
             if(instance == null)
             instance = this;
 
-            _chioceListAddation = new ChioceListAddation(_inputFieldCreator, _content, OnAdded,_addButton);            
-            _statisticDataItemAddation= new StatisticDataItemAddation(_inputFieldCreator, _content, OnAdded,_addButton);  
-            _tableItemAddation = new TableItemAddation(_inputFieldCreator, _content, OnAdded,_addButton);      
+            _chioceListAddation = new ChioceListAddation(_inputFieldCreator, _content, _addButton, OnAdded);            
+            _statisticDataItemAddation= new StatisticDataItemAddation(_inputFieldCreator, _content, _addButton, OnAdded);  
+            _tableItemAddation = new TableItemAddation(_inputFieldCreator, _content, _addButton, OnAdded);      
         }
 
         public void Open(MainMenuTypes menuType, string TemporaryTableItemType)

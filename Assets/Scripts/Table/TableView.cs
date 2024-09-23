@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using FactoryManager.Data.Tools;
-using Unity.VisualScripting;
 
 [System.Serializable]
 public class TableView : MonoBehaviour
@@ -128,13 +125,15 @@ public class TableView : MonoBehaviour
     {       
         TableItem item = _tableItems[rowIndex];
 
+        MenuManager.Instance.OnTableItemEdit.Invoke(item, MenuManager.Instance.menuType);
+
         if (item is Part part)
         {
-            MenuManager.instance.OnPartSelected.Invoke(part);
+            MenuManager.Instance.OnPartSelected.Invoke(part);
         }
         else if (item is Tool tool)
         {
-            MenuManager.instance.OnToolSelected.Invoke(tool);
+            MenuManager.Instance.OnToolSelected.Invoke(tool);
         }
     }
     public RectTransform AddRow(Transform container)

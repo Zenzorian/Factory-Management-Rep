@@ -1,23 +1,34 @@
 using UnityEngine.UI;
 using UnityEngine;
 using FactoryManager.Data;
-using FactoryManager.Data.Tools;
 using System.Collections.Generic;
-using UnityEngine.Events;
 
 namespace FactoryManager
 {
     [System.Serializable]
-    public class WorkspaceAddation : BaseAddition
+    public class WorkspaceForm : BaseAddition
     {
+        private Workspace _workspace;
         private Dictionary<string, InputField> _inputFields;
         private List<Tool> _selectedTools = new List<Tool>();
 
-        public WorkspaceAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button,string elementType) : base(inputFieldCreator, content, OnAdded, button)
+        public WorkspaceForm(InputFieldCreator inputFieldCreator, Transform content, Button button) : base(inputFieldCreator, content, button)
         {
-            _inputFields = BuildAdditionPanel(typeof(Workspace),elementType);
+            _inputFields = BuildAdditionPanel(typeof(Workspace));
             button.onClick.AddListener(Addation);
             Init(_inputFields);
+        }
+        public void Open(List<Workspace> workspaces, TableItem currentWorkspace)
+        {
+            var desiredWorkspace = (Workspace)currentWorkspace;
+            _workspace = workspaces[workspaces.IndexOf(desiredWorkspace)];
+
+            _inputFields["Id"].text = _workspace.Id.ToString();
+            _inputFields["Name"].text = _workspace.Name;
+            _inputFields["Type"].text = _workspace.Type;
+
+            _inputFields["MaxWorkers"].text = _workspace.MaxWorkers.ToString();
+            _inputFields["ReservedWorkersd"].text = _workspace.ReservedWorkers.ToString();
         }
         private void Addation()
         {
@@ -27,8 +38,8 @@ namespace FactoryManager
         public void Init(Dictionary<string, InputField> inputFields)
         {           
             _selectedTools.Clear();
-            MenuManager.instance.OnToolSelected.RemoveAllListeners();
-            MenuManager.instance.OnToolSelected.AddListener(SetTools);
+            MenuManager.Instance.OnToolSelected.RemoveAllListeners();
+            MenuManager.Instance.OnToolSelected.AddListener(SetTools);
             _inputFields = inputFields;
             var toolInput = inputFields["Tools"];
             toolInput.interactable = false;
@@ -41,39 +52,39 @@ namespace FactoryManager
         }
         private void OpenToolTable()
         {
-            MenuManager.instance.OpenMenu((int)MainMenuTypes.Tools);
+            MenuManager.Instance.OpenMenu((int)MainMenuTypes.Tools);
         }
         private void SetTools(Tool tool)
         {
             Debug.Log("Tool Event");
             _selectedTools.Add(tool);
             UIPopupMessage.instance.ShowMessage("Tool successfully added");
-            MenuManager.instance.Back();
-            MenuManager.instance.Back();           
+            MenuManager.Instance.Back();
+            MenuManager.Instance.Back();           
         }
         public async void ValidateAndCreateWorkspace(Dictionary<string, InputField> inputFields)
         {                  
-            int? id = await ValidateIntInput(inputFields["Id"]);
+            int? id = await _validator.ValidateIntInput(inputFields["Id"]);
             if (!id.HasValue) return;
 
-            string name = await ValidateStringInput(inputFields["Name"]);
+            string name = await _validator.ValidateStringInput(inputFields["Name"]);
             if (name == null) return;        
 
-            string type = await ValidateStringInput(inputFields["Type"]);
+            string type = await _validator.ValidateStringInput(inputFields["Type"]);
             if (type == null) return;
 
             Tool[] tools = _selectedTools.ToArray();
-            int? maxWorkers = await ValidateIntInput(inputFields["MaxWorkers"]);
+            int? maxWorkers = await _validator.ValidateIntInput(inputFields["MaxWorkers"]);
             if (!maxWorkers.HasValue) return;
 
-            int? reservedWorkers = await ValidateIntInput(inputFields["ReservedWorkers"]);
+            int? reservedWorkers = await _validator.ValidateIntInput(inputFields["ReservedWorkers"]);
             if (!reservedWorkers.HasValue) return;
-
-            Workspace newWorkspace = new Workspace(id.Value, name, type, tools, maxWorkers.Value, reservedWorkers.Value);
-          
-            DataManager.Instance.AddItem(MainMenuTypes.Workspaces,newWorkspace);  
-
-            Added();
+           
+            _workspace.Id = id.Value;
+            _workspace.Name = name;
+            _workspace.Type = type;
+            _workspace.MaxWorkers = maxWorkers.Value;
+            _workspace.ReservedWorkers = reservedWorkers.Value;
         }
     }
 }

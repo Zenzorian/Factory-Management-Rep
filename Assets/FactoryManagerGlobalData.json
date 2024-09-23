@@ -5879,11 +5879,11 @@
             "Id": 3,
             "Name": "Michael Smith",
             "Type": "Manager",
-            "WeeklyNorm": 40.0,
-            "OvertimeAllowed": 0.0,
-            "HourlyWage": 0.0,
-            "OvertimeSurcharge": 0.0,
-            "NightShiftSurcharge": 0.0
+            "WeeklyNorm": 67.0,
+            "OvertimeAllowed": 1.0,
+            "HourlyWage": 2.0,
+            "OvertimeSurcharge": 1.0,
+            "NightShiftSurcharge": 4.0
         },
         {
             "Id": 4,
@@ -6110,10 +6110,10 @@
             "Name": "George Alexandrov",
             "Type": "Manager",
             "WeeklyNorm": 40.0,
-            "OvertimeAllowed": 0.0,
-            "HourlyWage": 0.0,
-            "OvertimeSurcharge": 0.0,
-            "NightShiftSurcharge": 0.0
+            "OvertimeAllowed": 5.0,
+            "HourlyWage": 3.0,
+            "OvertimeSurcharge": 5.0,
+            "NightShiftSurcharge": 7.0
         },
         {
             "Id": 27,
@@ -6350,6 +6350,26 @@
             "Name": "Alexander Alexandrov",
             "Type": "Manager",
             "WeeklyNorm": 40.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Id": 8,
+            "Name": "George Dmitriev",
+            "Type": "Technician",
+            "WeeklyNorm": 0.0,
+            "OvertimeAllowed": 0.0,
+            "HourlyWage": 0.0,
+            "OvertimeSurcharge": 0.0,
+            "NightShiftSurcharge": 0.0
+        },
+        {
+            "Id": 3,
+            "Name": "Michael Smith",
+            "Type": "Manager",
+            "WeeklyNorm": 0.0,
             "OvertimeAllowed": 0.0,
             "HourlyWage": 0.0,
             "OvertimeSurcharge": 0.0,

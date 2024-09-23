@@ -10,7 +10,7 @@ namespace FactoryManager
     {
         private List<string> _list;
 
-        public ChioceListAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button) : base(inputFieldCreator, content, OnAdded, button)
+        public ChioceListAddation(InputFieldCreator inputFieldCreator, Transform content, Button button, UnityEvent OnAdded) : base(inputFieldCreator, content,button, OnAdded)
         {
             
         }
@@ -27,7 +27,7 @@ namespace FactoryManager
 
         public async void AddToList()
         {
-            string name = await ValidateStringInput(_inputField);
+            string name = await _validator.ValidateStringInput(_inputField);
             if (name == null) return;
                     
             _list.Add(_inputField.text);        

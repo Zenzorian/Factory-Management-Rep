@@ -23,7 +23,7 @@ namespace FactoryManager
         }       
         private void SomethingAdded() 
         {
-            if (MenuManager.instance.menuType == MainMenuTypes.StatisticTool)
+            if (MenuManager.Instance.menuType == MainMenuTypes.StatisticTool)
             {
                 CreateForStatistic(_selectedStatisticList);
                 return;
@@ -81,7 +81,7 @@ namespace FactoryManager
                 var myButton = buttons[index].GetComponent<Button>();
                 var data = new StatisticData();
                 data  = list[i];
-                myButton.onClick.AddListener(delegate { MenuManager.instance.OpenStatisticInputPanel(data);});
+                myButton.onClick.AddListener(delegate { MenuManager.Instance.OpenStatisticInputPanel(data);});
             }
         }
         

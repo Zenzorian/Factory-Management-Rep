@@ -30,19 +30,19 @@ namespace FactoryManager
             {
                 case MainMenuTypes.Workspaces:
                     temporaryList = Filter(_globalData.typesOfWorkspace[value], _globalData.listOfWorkspaces);
-                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfWorkspace[value];
+                     MenuManager.Instance.TemporaryTableItemType = _globalData.typesOfWorkspace[value];
                     break;
                 case MainMenuTypes.Tools:                  
                     temporaryList = Filter(_globalData.typesOfTools[value], _globalData.listOfTools);
-                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfTools[value];
+                     MenuManager.Instance.TemporaryTableItemType = _globalData.typesOfTools[value];
                     break;
                 case MainMenuTypes.Workers:                    
                     temporaryList = Filter(_globalData.typesOfWorkers[value], _globalData.listOfWorkers);
-                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfWorkers[value];
+                     MenuManager.Instance.TemporaryTableItemType = _globalData.typesOfWorkers[value];
                     break;
                 case MainMenuTypes.Parts:
                     temporaryList = Filter(_globalData.typesOfParts[value], _globalData.listOfParts);
-                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfParts[value];
+                     MenuManager.Instance.TemporaryTableItemType = _globalData.typesOfParts[value]; 
                     break;
                 case MainMenuTypes.StatisticPart:
                     temporaryList = Filter(_globalData.typesOfParts[value], _globalData.listOfParts);

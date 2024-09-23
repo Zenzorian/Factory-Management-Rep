@@ -57,7 +57,7 @@ public class StatisticsPanelController : MonoBehaviour
 
     private void PartButtonClicked()
     {
-        MenuManager.instance.OpenMenu((int)MainMenuTypes.StatisticPart);
+        MenuManager.Instance.OpenMenu((int)MainMenuTypes.StatisticPart);
     }
     public void OnPartSelected(Part part)
     {
@@ -92,7 +92,7 @@ public class StatisticsPanelController : MonoBehaviour
 
     private void ToolButtonClicked()
     {
-        MenuManager.instance.OpenMenu((int)MainMenuTypes.StatisticTool);
+        MenuManager.Instance.OpenMenu((int)MainMenuTypes.StatisticTool);
     }
     public void OnToolSelected(Tool tool)
     {
@@ -133,7 +133,7 @@ public class StatisticsPanelController : MonoBehaviour
     }   
     private void OpenConfirmationAndAddationMenu()
     {
-        MenuManager.instance.ShowConfirmationPanel();
+        MenuManager.Instance.ShowConfirmationPanel();
     }
     private void OpenCurrentStatistic(Statistic statistics)
     {
@@ -151,7 +151,7 @@ public class StatisticsPanelController : MonoBehaviour
             return;
         }       
         CurrentStatisticDataList = Check().Data;
-        MenuManager.instance.OpenStatisticChoiceCategory(CurrentStatisticDataList);
+        MenuManager.Instance.OpenStatisticChoiceCategory(CurrentStatisticDataList);
     }
     public void CloseStatistic()
     {

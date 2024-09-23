@@ -11,7 +11,7 @@ public class TableItemAddation : BaseAddition
     private MainMenuTypes _menuType;
     private Dictionary<string, InputField> _inputFields;
    
-    public TableItemAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button) : base(inputFieldCreator, content, OnAdded, button)
+    public TableItemAddation(InputFieldCreator inputFieldCreator, Transform content, Button button, UnityEvent OnAdded) : base(inputFieldCreator, content, button, OnAdded)
     {        
           
     }
@@ -28,10 +28,10 @@ public class TableItemAddation : BaseAddition
     }
     public async void  ValidateAndCreate(Dictionary<string, InputField> inputFields)
     {
-        int? id = await ValidateIntInput(inputFields["Id"]);
+        int? id = await _validator.ValidateIntInput(inputFields["Id"]);
         if (!id.HasValue) return;
 
-        string name = await ValidateStringInput(inputFields["Name"]);
+        string name = await _validator.ValidateStringInput(inputFields["Name"]);
         if (name == null) return;            
 
         TableItem newItem = new TableItem(
