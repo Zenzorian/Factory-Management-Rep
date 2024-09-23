@@ -92,8 +92,8 @@ namespace FactoryManager
 
             switch (menuType)
             {
-                case MainMenuTypes.Workstations:
-                    selectedList = _globalData.typesOfWorkstation;
+                case MainMenuTypes.Workspaces:
+                    selectedList = _globalData.typesOfWorkspace;
                     break;
                 case MainMenuTypes.Tools:
                     selectedList = _globalData.typesOfTools;
@@ -206,7 +206,7 @@ namespace FactoryManager
     }
     public enum MainMenuTypes
     {
-        Workstations,
+        Workspaces,
         Tools,
         Workers,
         Parts,

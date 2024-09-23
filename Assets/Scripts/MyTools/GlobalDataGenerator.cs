@@ -13,7 +13,7 @@ public class GlobalDataGenerator : MonoBehaviour
     {
         _globalData.listOfWorkers = GenerateWorkers(50);
         _globalData.listOfTools = GenerateRandomTools(50);
-        _globalData.listOfWorkstations = GenerateWorkstations(15);
+        _globalData.listOfWorkspaces = GenerateWorkspaces(15);
 
         _globalData.listOfParts = GenerateParts(15);
     }
@@ -121,20 +121,20 @@ public class GlobalDataGenerator : MonoBehaviour
         }
         return toolList;
     }
-    public List<Workstation> GenerateWorkstations(int count)
+    public List<Workspace> GenerateWorkspaces(int count)
     {
-        List<Workstation> workstations = new List<Workstation>();
+        List<Workspace> Workspaces = new List<Workspace>();
 
         for (int i = 0; i < count; i++)
         {            
-            var type = _globalData.typesOfWorkstation[Random.Range(1, 9)];
+            var type = _globalData.typesOfWorkspace[Random.Range(1, 9)];
             Tool[] tools = GenerateRandomTools(Random.Range(1, 3)).ToArray();
             int maxWorkers = Random.Range(1, 20);
             int reservedWorkers = Random.Range(0, maxWorkers);
 
-            workstations.Add(new Workstation(
+            Workspaces.Add(new Workspace(
                 i,
-                name : $"Workstation {_globalData.typesOfWorkstation[Random.Range(1, 6)]} {i + 1}",
+                name : $"Workspace {_globalData.typesOfWorkspace[Random.Range(1, 6)]} {i + 1}",
                 type,
                 tools,
                 maxWorkers,
@@ -142,7 +142,7 @@ public class GlobalDataGenerator : MonoBehaviour
                 ));
         }
 
-        return workstations;
+        return Workspaces;
     }
     CNCMillingTool CreateTurningRoughingTool()
     {

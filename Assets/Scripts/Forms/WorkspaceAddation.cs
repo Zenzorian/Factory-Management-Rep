@@ -8,20 +8,20 @@ using UnityEngine.Events;
 namespace FactoryManager
 {
     [System.Serializable]
-    public class WorkstationAddation : BaseAddition
+    public class WorkspaceAddation : BaseAddition
     {
         private Dictionary<string, InputField> _inputFields;
         private List<Tool> _selectedTools = new List<Tool>();
 
-        public WorkstationAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button,string elementType) : base(inputFieldCreator, content, OnAdded, button)
+        public WorkspaceAddation(InputFieldCreator inputFieldCreator, Transform content, UnityEvent OnAdded, Button button,string elementType) : base(inputFieldCreator, content, OnAdded, button)
         {
-            _inputFields = BuildAdditionPanel(typeof(Workstation),elementType);
+            _inputFields = BuildAdditionPanel(typeof(Workspace),elementType);
             button.onClick.AddListener(Addation);
             Init(_inputFields);
         }
         private void Addation()
         {
-            ValidateAndCreateWorkstation(_inputFields);
+            ValidateAndCreateWorkspace(_inputFields);
         }
 
         public void Init(Dictionary<string, InputField> inputFields)
@@ -51,7 +51,7 @@ namespace FactoryManager
             MenuManager.instance.Back();
             MenuManager.instance.Back();           
         }
-        public async void ValidateAndCreateWorkstation(Dictionary<string, InputField> inputFields)
+        public async void ValidateAndCreateWorkspace(Dictionary<string, InputField> inputFields)
         {                  
             int? id = await ValidateIntInput(inputFields["Id"]);
             if (!id.HasValue) return;
@@ -69,9 +69,9 @@ namespace FactoryManager
             int? reservedWorkers = await ValidateIntInput(inputFields["ReservedWorkers"]);
             if (!reservedWorkers.HasValue) return;
 
-            Workstation newWorkstation = new Workstation(id.Value, name, type, tools, maxWorkers.Value, reservedWorkers.Value);
+            Workspace newWorkspace = new Workspace(id.Value, name, type, tools, maxWorkers.Value, reservedWorkers.Value);
           
-            DataManager.Instance.AddItem(MainMenuTypes.Workstations,newWorkstation);  
+            DataManager.Instance.AddItem(MainMenuTypes.Workspaces,newWorkspace);  
 
             Added();
         }

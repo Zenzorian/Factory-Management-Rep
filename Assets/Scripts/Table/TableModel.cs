@@ -28,9 +28,9 @@ namespace FactoryManager
             List<TableItem> temporaryList = new List<TableItem>();   
             switch (menuType)
             {
-                case MainMenuTypes.Workstations:
-                    temporaryList = Filter(_globalData.typesOfWorkstation[value], _globalData.listOfWorkstations);
-                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfWorkstation[value];
+                case MainMenuTypes.Workspaces:
+                    temporaryList = Filter(_globalData.typesOfWorkspace[value], _globalData.listOfWorkspaces);
+                     MenuManager.instance.TemporaryTableItemType = _globalData.typesOfWorkspace[value];
                     break;
                 case MainMenuTypes.Tools:                  
                     temporaryList = Filter(_globalData.typesOfTools[value], _globalData.listOfTools);

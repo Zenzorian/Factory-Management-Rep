@@ -70,9 +70,9 @@ namespace FactoryManager
         {
             return _globalData.typesOfWorkers;
         }
-        public List<string> GetTypesOfWorkstation()
+        public List<string> GetTypesOfWorkspace()
         {
-            return _globalData.typesOfWorkstation;
+            return _globalData.typesOfWorkspace;
         }
         public List<string> GetTypesOfTools()
         {
@@ -86,9 +86,9 @@ namespace FactoryManager
         {
             switch (menuType)
             {
-                case MainMenuTypes.Workstations:                    
-                    var workstation = new Workstation(item.Id, item.Name, item.Type);
-                    _globalData.listOfWorkstations.Add(workstation);
+                case MainMenuTypes.Workspaces:                    
+                    var Workspace = new Workspace(item.Id, item.Name, item.Type);
+                    _globalData.listOfWorkspaces.Add(Workspace);
                     break;
                     
                 case MainMenuTypes.Tools:                    
@@ -122,8 +122,8 @@ namespace FactoryManager
         {
             switch (menuType)
             {
-                case MainMenuTypes.Workstations:
-                    return _globalData.listOfWorkstations;
+                case MainMenuTypes.Workspaces:
+                    return _globalData.listOfWorkspaces;
                 case MainMenuTypes.Tools:
                     return _globalData.listOfTools;
                 case MainMenuTypes.Workers:

@@ -14,11 +14,11 @@ public class Tutorial : MonoBehaviour
 
     private void OnEnable()
     {
-        CheckWorkstations();
+        CheckWorkspaces();
     }
-    private void CheckWorkstations()
+    private void CheckWorkspaces()
     {
-        if(_dataManager.GetItemsCount(MainMenuTypes.Workstations)==0)
+        if(_dataManager.GetItemsCount(MainMenuTypes.Workspaces)==0)
         {
             for (int i = 1; i < _menuButtons.Length; i++)
             {

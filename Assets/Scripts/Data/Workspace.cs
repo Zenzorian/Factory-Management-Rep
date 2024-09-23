@@ -1,18 +1,18 @@
 namespace FactoryManager.Data
 {     
     [System.Serializable]
-    public class Workstation : TableItem
+    public class Workspace : TableItem
     {
         public Tool[] Tools;
         public int MaxWorkers;
         public int ReservedWorkers;
-        public Workstation(int id,string name,string type):base(id,name,type)
+        public Workspace(int id,string name,string type):base(id,name,type)
         {
             Id = id;
             Name = name;            
             Type = type;
         }
-        public Workstation(int id,string name,string type,Tool[] tools,int maxWorkers, int reservedWorkers):base(id,name,type)
+        public Workspace(int id,string name,string type,Tool[] tools,int maxWorkers, int reservedWorkers):base(id,name,type)
         {
             Id = id;
             Name = name;

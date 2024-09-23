@@ -5551,24 +5551,7 @@
             ]
         }
     ],
-    "listOfWorkstations": [
-        {
-            "Id": 0,
-            "Name": "A0",
-            "Type": "AssemblyLine",
-            "Tools": [],
-            "MaxWorkers": 0,
-            "ReservedWorkers": 0
-        },
-        {
-            "Id": 1,
-            "Name": "A1",
-            "Type": "AssemblyLine",
-            "Tools": [],
-            "MaxWorkers": 0,
-            "ReservedWorkers": 0
-        }
-    ],
+    "listOfWorkspaces": [],
     "listOfTools": [
         {
             "Id": 86,
@@ -6396,17 +6379,14 @@
         "Painter",
         "Packer"
     ],
-    "typesOfWorkstation": [
+    "typesOfWorkspace": [
         "AssemblyLine",
         "CNC",
         "Painting",
         "QualityControl",
         "Packaging",
         "Maintenance",
-        "Storage",
-        "Welding",
-        "Inspection",
-        "ResearchAndDevelopment"
+        "Storage"
     ],
     "typesOfParts": [
         "Shaft",
