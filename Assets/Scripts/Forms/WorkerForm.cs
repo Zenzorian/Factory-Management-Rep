@@ -20,8 +20,7 @@ namespace FactoryManager
             var desiredWorker = (Worker)currentWorker;
             _worker = workers[workers.IndexOf(desiredWorker)];
 
-            _inputFields["Id"].text = _worker.Id.ToString();
-            Debug.Log(_worker.Name);
+            _inputFields["Id"].text = _worker.Id.ToString();           
             _inputFields["Name"].text = _worker.Name;
             _inputFields["Type"].text = _worker.Type;
 

@@ -7,6 +7,7 @@ namespace FactoryManager
 {
     public class ChoiceOfCategoryMenu : MonoBehaviour
     {
+        [SerializeField] private Text _sectionNameText;
         [SerializeField] private Transform _addButton;
         [SerializeField] private TableController _tableController;
         [SerializeField] private MenuManager _menuManager;
@@ -35,6 +36,8 @@ namespace FactoryManager
         {
             _selectedCategories = list;
             MenuType = menuType;
+
+            _sectionNameText.text = menuType.ToString();
 
             Clear();
              

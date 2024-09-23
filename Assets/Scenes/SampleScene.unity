@@ -2633,7 +2633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 460667232}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 2
   m_Elasticity: 0.1
@@ -10315,6 +10315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca4f5e7cb7dc3f43985d6eab595befe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sectionNameText: {fileID: 872483058}
   _addButton: {fileID: 426467787}
   _tableController: {fileID: 1689672747}
   _menuManager: {fileID: 1171616355}

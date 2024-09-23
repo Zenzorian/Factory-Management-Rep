@@ -1,6 +1,7 @@
 using FactoryManager;
 using FactoryManager.Data;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
@@ -125,6 +126,10 @@ public class TableView : MonoBehaviour
     {       
         TableItem item = _tableItems[rowIndex];
 
+        var menuType = MenuManager.Instance.menuType;
+        if(menuType !=MainMenuTypes.Statistic&&
+            menuType != MainMenuTypes.StatisticTool&&
+            menuType != MainMenuTypes.StatisticPart)
         MenuManager.Instance.OnTableItemEdit.Invoke(item, MenuManager.Instance.menuType);
 
         if (item is Part part)
@@ -185,7 +190,7 @@ public class TableView : MonoBehaviour
     }
     private void HandleHorizontalScroll(float value)
     {
-        _headerContainer.anchoredPosition = new Vector2(value * (_headerContainer.rect.width - _tableRect.rect.width) * -1, _headerContainer.anchoredPosition.y);
+        //_headerContainer.anchoredPosition = new Vector2(value * (_headerContainer.rect.width - _tableRect.rect.width) * -1, _headerContainer.anchoredPosition.y);
     }   
 }
 public class Table

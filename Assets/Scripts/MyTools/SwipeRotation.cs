@@ -34,9 +34,9 @@ public class SwipeRotate : MonoBehaviour
 
                         // Вращаем объект по осям Y и X, основанное на горизонтальном и вертикальном свайпах
                         float rotationAmountY = swipeDelta.x * rotationSpeed * Time.deltaTime;
-                        float rotationAmountX = swipeDelta.y * rotationSpeed * Time.deltaTime;
+                        //float rotationAmountX = swipeDelta.y * rotationSpeed * Time.deltaTime;
 
-                        transform.Rotate(-rotationAmountX, -rotationAmountY, 0);
+                        transform.Rotate(0/*-rotationAmountX*/, -rotationAmountY, 0);
 
                         // Обновляем начальную позицию
                         _startTouchPosition = _currentTouchPosition;
