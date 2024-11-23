@@ -1,11 +1,11 @@
-﻿using FactoryManager.Data;
+﻿using Scripts.Data;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace FactoryManager
+namespace Scripts
 {
     public class StatisticDataItemAddation : BaseAddition
     {        

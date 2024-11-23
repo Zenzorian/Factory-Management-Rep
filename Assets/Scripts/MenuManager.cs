@@ -1,9 +1,10 @@
-using FactoryManager.Data;
+using Scripts.Data;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-namespace FactoryManager
+
+namespace Scripts
 {
     public class MenuManager : MonoBehaviour
     {
@@ -44,12 +45,10 @@ namespace FactoryManager
         [SerializeField] private Transform _tableView;
         [SerializeField] private Transform _optionsPanel;
         [SerializeField] private Transform _statisticPanel;
-        [SerializeField] private Transform _statisticInputPanel;
-        [SerializeField] private ChoiceOfCategoryMenu _categoryMenu;
+        [SerializeField] private Transform _statisticInputPanel;        
         [SerializeField] private AddationManager _addationManager;
 
-        [SerializeField] private StatisticsPanelController _statisticsPanelController;
-        [SerializeField] private ConfirmationPanel _confirmationPanel;
+        [SerializeField] private StatisticsPanelController _statisticsPanelController;        
         [SerializeField] private StatisticsInputManager _statisticsInputManager;
 
         [SerializeField] private Button _backButton;
@@ -141,8 +140,7 @@ namespace FactoryManager
 
             if (selectedList != null)
             {
-                TemporaryListOfCategory = selectedList;
-                _categoryMenu.Create(selectedList, menuType);
+                TemporaryListOfCategory = selectedList;              
                 Forward(_choicePanel.gameObject);
             }
         }
@@ -206,15 +204,10 @@ namespace FactoryManager
             Back();
             Back();
             _statisticsPanelController.OnToolSelected(tool);
-        }
-        public void ShowConfirmationPanel()
-        {
-            _confirmationPanel.Show();
-        }
+        }     
         public void OpenStatisticChoiceCategory(List<StatisticData> list)
         { 
-            TemporaryListOfStatisticData = list;
-            _categoryMenu.CreateForStatistic(list);
+            TemporaryListOfStatisticData = list;           
                 Forward(_choicePanel.gameObject);        
         }       
         public void OpenStatisticInputPanel(StatisticData data)
@@ -223,15 +216,5 @@ namespace FactoryManager
             Forward(_statisticInputPanel.gameObject);
         }
     }
-    public enum MainMenuTypes
-    {
-        Workspaces,
-        Tools,
-        Workers,
-        Parts,
-        Statistic,
-        Options = 99,
-        StatisticPart,
-        StatisticTool
-    }
+    
 }

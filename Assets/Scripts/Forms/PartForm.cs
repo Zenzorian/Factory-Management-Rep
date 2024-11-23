@@ -1,9 +1,9 @@
 using UnityEngine.UI;
 using UnityEngine;
-using FactoryManager.Data;
+using Scripts.Data;
 using System.Collections.Generic;
 
-namespace FactoryManager
+namespace Scripts
 {
     [System.Serializable]
     public class PartForm : BaseAddition
@@ -43,7 +43,7 @@ namespace FactoryManager
         }
         private void StatisticsClicked()
         {
-            UIPopupMessage.instance.ShowMessage("Statistical data is set in the Statistics tab");
+            //PopupMessageService.instance.Show("Statistical data is set in the Statistics tab");
         }
         public async void ValidateAndCreatePart(Dictionary<string, InputField> inputFields)
         {

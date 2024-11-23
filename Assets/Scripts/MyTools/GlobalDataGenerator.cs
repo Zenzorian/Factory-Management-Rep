@@ -1,6 +1,6 @@
-using FactoryManager;
-using FactoryManager.Data;
-using FactoryManager.Data.Tools;
+using Scripts;
+using Scripts.Data;
+using Scripts.Data.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

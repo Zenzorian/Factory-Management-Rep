@@ -1,4 +1,4 @@
-﻿namespace FactoryManager.Data.Tools
+﻿namespace Scripts.Data.Tools
 {
     [System.Serializable]
     public class ToolWithFeedSpeedAndCost : Tool

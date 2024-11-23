@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using FactoryManager.Data;
+using Scripts.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace FactoryManager
+namespace Scripts
 {
     public class AddationManager : MonoBehaviour
     {

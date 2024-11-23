@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using FactoryManager.Data;
-using FactoryManager;
-using FactoryManager.Data.Tools;
+using Scripts.Data;
+using Scripts;
+using Scripts.Data.Tools;
+using Scripts.Services;
 
 public class StatisticsPanelController : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class StatisticsPanelController : MonoBehaviour
         _goToStatisticsButton.gameObject.SetActive(false);
         _statisticsEditingButton.gameObject.SetActive(false);
 
-        ConfirmationPanel.instance.OnConfirmed.AddListener(OnConfirmation);
+        //ConfirmationPanelService.instance.OnConfirmed.AddListener(OnConfirmation);
 
     }
 
@@ -123,7 +124,7 @@ public class StatisticsPanelController : MonoBehaviour
 
             if(item.Data.Count < 4)
             {
-                UIPopupMessage.instance.ShowMessage("Insufficient data. Complete the statistics");
+                //PopupMessageService.instance.Show("Insufficient data. Complete the statistics");
                 return;
             }
             else OpenCurrentStatistic(item);
@@ -133,7 +134,7 @@ public class StatisticsPanelController : MonoBehaviour
     }   
     private void OpenConfirmationAndAddationMenu()
     {
-        MenuManager.Instance.ShowConfirmationPanel();
+       // MenuManager.Instance.ShowConfirmationPanel();
     }
     private void OpenCurrentStatistic(Statistic statistics)
     {

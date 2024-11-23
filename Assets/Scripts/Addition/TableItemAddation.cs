@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using FactoryManager;
-using FactoryManager.Data;
+using Scripts;
+using Scripts.Data;
+using Scripts.Services;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -39,7 +39,7 @@ public class TableItemAddation : BaseAddition
             name: name,                
             type: inputFields["Type"].text                
         );
-        if(DataManager.Instance != null)DataManager.Instance.AddItem(_menuType,newItem);
+        //if(ISaveloadDataService.Instance != null)DataManager.Instance.AddItem(_menuType,newItem);
         Added();
     }
     }

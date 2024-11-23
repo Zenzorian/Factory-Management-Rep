@@ -1,5 +1,5 @@
-using FactoryManager;
-using FactoryManager.Data;
+using Scripts;
+using Scripts.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;

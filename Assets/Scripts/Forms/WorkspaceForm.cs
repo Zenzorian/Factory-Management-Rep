@@ -1,9 +1,9 @@
 using UnityEngine.UI;
 using UnityEngine;
-using FactoryManager.Data;
+using Scripts.Data;
 using System.Collections.Generic;
 
-namespace FactoryManager
+namespace Scripts
 {
     [System.Serializable]
     public class WorkspaceForm : BaseAddition
@@ -58,7 +58,7 @@ namespace FactoryManager
         {
             Debug.Log("Tool Event");
             _selectedTools.Add(tool);
-            UIPopupMessage.instance.ShowMessage("Tool successfully added");
+            //PopupMessageService.instance.Show("Tool successfully added");
             MenuManager.Instance.Back();
             MenuManager.Instance.Back();           
         }

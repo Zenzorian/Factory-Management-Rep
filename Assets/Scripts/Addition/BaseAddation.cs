@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace FactoryManager
+namespace Scripts
 {
     public abstract class BaseAddition
     {        

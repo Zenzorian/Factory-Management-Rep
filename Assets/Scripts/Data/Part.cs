@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace FactoryManager.Data
+namespace Scripts.Data
 {
     [System.Serializable]
     public class Part : TableItem

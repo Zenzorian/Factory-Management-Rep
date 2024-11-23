@@ -1,9 +1,9 @@
 using UnityEngine.UI;
 using UnityEngine;
-using FactoryManager.Data;
+using Scripts.Data;
 using System.Collections.Generic;
 
-namespace FactoryManager
+namespace Scripts
 {
     [System.Serializable]
     public class ToolForm : BaseAddition

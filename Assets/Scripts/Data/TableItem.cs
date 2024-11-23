@@ -1,4 +1,4 @@
-namespace FactoryManager.Data
+namespace Scripts.Data
 {
     [System.Serializable]
     public class TableItem
