@@ -7,36 +7,35 @@ using UnityEngine;
 
 namespace Scripts.Services
 {
-    public class SaveloadDataService: MonoBehaviour, ISaveloadDataService
+    public class SaveloadDataService:  ISaveloadDataService
     {        
-        private const string fileName = "FactoryManagerGlobalData.json";
-        private string filePath;        
-        [SerializeField] private GlobalData _globalData;
-        public GlobalData GlobalData{get; private set;}
-           
-        private void OnApplicationQuit()
+        private const string _fileName = "FactoryManagerGlobalData.json";
+        private string _filePath;
+        private GlobalData _globalData = new GlobalData();
+
+        public SaveloadDataService()
         {
-            SaveData();
+            _filePath = Path.Combine(Application.streamingAssetsPath, $"Data/{_fileName}");
         }
 
         public void SaveData()
         {
             string json = JsonUtility.ToJson(_globalData, true);
-            File.WriteAllText(filePath, json);
-            Debug.Log("Data saved to " + filePath);
+            File.WriteAllText(_filePath, json);
+            Debug.Log("Data saved to " + _filePath);
         }
 
         public void LoadData()
-        {
-            if (File.Exists(filePath))
+        {         
+            if (File.Exists(_filePath))
             {
-                string json = File.ReadAllText(filePath);
+                string json = File.ReadAllText(_filePath);
                 JsonUtility.FromJsonOverwrite(json, _globalData);
-                Debug.Log("Data loaded from " + filePath);
+                Debug.Log("Data loaded from " + _filePath);
             }
             else
             {
-                Debug.LogWarning("Save file not found at " + filePath);
+                Debug.LogWarning("Save file not found at " + _filePath);
             }
         }
         public List<string> GetTypesOfWorkers()

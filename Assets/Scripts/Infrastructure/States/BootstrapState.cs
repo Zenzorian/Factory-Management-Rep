@@ -1,4 +1,5 @@
 ﻿using Scripts.Infrastructure.AssetManagement;
+using Scripts.MyTools;
 using Scripts.Services;
 using UnityEngine;
 
@@ -30,18 +31,26 @@ namespace Scripts.Infrastructure.States
         {
             _services.RegisterSingle<IStateMachine>(_stateMachine);
 
-            InitializeAndRegisterServicesWithExternalElements();
+            RegisterAssetProvider();
 
-            _services.RegisterSingle<ITutorialService>(new TutorialService(_services.Single<ISaveloadDataService>(), _services.Single<IAssetProvider>().GetMainMenuButtons()));
+            var assetProvider = _services.Single<IAssetProvider>();
+
+            _services.RegisterSingle<ISaveloadDataService>(new SaveloadDataService());
+            Debug.Log("SaveloadDataService Initialized");
+
+            _services.RegisterSingle<ITutorialService>(new TutorialService(_services.Single<ISaveloadDataService>(), assetProvider.GetMainMenuButtons()));
             Debug.Log("TutorialService Initialized");
 
-            _services.RegisterSingle<IPopUpMassageService>(new PopupMessageService(_services.Single<IAssetProvider>().GetPopupMessageElements()));
+            _services.RegisterSingle<IPopUpMassageService>(new PopupMessageService(assetProvider.GetPopupMessageElements()));
             Debug.Log("PopUpMassageService Initialized");
 
-            _services.RegisterSingle<IConfirmPanelService>(new ConfirmPanelService(_services.Single<IAssetProvider>().GetConfirmationPanelElements()));
+            _services.RegisterSingle<IConfirmPanelService>(new ConfirmPanelService(assetProvider.GetConfirmationPanelElements()));
+            Debug.Log("ConfirmationPanelService Initialized");
+
+            _services.RegisterSingle<IChoiceOfCategoryService>(new ChoiceOfCategoryService(assetProvider.GetChoiceOfCategoryElements(),new ButtonCreator(assetProvider.GetButtonPrefab())));
             Debug.Log("ConfirmationPanelService Initialized");
         }
-        private void InitializeAndRegisterServicesWithExternalElements()
+        private void RegisterAssetProvider()
         {
             var assetProvider = Transform.FindFirstObjectByType<AssetProvider>();
             if (assetProvider == null)
@@ -53,15 +62,7 @@ namespace Scripts.Infrastructure.States
             {
                 Debug.Log("AssetProvider Initialized");
                 _services.RegisterSingle<IAssetProvider>(assetProvider);
-            }
-
-            var serviceInitializer = Transform.FindFirstObjectByType<ServiceInitializer>();
-            if (serviceInitializer == null)
-            {
-                Debug.LogError("Service Initializer not found");
-                return;
-            }
-            serviceInitializer.Initialize(_services);
+            }           
         }     
     }
 }

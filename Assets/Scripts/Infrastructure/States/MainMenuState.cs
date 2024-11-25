@@ -2,7 +2,6 @@
 using Scripts.Infrastructure.AssetManagement;
 using Scripts.MyTools;
 using Scripts.Services;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,55 +10,69 @@ namespace Scripts.Infrastructure.States
     public class MainMenuState : IState
     {
         private readonly StateMachine _stateMachine;
+        private readonly LoadingCurtain _loadingCurtain;
         private readonly IAssetProvider _assetProvider;
         private readonly ISaveloadDataService _saveloadDataService;
-        private readonly LoadingCurtain _loadingCurtain;
+
 
         private Button[] _menuButtons;
 
-        public MainMenuState(StateMachine stateMachine, LoadingCurtain loadingCurtain, IAssetProvider assetProvider)
+        public MainMenuState(StateMachine stateMachine, LoadingCurtain loadingCurtain, IAssetProvider assetProvider, ISaveloadDataService saveloadDataService)
         {
             _stateMachine = stateMachine;
-            _assetProvider = assetProvider;
             _loadingCurtain = loadingCurtain;
+            _assetProvider = assetProvider;
+            _saveloadDataService = saveloadDataService;
         }
 
         public void Enter()
         {
             Debug.Log("Enter on MainMenuState");
 
+            _saveloadDataService.LoadData();
+
             _loadingCurtain.Hide();
-           
+
+            SetMenuButtonsEvents();
+        }
+
+        private void SetMenuButtonsEvents()
+        {
             _menuButtons = _assetProvider.GetMainMenuButtons();
-            
-            int menuType;
 
             for (int i = 0; i < _menuButtons.Length; i++)
             {
-                menuType = i;
-                _menuButtons[i].onClick.AddListener(() => OpenMenu(menuType));
+                Button button = _menuButtons[i];
+
+                int menuType = i;
+                button.onClick.AddListener(() => OpenMenu(menuType));
             }
         }
+
         public void OpenMenu(int value)
         {
-            List<string> selectedList = null;
-
-            Debug.Log(value);
+            var categoryData = new CategoryData();
 
             switch ((MainMenuTypes)value)
             {
                 case MainMenuTypes.Workspaces:
-                    selectedList = _saveloadDataService.GetTypesOfWorkspace();
-                    break;
+                    categoryData.selectedList = _saveloadDataService.GetTypesOfWorkspace();
+                    categoryData.MenuType = MainMenuTypes.Workspaces;
+                    GoToChoiceOfCategoryState(categoryData);
+                    return;
                 case MainMenuTypes.Tools:
-                    selectedList = _saveloadDataService.GetTypesOfTools();
-                    break;
+                    categoryData.selectedList = _saveloadDataService.GetTypesOfTools();
+                    categoryData.MenuType = MainMenuTypes.Tools;
+                    GoToChoiceOfCategoryState(categoryData);
+                    return;
                 case MainMenuTypes.Workers:
-                    selectedList = _saveloadDataService.GetTypesOfWorkers();
-                    break;
+                    categoryData.selectedList = _saveloadDataService.GetTypesOfWorkers();
+                    GoToChoiceOfCategoryState(categoryData);
+                    return;
                 case MainMenuTypes.Parts:
-                    selectedList = _saveloadDataService.GetTypesOfParts();
-                    break;
+                    categoryData.selectedList = _saveloadDataService.GetTypesOfParts();
+                    GoToChoiceOfCategoryState(categoryData);
+                    return;
                 case MainMenuTypes.Statistic:
                     _stateMachine.Enter<StatisticProcessorState>();
                     break;
@@ -74,14 +87,16 @@ namespace Scripts.Infrastructure.States
                 //    return;
                 default:
                     break;
+            }            
+        }
+        public void GoToChoiceOfCategoryState(CategoryData categoryData)
+        {
+            if (categoryData.selectedList == null)
+            {
+                Debug.LogError("Category List Is Null");
+                return;
             }
-
-            //if (selectedList != null)
-            //{
-            //    TemporaryListOfCategory = selectedList;
-            //    _categoryMenu.Create(selectedList, menuType);
-            //    Forward(_choicePanel.gameObject);
-            //}
+            _stateMachine.Enter<ChoiceOfCategoryState, CategoryData>(categoryData);
         }
 
         public void Exit()

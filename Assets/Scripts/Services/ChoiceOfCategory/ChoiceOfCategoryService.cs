@@ -1,4 +1,6 @@
 using Scripts.Data;
+using Scripts.Infrastructure.AssetManagement;
+using Scripts.MyTools;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,29 +9,42 @@ namespace Scripts.Services
 {
     public class ChoiceOfCategoryService : MonoBehaviour , IChoiceOfCategoryService
     {
-        [SerializeField] private Text _sectionNameText;
-        [SerializeField] private Transform _addButton;         
-        [SerializeField] private ButtonCreator _buttonCreator;
-        [SerializeField] private Transform _content;
+        private readonly Transform _panel;
+        private readonly Text _sectionNameText;        
+        private readonly Transform _content;
+
+        private readonly ButtonCreator _buttonCreator;
 
         private List<string> _selectedCategories = new List<string>();
         private List<StatisticData> _selectedStatisticList = new List<StatisticData>();
         private StatisticData _selectedStatisticData = new StatisticData();
-        public static MainMenuTypes MenuType { get; private set; }
-        private void Awake()
-        {            
-            AddationManager.instance.OnAdded.AddListener(SomethingAdded);
-        }       
-        private void SomethingAdded() 
+
+        public ChoiceOfCategoryService(ChoiceOfCategoryElements choiceOfCategoryElements, ButtonCreator buttonCreator)
         {
-            if (MenuManager.Instance.menuType == MainMenuTypes.StatisticTool)
-            {
-                CreateForStatistic(_selectedStatisticList);
-                return;
-            }            
-           
-            Create(_selectedCategories, MenuType);
+            _panel = choiceOfCategoryElements.panel;
+            _sectionNameText = choiceOfCategoryElements.sectionNameText;           
+            _content = choiceOfCategoryElements.content;
+
+            _buttonCreator = buttonCreator;
         }
+
+        public static MainMenuTypes MenuType { get; private set; }
+        public void Activate()
+        {
+            _panel.gameObject.SetActive(true);
+        }
+        public void Deactivate()
+        {
+            Clear();
+            _panel.gameObject.SetActive(false);
+        }
+        private void Clear() 
+        {
+            foreach (Transform item in _content)
+            {
+                Destroy(item.gameObject);
+            }
+        }  
         public void Create(List<string> list,MainMenuTypes menuType)
         {
             _selectedCategories = list;
@@ -52,17 +67,10 @@ namespace Scripts.Services
                 //if((menuType == MainMenuTypes.StatisticTool||
                 //menuType == MainMenuTypes.StatisticPart)&& count == 0)
                 //myButton.gameObject.SetActive(false);                
-            }
-           
-            if(menuType == MainMenuTypes.StatisticTool||
-                menuType == MainMenuTypes.StatisticPart)
-                _addButton.gameObject.SetActive(false);
-            else _addButton.gameObject.SetActive(true);
+            } 
         }
         public void CreateForStatistic(List<StatisticData> list)
-        {
-            _addButton.gameObject.SetActive(true);
-
+        {    
             _selectedStatisticList = list;
 
             Clear();
@@ -90,12 +98,5 @@ namespace Scripts.Services
         {
             //_tableController.OpenTableWithFilter(MenuType, index);             
         }
-        private void Clear() 
-        {
-            foreach (Transform item in _content)
-            {
-                Destroy(item.gameObject);
-            }
-        }       
     }
 }
