@@ -51,52 +51,21 @@ namespace Scripts.Infrastructure.States
 
         public void OpenMenu(int value)
         {
-            var categoryData = new CategoryData();
+            var categoryData = new ChoiceOfCategoryStateData();
 
-            switch ((MainMenuTypes)value)
-            {
-                case MainMenuTypes.Workspaces:
-                    categoryData.selectedList = _saveloadDataService.GetTypesOfWorkspace();
-                    categoryData.MenuType = MainMenuTypes.Workspaces;
-                    GoToChoiceOfCategoryState(categoryData);
-                    return;
-                case MainMenuTypes.Tools:
-                    categoryData.selectedList = _saveloadDataService.GetTypesOfTools();
-                    categoryData.MenuType = MainMenuTypes.Tools;
-                    GoToChoiceOfCategoryState(categoryData);
-                    return;
-                case MainMenuTypes.Workers:
-                    categoryData.selectedList = _saveloadDataService.GetTypesOfWorkers();
-                    GoToChoiceOfCategoryState(categoryData);
-                    return;
-                case MainMenuTypes.Parts:
-                    categoryData.selectedList = _saveloadDataService.GetTypesOfParts();
-                    GoToChoiceOfCategoryState(categoryData);
-                    return;
-                case MainMenuTypes.Statistic:
-                    _stateMachine.Enter<StatisticProcessorState>();
-                    break;
-                //case MainMenuTypes.StatisticPart:
-                //    selectedList = _globalData.typesOfParts;
-                //    break;
-                //case MainMenuTypes.StatisticTool:
-                //    selectedList = _globalData.typesOfTools;
-                //    break;
-                //case MainMenuTypes.Options:
-                //    Forward(_optionsPanel.gameObject);
-                //    return;
-                default:
-                    break;
-            }            
+            categoryData.selectedListOfCategotyElements = _saveloadDataService.GetTypesOfItemsListByType((MainMenuTypes)value);
+            categoryData.MenuType = (MainMenuTypes)value;
+
+            GoToChoiceOfCategoryState(categoryData);
         }
-        public void GoToChoiceOfCategoryState(CategoryData categoryData)
+        public void GoToChoiceOfCategoryState(ChoiceOfCategoryStateData categoryData)
         {
-            if (categoryData.selectedList == null)
+            if (categoryData.selectedListOfCategotyElements == null)
             {
                 Debug.LogError("Category List Is Null");
                 return;
             }
-            _stateMachine.Enter<ChoiceOfCategoryState, CategoryData>(categoryData);
+            _stateMachine.Enter<ChoiceOfCategoryState, ChoiceOfCategoryStateData>(categoryData);
         }
 
         public void Exit()

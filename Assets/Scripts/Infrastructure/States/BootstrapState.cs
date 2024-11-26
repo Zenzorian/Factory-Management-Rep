@@ -1,6 +1,7 @@
 ﻿using Scripts.Infrastructure.AssetManagement;
 using Scripts.MyTools;
 using Scripts.Services;
+using System;
 using UnityEngine;
 
 namespace Scripts.Infrastructure.States
@@ -47,9 +48,24 @@ namespace Scripts.Infrastructure.States
             _services.RegisterSingle<IConfirmPanelService>(new ConfirmPanelService(assetProvider.GetConfirmationPanelElements()));
             Debug.Log("ConfirmationPanelService Initialized");
 
-            _services.RegisterSingle<IChoiceOfCategoryService>(new ChoiceOfCategoryService(assetProvider.GetChoiceOfCategoryElements(),new ButtonCreator(assetProvider.GetButtonPrefab())));
+            _services.RegisterSingle<IChoiceOfCategoryService>(new ChoiceOfCategoryService(assetProvider.GetChoiceOfCategoryElements(),new ButtonCreator(assetProvider.GetButtonPrefab()), _services.Single<ISaveloadDataService>()));
             Debug.Log("ConfirmationPanelService Initialized");
+
+            _services.RegisterSingle<ITableProcessorService>(new TableProcessor(_services.Single<ISaveloadDataService>(), GetTableView()));
+            Debug.Log("TableProcessorService Initialized");
         }
+
+        private TableView GetTableView()
+        {
+            var tableView = Transform.FindFirstObjectByType<TableView>();
+            if (tableView == null)
+            {
+                Debug.LogError("tableView not found");
+                return null;
+            }
+            else return tableView;
+        }
+
         private void RegisterAssetProvider()
         {
             var assetProvider = Transform.FindFirstObjectByType<AssetProvider>();

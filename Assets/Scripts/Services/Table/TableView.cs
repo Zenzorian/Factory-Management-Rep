@@ -1,16 +1,13 @@
-using Scripts.Data;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class TableView : MonoBehaviour, ITableView
+public class TableView : MonoBehaviour
 {
     [Header("TABLE OBJECT")]
-    [SerializeField] private Transform _tableObject;   
+    [SerializeField] private Transform _tableObject;
     [Header("SCROLL RECT PREFAB")]
-    [SerializeField] private GameObject _scrollViewObject;      
+    [SerializeField] private GameObject _scrollViewObject;
 
     [Header("BACKGROUND")]
     [SerializeField] private Color _headerBackgroundColor;
@@ -31,65 +28,33 @@ public class TableView : MonoBehaviour, ITableView
     [Header("SPACING")]
     [SerializeField] private float _horizontalSpacing = 5;
     [SerializeField] private float _verticalSpacing = 5;
-        
+
     private ScrollRect _scrollRect;
 
     private RectTransform _headerContainer;
-    private RectTransform _tableContainer;    
+    private RectTransform _tableContainer;
 
     private float _totalRowsHeight;
     private float _totalColumnsWidth;
 
     private float _scrollbarWidth;
     private TableCell[,] _tableCells;
-
-    private List<TableItem> _tableItems;
-
     public TableCell[,] GetTableCells()
     {
         return _tableCells;
     }
     public void OpenTable()
     {
-        _tableObject.parent.gameObject.SetActive(true);
+        _tableObject.gameObject.SetActive(true);
     }
     public void CloseTable()
     {
-        _tableObject.parent.gameObject.gameObject.SetActive(false);
+        _tableObject.gameObject.SetActive(false);
     }
-    public void SetTableData(List<TableItem> list)
-    {
-        if (list == null || list.Count == 0)
-            return;
 
-        _tableItems = list;
-        FieldInfo[] fields = typeof(TableItem).GetFields();
-        List<string> fieldNames = new List<string>();
-
-        foreach (var field in fields)
-        {
-            fieldNames.Add(field.Name);
-        }
-
-        // Создаем массив для данных таблицы
-        var tableData = new string[list.Count, fieldNames.Count];
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            for (int j = 0; j < fields.Length; j++)
-            {
-                var value = fields[j].GetValue(list[i]);
-                tableData[i, j] = value != null ? value.ToString() : string.Empty;
-            }
-        }
-
-        Table table = new Table(fieldNames.ToArray(), tableData);
-
-        CreateTable(table);
-    }
     public void CreateTable(Table table)
     {
-        ClearTable();       
+        ClearTable();
 
         _tableCells = new TableCell[table.TableCells.GetLength(0), table.TableCells.GetLength(1)];
 
@@ -97,9 +62,9 @@ public class TableView : MonoBehaviour, ITableView
         _totalColumnsWidth = table.TableCells.GetLength(1) * (_width + _horizontalSpacing);
 
         if (_customFirstColumIsActive)
-        { 
+        {
             var rectWidth = _tableObject.GetComponent<RectTransform>().rect.width;
-            _totalColumnsWidth = (table.TableCells.GetLength(1) -1) * (_width + _horizontalSpacing) + _customFirstColumWidth;
+            _totalColumnsWidth = (table.TableCells.GetLength(1) - 1) * (_width + _horizontalSpacing) + _customFirstColumWidth;
             if (_totalColumnsWidth < rectWidth)
                 _totalColumnsWidth = rectWidth;
         }
@@ -114,15 +79,15 @@ public class TableView : MonoBehaviour, ITableView
         CreateHeaderColumns(table.HeaderFields);
 
         CreateTableColumns(table.TableCells);
-       
+
         _scrollRect.content.GetComponent<VerticalLayoutGroup>().padding = _tableRectOffset;
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(_headerContainer);
         LayoutRebuilder.ForceRebuildLayoutImmediate(_tableContainer);
-             
+
         OpenTable();
     }
-    
+
     private RectTransform CreateHeaderContainer()
     {
         var headerHeight = _height + _headerRectOffset.top + _headerRectOffset.bottom;
@@ -159,19 +124,20 @@ public class TableView : MonoBehaviour, ITableView
         var table = Instantiate(_scrollViewObject);
 
         var tableRect = table.GetComponent<RectTransform>();
-        tableRect.SetParent(_tableObject);        
+        tableRect.SetParent(_tableObject);
         tableRect.anchorMin = new Vector2(0, 0);
-        tableRect.anchorMax = new Vector2(1, 1); 
+        tableRect.anchorMax = new Vector2(1, 1);
         tableRect.localScale = Vector3.one;
         tableRect.offsetMax = new Vector2(0, -_headerContainer.sizeDelta.y);
+        tableRect.offsetMin = Vector2.zero;
         tableRect.SetAsFirstSibling();
 
         var tableImage = table.GetComponent<Image>();
-        tableImage.color = _tableBackgroundColor;       
+        tableImage.color = _tableBackgroundColor;
 
         return tableRect;
     }
-    
+
     private void SetScrollRectSettings()
     {
         _scrollRect = _tableContainer.GetComponent<ScrollRect>();
@@ -194,15 +160,15 @@ public class TableView : MonoBehaviour, ITableView
             cell.text.text = item;
             cell.rectTransform.sizeDelta = new Vector2(_width, _height);
 
-            if (_customFirstColumIsActive == true && fields[0] == item)                      
-                cell.rectTransform.sizeDelta = new Vector2(_customFirstColumWidth, _height); 
+            if (_customFirstColumIsActive == true && fields[0] == item)
+                cell.rectTransform.sizeDelta = new Vector2(_customFirstColumWidth, _height);
         }
     }
     private void CreateTableColumns(string[,] tableData)
     {
         int rows = tableData.GetLength(0);
         int columns = tableData.GetLength(1);
-               
+
         var layoutGroup = AddVerticallLayoutGroup(_scrollRect.content.gameObject);
 
         layoutGroup.padding.right = (int)_scrollbarWidth;
@@ -216,7 +182,7 @@ public class TableView : MonoBehaviour, ITableView
                 TableCell cell = new TableCell();
                 if (_customFirstColumIsActive == true && c == 0)
                 {
-                    cell = _cellCreator.CreateCell(parent: row,customTableCell: _customFirstColum);
+                    cell = _cellCreator.CreateCell(parent: row, customTableCell: _customFirstColum);
                     cell.rectTransform.sizeDelta = new Vector2(_customFirstColumWidth, _height);
                 }
                 else
@@ -226,12 +192,12 @@ public class TableView : MonoBehaviour, ITableView
                 }
                 cell.text.text = tableData[r, c];
                 cell.rectTransform.localScale = Vector3.one;
-              
+
                 int currentRow = r;
 
                 _tableCells[r, c] = cell;
                 _tableCells[r, c].rectTransform = cell.rectTransform;
-                
+
                 //cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => OnCellClicked(currentRow));
             }
         }
@@ -261,9 +227,9 @@ public class TableView : MonoBehaviour, ITableView
         var row = new GameObject("Row");
         var rectTransform = row.AddComponent<RectTransform>();
         row.transform.SetParent(container);
-                
+
         rectTransform.localScale = Vector3.one;
-                
+
         var rect = rectTransform.rect;
         rect.height = _height;
 
@@ -271,7 +237,7 @@ public class TableView : MonoBehaviour, ITableView
     }
     private HorizontalLayoutGroup AddHorizontalLayoutGroup(GameObject container)
     {
-        if (container.GetComponent<HorizontalLayoutGroup>() == true) 
+        if (container.GetComponent<HorizontalLayoutGroup>() == true)
             return container.GetComponent<HorizontalLayoutGroup>();
 
         var layoutCroup = container.AddComponent<HorizontalLayoutGroup>();
@@ -303,7 +269,7 @@ public class TableView : MonoBehaviour, ITableView
     private void HandleHorizontalScroll(float value)
     {
         _headerContainer.anchoredPosition = new Vector2(value * (_headerContainer.rect.width - _scrollRect.viewport.rect.width) * -1, _headerContainer.anchoredPosition.y);
-    }    
+    }
 }
 public class Table
 {
@@ -312,6 +278,6 @@ public class Table
         HeaderFields = headerFields;
         TableCells = tableCells;
     }
-    public string[] HeaderFields { get; private set;}
+    public string[] HeaderFields { get; private set; }
     public string[,] TableCells { get; private set; }
 }

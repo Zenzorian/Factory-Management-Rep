@@ -8,13 +8,11 @@ namespace Scripts.Services
         void LoadData();
         void SaveData();
 
-        List<string> GetTypesOfWorkers();
-        List<string> GetTypesOfWorkspace();
-        List<string> GetTypesOfTools();
-        List<string> GetTypesOfParts();
+        List<string> GetTypesOfItemsListByType(MainMenuTypes menuType);
+        IEnumerable<TableItem> GetItemsListByType(MainMenuTypes menuType);
 
         void AddItem(MainMenuTypes menuType, TableItem item);
-        public int GetItemsCount(MainMenuTypes menuType, string type = null);
-        public IEnumerable<TableItem> GetItemsListByType(MainMenuTypes menuType);
+        int GetItemsCount(MainMenuTypes menuType, string type = null);
+        List<TableItem> GetItemsListWithFilter(MainMenuTypes menuType, int indexOfSelectedCategoty);
     }
 }

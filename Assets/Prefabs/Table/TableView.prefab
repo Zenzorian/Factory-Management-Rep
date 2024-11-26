@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6361173501802797090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605793577780353050}
+  - component: {fileID: 4721754239375248940}
+  m_Layer: 5
+  m_Name: TableView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &605793577780353050
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361173501802797090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -29.999878}
+  m_SizeDelta: {x: -10, y: -70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4721754239375248940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361173501802797090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7a30cd9cc0eca4fb56cc4ebf8b36af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tableObject: {fileID: 605793577780353050}
+  _scrollViewObject: {fileID: 6316238574049925065, guid: 6a2ff4557aa89c14db4b52cfd9d34102, type: 3}
+  _headerBackgroundColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+  _tableBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  _cellCreator:
+    _headerCell: {fileID: 6813890142723550001, guid: dcb537d33d46dd14d97b5e7da3848bc8, type: 3}
+    _tableCell: {fileID: 2854490041945885566, guid: f9fbdb474fe9c374d940cc2d4d4b73aa, type: 3}
+  _height: 35
+  _width: 200
+  _customFirstColumIsActive: 0
+  _customFirstColum: {fileID: 0}
+  _customFirstColumWidth: 0
+  _headerRectOffset:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  _tableRectOffset:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  _horizontalSpacing: 5
+  _verticalSpacing: 5

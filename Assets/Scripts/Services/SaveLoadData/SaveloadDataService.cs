@@ -37,23 +37,7 @@ namespace Scripts.Services
             {
                 Debug.LogWarning("Save file not found at " + _filePath);
             }
-        }
-        public List<string> GetTypesOfWorkers()
-        {
-            return _globalData.typesOfWorkers;
-        }
-        public List<string> GetTypesOfWorkspace()
-        {
-            return _globalData.typesOfWorkspace;
-        }
-        public List<string> GetTypesOfTools()
-        {
-            return _globalData.typesOfTools;
-        }
-        public List<string> GetTypesOfParts()
-        {
-            return _globalData.typesOfParts;
-        }
+        }       
         public void AddItem(MainMenuTypes menuType, TableItem item)
         {
             switch (menuType)
@@ -110,6 +94,44 @@ namespace Scripts.Services
                     Debug.LogWarning($"Unhandled MainMenuType: {menuType}");
                     return null;
             }
+        }
+        public List<string> GetTypesOfItemsListByType(MainMenuTypes menuType)
+        {
+            switch (menuType)
+            {
+                case MainMenuTypes.Workspaces:
+                    return _globalData.typesOfWorkspace;
+                case MainMenuTypes.Tools:
+                    return _globalData.typesOfTools;
+                case MainMenuTypes.Workers:
+                    return _globalData.typesOfWorkers;
+                case MainMenuTypes.Parts:
+                    return _globalData.typesOfParts;               
+                default:
+                    Debug.LogWarning($"Unhandled MainMenuType: {menuType}");
+                    return null;
+            }
+        }
+
+        public List<TableItem> GetItemsListWithFilter(MainMenuTypes menuType, int indexOfSelectedCategoty)
+        {
+            List<TableItem> temporaryList = new List<TableItem>();
+
+            string itemType = GetTypesOfItemsListByType(menuType)[indexOfSelectedCategoty];
+            IEnumerable<TableItem> ItemList = GetItemsListByType(menuType);
+            temporaryList = Filter(itemType, ItemList);
+
+            return temporaryList;
+        }
+        private List<TableItem> Filter(string type, IEnumerable<TableItem> list)
+        {
+            var temporaryList = new List<TableItem>();
+            foreach (var item in list)
+            {
+                if (item.Type == type)
+                    temporaryList.Add(item);
+            }
+            return temporaryList;
         }
     }
 }
