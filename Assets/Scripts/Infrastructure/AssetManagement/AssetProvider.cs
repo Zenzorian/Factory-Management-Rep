@@ -12,7 +12,7 @@ namespace Scripts.Infrastructure.AssetManagement
         [SerializeField] private PopupMessageElements _popupMessageElements;
         [SerializeField] private ConfirmPanelElements _confirmationPanelElements;
         [SerializeField] private ChoiceOfCategoryElements _choiceOfCategoryElements;
-
+        [SerializeField] private ItemsAddationViewElements _itemsAddationViewElements;
         public GameObject GetButtonPrefab() => _buttonPrefab;
         public Button[] GetMainMenuButtons() => _mainMenuButtons;
         public GlobalUIElements GetGlobalUIElements() => _globalUIElements;
@@ -20,6 +20,7 @@ namespace Scripts.Infrastructure.AssetManagement
         public ConfirmPanelElements GetConfirmationPanelElements() => _confirmationPanelElements;
 
         public ChoiceOfCategoryElements GetChoiceOfCategoryElements() => _choiceOfCategoryElements;
+        public ItemsAddationViewElements GetItemsAddationViewElements() => _itemsAddationViewElements;
     }
     [System.Serializable]
     public class GlobalUIElements    
@@ -46,5 +47,14 @@ namespace Scripts.Infrastructure.AssetManagement
         public Transform panel;
         public Text sectionNameText;       
         public Transform content;
+    }
+    [System.Serializable]
+    public class ItemsAddationViewElements
+    {
+        public Transform addationPanel;
+        public Transform content;
+        public InputFieldCreator inputFieldCreator = new InputFieldCreator();
+        public Button addButton;
+        public Button closeButton;
     }
 }

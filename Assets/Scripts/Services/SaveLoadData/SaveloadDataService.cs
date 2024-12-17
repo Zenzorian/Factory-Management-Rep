@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Scripts.Data;
-
 using UnityEngine;
 
 namespace Scripts.Services
@@ -37,8 +36,30 @@ namespace Scripts.Services
             {
                 Debug.LogWarning("Save file not found at " + _filePath);
             }
-        }       
-        public void AddItem(MainMenuTypes menuType, TableItem item)
+        }
+        public void AddItemInCategory(MainMenuTypes menuType, string categoryName)
+        {
+            switch (menuType)
+            {
+                case MainMenuTypes.Workspaces:
+                    _globalData.typesOfWorkspace.Add(categoryName);                   
+                    break;
+                case MainMenuTypes.Tools:
+                    _globalData.typesOfTools.Add(categoryName);
+                    break;
+                case MainMenuTypes.Workers:
+                    _globalData.typesOfWorkers.Add(categoryName);
+                    break;
+                case MainMenuTypes.Parts:
+                    _globalData.typesOfParts.Add(categoryName);
+                    break;
+                default:
+                    Debug.LogWarning("Unsupported MainMenuType");
+                    break;
+            }
+            SaveData();
+        }
+        public void AddItemInTable(MainMenuTypes menuType, TableItem item)
         {
             switch (menuType)
             {
@@ -85,11 +106,7 @@ namespace Scripts.Services
                 case MainMenuTypes.Workers:
                     return _globalData.listOfWorkers;
                 case MainMenuTypes.Parts:
-                    return _globalData.listOfParts;
-                case MainMenuTypes.StatisticPart:
-                    return _globalData.listOfParts;
-                case MainMenuTypes.StatisticTool:
-                    return _globalData.listOfTools;
+                    return _globalData.listOfParts;               
                 default:
                     Debug.LogWarning($"Unhandled MainMenuType: {menuType}");
                     return null;

@@ -12,5 +12,6 @@ namespace Scripts.Infrastructure.AssetManagement
         PopupMessageElements GetPopupMessageElements();
         ChoiceOfCategoryElements GetChoiceOfCategoryElements();
         GlobalUIElements GetGlobalUIElements();
+        ItemsAddationViewElements GetItemsAddationViewElements();
     }
 }

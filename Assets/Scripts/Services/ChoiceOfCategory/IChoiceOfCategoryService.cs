@@ -10,6 +10,6 @@ namespace Scripts.Services
         void Deactivate();       
         public void CreateForStatistic(List<StatisticData> list);
         public void ButtonPressed(int index);
-        void Create(List<string> list, MainMenuTypes menuType, UnityEvent<List<TableItem>> choiceButtonPresed);
+        void Create(List<string> list, MainMenuTypes menuType, UnityEvent<List<TableItem>, string> choiceButtonPresed);
     }
 }

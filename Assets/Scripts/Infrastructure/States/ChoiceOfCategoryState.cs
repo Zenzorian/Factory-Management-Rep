@@ -11,18 +11,22 @@ namespace Scripts.Infrastructure.States
         private readonly StateMachine _stateMachine;
         private readonly IChoiceOfCategoryService _choiceOfCategoryService;
         private readonly IPopUpMassageService _popUpMassageService;
+        private readonly IItemAddationService _addationService;
+
         private readonly GlobalUIElements _globalUIElements;      
 
 
-        private UnityEvent<List<TableItem>> _choiceButtonPressed = new UnityEvent<List<TableItem>>();
+        private UnityEvent<List<TableItem>, string> _choiceButtonPressed = new UnityEvent<List<TableItem>, string>();
            
         private ChoiceOfCategoryStateData _categoryData;
-        public ChoiceOfCategoryState(StateMachine stateMachine, IChoiceOfCategoryService choiceOfCategoryService, IPopUpMassageService popUpMassageService, GlobalUIElements globalUIElements)
+        public ChoiceOfCategoryState(StateMachine stateMachine, IChoiceOfCategoryService choiceOfCategoryService, IPopUpMassageService popUpMassageService, IItemAddationService addationService, GlobalUIElements globalUIElements)
         {
             _stateMachine = stateMachine;
             _choiceOfCategoryService = choiceOfCategoryService;
-            _globalUIElements = globalUIElements;
+            _globalUIElements = globalUIElements;      
+            _addationService = addationService;
             _popUpMassageService = popUpMassageService;
+
         }
         public void Enter(ChoiceOfCategoryStateData categoryData)
         {
@@ -32,19 +36,26 @@ namespace Scripts.Infrastructure.States
 
             _choiceButtonPressed.AddListener(listOfItemsChosen);
 
+            AddUIListeners();
+        }
+        private void AddUIListeners()
+        {
             _globalUIElements.backButton.onClick.AddListener(Back);
-            _globalUIElements.addationButton.onClick.AddListener(Addation);           
+            _globalUIElements.addationButton.onClick.AddListener(Addation);
         }
         private void Addation()
-        {
-
+        {     
+                
         }
-
+        private void OnAdded()
+        {
+            Enter(_categoryData);
+        }
         private void Back()
         {
             _stateMachine.Enter<MainMenuState>();
         }
-        private void listOfItemsChosen(List<TableItem> tableItems)
+        private void listOfItemsChosen(List<TableItem> tableItems, string categoryName)
         {      
             if (tableItems == null || tableItems.Count == 0)
             {
@@ -54,6 +65,7 @@ namespace Scripts.Infrastructure.States
             var tableProcessorStateData = new TableProcessorStateData();
             tableProcessorStateData.choiceOfCategoryStateData = _categoryData;
             tableProcessorStateData.selectedListOfTableItems = tableItems;
+            tableProcessorStateData.categoryName = categoryName;
 
             _stateMachine.Enter<TableProcessorState,TableProcessorStateData>(tableProcessorStateData);
 
@@ -61,23 +73,14 @@ namespace Scripts.Infrastructure.States
         public void Exit()
         {
             _choiceOfCategoryService.Deactivate();
+            RemoveUIListeners();
+        }
+
+        private void RemoveUIListeners()
+        {
             _globalUIElements.backButton.onClick.RemoveListener(Back);
             _globalUIElements.addationButton.onClick.RemoveListener(Addation);
         }
-        ////private void Awake()
-        ////{            
-        ////    AddationManager.instance.OnAdded.AddListener(SomethingAdded);
-        ////}       
-        //private void SomethingAdded()
-        //{
-        //    if (MenuManager.Instance.menuType == MainMenuTypes.StatisticTool)
-        //    {
-        //        CreateForStatistic(_selectedStatisticList);
-        //        return;
-        //    }
-
-        //    Create(_selectedCategories, MenuType);
-        //}
     }
     public struct ChoiceOfCategoryStateData
     {

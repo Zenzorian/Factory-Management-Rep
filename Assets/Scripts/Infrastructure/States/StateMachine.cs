@@ -29,15 +29,26 @@ namespace Scripts.Infrastructure.States
                     this,
                     services.Single<IChoiceOfCategoryService>(),
                     services.Single<IPopUpMassageService>(),
+                    new ChioceListAddation
+                    (
+                        services.Single<ISaveloadDataService>(),
+                        services.Single<IAssetProvider>().GetItemsAddationViewElements(),
+                        services.Single<IAssetProvider>().GetGlobalUIElements()
+                    ),
                     services.Single<IAssetProvider>().GetGlobalUIElements()
                 ),
                 [typeof(TableProcessorState)] = new TableProcessorState
                 (
-                    this,
-                    services.Single<ISaveloadDataService>(),
+                    this,                    
                     services.Single<ITableProcessorService>(),
+                    new TableItemAddation
+                    (
+                        services.Single<ISaveloadDataService>(),
+                        services.Single<IAssetProvider>().GetItemsAddationViewElements(),
+                        services.Single<IAssetProvider>().GetGlobalUIElements()
+                    ),
                     services.Single<IAssetProvider>().GetGlobalUIElements()
-                ),
+                ),               
                 //[typeof(StatisticProcessorState)] = new StatisticProcessorState(this),
 
             };

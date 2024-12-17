@@ -18,7 +18,7 @@ namespace Scripts.Services
 
         private readonly ButtonCreator _buttonCreator;
 
-        private UnityEvent<List<TableItem>> _choiceButtonPressed;
+        private UnityEvent<List<TableItem>,string> _choiceButtonPressed;
 
         private List<string> _selectedCategories = new List<string>();
         private List<StatisticData> _selectedStatisticList = new List<StatisticData>();
@@ -52,7 +52,7 @@ namespace Scripts.Services
                 GameObject.Destroy(item.gameObject);
             }
         }
-        public void Create(List<string> list, MainMenuTypes menuType, UnityEvent<List<TableItem>> choiceButtonPresed)
+        public void Create(List<string> list, MainMenuTypes menuType, UnityEvent<List<TableItem>, string> choiceButtonPresed)
         {
             _menuType = menuType;
 
@@ -73,10 +73,7 @@ namespace Scripts.Services
                 myButton.onClick.AddListener(delegate { ButtonPressed(index); });
                 var buttonText = myButton.GetComponentInChildren<Text>();
                 var count = _saveloadDataService.GetItemsCount(menuType, list[i]);
-                buttonText.text = $"{buttonText.text} - ({count})";
-                if ((menuType == MainMenuTypes.StatisticTool ||
-                menuType == MainMenuTypes.StatisticPart) && count == 0)
-                    myButton.gameObject.SetActive(false);
+                buttonText.text = $"{buttonText.text} - ({count})";               
             }
         }
         public void CreateForStatistic(List<StatisticData> list)
@@ -99,14 +96,16 @@ namespace Scripts.Services
                 int index = i;
                 var myButton = buttons[index].GetComponent<Button>();
                 var data = new StatisticData();
-                data = list[i];
-                myButton.onClick.AddListener(delegate { MenuManager.Instance.OpenStatisticInputPanel(data); });
+                data = list[i];                
             }
         }
+      
 
         public void ButtonPressed(int indexOfSelectedCategoty)
         {
-            _choiceButtonPressed?.Invoke(_saveloadDataService.GetItemsListWithFilter(_menuType,indexOfSelectedCategoty));                       
+            var listOfCategory = _saveloadDataService.GetTypesOfItemsListByType(_menuType);
+
+            _choiceButtonPressed?.Invoke(_saveloadDataService.GetItemsListWithFilter(_menuType,indexOfSelectedCategoty), listOfCategory[indexOfSelectedCategoty]);                       
         }
     }
 }

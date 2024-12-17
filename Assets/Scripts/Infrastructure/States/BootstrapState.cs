@@ -1,7 +1,6 @@
 ﻿using Scripts.Infrastructure.AssetManagement;
 using Scripts.MyTools;
 using Scripts.Services;
-using System;
 using UnityEngine;
 
 namespace Scripts.Infrastructure.States
@@ -53,6 +52,7 @@ namespace Scripts.Infrastructure.States
 
             _services.RegisterSingle<ITableProcessorService>(new TableProcessor(_services.Single<ISaveloadDataService>(), GetTableView()));
             Debug.Log("TableProcessorService Initialized");
+          
         }
 
         private TableView GetTableView()

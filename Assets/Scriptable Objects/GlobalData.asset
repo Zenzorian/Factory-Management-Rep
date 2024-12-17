@@ -1738,7 +1738,7 @@ MonoBehaviour:
       - F: 3.004
         V: 1.135
         PartCounter: d9000000ab000000b4000000e1000000ac000000
-  listOfWorkstations: []
+  listOfWorkspaces: []
   listOfTools:
   - Id: 86
     Name: TFWSYK7K
@@ -2362,17 +2362,7 @@ MonoBehaviour:
   - ForkliftOperator
   - Painter
   - Packer
-  typesOfWorkstation:
-  - AssemblyLine
-  - CNC
-  - Painting
-  - QualityControl
-  - Packaging
-  - Maintenance
-  - Storage
-  - Welding
-  - Inspection
-  - ResearchAndDevelopment
+  typesOfWorkspace: []
   typesOfParts:
   - Shaft
   - Gear

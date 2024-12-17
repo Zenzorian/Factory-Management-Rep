@@ -2,6 +2,8 @@ using UnityEngine.UI;
 using UnityEngine;
 using Scripts.Data;
 using System.Collections.Generic;
+using Scripts.Services;
+using Scripts.Infrastructure.AssetManagement;
 
 namespace Scripts
 {
@@ -11,10 +13,10 @@ namespace Scripts
         private Tool _tool;
 
         private Dictionary<string, InputField> _inputFields;
-        public ToolForm(InputFieldCreator inputFieldCreator, Transform content, Button button) : base(inputFieldCreator, content, button)
+        public ToolForm(ISaveloadDataService saveloadDataService, ItemsAddationViewElements itemsAddationViewElements, GlobalUIElements globalUIElements) : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
         {
             _inputFields = BuildAdditionPanel(typeof(Tool));
-            button.onClick.AddListener(Addation);
+            itemsAddationViewElements.addButton.onClick.AddListener(Addation);
         }
         private void Addation()
         {

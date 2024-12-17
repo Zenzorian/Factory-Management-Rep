@@ -1,28 +1,36 @@
 ﻿using Scripts.Data;
+using Scripts.Infrastructure.AssetManagement;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Scripts
+namespace Scripts.Services
 {
-    public class StatisticDataItemAddation : BaseAddition
+    public class StatisticDataItemAddation : BaseAddition, IItemAddationService
     {        
         private List<StatisticData> _list;
         private InputField _f;
         private InputField _v;
 
-        public StatisticDataItemAddation(InputFieldCreator inputFieldCreator, Transform content, Button button, UnityEvent OnAdded) : base(inputFieldCreator, content, button, OnAdded)
+        public StatisticDataItemAddation
+        (
+             ISaveloadDataService saveloadDataService,
+             ItemsAddationViewElements itemsAddationViewElements,
+             GlobalUIElements globalUIElements
+        ) : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
         {
         }
 
-        public void Open(List<StatisticData> list)
+        public void Open(AddationData addationData, Action onAdded)
         {
+            Initialize(addationData.menuType, onAdded);
+
             Clear();
 
-            _list = list;            
-            _button.onClick.AddListener(AddToList);
+            //_list = list as List<StatisticData>;            
+            _addButton.onClick.AddListener(AddToList);
 
             _f = _inputFieldCreator.Create("F = ", _content);
             _v = _inputFieldCreator.Create("V = ", _content);
@@ -49,7 +57,7 @@ namespace Scripts
                 };
 
                 _list.Add(data);               
-                _button.onClick.RemoveListener(AddToList);
+                _addButton.onClick.RemoveListener(AddToList);
 
                 Added();
             }

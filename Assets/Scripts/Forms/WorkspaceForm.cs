@@ -2,6 +2,8 @@ using UnityEngine.UI;
 using UnityEngine;
 using Scripts.Data;
 using System.Collections.Generic;
+using Scripts.Services;
+using Scripts.Infrastructure.AssetManagement;
 
 namespace Scripts
 {
@@ -12,10 +14,15 @@ namespace Scripts
         private Dictionary<string, InputField> _inputFields;
         private List<Tool> _selectedTools = new List<Tool>();
 
-        public WorkspaceForm(InputFieldCreator inputFieldCreator, Transform content, Button button) : base(inputFieldCreator, content, button)
+        public WorkspaceForm
+        (
+            ISaveloadDataService saveloadDataService, 
+            ItemsAddationViewElements itemsAddationViewElements,
+            GlobalUIElements globalUIElements
+        ) : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
         {
             _inputFields = BuildAdditionPanel(typeof(Workspace));
-            button.onClick.AddListener(Addation);
+            itemsAddationViewElements.addButton.onClick.AddListener(Addation);
             Init(_inputFields);
         }
         public void Open(List<Workspace> workspaces, TableItem currentWorkspace)
@@ -38,8 +45,8 @@ namespace Scripts
         public void Init(Dictionary<string, InputField> inputFields)
         {           
             _selectedTools.Clear();
-            MenuManager.Instance.OnToolSelected.RemoveAllListeners();
-            MenuManager.Instance.OnToolSelected.AddListener(SetTools);
+            //MenuManager.Instance.OnToolSelected.RemoveAllListeners();
+            //MenuManager.Instance.OnToolSelected.AddListener(SetTools);
             _inputFields = inputFields;
             var toolInput = inputFields["Tools"];
             toolInput.interactable = false;
@@ -52,15 +59,13 @@ namespace Scripts
         }
         private void OpenToolTable()
         {
-            MenuManager.Instance.OpenMenu((int)MainMenuTypes.Tools);
+            //MenuManager.Instance.OpenMenu((int)MainMenuTypes.Tools);
         }
         private void SetTools(Tool tool)
         {
             Debug.Log("Tool Event");
             _selectedTools.Add(tool);
-            //PopupMessageService.instance.Show("Tool successfully added");
-            MenuManager.Instance.Back();
-            MenuManager.Instance.Back();           
+            //PopupMessageService.instance.Show("Tool successfully added");               
         }
         public async void ValidateAndCreateWorkspace(Dictionary<string, InputField> inputFields)
         {                  

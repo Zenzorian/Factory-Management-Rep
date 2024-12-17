@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using Scripts.Data;
 using Scripts;
-using Scripts.Data.Tools;
-using Scripts.Services;
 
 public class StatisticsPanelController : MonoBehaviour
 {
@@ -58,7 +56,7 @@ public class StatisticsPanelController : MonoBehaviour
 
     private void PartButtonClicked()
     {
-        MenuManager.Instance.OpenMenu((int)MainMenuTypes.StatisticPart);
+        //MenuManager.Instance.OpenMenu((int)MainMenuTypes.StatisticPart);
     }
     public void OnPartSelected(Part part)
     {
@@ -93,7 +91,7 @@ public class StatisticsPanelController : MonoBehaviour
 
     private void ToolButtonClicked()
     {
-        MenuManager.Instance.OpenMenu((int)MainMenuTypes.StatisticTool);
+        //MenuManager.Instance.OpenMenu((int)MainMenuTypes.StatisticTool);
     }
     public void OnToolSelected(Tool tool)
     {
@@ -152,7 +150,7 @@ public class StatisticsPanelController : MonoBehaviour
             return;
         }       
         CurrentStatisticDataList = Check().Data;
-        MenuManager.Instance.OpenStatisticChoiceCategory(CurrentStatisticDataList);
+        //MenuManager.Instance.OpenStatisticChoiceCategory(CurrentStatisticDataList);
     }
     public void CloseStatistic()
     {

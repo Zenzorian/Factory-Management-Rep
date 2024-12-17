@@ -1,7 +1,8 @@
 using UnityEngine.UI;
-using UnityEngine;
 using Scripts.Data;
 using System.Collections.Generic;
+using Scripts.Services;
+using Scripts.Infrastructure.AssetManagement;
 
 namespace Scripts
 {
@@ -10,10 +11,15 @@ namespace Scripts
     {
         private Worker _worker;
         private Dictionary<string, InputField> _inputFields;
-        public WorkerForm(InputFieldCreator inputFieldCreator, Transform content, Button button) : base(inputFieldCreator, content, button)
+        public WorkerForm
+        (
+            ISaveloadDataService saveloadDataService,
+            ItemsAddationViewElements itemsAddationViewElements, 
+            GlobalUIElements globalUIElements
+        ) : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
         {
             _inputFields = BuildAdditionPanel(typeof(Worker));
-            button.onClick.AddListener(Save);
+            itemsAddationViewElements.addButton.onClick.AddListener(Save);
         }
         public void Open(List<Worker> workers, TableItem currentWorker)
         {

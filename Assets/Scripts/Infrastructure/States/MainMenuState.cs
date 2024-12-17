@@ -2,6 +2,7 @@
 using Scripts.Infrastructure.AssetManagement;
 using Scripts.MyTools;
 using Scripts.Services;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,17 +45,33 @@ namespace Scripts.Infrastructure.States
             {
                 Button button = _menuButtons[i];
 
-                int menuType = i;
-                button.onClick.AddListener(() => OpenMenu(menuType));
+                var menuType = (MainMenuTypes)i;
+
+                if(menuType == MainMenuTypes.Options)
+                    button.onClick.AddListener(() => OpenOptions());
+                else if (menuType == MainMenuTypes.Statistic)
+                    button.onClick.AddListener(() => OpenStatistic());
+                else
+                    button.onClick.AddListener(() => OpenCategory(menuType));
             }
         }
 
-        public void OpenMenu(int value)
+        private void OpenOptions()
+        {
+            
+        }
+
+        private void OpenStatistic()
+        {
+
+        }
+
+        public void OpenCategory(MainMenuTypes value)
         {
             var categoryData = new ChoiceOfCategoryStateData();
 
             categoryData.selectedListOfCategotyElements = _saveloadDataService.GetTypesOfItemsListByType((MainMenuTypes)value);
-            categoryData.MenuType = (MainMenuTypes)value;
+            categoryData.MenuType = value;
 
             GoToChoiceOfCategoryState(categoryData);
         }
@@ -80,8 +97,6 @@ public enum MainMenuTypes
     Tools,
     Workers,
     Parts,
-    Statistic,
-    StatisticPart,
-    StatisticTool,
+    Statistic,   
     Options,
 }
