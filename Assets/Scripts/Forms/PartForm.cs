@@ -4,6 +4,7 @@ using Scripts.Data;
 using System.Collections.Generic;
 using Scripts.Services;
 using Scripts.Infrastructure.AssetManagement;
+using Scripts.UI;
 
 namespace Scripts
 {
@@ -12,7 +13,12 @@ namespace Scripts
     {
         private Part _part;
         private Dictionary<string, InputField> _inputFields;
-        public PartForm(ISaveloadDataService saveloadDataService, ItemsAddationViewElements itemsAddationViewElements, GlobalUIElements globalUIElements) : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
+        public PartForm
+        (
+            ISaveloadDataService saveloadDataService, 
+            ItemsAddationViewElements itemsAddationViewElements,
+            GlobalUIElements globalUIElements
+            ) : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
         {
             _inputFields = BuildAdditionPanel(typeof(Part));
             itemsAddationViewElements.addButton.onClick.AddListener(Addation);

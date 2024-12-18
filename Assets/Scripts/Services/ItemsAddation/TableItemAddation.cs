@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using Scripts.Data;
 using Scripts.Infrastructure.AssetManagement;
-using UnityEngine;
+using Scripts.UI;
 using UnityEngine.UI;
 
 namespace Scripts.Services
@@ -26,7 +25,8 @@ namespace Scripts.Services
         {
             Initialize(addationData.menuType, onAdded);
 
-            var elementType = addationData.categoryName;            
+            var listOfCategory = _saveloadDataService.GetTypesOfItemsListByType(_menuType);
+            var elementType = listOfCategory[addationData.indexOfSelectedCategory];            
             _addButton.onClick.AddListener(Addation);
             _inputFields = BuildAdditionPanel(typeof(TableItem), elementType);
         }

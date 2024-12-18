@@ -1,5 +1,4 @@
-﻿using Scripts.Data;
-using Scripts.Infrastructure.AssetManagement;
+﻿using Scripts.Infrastructure.AssetManagement;
 using Scripts.Services;
 using System.Collections.Generic;
 using UnityEngine.Events;
@@ -13,17 +12,17 @@ namespace Scripts.Infrastructure.States
         private readonly IPopUpMassageService _popUpMassageService;
         private readonly IItemAddationService _addationService;
 
-        private readonly GlobalUIElements _globalUIElements;      
+        private readonly GlobalUIElements _globalUIElements;
 
 
-        private UnityEvent<List<TableItem>, string> _choiceButtonPressed = new UnityEvent<List<TableItem>, string>();
-           
+        private UnityEvent<MainMenuTypes, int> _choiceButtonPressed = new UnityEvent<MainMenuTypes, int>();
+
         private ChoiceOfCategoryStateData _categoryData;
         public ChoiceOfCategoryState(StateMachine stateMachine, IChoiceOfCategoryService choiceOfCategoryService, IPopUpMassageService popUpMassageService, IItemAddationService addationService, GlobalUIElements globalUIElements)
         {
             _stateMachine = stateMachine;
             _choiceOfCategoryService = choiceOfCategoryService;
-            _globalUIElements = globalUIElements;      
+            _globalUIElements = globalUIElements;
             _addationService = addationService;
             _popUpMassageService = popUpMassageService;
 
@@ -44,8 +43,9 @@ namespace Scripts.Infrastructure.States
             _globalUIElements.addationButton.onClick.AddListener(Addation);
         }
         private void Addation()
-        {     
-                
+        {
+            var addationData = new AddationData(_categoryData.MenuType,-1, false);
+            _addationService.Open(addationData, OnAdded);
         }
         private void OnAdded()
         {
@@ -55,19 +55,13 @@ namespace Scripts.Infrastructure.States
         {
             _stateMachine.Enter<MainMenuState>();
         }
-        private void listOfItemsChosen(List<TableItem> tableItems, string categoryName)
-        {      
-            if (tableItems == null || tableItems.Count == 0)
-            {
-                _popUpMassageService.Show("Current table is empty");
-                return;
-            }        
+        private void listOfItemsChosen(MainMenuTypes menuType, int indexOfSelectedCategoty)
+        {
             var tableProcessorStateData = new TableProcessorStateData();
             tableProcessorStateData.choiceOfCategoryStateData = _categoryData;
-            tableProcessorStateData.selectedListOfTableItems = tableItems;
-            tableProcessorStateData.categoryName = categoryName;
+            tableProcessorStateData.indexOfSelectedCategoty = indexOfSelectedCategoty;
 
-            _stateMachine.Enter<TableProcessorState,TableProcessorStateData>(tableProcessorStateData);
+            _stateMachine.Enter<TableProcessorState, TableProcessorStateData>(tableProcessorStateData);
 
         }
         public void Exit()
@@ -85,6 +79,6 @@ namespace Scripts.Infrastructure.States
     public struct ChoiceOfCategoryStateData
     {
         public MainMenuTypes MenuType;
-        public List<string> selectedListOfCategotyElements;        
+        public List<string> selectedListOfCategotyElements;
     }
 }

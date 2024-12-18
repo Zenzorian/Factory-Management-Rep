@@ -86,6 +86,7 @@ namespace Scripts.Services
                     Debug.LogWarning("Unsupported MainMenuType");
                     break;
             }
+            SaveData();
         }
         public int GetItemsCount(MainMenuTypes menuType, string type = null)
         {       

@@ -18,9 +18,10 @@ namespace Scripts.Services
             _tableView = tableView;
         }
 
-        public void SetTableData(List<TableItem> listOfTableItems)
+        public void SetTableData(MainMenuTypes menuType, int indexOfSelectedCategoty) 
         {
-            _tableItems = listOfTableItems;
+            _tableItems = _saveLoadData.GetItemsListWithFilter(menuType, indexOfSelectedCategoty);
+
             FieldInfo[] fields = typeof(TableItem).GetFields();
             List<string> fieldNames = new List<string>();
 
@@ -30,13 +31,13 @@ namespace Scripts.Services
             }
 
             // Создаем массив для данных таблицы
-            var tableData = new string[listOfTableItems.Count, fieldNames.Count];
+            var tableData = new string[_tableItems.Count, fieldNames.Count];
 
-            for (int i = 0; i < listOfTableItems.Count; i++)
+            for (int i = 0; i < _tableItems.Count; i++)
             {
                 for (int j = 0; j < fields.Length; j++)
                 {
-                    var value = fields[j].GetValue(listOfTableItems[i]);
+                    var value = fields[j].GetValue(_tableItems[i]);
                     tableData[i, j] = value != null ? value.ToString() : string.Empty;
                 }
             }

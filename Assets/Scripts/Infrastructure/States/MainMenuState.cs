@@ -12,13 +12,13 @@ namespace Scripts.Infrastructure.States
     {
         private readonly StateMachine _stateMachine;
         private readonly LoadingCurtain _loadingCurtain;
-        private readonly IAssetProvider _assetProvider;
+        private readonly IUIElementsProvider _assetProvider;
         private readonly ISaveloadDataService _saveloadDataService;
 
 
         private Button[] _menuButtons;
 
-        public MainMenuState(StateMachine stateMachine, LoadingCurtain loadingCurtain, IAssetProvider assetProvider, ISaveloadDataService saveloadDataService)
+        public MainMenuState(StateMachine stateMachine, LoadingCurtain loadingCurtain, IUIElementsProvider assetProvider, ISaveloadDataService saveloadDataService)
         {
             _stateMachine = stateMachine;
             _loadingCurtain = loadingCurtain;

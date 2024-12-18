@@ -33,7 +33,7 @@ namespace Scripts.Infrastructure.States
 
             RegisterAssetProvider();
 
-            var assetProvider = _services.Single<IAssetProvider>();
+            var assetProvider = _services.Single<IUIElementsProvider>();
 
             _services.RegisterSingle<ISaveloadDataService>(new SaveloadDataService());
             Debug.Log("SaveloadDataService Initialized");
@@ -47,7 +47,7 @@ namespace Scripts.Infrastructure.States
             _services.RegisterSingle<IConfirmPanelService>(new ConfirmPanelService(assetProvider.GetConfirmationPanelElements()));
             Debug.Log("ConfirmationPanelService Initialized");
 
-            _services.RegisterSingle<IChoiceOfCategoryService>(new ChoiceOfCategoryService(assetProvider.GetChoiceOfCategoryElements(),new ButtonCreator(assetProvider.GetButtonPrefab()), _services.Single<ISaveloadDataService>()));
+            _services.RegisterSingle<IChoiceOfCategoryService>(new ChoiceOfCategoryService(assetProvider.GetChoiceOfCategoryElements(), _services.Single<ISaveloadDataService>()));
             Debug.Log("ConfirmationPanelService Initialized");
 
             _services.RegisterSingle<ITableProcessorService>(new TableProcessor(_services.Single<ISaveloadDataService>(), GetTableView()));
@@ -68,7 +68,7 @@ namespace Scripts.Infrastructure.States
 
         private void RegisterAssetProvider()
         {
-            var assetProvider = Transform.FindFirstObjectByType<AssetProvider>();
+            var assetProvider = Transform.FindFirstObjectByType<UIElementsProvider>();
             if (assetProvider == null)
             {
                 Debug.LogError("AssetProvider not found");
@@ -77,7 +77,7 @@ namespace Scripts.Infrastructure.States
             else
             {
                 Debug.Log("AssetProvider Initialized");
-                _services.RegisterSingle<IAssetProvider>(assetProvider);
+                _services.RegisterSingle<IUIElementsProvider>(assetProvider);
             }           
         }     
     }

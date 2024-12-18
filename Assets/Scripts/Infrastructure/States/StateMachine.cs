@@ -21,7 +21,7 @@ namespace Scripts.Infrastructure.States
                 (
                     this,
                     loadingCurtain,
-                    services.Single<IAssetProvider>(),
+                    services.Single<IUIElementsProvider>(),
                     services.Single<ISaveloadDataService>()
                 ),
                 [typeof(ChoiceOfCategoryState)] = new ChoiceOfCategoryState
@@ -32,10 +32,10 @@ namespace Scripts.Infrastructure.States
                     new ChioceListAddation
                     (
                         services.Single<ISaveloadDataService>(),
-                        services.Single<IAssetProvider>().GetItemsAddationViewElements(),
-                        services.Single<IAssetProvider>().GetGlobalUIElements()
+                        services.Single<IUIElementsProvider>().GetItemsAddationViewElements(),
+                        services.Single<IUIElementsProvider>().GetGlobalUIElements()
                     ),
-                    services.Single<IAssetProvider>().GetGlobalUIElements()
+                    services.Single<IUIElementsProvider>().GetGlobalUIElements()
                 ),
                 [typeof(TableProcessorState)] = new TableProcessorState
                 (
@@ -44,12 +44,12 @@ namespace Scripts.Infrastructure.States
                     new TableItemAddation
                     (
                         services.Single<ISaveloadDataService>(),
-                        services.Single<IAssetProvider>().GetItemsAddationViewElements(),
-                        services.Single<IAssetProvider>().GetGlobalUIElements()
+                        services.Single<IUIElementsProvider>().GetItemsAddationViewElements(),
+                        services.Single<IUIElementsProvider>().GetGlobalUIElements()
                     ),
-                    services.Single<IAssetProvider>().GetGlobalUIElements()
+                    services.Single<IUIElementsProvider>().GetGlobalUIElements()
                 ),               
-                //[typeof(StatisticProcessorState)] = new StatisticProcessorState(this),
+                [typeof(StatisticProcessorState)] = new StatisticProcessorState(this),
 
             };
         }

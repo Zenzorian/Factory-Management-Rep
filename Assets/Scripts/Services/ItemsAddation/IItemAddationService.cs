@@ -1,6 +1,4 @@
-﻿
-using System;
-using Unity.Mathematics;
+﻿using System;
 
 namespace Scripts.Services
 {
@@ -10,14 +8,14 @@ namespace Scripts.Services
     }
     public struct AddationData
     {
-        public AddationData(MainMenuTypes mainMenuType, string categoryName, bool itsStatistick)
+        public AddationData(MainMenuTypes mainMenuType, int indexOfSelectedCategory, bool itsStatistick)
         {
             this.menuType = mainMenuType;
-            this.categoryName = categoryName;
+            this.indexOfSelectedCategory = indexOfSelectedCategory;
             this.itsStatistick = itsStatistick;
         }
         public MainMenuTypes menuType;
-        public string categoryName;
+        public int indexOfSelectedCategory;
         public bool itsStatistick;
     }
 }

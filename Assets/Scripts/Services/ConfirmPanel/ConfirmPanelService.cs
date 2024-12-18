@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using Scripts.Infrastructure.AssetManagement;
+using Scripts.UI;
 
 namespace Scripts.Services
 {

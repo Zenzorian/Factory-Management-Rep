@@ -4,6 +4,7 @@ using Scripts.Data;
 using System.Collections.Generic;
 using Scripts.Services;
 using Scripts.Infrastructure.AssetManagement;
+using Scripts.UI;
 
 namespace Scripts
 {
@@ -13,7 +14,12 @@ namespace Scripts
         private Tool _tool;
 
         private Dictionary<string, InputField> _inputFields;
-        public ToolForm(ISaveloadDataService saveloadDataService, ItemsAddationViewElements itemsAddationViewElements, GlobalUIElements globalUIElements) : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
+        public ToolForm
+        (
+            ISaveloadDataService saveloadDataService,
+            ItemsAddationViewElements itemsAddationViewElements,
+            GlobalUIElements globalUIElements
+        )   : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
         {
             _inputFields = BuildAdditionPanel(typeof(Tool));
             itemsAddationViewElements.addButton.onClick.AddListener(Addation);

@@ -412,6 +412,8 @@ GameObject:
   - component: {fileID: 2003396464927886941}
   - component: {fileID: 5841596394167169725}
   - component: {fileID: 1965820183225562137}
+  - component: {fileID: 6516542396073554957}
+  - component: {fileID: 7067833672318757503}
   m_Layer: 5
   m_Name: Popup Canvas
   m_TagString: Untagged
@@ -503,6 +505,35 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &6516542396073554957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764807976858590601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8664ba072c473704fada869e218ea9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MassagePanel: {fileID: 5241915151810228284}
+  MassageText: {fileID: 4704582362915552539}
+--- !u!114 &7067833672318757503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764807976858590601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207e3bed85545514eaeef5895c5056bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  confirmationPanel: {fileID: 4691013042260760323}
+  confirmButton: {fileID: 6799042567375785989}
+  cancelButton: {fileID: 3945530790843962453}
 --- !u!1 &5224296448075548034
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5680755154281271217
 RectTransform:
   m_ObjectHideFlags: 0
@@ -641,14 +672,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6313726, g: 0.8078432, b: 0.8078432, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36975e9a31cab49f8b0a476169d32c0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8281ad0f4f64f45e39a1ac24d9842fa4, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

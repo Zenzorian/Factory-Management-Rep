@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using Scripts.Services;
-using Scripts.Infrastructure.AssetManagement;
+using Scripts.UI;
 
 public class PopupMessageService : MonoBehaviour, IPopUpMassageService
 {    

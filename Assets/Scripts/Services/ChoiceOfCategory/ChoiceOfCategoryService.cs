@@ -1,6 +1,6 @@
 using Scripts.Data;
-using Scripts.Infrastructure.AssetManagement;
 using Scripts.MyTools;
+using Scripts.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,7 +18,7 @@ namespace Scripts.Services
 
         private readonly ButtonCreator _buttonCreator;
 
-        private UnityEvent<List<TableItem>,string> _choiceButtonPressed;
+        private UnityEvent<MainMenuTypes,int> _choiceButtonPressed;
 
         private List<string> _selectedCategories = new List<string>();
         private List<StatisticData> _selectedStatisticList = new List<StatisticData>();
@@ -26,13 +26,17 @@ namespace Scripts.Services
 
         private MainMenuTypes _menuType;
 
-        public ChoiceOfCategoryService(ChoiceOfCategoryElements choiceOfCategoryElements, ButtonCreator buttonCreator, ISaveloadDataService saveloadDataService)
+        public ChoiceOfCategoryService
+        (
+            ChoiceOfCategoryElements choiceOfCategoryElements,           
+            ISaveloadDataService saveloadDataService
+        )
         {
             _panel = choiceOfCategoryElements.panel;
             _sectionNameText = choiceOfCategoryElements.sectionNameText;
             _content = choiceOfCategoryElements.content;
 
-            _buttonCreator = buttonCreator;
+            _buttonCreator = new ButtonCreator(choiceOfCategoryElements.choiceButtonPrefab);
 
             _saveloadDataService = saveloadDataService;            
         }
@@ -52,7 +56,7 @@ namespace Scripts.Services
                 GameObject.Destroy(item.gameObject);
             }
         }
-        public void Create(List<string> list, MainMenuTypes menuType, UnityEvent<List<TableItem>, string> choiceButtonPresed)
+        public void Create(List<string> list, MainMenuTypes menuType, UnityEvent<MainMenuTypes,int> choiceButtonPresed)
         {
             _menuType = menuType;
 
@@ -102,10 +106,8 @@ namespace Scripts.Services
       
 
         public void ButtonPressed(int indexOfSelectedCategoty)
-        {
-            var listOfCategory = _saveloadDataService.GetTypesOfItemsListByType(_menuType);
-
-            _choiceButtonPressed?.Invoke(_saveloadDataService.GetItemsListWithFilter(_menuType,indexOfSelectedCategoty), listOfCategory[indexOfSelectedCategoty]);                       
+        {     
+            _choiceButtonPressed?.Invoke(_menuType, indexOfSelectedCategoty);                       
         }
     }
 }

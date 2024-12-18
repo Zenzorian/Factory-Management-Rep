@@ -1,12 +1,11 @@
 using Scripts.Services;
-using UnityEngine;
+using Scripts.UI;
 using UnityEngine.UI;
 
 namespace Scripts.Infrastructure.AssetManagement
 {
-    public interface IAssetProvider : IService
-    {
-        GameObject GetButtonPrefab();
+    public interface IUIElementsProvider : IService
+    {      
         Button[] GetMainMenuButtons();
         ConfirmPanelElements GetConfirmationPanelElements();
         PopupMessageElements GetPopupMessageElements();

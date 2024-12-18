@@ -30,11 +30,12 @@ namespace Scripts.Infrastructure.States
         }
 
         public void Enter(TableProcessorStateData tableProcessorStateData)
-        {
+        {   
             _tableProcessorStateData = tableProcessorStateData;
 
             _categoryData = _tableProcessorStateData.choiceOfCategoryStateData;
-            _tableProcessorService.SetTableData(_tableProcessorStateData.selectedListOfTableItems);
+            _tableProcessorService.SetTableData
+                (_tableProcessorStateData.choiceOfCategoryStateData.MenuType, _tableProcessorStateData.indexOfSelectedCategoty);
 
             AddUIListeners();
         }
@@ -58,8 +59,8 @@ namespace Scripts.Infrastructure.States
         }
 
         private void Addation()
-        {
-            var addationData = new AddationData(_categoryData.MenuType, _tableProcessorStateData.categoryName, false);
+        {           
+            var addationData = new AddationData(_categoryData.MenuType, _tableProcessorStateData.indexOfSelectedCategoty, false);
             _addationService.Open(addationData, OnAdded);
         }
         private void OnAdded()
@@ -75,8 +76,7 @@ namespace Scripts.Infrastructure.States
     
     public struct TableProcessorStateData
     {
-        public ChoiceOfCategoryStateData choiceOfCategoryStateData;
-        public List<TableItem> selectedListOfTableItems;
-        public string categoryName;
+        public ChoiceOfCategoryStateData choiceOfCategoryStateData;       
+        public int indexOfSelectedCategoty;
     }
 }

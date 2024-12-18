@@ -5551,7 +5551,24 @@
             ]
         }
     ],
-    "listOfWorkspaces": [],
+    "listOfWorkspaces": [
+        {
+            "Id": 1,
+            "Name": "CnC",
+            "Type": "AssemblyLine",
+            "Tools": [],
+            "MaxWorkers": 0,
+            "ReservedWorkers": 0
+        },
+        {
+            "Id": 4,
+            "Name": "tret",
+            "Type": "ttt",
+            "Tools": [],
+            "MaxWorkers": 0,
+            "ReservedWorkers": 0
+        }
+    ],
     "listOfTools": [
         {
             "Id": 86,
@@ -6406,7 +6423,8 @@
         "QualityControl",
         "Packaging",
         "Maintenance",
-        "Storage"       
+        "Storage",
+        "ttt"
     ],
     "typesOfParts": [
         "Shaft",
