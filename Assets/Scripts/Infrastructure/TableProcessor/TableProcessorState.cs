@@ -1,7 +1,5 @@
-﻿using Scripts.Data;
-using Scripts.Infrastructure.AssetManagement;
+﻿using Scripts.Infrastructure.AssetManagement;
 using Scripts.Services;
-using System.Collections.Generic;
 
 namespace Scripts.Infrastructure.States
 {
@@ -35,7 +33,7 @@ namespace Scripts.Infrastructure.States
 
             _categoryData = _tableProcessorStateData.choiceOfCategoryStateData;
             _tableProcessorService.SetTableData
-                (_tableProcessorStateData.choiceOfCategoryStateData.MenuType, _tableProcessorStateData.indexOfSelectedCategoty);
+                (_tableProcessorStateData.choiceOfCategoryStateData.menuType, _tableProcessorStateData.indexOfSelectedCategoty);
 
             AddUIListeners();
         }
@@ -60,7 +58,7 @@ namespace Scripts.Infrastructure.States
 
         private void Addation()
         {           
-            var addationData = new AddationData(_categoryData.MenuType, _tableProcessorStateData.indexOfSelectedCategoty, false);
+            var addationData = new AddationData(_categoryData.menuType, _tableProcessorStateData.indexOfSelectedCategoty, false);
             _addationService.Open(addationData, OnAdded);
         }
         private void OnAdded()
@@ -74,7 +72,7 @@ namespace Scripts.Infrastructure.States
         }
     }
     
-    public struct TableProcessorStateData
+    public class TableProcessorStateData
     {
         public ChoiceOfCategoryStateData choiceOfCategoryStateData;       
         public int indexOfSelectedCategoty;

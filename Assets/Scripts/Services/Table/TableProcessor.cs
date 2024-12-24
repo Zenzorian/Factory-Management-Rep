@@ -1,7 +1,9 @@
 ﻿
 using Scripts.Data;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace Scripts.Services
 {
@@ -12,13 +14,14 @@ namespace Scripts.Services
 
         private List<TableItem> _tableItems;
 
+        private Action<TableItem> _CellClicked;
         public TableProcessor(ISaveloadDataService saveLoadData, TableView tableView)
         {
             _saveLoadData = saveLoadData;
             _tableView = tableView;
         }
 
-        public void SetTableData(MainMenuTypes menuType, int indexOfSelectedCategoty) 
+        public void SetTableData(MainMenuTypes menuType, int indexOfSelectedCategoty, Action<TableItem> CellClicked = null) 
         {
             _tableItems = _saveLoadData.GetItemsListWithFilter(menuType, indexOfSelectedCategoty);
 
@@ -29,8 +32,7 @@ namespace Scripts.Services
             {
                 fieldNames.Add(field.Name);
             }
-
-            // Создаем массив для данных таблицы
+                       
             var tableData = new string[_tableItems.Count, fieldNames.Count];
 
             for (int i = 0; i < _tableItems.Count; i++)
@@ -41,10 +43,16 @@ namespace Scripts.Services
                     tableData[i, j] = value != null ? value.ToString() : string.Empty;
                 }
             }
-
-            Table table = new Table(fieldNames.ToArray(), tableData);
+            _CellClicked = CellClicked;
+            Table table = new Table(fieldNames.ToArray(), tableData, OnCellClicked);
 
             _tableView.CreateTable(table);
+        }
+
+        private void OnCellClicked(int rowIndex)
+        {
+            TableItem item = _tableItems[rowIndex];
+            _CellClicked?.Invoke(item);
         }
 
         public TableCell[,] GetTableCells() => _tableView.GetTableCells();

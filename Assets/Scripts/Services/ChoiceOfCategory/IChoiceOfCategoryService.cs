@@ -7,8 +7,7 @@ namespace Scripts.Services
     public interface IChoiceOfCategoryService : IService
     {
         void Activate();
-        void Deactivate();       
-        public void CreateForStatistic(List<StatisticData> list);
+        void Deactivate();              
         public void ButtonPressed(int index);
         void Create(List<string> list, MainMenuTypes menuType, UnityEvent<MainMenuTypes, int> choiceButtonPresed);
     }

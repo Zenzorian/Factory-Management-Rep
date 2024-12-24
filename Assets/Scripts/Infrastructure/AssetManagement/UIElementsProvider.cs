@@ -13,14 +13,16 @@ namespace Scripts.Infrastructure.AssetManagement
         [SerializeField] private ConfirmPanelElements _confirmationPanelElements;
         [SerializeField] private ChoiceOfCategoryElements _choiceOfCategoryElements;
         [SerializeField] private ItemsAddationViewElements _itemsAddationViewElements;
-       
-        public Button[] GetMainMenuButtons() => _mainMenuButtons;
-        public GlobalUIElements GetGlobalUIElements() => _globalUIElements;
-        public PopupMessageElements GetPopupMessageElements() => _popupMessageElements;
-        public ConfirmPanelElements GetConfirmationPanelElements() => _confirmationPanelElements;
+        [SerializeField] private StatisticViewElements _statisticViewElements;
 
-        public ChoiceOfCategoryElements GetChoiceOfCategoryElements() => _choiceOfCategoryElements;
-        public ItemsAddationViewElements GetItemsAddationViewElements() => _itemsAddationViewElements;
+        public Button[] MainMenuButtons => _mainMenuButtons;
+        public GlobalUIElements GlobalUIElements => _globalUIElements;
+        public PopupMessageElements PopupMessageElements => _popupMessageElements;
+        public ConfirmPanelElements ConfirmationPanelElements => _confirmationPanelElements;
+
+        public ChoiceOfCategoryElements ChoiceOfCategoryElements => _choiceOfCategoryElements;
+        public ItemsAddationViewElements ItemsAddationViewElements => _itemsAddationViewElements;
+        public StatisticViewElements StatisticViewElements => _statisticViewElements;
     }
     [System.Serializable]
     public class GlobalUIElements    

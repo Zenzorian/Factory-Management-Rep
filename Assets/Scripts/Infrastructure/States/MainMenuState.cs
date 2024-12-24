@@ -1,8 +1,6 @@
-﻿
-using Scripts.Infrastructure.AssetManagement;
+﻿using Scripts.Infrastructure.AssetManagement;
 using Scripts.MyTools;
 using Scripts.Services;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +37,7 @@ namespace Scripts.Infrastructure.States
 
         private void SetMenuButtonsEvents()
         {
-            _menuButtons = _assetProvider.GetMainMenuButtons();
+            _menuButtons = _assetProvider.MainMenuButtons;
 
             for (int i = 0; i < _menuButtons.Length; i++)
             {
@@ -62,16 +60,13 @@ namespace Scripts.Infrastructure.States
         }
 
         private void OpenStatistic()
-        {
-
+        {           
+            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatisticData>(null);
         }
 
         public void OpenCategory(MainMenuTypes value)
         {
-            var categoryData = new ChoiceOfCategoryStateData();
-
-            categoryData.selectedListOfCategotyElements = _saveloadDataService.GetTypesOfItemsListByType((MainMenuTypes)value);
-            categoryData.MenuType = value;
+            var categoryData = new ChoiceOfCategoryStateData(value, _saveloadDataService.GetTypesOfItemsListByType((MainMenuTypes)value));
 
             GoToChoiceOfCategoryState(categoryData);
         }

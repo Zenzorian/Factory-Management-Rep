@@ -1,6 +1,7 @@
 ﻿using Scripts.Infrastructure.AssetManagement;
 using Scripts.MyTools;
 using Scripts.Services;
+using Scripts.Services.Statistics;
 using System;
 using System.Collections.Generic;
 
@@ -32,24 +33,48 @@ namespace Scripts.Infrastructure.States
                     new ChioceListAddation
                     (
                         services.Single<ISaveloadDataService>(),
-                        services.Single<IUIElementsProvider>().GetItemsAddationViewElements(),
-                        services.Single<IUIElementsProvider>().GetGlobalUIElements()
+                        services.Single<IUIElementsProvider>().ItemsAddationViewElements,
+                        services.Single<IUIElementsProvider>().GlobalUIElements
                     ),
-                    services.Single<IUIElementsProvider>().GetGlobalUIElements()
+                    services.Single<IUIElementsProvider>().GlobalUIElements
                 ),
                 [typeof(TableProcessorState)] = new TableProcessorState
                 (
-                    this,                    
+                    this,
                     services.Single<ITableProcessorService>(),
                     new TableItemAddation
                     (
                         services.Single<ISaveloadDataService>(),
-                        services.Single<IUIElementsProvider>().GetItemsAddationViewElements(),
-                        services.Single<IUIElementsProvider>().GetGlobalUIElements()
+                        services.Single<IUIElementsProvider>().ItemsAddationViewElements,
+                        services.Single<IUIElementsProvider>().GlobalUIElements
                     ),
-                    services.Single<IUIElementsProvider>().GetGlobalUIElements()
-                ),               
-                [typeof(StatisticProcessorState)] = new StatisticProcessorState(this),
+                    services.Single<IUIElementsProvider>().GlobalUIElements
+                ),
+                [typeof(SelectionOfStatisticState)] = new SelectionOfStatisticState
+                (
+                    this,
+                    services.Single<IChoiceOfStatisticDataService>(),
+                    new StatisticDataItemAddation
+                    (
+                        services.Single<ISaveloadDataService>(),
+                        services.Single<IUIElementsProvider>().ItemsAddationViewElements,
+                        services.Single<IUIElementsProvider>().GlobalUIElements
+                    ),
+                    services.Single<IUIElementsProvider>().GlobalUIElements
+                ),
+                [typeof(StatisticChoiceOfCategoryState)] = new StatisticChoiceOfCategoryState
+                (
+                    this,
+                    services.Single<IChoiceOfCategoryService>(),
+                    services.Single<IPopUpMassageService>(),                   
+                    services.Single<IUIElementsProvider>().GlobalUIElements
+                ),
+                [typeof(StatisticTableProcessorState)] = new StatisticTableProcessorState
+                (
+                    this,
+                    services.Single<ITableProcessorService>(),                   
+                    services.Single<IUIElementsProvider>().GlobalUIElements
+                )
 
             };
         }

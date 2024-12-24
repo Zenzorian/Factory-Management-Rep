@@ -5,12 +5,13 @@ using UnityEngine.UI;
 namespace Scripts.Infrastructure.AssetManagement
 {
     public interface IUIElementsProvider : IService
-    {      
-        Button[] GetMainMenuButtons();
-        ConfirmPanelElements GetConfirmationPanelElements();
-        PopupMessageElements GetPopupMessageElements();
-        ChoiceOfCategoryElements GetChoiceOfCategoryElements();
-        GlobalUIElements GetGlobalUIElements();
-        ItemsAddationViewElements GetItemsAddationViewElements();
+    {
+        Button[] MainMenuButtons { get; }
+        ConfirmPanelElements ConfirmationPanelElements { get; }
+        PopupMessageElements PopupMessageElements { get; }
+        ChoiceOfCategoryElements ChoiceOfCategoryElements { get; }
+        GlobalUIElements GlobalUIElements { get; }
+        ItemsAddationViewElements ItemsAddationViewElements { get; }
+        StatisticViewElements StatisticViewElements { get; }
     }
 }

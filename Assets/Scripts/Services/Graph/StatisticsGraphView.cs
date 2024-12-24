@@ -2,13 +2,13 @@ using Scripts.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatisticsGraphView : MonoBehaviour
+public class StatisticsGraphView : MonoBehaviour, IStatisticsGraphView
 {
     [SerializeField] private GraphPlane _graphPlane;
 
     private Statistic _currentStatistic;
     private List<GraphData> _gpaphDatas = new List<GraphData>();
-    public void Init(Statistic statistics)
+    public void Initialize(Statistic statistics)
     {
         _currentStatistic = statistics;
 

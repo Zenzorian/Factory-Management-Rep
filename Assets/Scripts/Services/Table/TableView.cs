@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,8 @@ public class TableView : MonoBehaviour
 
     private float _scrollbarWidth;
     private TableCell[,] _tableCells;
+
+    private Table _table;
     public TableCell[,] GetTableCells()
     {
         return _tableCells;
@@ -55,6 +58,7 @@ public class TableView : MonoBehaviour
     public void CreateTable(Table table)
     {
         ClearTable();
+        _table = table;
 
         _tableCells = new TableCell[table.TableCells.GetLength(0), table.TableCells.GetLength(1)];
 
@@ -198,30 +202,11 @@ public class TableView : MonoBehaviour
                 _tableCells[r, c] = cell;
                 _tableCells[r, c].rectTransform = cell.rectTransform;
 
-                //cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => OnCellClicked(currentRow));
+                cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => _table.OnCellClicked(currentRow));
             }
         }
     }
-
-    //private void OnCellClicked(int rowIndex)
-    //{       
-    //    TableItem item = _tableItems[rowIndex];
-
-    //    var menuType = MenuManager.Instance.menuType;
-    //    if(menuType !=MainMenuTypes.Statistic&&
-    //        menuType != MainMenuTypes.StatisticTool&&
-    //        menuType != MainMenuTypes.StatisticPart)
-    //    MenuManager.Instance.OnTableItemEdit.Invoke(item, MenuManager.Instance.menuType);
-
-    //    if (item is Part part)
-    //    {
-    //        MenuManager.Instance.OnPartSelected.Invoke(part);
-    //    }
-    //    else if (item is Tool tool)
-    //    {
-    //        MenuManager.Instance.OnToolSelected.Invoke(tool);
-    //    }
-    //}
+    
     public RectTransform AddRow(Transform container)
     {
         var row = new GameObject("Row");
@@ -273,11 +258,13 @@ public class TableView : MonoBehaviour
 }
 public class Table
 {
-    public Table(string[] headerFields, string[,] tableCells)
+    public Table(string[] headerFields, string[,] tableCells , Action<int> onCellClicked)
     {
         HeaderFields = headerFields;
         TableCells = tableCells;
+        OnCellClicked = onCellClicked;
     }
     public string[] HeaderFields { get; private set; }
     public string[,] TableCells { get; private set; }
+    public Action<int> OnCellClicked { get; set; }
 }
