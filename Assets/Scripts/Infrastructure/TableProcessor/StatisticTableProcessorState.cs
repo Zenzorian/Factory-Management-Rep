@@ -1,7 +1,6 @@
 ﻿using Scripts.Data;
 using Scripts.Infrastructure.AssetManagement;
-using Scripts.Services;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace Scripts.Infrastructure.States
 {
@@ -25,7 +24,9 @@ namespace Scripts.Infrastructure.States
         }
 
         public void Enter(StatisticTableProcessorStateData stateData)
-        {   
+        {
+            Debug.Log("=> Enter on Statistic Table Processor State <=");
+
             _stateData = stateData;
 
             _tableProcessorService.SetTableData
@@ -54,18 +55,18 @@ namespace Scripts.Infrastructure.States
           
         private void Back()
         {
-            _stateMachine.Enter<StatisticChoiceOfCategoryState, StatisticChoiceOfCategoryStateData>(_stateData.choiceData);           
+            _stateMachine.Enter<StatisticSelectionChoiceOfCategoryState, StatisticChoiceOfCategoryStateData>(_stateData.choiceData);           
         }
         private void CellSelected(TableItem tableItem)
         {
-            SelectedStatisticData selectedStatisticData = _stateData.choiceData.selectedStatisticData;
+            SelectedStatistic selectedStatisticData = _stateData.choiceData.selectedStatistic;
 
             if (_stateData.choiceData.menuType == MainMenuTypes.Parts)
                 selectedStatisticData.selectedPart = tableItem as Part;          
             else if (_stateData.choiceData.menuType == MainMenuTypes.Tools)
-                selectedStatisticData.selectedTool= tableItem as Tool;           
+                selectedStatisticData.selectedTool = tableItem as Tool;           
 
-            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatisticData>(selectedStatisticData);
+            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatistic>(selectedStatisticData);
         }
     }
     

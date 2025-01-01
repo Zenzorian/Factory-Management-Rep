@@ -4,371 +4,7 @@
             "Id": 0,
             "Name": "Part Bracket 1",
             "Type": "Housing",
-            "Statistic": [
-                {
-                    "Tool": {
-                        "Id": 86,
-                        "Name": "TFWSYK7K",
-                        "Type": "MillingCNC",
-                        "Note": "Random note for Turning Roughing Tool"
-                    },
-                    "ProcessingType": 1,
-                    "Data": [
-                        {
-                            "F": 0.643,
-                            "V": 3.58,
-                            "PartCounter": [
-                                97,
-                                207,
-                                143,
-                                215,
-                                190
-                            ]
-                        },
-                        {
-                            "F": 2.124,
-                            "V": 2.273,
-                            "PartCounter": [
-                                189,
-                                181,
-                                163,
-                                161,
-                                223
-                            ]
-                        },
-                        {
-                            "F": 4.537,
-                            "V": 0.753,
-                            "PartCounter": [
-                                123,
-                                88,
-                                220,
-                                112,
-                                243
-                            ]
-                        },
-                        {
-                            "F": 4.496,
-                            "V": 1.24,
-                            "PartCounter": [
-                                161,
-                                70,
-                                159,
-                                135,
-                                147
-                            ]
-                        },
-                        {
-                            "F": 2.014,
-                            "V": 3.338,
-                            "PartCounter": [
-                                128,
-                                133,
-                                116,
-                                171,
-                                234
-                            ]
-                        },
-                        {
-                            "F": 4.568,
-                            "V": 1.581,
-                            "PartCounter": [
-                                222,
-                                172,
-                                99,
-                                119,
-                                240
-                            ]
-                        },
-                        {
-                            "F": 2.733,
-                            "V": 3.397,
-                            "PartCounter": [
-                                202,
-                                181,
-                                142,
-                                67,
-                                91
-                            ]
-                        },
-                        {
-                            "F": 3.946,
-                            "V": 4.177,
-                            "PartCounter": [
-                                138,
-                                117,
-                                223,
-                                174,
-                                67
-                            ]
-                        },
-                        {
-                            "F": 2.611,
-                            "V": 1.56,
-                            "PartCounter": [
-                                237,
-                                248,
-                                174,
-                                55,
-                                203
-                            ]
-                        },
-                        {
-                            "F": 2.14,
-                            "V": 1.838,
-                            "PartCounter": [
-                                208,
-                                155,
-                                150,
-                                139,
-                                55
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Tool": {
-                        "Id": 86,
-                        "Name": "TFWSYK7K",
-                        "Type": "MillingCNC",
-                        "Note": "Random note for Turning Roughing Tool"
-                    },
-                    "ProcessingType": 1,
-                    "Data": [
-                        {
-                            "F": 3.797,
-                            "V": 3.52,
-                            "PartCounter": [
-                                96,
-                                63,
-                                189,
-                                143,
-                                166
-                            ]
-                        },
-                        {
-                            "F": 4.163,
-                            "V": 1.633,
-                            "PartCounter": [
-                                213,
-                                140,
-                                222,
-                                231,
-                                218
-                            ]
-                        },
-                        {
-                            "F": 2.25,
-                            "V": 1.372,
-                            "PartCounter": [
-                                67,
-                                131,
-                                94,
-                                170,
-                                71
-                            ]
-                        },
-                        {
-                            "F": 2.464,
-                            "V": 1.518,
-                            "PartCounter": [
-                                192,
-                                196,
-                                203,
-                                71,
-                                154
-                            ]
-                        },
-                        {
-                            "F": 0.892,
-                            "V": 1.211,
-                            "PartCounter": [
-                                93,
-                                97,
-                                234,
-                                117,
-                                160
-                            ]
-                        },
-                        {
-                            "F": 3.698,
-                            "V": 4.855,
-                            "PartCounter": [
-                                129,
-                                208,
-                                111,
-                                217,
-                                75
-                            ]
-                        },
-                        {
-                            "F": 2.289,
-                            "V": 2.928,
-                            "PartCounter": [
-                                116,
-                                71,
-                                210,
-                                113,
-                                193
-                            ]
-                        },
-                        {
-                            "F": 4.213,
-                            "V": 2.575,
-                            "PartCounter": [
-                                188,
-                                241,
-                                249,
-                                151,
-                                127
-                            ]
-                        },
-                        {
-                            "F": 4.729,
-                            "V": 3.068,
-                            "PartCounter": [
-                                248,
-                                145,
-                                241,
-                                206,
-                                50
-                            ]
-                        },
-                        {
-                            "F": 0.532,
-                            "V": 4.755,
-                            "PartCounter": [
-                                155,
-                                203,
-                                54,
-                                234,
-                                61
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Tool": {
-                        "Id": 86,
-                        "Name": "TFWSYK7K",
-                        "Type": "MillingCNC",
-                        "Note": "Random note for Turning Roughing Tool"
-                    },
-                    "ProcessingType": 1,
-                    "Data": [
-                        {
-                            "F": 1.602,
-                            "V": 4.627,
-                            "PartCounter": [
-                                62,
-                                202,
-                                129,
-                                234,
-                                212
-                            ]
-                        },
-                        {
-                            "F": 1.914,
-                            "V": 3.688,
-                            "PartCounter": [
-                                249,
-                                78,
-                                121,
-                                232,
-                                86
-                            ]
-                        },
-                        {
-                            "F": 0.441,
-                            "V": 2.496,
-                            "PartCounter": [
-                                54,
-                                79,
-                                54,
-                                205,
-                                151
-                            ]
-                        },
-                        {
-                            "F": 1.793,
-                            "V": 1.546,
-                            "PartCounter": [
-                                246,
-                                171,
-                                230,
-                                227,
-                                132
-                            ]
-                        },
-                        {
-                            "F": 2.571,
-                            "V": 1.632,
-                            "PartCounter": [
-                                200,
-                                196,
-                                102,
-                                193,
-                                156
-                            ]
-                        },
-                        {
-                            "F": 2.001,
-                            "V": 2.182,
-                            "PartCounter": [
-                                198,
-                                105,
-                                78,
-                                117,
-                                54
-                            ]
-                        },
-                        {
-                            "F": 2.745,
-                            "V": 4.85,
-                            "PartCounter": [
-                                176,
-                                204,
-                                126,
-                                206,
-                                63
-                            ]
-                        },
-                        {
-                            "F": 3.825,
-                            "V": 3.781,
-                            "PartCounter": [
-                                164,
-                                192,
-                                226,
-                                151,
-                                194
-                            ]
-                        },
-                        {
-                            "F": 2.998,
-                            "V": 3.459,
-                            "PartCounter": [
-                                160,
-                                170,
-                                66,
-                                114,
-                                122
-                            ]
-                        },
-                        {
-                            "F": 3.179,
-                            "V": 1.202,
-                            "PartCounter": [
-                                218,
-                                141,
-                                85,
-                                104,
-                                54
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "Statistic": []
         },
         {
             "Id": 1,
@@ -2217,6 +1853,26 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "Tool": {
+                        "Id": 86,
+                        "Name": "TFWSYK7K",
+                        "Type": "MillingCNC",
+                        "Note": "Random note for Turning Roughing Tool"
+                    },
+                    "ProcessingType": 1,
+                    "Data": []
+                },
+                {
+                    "Tool": {
+                        "Id": 86,
+                        "Name": "TFWSYK7K",
+                        "Type": "MillingCNC",
+                        "Note": "Random note for Turning Roughing Tool"
+                    },
+                    "ProcessingType": 1,
+                    "Data": []
                 }
             ]
         },
@@ -6423,9 +6079,7 @@
         "QualityControl",
         "Packaging",
         "Maintenance",
-        "Storage",
-        "ttt",
-        "ывп33"
+        "Storage"
     ],
     "typesOfParts": [
         "Shaft",

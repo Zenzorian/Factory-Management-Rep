@@ -1,34 +1,32 @@
 ﻿using Scripts.Data;
 using Scripts.Infrastructure.AssetManagement;
-using Scripts.Services;
 using Scripts.Services.Statistics;
 using UnityEngine;
 
 namespace Scripts.Infrastructure.States
 {
-    public class SelectionOfStatisticState : IPayloadedState<SelectedStatisticData>
+    public class SelectionOfStatisticState : IPayloadedState<SelectedStatistic>
     {
         private readonly StateMachine _stateMachine;
-        private readonly IChoiceOfStatisticDataService _statisticService;
-        private readonly IItemAddationService _itemAddationService;
+        private readonly IChoiceOfStatisticService _statisticService;       
         private readonly GlobalUIElements _globalUIElements;
 
         public SelectionOfStatisticState
         (
               StateMachine gameStateMachine,
-              IChoiceOfStatisticDataService statisticService,
-              IItemAddationService itemAddationService,
+              IChoiceOfStatisticService statisticService,              
               GlobalUIElements globalUIElements
         )
         {
             _stateMachine = gameStateMachine;
-            _statisticService = statisticService;
-            _itemAddationService = itemAddationService;
+            _statisticService = statisticService;           
             _globalUIElements = globalUIElements;
         }
 
-        public void Enter(SelectedStatisticData selectedStatisticData = null)
+        public void Enter(SelectedStatistic selectedStatisticData = null)
         {
+            Debug.Log("=> Enter on Selection Of Statistic State <=");
+
             _statisticService.ShowPanel(_stateMachine, selectedStatisticData);
 
             _globalUIElements.backButton.onClick.AddListener(Back);
@@ -42,17 +40,15 @@ namespace Scripts.Infrastructure.States
             _statisticService.HidePanel();
         }       
 
-       
-
         private void Back()
         {
             _stateMachine.Enter<MainMenuState>();
         }
     }
-    public class SelectedStatisticData
+    public class SelectedStatistic
     {
         public Part selectedPart;
-        public Tool selectedTool;
         public ProcessingType selectedProcessingType;
+        public Tool selectedTool;       
     }
 }

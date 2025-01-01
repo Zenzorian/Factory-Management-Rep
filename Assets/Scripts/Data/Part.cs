@@ -20,12 +20,13 @@ namespace Scripts.Data
         public Statistic(Tool tool, ProcessingType processingType)
         {
             Tool = tool;
-            ProcessingType = processingType;           
+            ProcessingType = processingType;
+            Data = new List<StatisticData>();
         }
 
         public Tool Tool;
         public ProcessingType ProcessingType;
-        public List<StatisticData> Data = new List<StatisticData>();
+        public List<StatisticData> Data;
     }
     [System.Serializable]
     public enum ProcessingType
@@ -37,9 +38,19 @@ namespace Scripts.Data
     [System.Serializable]
     public class StatisticData
     {
+        public StatisticData()
+        {
+            
+        }
+        public StatisticData(double F, double V)
+        {
+            this.F = F;
+            this.V = V;
+            PartCounter = new List<int>(); 
+        }
         public double F;
         public double V;
-        public List<int> PartCounter = new List<int>();
+        public List<int> PartCounter;
 
     }
 }

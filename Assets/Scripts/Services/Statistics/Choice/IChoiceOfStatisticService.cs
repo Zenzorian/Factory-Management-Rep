@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Scripts.Services.Statistics
 {
-    public interface IChoiceOfStatisticDataService : IService
+    public interface IChoiceOfStatisticService : IService
     {
-        void ShowPanel(IStateMachine stateMachine, SelectedStatisticData selectedStatisticData = null);
+        void ShowPanel(IStateMachine stateMachine, SelectedStatistic selectedStatisticData = null);
         void HidePanel();      
         void SetProcessingType(ProcessingType processingType);
         bool HasValidStatistics();

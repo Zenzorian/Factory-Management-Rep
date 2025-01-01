@@ -26,7 +26,7 @@ namespace Scripts.Infrastructure.States
 
         public void Enter()
         {
-            Debug.Log("Enter on MainMenuState");
+            Debug.Log("=> Enter on MainMenuState <=");
 
             _saveloadDataService.LoadData();
 
@@ -61,7 +61,7 @@ namespace Scripts.Infrastructure.States
 
         private void OpenStatistic()
         {           
-            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatisticData>(null);
+            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatistic>(null);
         }
 
         public void OpenCategory(MainMenuTypes value)
@@ -82,8 +82,17 @@ namespace Scripts.Infrastructure.States
 
         public void Exit()
         {
+            RemoveMenuButtonsEvents();
         }
+        private void RemoveMenuButtonsEvents()
+        {
+            _menuButtons = _assetProvider.MainMenuButtons;
 
+            foreach (var button in _menuButtons)
+            {
+                button.onClick.RemoveAllListeners();
+            }
+        }
     }
 }
 public enum MainMenuTypes

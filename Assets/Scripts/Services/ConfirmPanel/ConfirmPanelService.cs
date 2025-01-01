@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using Scripts.UI;
+using Scripts.UI.Markers;
+using System;
 
 namespace Scripts.Services
 {
@@ -11,7 +11,7 @@ namespace Scripts.Services
         private Button _confirmButton;
         private Button _cancelButton;
 
-        public UnityEvent OnConfirmed { get; set; }
+        public Action _onConfirmed;
 
         public ConfirmPanelService(ConfirmPanelElements confirmationPanelElements)
         {
@@ -28,14 +28,15 @@ namespace Scripts.Services
             _confirmationPanel.gameObject.SetActive(false); // Initially hidden
         }
 
-        public void Show()
+        public void Show(Action onConfirmed)
         {
             _confirmationPanel.gameObject.SetActive(true);
+            _onConfirmed = onConfirmed;
         }
 
         private void OnConfirmButtonClicked()
         {
-            OnConfirmed?.Invoke();
+            _onConfirmed?.Invoke();
             _confirmationPanel.gameObject.SetActive(false);
         }
 

@@ -1,6 +1,6 @@
 ﻿using Scripts.Data;
 using Scripts.Infrastructure.AssetManagement;
-using Scripts.UI;
+using Scripts.UI.Markers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,7 +11,7 @@ namespace Scripts.Services
 {
     public class StatisticDataItemAddation : BaseAddition, IItemAddationService
     {        
-        private List<StatisticData> _list;
+        private List<StatisticData> _list = new List<StatisticData>();
         private InputField _f;
         private InputField _v;
 
@@ -29,15 +29,18 @@ namespace Scripts.Services
             Initialize(addationData.menuType, onAdded);
 
             Clear();
-
-            //_list = list as List<StatisticData>;            
+                                
             _addButton.onClick.AddListener(AddToList);
+
+            Debug.Log("ffffffff");
 
             _f = _inputFieldCreator.Create("F = ", _content);
             _v = _inputFieldCreator.Create("V = ", _content);
 
             _f.contentType = InputField.ContentType.DecimalNumber;
             _v.contentType = InputField.ContentType.DecimalNumber;
+              
+            _list = addationData.statisticsData;            
         }
         public void AddToList()
         {
@@ -51,15 +54,12 @@ namespace Scripts.Services
             if (double.TryParse(fText, NumberStyles.Float, CultureInfo.InvariantCulture, out fValue) &&
                 double.TryParse(vText, NumberStyles.Float, CultureInfo.InvariantCulture, out vValue))
             {
-                var data = new StatisticData
-                {
-                    F = fValue,
-                    V = vValue
-                };
-
+                var data = new StatisticData(fValue, vValue);
+               
                 _list.Add(data);               
                 _addButton.onClick.RemoveListener(AddToList);
-
+                _saveloadDataService.SaveData();
+               
                 Added();
             }
             else

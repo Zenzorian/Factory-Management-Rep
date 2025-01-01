@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Scripts.Data;
 using Scripts.Infrastructure.AssetManagement;
-using Scripts.UI;
+using Scripts.UI.Markers;
 using UnityEngine.UI;
 
 namespace Scripts.Services

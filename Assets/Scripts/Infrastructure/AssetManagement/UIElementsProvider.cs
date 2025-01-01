@@ -1,4 +1,4 @@
-using Scripts.UI;
+using Scripts.UI.Markers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +14,7 @@ namespace Scripts.Infrastructure.AssetManagement
         [SerializeField] private ChoiceOfCategoryElements _choiceOfCategoryElements;
         [SerializeField] private ItemsAddationViewElements _itemsAddationViewElements;
         [SerializeField] private StatisticViewElements _statisticViewElements;
+        [SerializeField] private StatisticsInputElements _statisticsInputElements;
 
         public Button[] MainMenuButtons => _mainMenuButtons;
         public GlobalUIElements GlobalUIElements => _globalUIElements;
@@ -23,6 +24,7 @@ namespace Scripts.Infrastructure.AssetManagement
         public ChoiceOfCategoryElements ChoiceOfCategoryElements => _choiceOfCategoryElements;
         public ItemsAddationViewElements ItemsAddationViewElements => _itemsAddationViewElements;
         public StatisticViewElements StatisticViewElements => _statisticViewElements;
+        public StatisticsInputElements StatisticsInputElements => _statisticsInputElements;
     }
     [System.Serializable]
     public class GlobalUIElements    

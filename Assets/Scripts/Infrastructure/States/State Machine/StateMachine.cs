@@ -53,16 +53,10 @@ namespace Scripts.Infrastructure.States
                 [typeof(SelectionOfStatisticState)] = new SelectionOfStatisticState
                 (
                     this,
-                    services.Single<IChoiceOfStatisticDataService>(),
-                    new StatisticDataItemAddation
-                    (
-                        services.Single<ISaveloadDataService>(),
-                        services.Single<IUIElementsProvider>().ItemsAddationViewElements,
-                        services.Single<IUIElementsProvider>().GlobalUIElements
-                    ),
+                    services.Single<IChoiceOfStatisticService>(),                    
                     services.Single<IUIElementsProvider>().GlobalUIElements
                 ),
-                [typeof(StatisticChoiceOfCategoryState)] = new StatisticChoiceOfCategoryState
+                [typeof(StatisticSelectionChoiceOfCategoryState)] = new StatisticSelectionChoiceOfCategoryState
                 (
                     this,
                     services.Single<IChoiceOfCategoryService>(),
@@ -74,7 +68,20 @@ namespace Scripts.Infrastructure.States
                     this,
                     services.Single<ITableProcessorService>(),                   
                     services.Single<IUIElementsProvider>().GlobalUIElements
-                )
+                ),
+                [typeof(ChoiceOfStatisticDataState)] = new ChoiceOfStatisticDataState
+                (
+                    this,
+                    services.Single<IChoiceOfCategoryService>(),
+                    services.Single<IPopUpMassageService>(),
+                    new StatisticDataItemAddation
+                    (
+                        services.Single<ISaveloadDataService>(),
+                        services.Single<IUIElementsProvider>().ItemsAddationViewElements,
+                        services.Single<IUIElementsProvider>().GlobalUIElements
+                    ),
+                    services.Single<IUIElementsProvider>().GlobalUIElements
+                ),
 
             };
         }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-namespace Scripts.UI
+namespace Scripts.UI.Markers
 {
     public class StatisticViewElements : MonoBehaviour
     {
@@ -12,6 +12,6 @@ namespace Scripts.UI
         public Text toolText;
         public Button selectToolButton;
         public Button goToStatisticsButton;
-        public Button statisticsEditingButton;
+        public Button editStatisticsButton;
     }
 }

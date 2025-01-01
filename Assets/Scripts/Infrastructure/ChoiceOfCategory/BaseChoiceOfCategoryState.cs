@@ -28,16 +28,16 @@ namespace Scripts.Infrastructure.States
 
         public virtual void Enter(TStateData stateData)
         {
+            RemoveUIListeners();
             InitializeService(stateData);
             _choiceOfCategoryService.Activate();
-            _choiceButtonPressed.AddListener(OnChoiceMade);
-            AddUIListeners();
+            _choiceButtonPressed.AddListener(OnChoiceMade);           
         }
 
-        public virtual void Exit()
-        {
-            _choiceOfCategoryService.Deactivate();
+        public void Exit()
+        {           
             RemoveUIListeners();
+            _choiceOfCategoryService.Deactivate();              
         }
 
         protected abstract void OnChoiceMade(MainMenuTypes menuType, int index);
@@ -48,8 +48,10 @@ namespace Scripts.Infrastructure.States
         }
 
         protected virtual void RemoveUIListeners()
-        {
+        {           
             _globalUIElements.backButton.onClick.RemoveListener(OnBack);
+            _globalUIElements.addationButton.onClick.RemoveAllListeners();
+            _choiceButtonPressed.RemoveAllListeners();
         }
 
         protected abstract void OnBack();

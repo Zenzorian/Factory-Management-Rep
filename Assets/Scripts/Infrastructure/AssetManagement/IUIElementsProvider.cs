@@ -1,5 +1,5 @@
 using Scripts.Services;
-using Scripts.UI;
+using Scripts.UI.Markers;
 using UnityEngine.UI;
 
 namespace Scripts.Infrastructure.AssetManagement
@@ -13,5 +13,6 @@ namespace Scripts.Infrastructure.AssetManagement
         GlobalUIElements GlobalUIElements { get; }
         ItemsAddationViewElements ItemsAddationViewElements { get; }
         StatisticViewElements StatisticViewElements { get; }
+        StatisticsInputElements StatisticsInputElements { get; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Scripts.Infrastructure.AssetManagement;
 using Scripts.Services;
+using UnityEngine;
 
 namespace Scripts.Infrastructure.States
 {
@@ -28,7 +29,11 @@ namespace Scripts.Infrastructure.States
         }
 
         public void Enter(TableProcessorStateData tableProcessorStateData)
-        {   
+        {
+            Debug.Log("=> Enter on Table Processor State <=");
+
+            RemoveUIListeners();
+
             _tableProcessorStateData = tableProcessorStateData;
 
             _categoryData = _tableProcessorStateData.choiceOfCategoryStateData;
@@ -58,7 +63,7 @@ namespace Scripts.Infrastructure.States
 
         private void Addation()
         {           
-            var addationData = new AddationData(_categoryData.menuType, _tableProcessorStateData.indexOfSelectedCategoty, false);
+            var addationData = new AddationData(_categoryData.menuType, _tableProcessorStateData.indexOfSelectedCategoty);
             _addationService.Open(addationData, OnAdded);
         }
         private void OnAdded()

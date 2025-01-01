@@ -18,6 +18,14 @@ namespace Scripts.Data
             Note = note;
             Type = type;
         }
+        public bool Equals(Tool tool)
+        {
+            if (tool is Tool otherTool)
+            {
+                return Id == otherTool.Id && Name == otherTool.Name && Type == otherTool.Type;
+            }
+            return false;
+        }
     }
     [System.Serializable]
     public enum MeasurementSystem

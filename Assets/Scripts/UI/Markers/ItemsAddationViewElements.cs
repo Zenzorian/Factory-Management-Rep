@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.UI
+namespace Scripts.UI.Markers
 {
     [System.Serializable]
     public class ItemsAddationViewElements : MonoBehaviour

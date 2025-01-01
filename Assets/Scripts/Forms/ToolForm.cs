@@ -1,10 +1,9 @@
 using UnityEngine.UI;
-using UnityEngine;
 using Scripts.Data;
 using System.Collections.Generic;
 using Scripts.Services;
 using Scripts.Infrastructure.AssetManagement;
-using Scripts.UI;
+using Scripts.UI.Markers;
 
 namespace Scripts
 {
