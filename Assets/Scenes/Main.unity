@@ -703,6 +703,7 @@ MonoBehaviour:
   _itemsAddationViewElements: {fileID: 8739249376371255582}
   _statisticViewElements: {fileID: 8937768866146689160}
   _statisticsInputElements: {fileID: 9210175875869048478}
+  _graphPlane: {fileID: 1847061998}
 --- !u!1 &901628898
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +967,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d88f62146c59cc45a907ae77cd4729e, type: 3}
+--- !u!114 &1847061998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5837808773071624733, guid: 0d88f62146c59cc45a907ae77cd4729e, type: 3}
+  m_PrefabInstance: {fileID: 1847061997}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c7effeb3984ab4990ead7f4e69a496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1950290976
 GameObject:
   m_ObjectHideFlags: 0

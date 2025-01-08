@@ -34,16 +34,16 @@ namespace Scripts.Infrastructure.States
         {
             _services.RegisterSingle<IStateMachine>(_stateMachine);
 
-            RegisterAssetProvider();
+            RegisterElementsProvider();
 
-            var uiElementsProvider = _services.Single<IUIElementsProvider>();
+            var elementsProvider = _services.Single<IElementsProvider>();
 
             _services.RegisterSingle<ISaveloadDataService>(new SaveloadDataService());
             Debug.Log("SaveloadDataService Initialized");
 
             _services.RegisterSingle<IButtonCreator>
             (
-                new ButtonCreator(uiElementsProvider.ChoiceOfCategoryElements.choiceButtonPrefab)
+                new ButtonCreator(elementsProvider.ChoiceOfCategoryElements.choiceButtonPrefab)
             );
             Debug.Log("SaveloadDataService Initialized");
 
@@ -52,17 +52,17 @@ namespace Scripts.Infrastructure.States
                 new TutorialService
                 (
                     _services.Single<ISaveloadDataService>(),
-                    uiElementsProvider.MainMenu.buttons
+                    elementsProvider.MainMenu.buttons
                 )
             );
             Debug.Log("TutorialService Initialized");
 
             _services.RegisterSingle<IPopUpMassageService>
-                (new PopupMessageService(uiElementsProvider.PopupMessageElements));
+                (new PopupMessageService(elementsProvider.PopupMessageElements));
             Debug.Log("PopUpMassageService Initialized");
 
             _services.RegisterSingle<IConfirmPanelService>
-                (new ConfirmPanelService(uiElementsProvider.ConfirmationPanelElements));
+                (new ConfirmPanelService(elementsProvider.ConfirmationPanelElements));
             Debug.Log("ConfirmationPanelService Initialized");
 
             _services.RegisterSingle<IChoiceOfCategoryService>
@@ -71,7 +71,7 @@ namespace Scripts.Infrastructure.States
                 (
                     _services.Single<ISaveloadDataService>(),
                     _services.Single<IButtonCreator>(),
-                    uiElementsProvider.ChoiceOfCategoryElements
+                    elementsProvider.ChoiceOfCategoryElements
                 )
             );
             Debug.Log("ConfirmationPanelService Initialized");
@@ -89,8 +89,8 @@ namespace Scripts.Infrastructure.States
                 (
                     _services.Single<ISaveloadDataService>(),
                     _services.Single<IButtonCreator>(),
-                    uiElementsProvider.StatisticsInputElements,
-                    uiElementsProvider.GlobalUIElements
+                    elementsProvider.StatisticsInputElements,
+                    elementsProvider.GlobalUIElements
                 )
             );
             Debug.Log("StatisticsInputService Initialized");
@@ -102,14 +102,14 @@ namespace Scripts.Infrastructure.States
                     _services.Single<ISaveloadDataService>(),
                     _services.Single<IPopUpMassageService>(),
                     _services.Single<IConfirmPanelService>(),
-                    uiElementsProvider.StatisticViewElements
+                    elementsProvider.StatisticViewElements
                 )
             );
             Debug.Log("Choice Of StatisticService Initialized");
 
             _services.RegisterSingle<IStatisticsGraphViewService>
            (
-               new StatisticsGraphViewService()
+               new StatisticsGraphViewService(elementsProvider.GraphPlane)
            );
         }
 
@@ -124,10 +124,10 @@ namespace Scripts.Infrastructure.States
             else return tableView;
         }
 
-        private void RegisterAssetProvider()
+        private void RegisterElementsProvider()
         {
-            var assetProvider = Transform.FindFirstObjectByType<ElementsProvider>();
-            if (assetProvider == null)
+            var elementsProvider = Transform.FindFirstObjectByType<ElementsProvider>();
+            if (elementsProvider == null)
             {
                 Debug.LogError("AssetProvider not found");
                 return;
@@ -135,7 +135,7 @@ namespace Scripts.Infrastructure.States
             else
             {
                 Debug.Log("AssetProvider Initialized");
-                _services.RegisterSingle<IUIElementsProvider>(assetProvider);
+                _services.RegisterSingle<IElementsProvider>(elementsProvider);
             }
         }
     }

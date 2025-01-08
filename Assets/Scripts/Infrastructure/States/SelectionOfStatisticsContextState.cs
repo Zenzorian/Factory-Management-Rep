@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace Scripts.Infrastructure.States
 {
-    public class SelectionOfStatisticState : IPayloadedState<SelectedStatistic>
+    public class SelectionOfStatisticsContextState : IPayloadedState<SelectedStatisticsContext>
     {
         private readonly StateMachine _stateMachine;
         private readonly IChoiceOfStatisticService _statisticService;       
         private readonly GlobalUIElements _globalUIElements;
 
-        public SelectionOfStatisticState
+        public SelectionOfStatisticsContextState
         (
               StateMachine gameStateMachine,
               IChoiceOfStatisticService statisticService,              
@@ -23,7 +23,7 @@ namespace Scripts.Infrastructure.States
             _globalUIElements = globalUIElements;
         }
 
-        public void Enter(SelectedStatistic selectedStatisticData = null)
+        public void Enter(SelectedStatisticsContext selectedStatisticData = null)
         {
             Debug.Log("=> Enter on Selection Of Statistic State <=");
 
@@ -55,7 +55,7 @@ namespace Scripts.Infrastructure.States
             _stateMachine.Enter<MainMenuState>();
         }
     }
-    public class SelectedStatistic
+    public class SelectedStatisticsContext
     {
         public Part selectedPart;
         public ProcessingType selectedProcessingType;

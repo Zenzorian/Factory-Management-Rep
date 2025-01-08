@@ -10,13 +10,13 @@ namespace Scripts.Infrastructure.States
     {
         private readonly StateMachine _stateMachine;
         private readonly LoadingCurtain _loadingCurtain;
-        private readonly IUIElementsProvider _assetProvider;
+        private readonly IElementsProvider _assetProvider;
         private readonly ISaveloadDataService _saveloadDataService;
 
 
         private Button[] _menuButtons;
 
-        public MainMenuState(StateMachine stateMachine, LoadingCurtain loadingCurtain, IUIElementsProvider assetProvider, ISaveloadDataService saveloadDataService)
+        public MainMenuState(StateMachine stateMachine, LoadingCurtain loadingCurtain, IElementsProvider assetProvider, ISaveloadDataService saveloadDataService)
         {
             _stateMachine = stateMachine;
             _loadingCurtain = loadingCurtain;
@@ -33,6 +33,13 @@ namespace Scripts.Infrastructure.States
             _loadingCurtain.Hide();
 
             SetMenuButtonsEvents();
+
+            _assetProvider.GlobalUIElements.addationButton.gameObject.SetActive(false);
+        }
+        public void Exit()
+        {
+            RemoveMenuButtonsEvents();
+            _assetProvider.GlobalUIElements.addationButton.gameObject.SetActive(true);
         }
 
         private void SetMenuButtonsEvents()
@@ -61,7 +68,7 @@ namespace Scripts.Infrastructure.States
 
         private void OpenStatistic()
         {           
-            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatistic>(null);
+            _stateMachine.Enter<SelectionOfStatisticsContextState, SelectedStatisticsContext>(null);
         }
 
         public void OpenCategory(MainMenuTypes value)
@@ -80,10 +87,6 @@ namespace Scripts.Infrastructure.States
             _stateMachine.Enter<ChoiceOfCategoryState, ChoiceOfCategoryStateData>(categoryData);
         }
 
-        public void Exit()
-        {
-            RemoveMenuButtonsEvents();
-        }
         private void RemoveMenuButtonsEvents()
         {
             _menuButtons = _assetProvider.MainMenu.buttons;

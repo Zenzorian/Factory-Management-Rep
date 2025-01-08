@@ -36,7 +36,7 @@ namespace Scripts.Services.Statistics
             _statisticPanel = elements.gameObject;
         }
 
-        public void ShowPanel(SelectedStatistic selectedStatisticData)
+        public void ShowPanel(SelectedStatisticsContext selectedStatisticData)
         {
             _statisticPanel.SetActive(true);            
         }

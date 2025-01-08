@@ -5,6 +5,7 @@ namespace Scripts.Services
     public interface IStatisticsGraphViewService : IService
     {
         void Initialize(Statistic statistics);
+        void Clear();
 
     }
 }

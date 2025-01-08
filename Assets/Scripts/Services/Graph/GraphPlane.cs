@@ -23,8 +23,6 @@ public class GraphPlane : MonoBehaviour
 
     public void Generate(List<GraphData> data)
     {
-        Clear();
-
         if (data == null || data.Count == 0)
         {
             Debug.LogError("Data list cannot be null or empty");

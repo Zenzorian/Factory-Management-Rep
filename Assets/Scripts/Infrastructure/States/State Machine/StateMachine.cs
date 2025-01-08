@@ -22,7 +22,7 @@ namespace Scripts.Infrastructure.States
                 (
                     this,
                     loadingCurtain,
-                    services.Single<IUIElementsProvider>(),
+                    services.Single<IElementsProvider>(),
                     services.Single<ISaveloadDataService>()
                 ),
                 [typeof(ChoiceOfCategoryState)] = new ChoiceOfCategoryState
@@ -33,10 +33,10 @@ namespace Scripts.Infrastructure.States
                     new ChioceListAddation
                     (
                         services.Single<ISaveloadDataService>(),
-                        services.Single<IUIElementsProvider>().ItemsAddationViewElements,
-                        services.Single<IUIElementsProvider>().GlobalUIElements
+                        services.Single<IElementsProvider>().ItemsAddationViewElements,
+                        services.Single<IElementsProvider>().GlobalUIElements
                     ),
-                    services.Single<IUIElementsProvider>().GlobalUIElements
+                    services.Single<IElementsProvider>().GlobalUIElements
                 ),
                 [typeof(TableProcessorState)] = new TableProcessorState
                 (
@@ -45,29 +45,29 @@ namespace Scripts.Infrastructure.States
                     new TableItemAddation
                     (
                         services.Single<ISaveloadDataService>(),
-                        services.Single<IUIElementsProvider>().ItemsAddationViewElements,
-                        services.Single<IUIElementsProvider>().GlobalUIElements
+                        services.Single<IElementsProvider>().ItemsAddationViewElements,
+                        services.Single<IElementsProvider>().GlobalUIElements
                     ),
-                    services.Single<IUIElementsProvider>().GlobalUIElements
+                    services.Single<IElementsProvider>().GlobalUIElements
                 ),
-                [typeof(SelectionOfStatisticState)] = new SelectionOfStatisticState
+                [typeof(SelectionOfStatisticsContextState)] = new SelectionOfStatisticsContextState
                 (
                     this,
                     services.Single<IChoiceOfStatisticService>(),
-                    services.Single<IUIElementsProvider>().GlobalUIElements
+                    services.Single<IElementsProvider>().GlobalUIElements
                 ),
                 [typeof(StatisticSelectionChoiceOfCategoryState)] = new StatisticSelectionChoiceOfCategoryState
                 (
                     this,
                     services.Single<IChoiceOfCategoryService>(),
                     services.Single<IPopUpMassageService>(),
-                    services.Single<IUIElementsProvider>().GlobalUIElements
+                    services.Single<IElementsProvider>().GlobalUIElements
                 ),
                 [typeof(StatisticTableProcessorState)] = new StatisticTableProcessorState
                 (
                     this,
                     services.Single<ITableProcessorService>(),
-                    services.Single<IUIElementsProvider>().GlobalUIElements
+                    services.Single<IElementsProvider>().GlobalUIElements
                 ),
                 [typeof(ChoiceOfStatisticDataState)] = new ChoiceOfStatisticDataState
                 (
@@ -77,18 +77,18 @@ namespace Scripts.Infrastructure.States
                     new StatisticDataItemAddation
                     (
                         services.Single<ISaveloadDataService>(),
-                        services.Single<IUIElementsProvider>().ItemsAddationViewElements,
-                        services.Single<IUIElementsProvider>().GlobalUIElements
+                        services.Single<IElementsProvider>().ItemsAddationViewElements,
+                        services.Single<IElementsProvider>().GlobalUIElements
                     ),
                      services.Single<IStatisticsInputService>(),
-                     services.Single<IUIElementsProvider>().GlobalUIElements
+                     services.Single<IElementsProvider>().GlobalUIElements
                 ),
                 [typeof(StatisticGrafViewState)] = new StatisticGrafViewState
                 (
                     this,
                     loadingCurtain,
                     services.Single<IStatisticsGraphViewService>(),
-                    services.Single<IUIElementsProvider>()
+                    services.Single<IElementsProvider>()
                 ),
             };
         }

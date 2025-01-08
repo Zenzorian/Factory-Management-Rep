@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Scripts.Infrastructure.AssetManagement
 {
-    public class ElementsProvider : MonoBehaviour, IUIElementsProvider
+    public class ElementsProvider : MonoBehaviour, IElementsProvider
     {        
 
         [SerializeField] private MainMenu _mainMenu;

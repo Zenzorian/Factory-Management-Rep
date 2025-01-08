@@ -9,7 +9,7 @@ namespace Scripts.Services.Statistics
 {
     public class ChoiceOfStatisticService : IChoiceOfStatisticService
     {
-        private SelectedStatistic _selectedStatisticData;
+        private SelectedStatisticsContext _selectedStatisticData;
 
         private IStateMachine _stateMachine;
         private readonly ISaveloadDataService _saveloadDataService;
@@ -52,14 +52,14 @@ namespace Scripts.Services.Statistics
             _view.EditStatisticsButton.onClick.RemoveAllListeners();
         }
 
-        public void ShowPanel(IStateMachine stateMachine, SelectedStatistic selectedStatisticData = null)
+        public void ShowPanel(IStateMachine stateMachine, SelectedStatisticsContext selectedStatisticData = null)
         {           
             AnregisterEvents();
 
             _stateMachine = stateMachine;
             RegisterEvents();
 
-            _selectedStatisticData = selectedStatisticData != null ? selectedStatisticData : new SelectedStatistic();
+            _selectedStatisticData = selectedStatisticData != null ? selectedStatisticData : new SelectedStatisticsContext();
 
             _view.Initialize();
 
@@ -110,7 +110,7 @@ namespace Scripts.Services.Statistics
             CheckSelectedData(_selectedStatisticData);
         }
 
-        private void CheckSelectedData(SelectedStatistic selectedStatisticData)
+        private void CheckSelectedData(SelectedStatisticsContext selectedStatisticData)
         {
             if (selectedStatisticData.selectedPart == null)
             {
@@ -151,7 +151,9 @@ namespace Scripts.Services.Statistics
             if (HasValidStatistics())
             {
                 var statistic = GetCurrentStatistic();
-                _stateMachine.Enter<StatisticGrafViewState, Statistic>(statistic);
+
+                var statisticGrafViewStateData = new StatisticGrafViewStateData(statistic, _selectedStatisticData);
+                _stateMachine.Enter<StatisticGrafViewState, StatisticGrafViewStateData>(statisticGrafViewStateData);
             }
             else
                 _popUpMassageService.Show("Statistic not found");

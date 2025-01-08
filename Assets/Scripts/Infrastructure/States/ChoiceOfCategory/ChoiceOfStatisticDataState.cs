@@ -56,7 +56,7 @@ namespace Scripts.Infrastructure.States
 
         protected override void OnBack()
         {           
-            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatistic>(_currentStateData.selectedStatistic);
+            _stateMachine.Enter<SelectionOfStatisticsContextState, SelectedStatisticsContext>(_currentStateData.selectedStatistic);
         }
 
         protected override ChoiceOfCategoryStateData GetCategoryData(ChoiceOfStatisticDataStateData stateData)
@@ -84,7 +84,7 @@ namespace Scripts.Infrastructure.States
         (
             MainMenuTypes menuType,
             List<string> selectedListOfCategotyElements,
-            SelectedStatistic selectedStatistic,
+            SelectedStatisticsContext selectedStatistic,
             Statistic selectedStatisticData
         ) : base(menuType, selectedListOfCategotyElements, selectedStatistic)
         {

@@ -59,14 +59,14 @@ namespace Scripts.Infrastructure.States
         }
         private void CellSelected(TableItem tableItem)
         {
-            SelectedStatistic selectedStatisticData = _stateData.choiceData.selectedStatistic;
+            SelectedStatisticsContext selectedStatisticData = _stateData.choiceData.selectedStatistic;
 
             if (_stateData.choiceData.menuType == MainMenuTypes.Parts)
                 selectedStatisticData.selectedPart = tableItem as Part;          
             else if (_stateData.choiceData.menuType == MainMenuTypes.Tools)
                 selectedStatisticData.selectedTool = tableItem as Tool;           
 
-            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatistic>(selectedStatisticData);
+            _stateMachine.Enter<SelectionOfStatisticsContextState, SelectedStatisticsContext>(selectedStatisticData);
         }
     }
     

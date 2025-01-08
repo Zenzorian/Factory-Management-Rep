@@ -37,6 +37,11 @@ namespace Scripts.Services
             }
             return (float)sum / numbers.Count;
         }
+
+        public void Clear()
+        {
+            _graphPlane.Clear();
+        }
     }
 }
 

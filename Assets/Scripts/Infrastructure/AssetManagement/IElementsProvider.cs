@@ -3,7 +3,7 @@ using Scripts.UI.Markers;
 
 namespace Scripts.Infrastructure.AssetManagement
 {
-    public interface IUIElementsProvider : IService
+    public interface IElementsProvider : IService
     {
         GlobalUIElements GlobalUIElements { get; }
         MainMenu MainMenu { get; }
@@ -13,5 +13,7 @@ namespace Scripts.Infrastructure.AssetManagement
         ItemsAddationViewElements ItemsAddationViewElements { get; }
         StatisticViewElements StatisticViewElements { get; }
         StatisticsInputElements StatisticsInputElements { get; }
+        GraphPlane GraphPlane { get; }
+
     }
 }
