@@ -4,15 +4,15 @@ namespace Scripts.Data
 {
     [System.Serializable]
     public class Part : TableItem
-    {
-        public List<Statistic> Statistic = new List<Statistic>();
-        
+    {        
         public Part(int id,string name, string type):base(id,name,type)
         {
             Id = id;    
             Name = name;
-            Type = type;            
+            Type = type;
+            Statistic = new List<Statistic>();
         }
+        public List<Statistic> Statistic;
     }
     [System.Serializable]
     public class Statistic
@@ -40,7 +40,7 @@ namespace Scripts.Data
     {
         public StatisticData()
         {
-            
+            PartCounter = new List<int>();
         }
         public StatisticData(double F, double V)
         {

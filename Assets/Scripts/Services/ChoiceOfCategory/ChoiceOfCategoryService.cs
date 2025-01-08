@@ -11,12 +11,12 @@ namespace Scripts.Services
     public class ChoiceOfCategoryService : IChoiceOfCategoryService
     {
         private readonly ISaveloadDataService _saveloadDataService;
+        private readonly IButtonCreator _buttonCreator;
 
         private readonly Transform _panel;
         private readonly Text _sectionNameText;
         private readonly Transform _content;
 
-        private readonly ButtonCreator _buttonCreator;
 
         private UnityEvent<MainMenuTypes,int> _choiceButtonPressed;
 
@@ -28,15 +28,16 @@ namespace Scripts.Services
 
         public ChoiceOfCategoryService
         (
-            ChoiceOfCategoryElements choiceOfCategoryElements,           
-            ISaveloadDataService saveloadDataService
+            ISaveloadDataService saveloadDataService,
+            IButtonCreator buttonCreator,
+            ChoiceOfCategoryElements choiceOfCategoryElements          
         )
         {
             _panel = choiceOfCategoryElements.panel;
             _sectionNameText = choiceOfCategoryElements.sectionNameText;
             _content = choiceOfCategoryElements.content;
 
-            _buttonCreator = new ButtonCreator(choiceOfCategoryElements.choiceButtonPrefab);
+            _buttonCreator = buttonCreator;
 
             _saveloadDataService = saveloadDataService;            
         }
@@ -77,34 +78,13 @@ namespace Scripts.Services
                 myButton.onClick.AddListener(delegate { ButtonPressed(index); });
                 var buttonText = myButton.GetComponentInChildren<Text>();
                 var count = _saveloadDataService.GetItemsCount(menuType, list[i]);
-                buttonText.text = $"{buttonText.text} - ({count})";               
+                if(menuType != MainMenuTypes.Statistic)
+                    buttonText.text = $"{buttonText.text} - ({count})";   
+                else
+                    buttonText.text = $"{buttonText.text}";
             }
         }
-        public void CreateForStatistic(List<StatisticData> list)
-        {
-            _selectedStatisticList = list;
-
-            Clear();
-
-            string[] names = new string[list.Count];
-
-            for (int i = 0; i < names.Length; i++)
-            {
-                names[i] = $"F = {list[i].F} V = {list[i].V}";
-            }
-
-            var buttons = _buttonCreator.Create(names, _content);
-
-            for (int i = 0; i < buttons.Count; i++)
-            {
-                int index = i;
-                var myButton = buttons[index].GetComponent<Button>();
-                var data = new StatisticData();
-                data = list[i];                
-            }
-        }
-      
-
+        
         public void ButtonPressed(int indexOfSelectedCategoty)
         {     
             _choiceButtonPressed?.Invoke(_menuType, indexOfSelectedCategoty);                       

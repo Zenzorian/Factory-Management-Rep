@@ -1,4 +1,5 @@
 ﻿using Scripts.Infrastructure.AssetManagement;
+using Scripts.MyTools;
 using Scripts.Services;
 using Scripts.Services.Statistics;
 using UnityEngine;
@@ -7,12 +8,12 @@ namespace Scripts.Infrastructure.States
 {
     public class BootstrapState : IState
     {
-        private readonly StateMachine _stateMachine;       
-        private readonly AllServices _services;  
+        private readonly StateMachine _stateMachine;
+        private readonly AllServices _services;
 
         public BootstrapState(StateMachine stateMachine, AllServices services)
         {
-            _stateMachine = stateMachine;           
+            _stateMachine = stateMachine;
             _services = services;
 
             RegisterServices();
@@ -22,7 +23,7 @@ namespace Scripts.Infrastructure.States
         {
             Debug.Log("=> Enter on Bootstrap State  <=");
 
-            _stateMachine.Enter<MainMenuState>();            
+            _stateMachine.Enter<MainMenuState>();
         }
         public void Exit()
         {
@@ -40,12 +41,18 @@ namespace Scripts.Infrastructure.States
             _services.RegisterSingle<ISaveloadDataService>(new SaveloadDataService());
             Debug.Log("SaveloadDataService Initialized");
 
+            _services.RegisterSingle<IButtonCreator>
+            (
+                new ButtonCreator(uiElementsProvider.ChoiceOfCategoryElements.choiceButtonPrefab)
+            );
+            Debug.Log("SaveloadDataService Initialized");
+
             _services.RegisterSingle<ITutorialService>
             (
                 new TutorialService
                 (
                     _services.Single<ISaveloadDataService>(),
-                    uiElementsProvider.MainMenuButtons
+                    uiElementsProvider.MainMenu.buttons
                 )
             );
             Debug.Log("TutorialService Initialized");
@@ -59,7 +66,14 @@ namespace Scripts.Infrastructure.States
             Debug.Log("ConfirmationPanelService Initialized");
 
             _services.RegisterSingle<IChoiceOfCategoryService>
-                (new ChoiceOfCategoryService(uiElementsProvider.ChoiceOfCategoryElements, _services.Single<ISaveloadDataService>()));
+            (
+                new ChoiceOfCategoryService
+                (
+                    _services.Single<ISaveloadDataService>(),
+                    _services.Single<IButtonCreator>(),
+                    uiElementsProvider.ChoiceOfCategoryElements
+                )
+            );
             Debug.Log("ConfirmationPanelService Initialized");
 
             _services.RegisterSingle<ITableProcessorService>
@@ -69,23 +83,34 @@ namespace Scripts.Infrastructure.States
             );
             Debug.Log("TableProcessorService Initialized");
 
-            _services.RegisterSingle<IStatisticsInputService>(new StatisticsInputService(uiElementsProvider.StatisticsInputElements));
+            _services.RegisterSingle<IStatisticsInputService>
+            (
+                new StatisticsInputService
+                (
+                    _services.Single<ISaveloadDataService>(),
+                    _services.Single<IButtonCreator>(),
+                    uiElementsProvider.StatisticsInputElements,
+                    uiElementsProvider.GlobalUIElements
+                )
+            );
             Debug.Log("StatisticsInputService Initialized");
 
             _services.RegisterSingle<IChoiceOfStatisticService>
             (
                 new ChoiceOfStatisticService
                 (
-                    _services.Single<ISaveloadDataService>(), 
+                    _services.Single<ISaveloadDataService>(),
                     _services.Single<IPopUpMassageService>(),
                     _services.Single<IConfirmPanelService>(),
-                    _services.Single<IStatisticsInputService>(),
                     uiElementsProvider.StatisticViewElements
                 )
             );
-            Debug.Log("StatisticService Initialized");
+            Debug.Log("Choice Of StatisticService Initialized");
 
-            
+            _services.RegisterSingle<IStatisticsGraphViewService>
+           (
+               new StatisticsGraphViewService()
+           );
         }
 
         private TableView GetTableView()
@@ -101,7 +126,7 @@ namespace Scripts.Infrastructure.States
 
         private void RegisterAssetProvider()
         {
-            var assetProvider = Transform.FindFirstObjectByType<UIElementsProvider>();
+            var assetProvider = Transform.FindFirstObjectByType<ElementsProvider>();
             if (assetProvider == null)
             {
                 Debug.LogError("AssetProvider not found");
@@ -111,7 +136,7 @@ namespace Scripts.Infrastructure.States
             {
                 Debug.Log("AssetProvider Initialized");
                 _services.RegisterSingle<IUIElementsProvider>(assetProvider);
-            }           
-        }     
+            }
+        }
     }
 }

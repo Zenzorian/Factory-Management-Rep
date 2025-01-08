@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace Scripts.Infrastructure.AssetManagement
 {
-    public class UIElementsProvider : MonoBehaviour, IUIElementsProvider
+    public class ElementsProvider : MonoBehaviour, IUIElementsProvider
     {        
 
-        [SerializeField] private Button[] _mainMenuButtons = new Button[10];
+        [SerializeField] private MainMenu _mainMenu;
         [SerializeField] private GlobalUIElements _globalUIElements;
         [SerializeField] private PopupMessageElements _popupMessageElements;
         [SerializeField] private ConfirmPanelElements _confirmationPanelElements;
@@ -15,8 +15,9 @@ namespace Scripts.Infrastructure.AssetManagement
         [SerializeField] private ItemsAddationViewElements _itemsAddationViewElements;
         [SerializeField] private StatisticViewElements _statisticViewElements;
         [SerializeField] private StatisticsInputElements _statisticsInputElements;
+        [SerializeField] private GraphPlane _graphPlane;
 
-        public Button[] MainMenuButtons => _mainMenuButtons;
+        public MainMenu MainMenu => _mainMenu;
         public GlobalUIElements GlobalUIElements => _globalUIElements;
         public PopupMessageElements PopupMessageElements => _popupMessageElements;
         public ConfirmPanelElements ConfirmationPanelElements => _confirmationPanelElements;
@@ -25,6 +26,7 @@ namespace Scripts.Infrastructure.AssetManagement
         public ItemsAddationViewElements ItemsAddationViewElements => _itemsAddationViewElements;
         public StatisticViewElements StatisticViewElements => _statisticViewElements;
         public StatisticsInputElements StatisticsInputElements => _statisticsInputElements;
+        public GraphPlane GraphPlane => _graphPlane;
     }
     [System.Serializable]
     public class GlobalUIElements    

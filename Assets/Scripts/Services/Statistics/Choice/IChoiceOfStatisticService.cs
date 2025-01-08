@@ -10,6 +10,6 @@ namespace Scripts.Services.Statistics
         void HidePanel();      
         void SetProcessingType(ProcessingType processingType);
         bool HasValidStatistics();
-        Statistic GetCurrentStatistics();       
+        Statistic GetCurrentStatistic();       
     }
 }

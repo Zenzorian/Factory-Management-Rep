@@ -1,8 +1,9 @@
 using Scripts.Data;
 using Scripts.Infrastructure.States;
+using Scripts.MyTools;
 using Scripts.UI.Markers;
 using System.Collections.Generic;
-using System.Linq;
+using UnityEditor.Overlays;
 
 namespace Scripts.Services.Statistics
 {
@@ -14,7 +15,7 @@ namespace Scripts.Services.Statistics
         private readonly ISaveloadDataService _saveloadDataService;
         private readonly IPopUpMassageService _popUpMassageService;
         private readonly IConfirmPanelService _confirmPanelService;
-        private readonly IStatisticsInputService _statisticsInputService;
+        
         private readonly ChoiceOfStatisticDataView _view;
 
         public ChoiceOfStatisticService
@@ -22,14 +23,13 @@ namespace Scripts.Services.Statistics
             ISaveloadDataService saveloadDataService,
             IPopUpMassageService popUpMassageService,
             IConfirmPanelService confirmPanelService,
-            IStatisticsInputService statisticsInputService,
+            
             StatisticViewElements statisticViewElements
         )
         {
             _saveloadDataService = saveloadDataService;
             _popUpMassageService = popUpMassageService;
-            _confirmPanelService = confirmPanelService;
-            _statisticsInputService = statisticsInputService;
+            _confirmPanelService = confirmPanelService;           
             _view = new ChoiceOfStatisticDataView(statisticViewElements);
         }
         private void RegisterEvents()
@@ -44,14 +44,18 @@ namespace Scripts.Services.Statistics
 
         private void AnregisterEvents()
         {
-            _view.SelectPartButton.onClick.RemoveListener(OnPartButtonClicked);
-            _view.SelectToolButton.onClick.RemoveListener(OnToolButtonClicked);
-            _view.GoToStatisticsButton.onClick.RemoveListener(OnGoToStatisticsButtonClicked);
-            _view.ProcessingTypeDropdown.onValueChanged.RemoveListener(OnProcessingTypeSelected);
+            _view.SelectPartButton.onClick.RemoveAllListeners();
+            _view.SelectToolButton.onClick.RemoveAllListeners();
+            _view.ProcessingTypeDropdown.onValueChanged.RemoveAllListeners();
+
+            _view.GoToStatisticsButton.onClick.RemoveAllListeners();
+            _view.EditStatisticsButton.onClick.RemoveAllListeners();
         }
 
         public void ShowPanel(IStateMachine stateMachine, SelectedStatistic selectedStatisticData = null)
-        {
+        {           
+            AnregisterEvents();
+
             _stateMachine = stateMachine;
             RegisterEvents();
 
@@ -112,7 +116,7 @@ namespace Scripts.Services.Statistics
             {
                 _view.ShowPartSelection("Select part");
             }
-            else if (selectedStatisticData.selectedPart != null)
+            else
             {
                 var text = $"Selected part: {selectedStatisticData.selectedPart.Id} {selectedStatisticData.selectedPart.Name}";
 
@@ -143,10 +147,11 @@ namespace Scripts.Services.Statistics
         }
 
         private void OnGoToStatisticsButtonClicked()
-        {
+        { 
             if (HasValidStatistics())
             {
-                var statistics = GetCurrentStatistics();
+                var statistic = GetCurrentStatistic();
+                _stateMachine.Enter<StatisticGrafViewState, Statistic>(statistic);
             }
             else
                 _popUpMassageService.Show("Statistic not found");
@@ -157,7 +162,7 @@ namespace Scripts.Services.Statistics
             {
                 var lastStateData = CreateStateData(MainMenuTypes.Statistic);
 
-                var stateData = new ChoiceOfStatisticDataStateData(lastStateData.menuType, null, lastStateData.selectedStatistic, GetCurrentStatistics());
+                var stateData = new ChoiceOfStatisticDataStateData(lastStateData.menuType, null, lastStateData.selectedStatistic, GetCurrentStatistic());
                 _stateMachine.Enter<ChoiceOfStatisticDataState, ChoiceOfStatisticDataStateData>(stateData);
             }
             else
@@ -169,16 +174,18 @@ namespace Scripts.Services.Statistics
         {
             return _selectedStatisticData.selectedPart != null &&
                    _selectedStatisticData.selectedTool != null &&                   
-                   GetCurrentStatistics() != null;
+                   GetCurrentStatistic() != null;
         }
 
-        public Statistic GetCurrentStatistics()
+        public Statistic GetCurrentStatistic()
         {
-            var statistics = _selectedStatisticData.selectedPart.Statistic;
-            var processingType = _selectedStatisticData.selectedProcessingType;
-            var tool = _selectedStatisticData.selectedTool;                   
+            List<Statistic> listOfStatistic = _selectedStatisticData.selectedPart.Statistic;
+            ProcessingType processingType = _selectedStatisticData.selectedProcessingType;
+            Tool tool = _selectedStatisticData.selectedTool;
 
-            return statistics.FirstOrDefault(item => item.Equals(tool) && item.ProcessingType == processingType);
+            Statistic statistick = listOfStatistic.Find(item => item.Tool.Equals(tool) && item.ProcessingType == processingType);
+             
+            return statistick;
         }
         private void CreateStatistic()
         {

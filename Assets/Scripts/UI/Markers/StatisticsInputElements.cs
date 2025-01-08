@@ -1,5 +1,5 @@
-﻿using UnityEngine.UI;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Scripts.UI.Markers
 {
@@ -7,8 +7,9 @@ namespace Scripts.UI.Markers
     {
         public Text fText;
         public Text vText;
-        public Button AddButton;
-        public InputField AddInput;
+        public Button addButton;
+        public Button backButton;
+        public InputField addInput;
 
         public Transform content;
     }

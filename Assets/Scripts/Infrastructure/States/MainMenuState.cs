@@ -37,7 +37,7 @@ namespace Scripts.Infrastructure.States
 
         private void SetMenuButtonsEvents()
         {
-            _menuButtons = _assetProvider.MainMenuButtons;
+            _menuButtons = _assetProvider.MainMenu.buttons;
 
             for (int i = 0; i < _menuButtons.Length; i++)
             {
@@ -86,7 +86,7 @@ namespace Scripts.Infrastructure.States
         }
         private void RemoveMenuButtonsEvents()
         {
-            _menuButtons = _assetProvider.MainMenuButtons;
+            _menuButtons = _assetProvider.MainMenu.buttons;
 
             foreach (var button in _menuButtons)
             {

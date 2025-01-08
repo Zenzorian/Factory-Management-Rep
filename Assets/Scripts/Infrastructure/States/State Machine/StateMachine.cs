@@ -53,20 +53,20 @@ namespace Scripts.Infrastructure.States
                 [typeof(SelectionOfStatisticState)] = new SelectionOfStatisticState
                 (
                     this,
-                    services.Single<IChoiceOfStatisticService>(),                    
+                    services.Single<IChoiceOfStatisticService>(),
                     services.Single<IUIElementsProvider>().GlobalUIElements
                 ),
                 [typeof(StatisticSelectionChoiceOfCategoryState)] = new StatisticSelectionChoiceOfCategoryState
                 (
                     this,
                     services.Single<IChoiceOfCategoryService>(),
-                    services.Single<IPopUpMassageService>(),                   
+                    services.Single<IPopUpMassageService>(),
                     services.Single<IUIElementsProvider>().GlobalUIElements
                 ),
                 [typeof(StatisticTableProcessorState)] = new StatisticTableProcessorState
                 (
                     this,
-                    services.Single<ITableProcessorService>(),                   
+                    services.Single<ITableProcessorService>(),
                     services.Single<IUIElementsProvider>().GlobalUIElements
                 ),
                 [typeof(ChoiceOfStatisticDataState)] = new ChoiceOfStatisticDataState
@@ -80,9 +80,16 @@ namespace Scripts.Infrastructure.States
                         services.Single<IUIElementsProvider>().ItemsAddationViewElements,
                         services.Single<IUIElementsProvider>().GlobalUIElements
                     ),
-                    services.Single<IUIElementsProvider>().GlobalUIElements
+                     services.Single<IStatisticsInputService>(),
+                     services.Single<IUIElementsProvider>().GlobalUIElements
                 ),
-
+                [typeof(StatisticGrafViewState)] = new StatisticGrafViewState
+                (
+                    this,
+                    loadingCurtain,
+                    services.Single<IStatisticsGraphViewService>(),
+                    services.Single<IUIElementsProvider>()
+                ),
             };
         }
 

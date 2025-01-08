@@ -9,8 +9,10 @@ namespace Scripts.Infrastructure.States
     public class ChoiceOfStatisticDataState : BaseChoiceOfCategoryState<ChoiceOfStatisticDataStateData>
     {
         private ChoiceOfStatisticDataStateData _currentStateData;
+
         private readonly IItemAddationService _addationService;
-               
+        private readonly IStatisticsInputService _statisticsInputService;
+
         private List<StatisticData> _currentStatisticData = new List<StatisticData>();
         public ChoiceOfStatisticDataState
         (
@@ -18,15 +20,17 @@ namespace Scripts.Infrastructure.States
             IChoiceOfCategoryService choiceOfCategoryService,
             IPopUpMassageService popUpMassageService,
             IItemAddationService addationService,
+            IStatisticsInputService statisticsInputService,
             GlobalUIElements globalUIElements)
             : base(stateMachine, choiceOfCategoryService, popUpMassageService, globalUIElements)
         {
             _addationService = addationService;
+            _statisticsInputService = statisticsInputService;
         }
 
         public override void Enter(ChoiceOfStatisticDataStateData stateData)
         {
-            Debug.Log("=> Enter on Statistic Edit Choice Of Category State <=");
+            Debug.Log("=> Enter on  Choice Of Statistic Data State <=");
 
             _currentStateData = stateData;           
 
@@ -36,27 +40,23 @@ namespace Scripts.Infrastructure.States
             var categoryNames = new List<string>();
             foreach (var item in _currentStatisticData)
             {
-                categoryNames.Add($"F = {item.F} V = { item.V}");
+                categoryNames.Add($"F = {item.F} V = {item.V}");
             }
             _currentStateData.selectedListOfCategotyElements = categoryNames;
 
-            base.Enter(stateData);
+            base.Enter(_currentStateData);
             AddUIListeners();
         }
 
         protected override void OnChoiceMade(MainMenuTypes menuType, int index)
         {
-            var tableProcessorStateData = new TableProcessorStateData
-            {
-                choiceOfCategoryStateData = _currentStateData,
-                indexOfSelectedCategoty = index
-            };
-            _stateMachine.Enter<TableProcessorState, TableProcessorStateData>(tableProcessorStateData);
+            StatisticData temporaryData = _currentStatisticData[index];
+            _statisticsInputService.ShowPanel(temporaryData);
         }
 
         protected override void OnBack()
-        {
-            _stateMachine.Enter<MainMenuState>();
+        {           
+            _stateMachine.Enter<SelectionOfStatisticState, SelectedStatistic>(_currentStateData.selectedStatistic);
         }
 
         protected override ChoiceOfCategoryStateData GetCategoryData(ChoiceOfStatisticDataStateData stateData)
@@ -72,7 +72,7 @@ namespace Scripts.Infrastructure.States
           
         private void OnAddation()
         {
-            var addationData = new AddationData(_currentStateData.menuType, -1);
+            var addationData = new AddationData(_currentStateData.menuType, -1,_currentStatisticData);
             _addationService.Open(addationData, () => Enter(_currentStateData));
         }
     }

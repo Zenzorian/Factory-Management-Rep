@@ -29,16 +29,26 @@ namespace Scripts.Infrastructure.States
 
             _statisticService.ShowPanel(_stateMachine, selectedStatisticData);
 
+            Initialize();
+        }
+        public void Exit()
+        {
+            PutOff();
+        }
+
+        private void Initialize()
+        {
             _globalUIElements.backButton.onClick.AddListener(Back);
             _globalUIElements.addationButton.gameObject.SetActive(false);
         }
 
-        public void Exit()
+
+        private void PutOff()
         {
             _globalUIElements.backButton.onClick.RemoveListener(Back);
             _globalUIElements.addationButton.gameObject.SetActive(true);
             _statisticService.HidePanel();
-        }       
+        }
 
         private void Back()
         {

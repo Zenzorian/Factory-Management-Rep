@@ -31,9 +31,7 @@ namespace Scripts.Services
             Clear();
                                 
             _addButton.onClick.AddListener(AddToList);
-
-            Debug.Log("ffffffff");
-
+                   
             _f = _inputFieldCreator.Create("F = ", _content);
             _v = _inputFieldCreator.Create("V = ", _content);
 

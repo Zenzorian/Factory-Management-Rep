@@ -4,7 +4,24 @@
             "Id": 0,
             "Name": "Part Bracket 1",
             "Type": "Housing",
-            "Statistic": []
+            "Statistic": [
+                {
+                    "Tool": {
+                        "Id": 86,
+                        "Name": "TFWSYK7K",
+                        "Type": "MillingCNC",
+                        "Note": "Random note for Turning Roughing Tool"
+                    },
+                    "ProcessingType": 1,
+                    "Data": [
+                        {
+                            "F": 1.0,
+                            "V": 1.0,
+                            "PartCounter": []
+                        }
+                    ]
+                }
+            ]
         },
         {
             "Id": 1,
@@ -398,7 +415,10 @@
                                 92,
                                 201,
                                 191,
-                                173
+                                173,
+                                3223,
+                                24,
+                                54
                             ]
                         },
                         {
@@ -1609,6 +1629,16 @@
                                 215,
                                 103
                             ]
+                        },
+                        {
+                            "F": 1.0,
+                            "V": 1.0,
+                            "PartCounter": []
+                        },
+                        {
+                            "F": 5.0,
+                            "V": 5.0,
+                            "PartCounter": []
                         }
                     ]
                 },

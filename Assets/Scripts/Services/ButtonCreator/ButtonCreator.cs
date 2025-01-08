@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Scripts.MyTools
 {
     [System.Serializable]
-    public class ButtonCreator
+    public class ButtonCreator : IButtonCreator
     {
         private readonly GameObject _buttonPrefab;
 

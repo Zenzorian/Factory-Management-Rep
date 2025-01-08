@@ -1,16 +1,15 @@
 using Scripts.Services;
 using Scripts.UI.Markers;
-using UnityEngine.UI;
 
 namespace Scripts.Infrastructure.AssetManagement
 {
     public interface IUIElementsProvider : IService
     {
-        Button[] MainMenuButtons { get; }
+        GlobalUIElements GlobalUIElements { get; }
+        MainMenu MainMenu { get; }
         ConfirmPanelElements ConfirmationPanelElements { get; }
         PopupMessageElements PopupMessageElements { get; }
         ChoiceOfCategoryElements ChoiceOfCategoryElements { get; }
-        GlobalUIElements GlobalUIElements { get; }
         ItemsAddationViewElements ItemsAddationViewElements { get; }
         StatisticViewElements StatisticViewElements { get; }
         StatisticsInputElements StatisticsInputElements { get; }
