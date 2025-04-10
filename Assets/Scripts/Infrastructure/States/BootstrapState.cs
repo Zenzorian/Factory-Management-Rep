@@ -102,7 +102,8 @@ namespace Scripts.Infrastructure.States
                     _services.Single<ISaveloadDataService>(),
                     _services.Single<IPopUpMassageService>(),
                     _services.Single<IConfirmPanelService>(),
-                    elementsProvider.StatisticViewElements
+                    _services.Single<ITableProcessorService>(),
+                    elementsProvider                    
                 )
             );
             Debug.Log("Choice Of StatisticService Initialized");

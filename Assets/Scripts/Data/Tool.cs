@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using Scripts.Data;
+
 namespace Scripts.Data
 {   
     [System.Serializable]   
@@ -58,4 +62,21 @@ namespace Scripts.Data
         }
     }
 
+}
+public class ToolWorkHistory
+{
+    public DateTime date;
+    public List<ToolWork> history;
+}
+    
+public class ToolWork
+{
+    public ToolWork(Employee employee, float time)
+    {
+        this.employee = employee;
+        this.time = time;
+    }
+
+    public Employee employee;
+    public float time;
 }

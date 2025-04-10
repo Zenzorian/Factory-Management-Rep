@@ -58,7 +58,7 @@ namespace Scripts.Infrastructure.States
     public class SelectedStatisticsContext
     {
         public Part selectedPart;
-        public ProcessingType selectedProcessingType;
-        public Tool selectedTool;       
+        //public ProcessingType selectedProcessingType;
+        //public Tool selectedTool;       
     }
 }

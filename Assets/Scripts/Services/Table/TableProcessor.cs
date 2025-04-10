@@ -1,5 +1,4 @@
-﻿
-using Scripts.Data;
+﻿using Scripts.Data;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -48,6 +47,10 @@ namespace Scripts.Services
 
             _tableView.CreateTable(table);
         }
+        public void CreateColumnBasedTable(Part part, Action action, Transform container, Action<PartCardData> CellClicked = null)
+        {
+            _tableView.CreateTable(part,action, container, CellClicked);            
+        }
 
         private void OnCellClicked(int rowIndex)
         {
@@ -60,6 +63,7 @@ namespace Scripts.Services
         public void OpenTable() => _tableView.OpenTable();
 
         public void CloseTable() => _tableView.CloseTable();
-
-    }    
-}
+      
+                   
+    }
+}    

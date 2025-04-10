@@ -74,7 +74,7 @@ namespace Scripts.Services
                     break;
 
                 case MainMenuTypes.Workers:                    
-                    var worker = new Worker(item.Id, item.Name, item.Type);
+                    var worker = new Employee(item.Id, item.Name, item.Type);
                     _globalData.listOfWorkers.Add(worker);
                     break;
 
@@ -150,6 +150,11 @@ namespace Scripts.Services
                     temporaryList.Add(item);
             }
             return temporaryList;
+        }
+        public void AddOperation(Part part, string operationName)
+        {
+            _globalData.listOfParts.Find(p => p.Id == part.Id).Operations.Add(new Operation(operationName));
+            SaveData();
         }
     }
 }

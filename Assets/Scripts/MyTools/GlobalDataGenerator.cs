@@ -28,7 +28,7 @@ public class GlobalDataGenerator : MonoBehaviour
                 type : _globalData.typesOfParts[Random.Range(1, 6)],
                 name : $"Part {_globalData.typesOfParts[Random.Range(1, 6)]} {i + 1}"           
             );
-            part.Statistic = GenerateStatisticsList(_globalData.listOfTools[0],ProcessingType.Finishing,10,3);
+            //part.Statistic = GenerateStatisticsList(_globalData.listOfTools[0],ProcessingType.Finishing,10,3);
 
             parts.Add(part);
         }
@@ -68,16 +68,16 @@ public class GlobalDataGenerator : MonoBehaviour
 
         return statisticsList;
     }
-    public List<Worker> GenerateWorkers(int numberOfWorkers)
+    public List<Employee> GenerateWorkers(int numberOfWorkers)
     {
-        List<Worker> workers = new List<Worker>();       
+        List<Employee> workers = new List<Employee>();       
 
         string[] firstNames = { "John", "Peter", "Sergey", "Alex", "Dmitry", "Michael", "George", "Nick", "Alexander", "Max" };
         string[] lastNames = { "Johnson", "Peterson", "Smith", "Alexeev", "Dmitriev", "Mikhailov", "Georgiev", "Nikitsin", "Alexandrov", "Maxwell" };
 
         for (int i = 1; i <= numberOfWorkers; i++)
         {
-            workers.Add(new Worker(
+            workers.Add(new Employee(
                 i,
                 name:$"{firstNames[Random.Range(0,firstNames.Length)]} {lastNames[Random.Range(0,lastNames.Length)]}",
                 _globalData.typesOfWorkers[UnityEngine.Random.Range(0, 10)]

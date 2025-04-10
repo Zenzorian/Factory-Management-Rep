@@ -7,9 +7,9 @@ namespace Scripts.Services.Statistics
     public interface IChoiceOfStatisticService : IService
     {
         void ShowPanel(IStateMachine stateMachine, SelectedStatisticsContext selectedStatisticData = null);
-        void HidePanel();      
-        void SetProcessingType(ProcessingType processingType);
-        bool HasValidStatistics();
-        Statistic GetCurrentStatistic();       
+        void HidePanel();
+        
+       // bool HasValidStatistics();
+       // Statistic GetCurrentStatistic();       
     }
 }

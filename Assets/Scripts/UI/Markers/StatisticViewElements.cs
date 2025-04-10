@@ -6,12 +6,10 @@ namespace Scripts.UI.Markers
     public class StatisticViewElements : MonoBehaviour
     {
         public Text partText;
-        public Button selectPartButton;
-        public Text processingTypeText;
-        public Dropdown processingTypeDropdown;
-        public Text toolText;
-        public Button selectToolButton;
+        public Button selectPartButton;        
         public Button goToStatisticsButton;
         public Button editStatisticsButton;
+
+        public Transform statisticViewContainer;
     }
 }

@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
+
 namespace Scripts.Data
 {    
     [System.Serializable]
-    public class Worker : TableItem
+    public class Employee : TableItem
     {        
         public float WeeklyNorm;
         public float OvertimeAllowed;
@@ -9,13 +12,15 @@ namespace Scripts.Data
         public float HourlyWage;
         public float OvertimeSurcharge;
         public float NightShiftSurcharge;
-        public Worker(int id, string name, string type):base(id,name,type)
+        
+        public  List<EmployeeShift> employeeShifts;
+        public Employee(int id, string name, string type):base(id,name,type)
         {
             Id = id;
             Name = name;            
             Type = type;
         }
-        public Worker(int id, string name, string type,
+        public Employee(int id, string name, string type,
                       float weeklyNorm = 40, float overtimeAllowed = 0,
                       float hourlyWage = 0, float overtimeSurcharge = 0,
                       float nightShiftSurcharge = 0):base(id,name,type)
@@ -28,5 +33,25 @@ namespace Scripts.Data
             OvertimeSurcharge = overtimeSurcharge;
             NightShiftSurcharge = nightShiftSurcharge;
         }
-    }   
+        
+    }
+
+    public class EmployeeShift
+    {
+        public DateTime date;
+        public List<EmployeeWork> history;
+    }
+    
+    public class EmployeeWork
+    {
+        public EmployeeWork(Workspace workspace, Tool tool, float time)
+        {
+            this.workspace = workspace;
+            this.tool = tool;
+            this.time = time;
+        }
+        public Workspace workspace;
+        public Tool tool;
+        public float time;
+    }
 }

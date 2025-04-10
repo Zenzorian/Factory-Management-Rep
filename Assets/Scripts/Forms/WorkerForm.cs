@@ -10,7 +10,7 @@ namespace Scripts
     [System.Serializable]
     public class WorkerForm : BaseAddition
     {
-        private Worker _worker;
+        private Employee _employee;
         private Dictionary<string, InputField> _inputFields;
         public WorkerForm
         (
@@ -19,23 +19,23 @@ namespace Scripts
             GlobalUIElements globalUIElements
         ) : base(saveloadDataService, itemsAddationViewElements, globalUIElements)
         {
-            _inputFields = BuildAdditionPanel(typeof(Worker));
+            _inputFields = BuildAdditionPanel(typeof(Employee));
             itemsAddationViewElements.addButton.onClick.AddListener(Save);
         }
-        public void Open(List<Worker> workers, TableItem currentWorker)
+        public void Open(List<Employee> workers, TableItem currentWorker)
         {
-            var desiredWorker = (Worker)currentWorker;
-            _worker = workers[workers.IndexOf(desiredWorker)];
+            var desiredWorker = (Employee)currentWorker;
+            _employee = workers[workers.IndexOf(desiredWorker)];
 
-            _inputFields["Id"].text = _worker.Id.ToString();           
-            _inputFields["Name"].text = _worker.Name;
-            _inputFields["Type"].text = _worker.Type;
+            _inputFields["Id"].text = _employee.Id.ToString();           
+            _inputFields["Name"].text = _employee.Name;
+            _inputFields["Type"].text = _employee.Type;
 
-            _inputFields["WeeklyNorm"].text = _worker.WeeklyNorm.ToString();
-            _inputFields["OvertimeAllowed"].text = _worker.OvertimeAllowed.ToString();
-            _inputFields["HourlyWage"].text = _worker.HourlyWage.ToString();
-            _inputFields["OvertimeSurcharge"].text = _worker.OvertimeSurcharge.ToString();
-            _inputFields["NightShiftSurcharge"].text = _worker.NightShiftSurcharge.ToString();           
+            _inputFields["WeeklyNorm"].text = _employee.WeeklyNorm.ToString();
+            _inputFields["OvertimeAllowed"].text = _employee.OvertimeAllowed.ToString();
+            _inputFields["HourlyWage"].text = _employee.HourlyWage.ToString();
+            _inputFields["OvertimeSurcharge"].text = _employee.OvertimeSurcharge.ToString();
+            _inputFields["NightShiftSurcharge"].text = _employee.NightShiftSurcharge.ToString();           
         }
         private void Save()
         {
@@ -67,15 +67,15 @@ namespace Scripts
             double? nightShiftSurcharge = await _validator.ValidateDoubleInput(inputFields["NightShiftSurcharge"]);
             if (!nightShiftSurcharge.HasValue) return;
 
-            _worker.Id = id.Value;
-            _worker.Name = name;
-            _worker.Type = type;
+            _employee.Id = id.Value;
+            _employee.Name = name;
+            _employee.Type = type;
 
-            _worker.WeeklyNorm = (float)weeklyNorm.Value;
-            _worker.OvertimeAllowed = (float)overtimeAllowed.Value;
-            _worker.HourlyWage = (float)hourlyWage.Value;
-            _worker.OvertimeSurcharge = (float)overtimeAllowed.Value;
-            _worker.NightShiftSurcharge = (float)nightShiftSurcharge.Value;
+            _employee.WeeklyNorm = (float)weeklyNorm.Value;
+            _employee.OvertimeAllowed = (float)overtimeAllowed.Value;
+            _employee.HourlyWage = (float)hourlyWage.Value;
+            _employee.OvertimeSurcharge = (float)overtimeAllowed.Value;
+            _employee.NightShiftSurcharge = (float)nightShiftSurcharge.Value;
         }
     }
 }

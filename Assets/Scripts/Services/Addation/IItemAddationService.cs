@@ -10,15 +10,23 @@ namespace Scripts.Services
     }
     public class AddationData
     {
-        public AddationData(MainMenuTypes mainMenuType, int indexOfSelectedCategory, List<StatisticData> statisticsData = null)
+        public AddationData
+        (
+            MainMenuTypes mainMenuType,
+            int indexOfSelectedCategory, 
+            List<StatisticData> statisticsData = null,
+             Part part = null
+        )
         {
             this.menuType = mainMenuType;
             this.indexOfSelectedCategory = indexOfSelectedCategory;
            
             this.statisticsData = statisticsData;
+            this.part = part;
         }
         public MainMenuTypes menuType;
         public int indexOfSelectedCategory;        
         public List<StatisticData> statisticsData;
+        public Part part;
     }
 }

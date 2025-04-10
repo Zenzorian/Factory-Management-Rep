@@ -1,9 +1,6 @@
-using Scripts.Data;
 using Scripts.Infrastructure.States;
-using Scripts.MyTools;
 using Scripts.UI.Markers;
-using System.Collections.Generic;
-using UnityEditor.Overlays;
+using Scripts.Infrastructure.AssetManagement;
 
 namespace Scripts.Services.Statistics
 {
@@ -15,38 +12,39 @@ namespace Scripts.Services.Statistics
         private readonly ISaveloadDataService _saveloadDataService;
         private readonly IPopUpMassageService _popUpMassageService;
         private readonly IConfirmPanelService _confirmPanelService;
-        
+        private readonly ITableProcessorService _tableProcessorService;
         private readonly ChoiceOfStatisticDataView _view;
+
+        private OperationAddation _operationAddation;
 
         public ChoiceOfStatisticService
          (
             ISaveloadDataService saveloadDataService,
             IPopUpMassageService popUpMassageService,
             IConfirmPanelService confirmPanelService,
-            
-            StatisticViewElements statisticViewElements
+            ITableProcessorService tableProcessorService,
+            IElementsProvider elementsProvider            
         )
         {
             _saveloadDataService = saveloadDataService;
             _popUpMassageService = popUpMassageService;
-            _confirmPanelService = confirmPanelService;           
-            _view = new ChoiceOfStatisticDataView(statisticViewElements);
+            _confirmPanelService = confirmPanelService;
+            _tableProcessorService = tableProcessorService;
+
+            _view = new ChoiceOfStatisticDataView(elementsProvider.StatisticViewElements, _tableProcessorService);
+            _operationAddation = new OperationAddation(saveloadDataService, elementsProvider.ItemsAddationViewElements, elementsProvider.GlobalUIElements);
         }
         private void RegisterEvents()
         {
-            _view.SelectPartButton.onClick.AddListener(OnPartButtonClicked);
-            _view.ProcessingTypeDropdown.onValueChanged.AddListener(OnProcessingTypeSelected);
-            _view.SelectToolButton.onClick.AddListener(OnToolButtonClicked);
+            _view.SelectPartButton.onClick.AddListener(OnPartButtonClicked);            
 
-            _view.GoToStatisticsButton.onClick.AddListener(OnGoToStatisticsButtonClicked);
-            _view.EditStatisticsButton.onClick.AddListener(EditStatisticsButtonClicked);
+            //_view.GoToStatisticsButton.onClick.AddListener(OnGoToStatisticsButtonClicked);
+            //_view.EditStatisticsButton.onClick.AddListener(EditStatisticsButtonClicked);
         }
 
         private void AnregisterEvents()
         {
             _view.SelectPartButton.onClick.RemoveAllListeners();
-            _view.SelectToolButton.onClick.RemoveAllListeners();
-            _view.ProcessingTypeDropdown.onValueChanged.RemoveAllListeners();
 
             _view.GoToStatisticsButton.onClick.RemoveAllListeners();
             _view.EditStatisticsButton.onClick.RemoveAllListeners();
@@ -66,6 +64,9 @@ namespace Scripts.Services.Statistics
             _view.HideStatisticsButtons();
             CheckSelectedData(_selectedStatisticData);
             _view.ShowPanel(_selectedStatisticData);
+
+            if(_selectedStatisticData.selectedPart == null)
+            OnPartButtonClicked();
         }
         public void HidePanel()
         {
@@ -78,13 +79,7 @@ namespace Scripts.Services.Statistics
         {
             var stateData = CreateStateData(MainMenuTypes.Parts);
             _stateMachine.Enter<StatisticSelectionChoiceOfCategoryState, StatisticChoiceOfCategoryStateData>(stateData);
-        }
-
-        private void OnToolButtonClicked()
-        {
-            var stateData = CreateStateData(MainMenuTypes.Tools);
-            _stateMachine.Enter<StatisticSelectionChoiceOfCategoryState, StatisticChoiceOfCategoryStateData>(stateData);
-        }
+        }       
 
         private StatisticChoiceOfCategoryStateData CreateStateData(MainMenuTypes menuType)
         {
@@ -96,18 +91,6 @@ namespace Scripts.Services.Statistics
                 );
 
             return statisticChoiceOfCategoryStateData;
-        }
-
-        private void OnProcessingTypeSelected(int index)
-        {
-            var processingType = (ProcessingType)index;
-            SetProcessingType(processingType);
-        }
-
-        public void SetProcessingType(ProcessingType processingType)
-        {
-            _selectedStatisticData.selectedProcessingType = processingType;
-            CheckSelectedData(_selectedStatisticData);
         }
 
         private void CheckSelectedData(SelectedStatisticsContext selectedStatisticData)
@@ -122,80 +105,65 @@ namespace Scripts.Services.Statistics
 
                 _view.ShowPartSelection(text);
 
-                List<string> processingTypes = new List<string>();
-
-                foreach (var type in System.Enum.GetValues(typeof(ProcessingType)))
-                {
-                    processingTypes.Add(type.ToString());
-                }
-
-                _view.ShowProcessingTypeOptions();
-            }
-
-            if (selectedStatisticData.selectedPart != null &&
-                selectedStatisticData.selectedProcessingType != ProcessingType.NotSpecified &&
-                selectedStatisticData.selectedTool == null)
-            {
-                _view.ShowToolSelection("Select tool");
-            }
-            else if (selectedStatisticData.selectedTool != null)
-            {
-                var text = $"Selected tool: {selectedStatisticData.selectedTool.Id} {selectedStatisticData.selectedTool.Name}";
-                _view.ShowToolSelection(text);
-                _view.ShowStatisticsButtons();
-            }
+                _view.ShowOperations(selectedStatisticData.selectedPart, OnAddOperationButtonClicked);         
+            }            
         }
 
-        private void OnGoToStatisticsButtonClicked()
-        { 
-            if (HasValidStatistics())
-            {
-                var statistic = GetCurrentStatistic();
-
-                var statisticGrafViewStateData = new StatisticGrafViewStateData(statistic, _selectedStatisticData);
-                _stateMachine.Enter<StatisticGrafViewState, StatisticGrafViewStateData>(statisticGrafViewStateData);
-            }
-            else
-                _popUpMassageService.Show("Statistic not found");
+        private void OnAddOperationButtonClicked()
+        {
+            var addationData = new AddationData(MainMenuTypes.Statistic, 0, null, _selectedStatisticData.selectedPart);
+            _operationAddation.Open(addationData, () => CheckSelectedData(_selectedStatisticData));
         }
-        private void EditStatisticsButtonClicked()
-        {
-            if (HasValidStatistics())
-            {
-                var lastStateData = CreateStateData(MainMenuTypes.Statistic);
+        // private void OnGoToStatisticsButtonClicked()
+        // { 
+        //     if (HasValidStatistics())
+        //     {
+        //         var statistic = GetCurrentStatistic();
 
-                var stateData = new ChoiceOfStatisticDataStateData(lastStateData.menuType, null, lastStateData.selectedStatistic, GetCurrentStatistic());
-                _stateMachine.Enter<ChoiceOfStatisticDataState, ChoiceOfStatisticDataStateData>(stateData);
-            }
-            else
-            {
-                _confirmPanelService.Show(CreateStatistic);
-            }
-        }        
-        public bool HasValidStatistics()
-        {
-            return _selectedStatisticData.selectedPart != null &&
-                   _selectedStatisticData.selectedTool != null &&                   
-                   GetCurrentStatistic() != null;
-        }
+        //         var statisticGrafViewStateData = new StatisticGrafViewStateData(statistic, _selectedStatisticData);
+        //         _stateMachine.Enter<StatisticGrafViewState, StatisticGrafViewStateData>(statisticGrafViewStateData);
+        //     }
+        //     else
+        //         _popUpMassageService.Show("Statistic not found");
+        // }
+        // private void EditStatisticsButtonClicked()
+        // {
+        //     if (HasValidStatistics())
+        //     {
+        //         var lastStateData = CreateStateData(MainMenuTypes.Statistic);
 
-        public Statistic GetCurrentStatistic()
-        {
-            List<Statistic> listOfStatistic = _selectedStatisticData.selectedPart.Statistic;
-            ProcessingType processingType = _selectedStatisticData.selectedProcessingType;
-            Tool tool = _selectedStatisticData.selectedTool;
+        //         var stateData = new ChoiceOfStatisticDataStateData(lastStateData.menuType, null, lastStateData.selectedStatistic, GetCurrentStatistic());
+        //         _stateMachine.Enter<ChoiceOfStatisticDataState, ChoiceOfStatisticDataStateData>(stateData);
+        //     }
+        //     else
+        //     {
+        //         _confirmPanelService.Show(CreateStatistic);
+        //     }
+        // }        
+        // public bool HasValidStatistics()
+        // {
+        //     return _selectedStatisticData.selectedPart != null &&
+        //         //    _selectedStatisticData.selectedTool != null &&                   
+        //            GetCurrentStatistic() != null;
+        // }
 
-            Statistic statistick = listOfStatistic.Find(item => item.Tool.Equals(tool) && item.ProcessingType == processingType);
+        // public Statistic GetCurrentStatistic()
+        // {
+        //     List<Statistic> listOfStatistic = _selectedStatisticData.selectedPart.Operations.Find(item => item.Statistics.Count > 0).Statistics;
+        //    // ProcessingType processingType = _selectedStatisticData.selectedProcessingType;
+        //    // Tool tool = _selectedStatisticData.selectedTool;
+
+        //     Statistic statistick = listOfStatistic.Find(item => item.Tool.Equals(tool) && item.ProcessingType == processingType);
              
-            return statistick;
-        }
+        //     return statistick;
+        // }
         private void CreateStatistic()
         {
-            var statistics = _selectedStatisticData.selectedPart.Statistic;
+           // var statistics = _selectedStatisticData.selectedPart.Statistic;
 
-            statistics.Add(new Statistic(_selectedStatisticData.selectedTool, _selectedStatisticData.selectedProcessingType));
+            //statistics.Add(new Statistic(_selectedStatisticData.selectedTool, _selectedStatisticData.selectedProcessingType));
 
-            EditStatisticsButtonClicked();
+            //EditStatisticsButtonClicked();
         }
     }
 }

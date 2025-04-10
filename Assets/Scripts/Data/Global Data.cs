@@ -10,7 +10,7 @@ namespace Scripts.Data
         public List<Part> listOfParts = new List<Part>();
         public List<Workspace> listOfWorkspaces = new List<Workspace>();
         public List<Tool> listOfTools = new List<Tool>();
-        public List<Worker> listOfWorkers = new List<Worker>();      
+        public List<Employee> listOfWorkers = new List<Employee>();      
 
         public List<string> typesOfTools;
         public List<string> typesOfWorkers;

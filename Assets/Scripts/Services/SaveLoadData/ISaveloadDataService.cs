@@ -16,6 +16,8 @@ namespace Scripts.Services
 
         int GetItemsCount(MainMenuTypes menuType, string type = null);
         List<TableItem> GetItemsListWithFilter(MainMenuTypes menuType, int indexOfSelectedCategoty);
-        
+
+        void AddOperation(Part part, string operationName);
+
     }
 }

@@ -63,8 +63,7 @@ namespace Scripts.Infrastructure.States
 
             if (_stateData.choiceData.menuType == MainMenuTypes.Parts)
                 selectedStatisticData.selectedPart = tableItem as Part;          
-            else if (_stateData.choiceData.menuType == MainMenuTypes.Tools)
-                selectedStatisticData.selectedTool = tableItem as Tool;           
+           
 
             _stateMachine.Enter<SelectionOfStatisticsContextState, SelectedStatisticsContext>(selectedStatisticData);
         }
