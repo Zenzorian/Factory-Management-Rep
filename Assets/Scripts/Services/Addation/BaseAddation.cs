@@ -16,6 +16,8 @@ namespace Scripts.Services
         protected InputFieldValidator _validator = new InputFieldValidator();
         protected Button _addButton;
         protected Button _closeButton;
+        protected Dropdown _dropdown;
+        protected Button _button;
 
         protected GlobalUIElements _globalUIElements;
         protected ISaveloadDataService _saveloadDataService;
@@ -37,6 +39,8 @@ namespace Scripts.Services
             _addationPanel = itemsAddationViewElements.addationPanel;
             _globalUIElements = globalUIElements;
             _saveloadDataService = saveloadDataService;
+            _dropdown = itemsAddationViewElements.dropdown;
+            _button = itemsAddationViewElements.button;
 
             _closeButton.onClick.AddListener(Close);
         }

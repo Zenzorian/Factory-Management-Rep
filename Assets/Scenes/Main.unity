@@ -1100,7 +1100,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -25.000237}
-  m_SizeDelta: {x: -30, y: -449.99954}
+  m_SizeDelta: {x: 0, y: -449.99954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1750466283 stripped
 RectTransform:
@@ -4091,8 +4091,12 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4721754239375248940, guid: fb4db68495caacd45a2fc189c018ff70, type: 3}
+      propertyPath: _statisticSpacer
+      value: 
+      objectReference: {fileID: 4917328775983310834, guid: 4ec98a67104d12349882581f52438617, type: 3}
+    - target: {fileID: 4721754239375248940, guid: fb4db68495caacd45a2fc189c018ff70, type: 3}
       propertyPath: _verticalSpacing
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4721754239375248940, guid: fb4db68495caacd45a2fc189c018ff70, type: 3}
       propertyPath: _customFirstColum
@@ -4104,11 +4108,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4721754239375248940, guid: fb4db68495caacd45a2fc189c018ff70, type: 3}
       propertyPath: _horizontalSpacing
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4721754239375248940, guid: fb4db68495caacd45a2fc189c018ff70, type: 3}
       propertyPath: _spacing.horizontal
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721754239375248940, guid: fb4db68495caacd45a2fc189c018ff70, type: 3}
+      propertyPath: _statisticSpacerWidth
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4721754239375248940, guid: fb4db68495caacd45a2fc189c018ff70, type: 3}
       propertyPath: _customFirstColumWidth
@@ -5192,6 +5200,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4731314167606862397, guid: f69f4acd25c226a48a47760f7af8b9f7, type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 1814436887395549295, guid: 558fb56bf76f1d2419884425e19e2031, type: 3}
+    - target: {fileID: 4731314167606862397, guid: f69f4acd25c226a48a47760f7af8b9f7, type: 3}
+      propertyPath: dropdown
+      value: 
+      objectReference: {fileID: 5165993529733776051, guid: 07cf05b2f27130f4a883b42b02673000, type: 3}
     - target: {fileID: 6623041265209993904, guid: f69f4acd25c226a48a47760f7af8b9f7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

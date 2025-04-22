@@ -4,7 +4,12 @@
             "Id": 0,
             "Name": "Part Bracket 1",
             "Type": "Housing",
-            "Operations": []
+            "Operations": [
+                {
+                    "Name": "First",
+                    "Statistics": []
+                }
+            ]
         },
         {
             "Id": 1,
@@ -37,23 +42,198 @@
             "Operations": [
                 {
                     "Name": "First",
-                    "Statistics": []
-                },               
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Drill",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Milling",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Lathe",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        }
+                    ]
+                },
                 {
                     "Name": "Second",
-                    "Statistics": []
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Drill",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Milling",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Lathe",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Grinder",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        }
+                    ]
                 },
                 {
                     "Name": "Third",
-                    "Statistics": []
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Drill",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Milling",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Lathe",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        }
+                    ]
                 },
                 {
                     "Name": "Fourth",
-                    "Statistics": []
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Drill",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Milling",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Lathe",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Grinder",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        }
+                    ]
                 },
                 {
                     "Name": "Fifth",
-                    "Statistics": []
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Drill",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Milling",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 0,
+                                "Name": "Lathe",
+                                "Type": "",
+                                "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        }
+                    ]
                 }
             ]
         },

@@ -19,8 +19,8 @@ public class TableView : MonoBehaviour
     [Header("CELL CREATOR")]
     [SerializeField] private TableCellCreator _cellCreator = new TableCellCreator();
     [Header("CELL SIZE")]
-    [SerializeField] private float _height = 35;
-    [SerializeField] private float _width = 200;
+    [SerializeField] private float _height = 120;
+    [SerializeField] private float _width = 400;
     [SerializeField] private bool _customFirstColumIsActive = false;
     [SerializeField] private GameObject _customFirstColum;
     [SerializeField] private float _customFirstColumWidth;
@@ -31,6 +31,11 @@ public class TableView : MonoBehaviour
     [Header("SPACING")]
     [SerializeField] private float _horizontalSpacing = 5;
     [SerializeField] private float _verticalSpacing = 5;
+
+    [Header("STATISTIC SPACER")]
+    [SerializeField] private GameObject _statisticSpacer;
+    [SerializeField] private float _statisticSpacerWidth = 60;
+    [SerializeField] private float _statisticSpacerHeight = 60;
 
     private ScrollRect _scrollRect;
 
@@ -62,20 +67,12 @@ public class TableView : MonoBehaviour
             _tableObject.gameObject.SetActive(false);
     }
 
-    public void CreateTable(Part part, Action action, Transform container, Action<PartCardData> CellClicked = null)
+    public void CreateTable(Part part, Action OnOperationAdded, Action OnToolAdded, Transform container, Action<PartCardData> onCellClicked = null)
     {
         _statisticTableObject = container;
         if(_statisticTableObject == null) return;
 
-        var headerFields = new List<string>();  
-        foreach (var operation in part.Operations)
-        {
-            Debug.Log(operation.Name);
-            headerFields.Add(operation.Name);
-        }
-        var table = new Table(headerFields.ToArray(), new string[0, 0], null); 
-       
-        CreateColumnBasedTable(table, action, part.Operations);
+        CreateColumnBasedTable(part.Operations, OnOperationAdded, OnToolAdded, onCellClicked);
     }
     public void CreateTable(Table table)
     {
@@ -91,7 +88,7 @@ public class TableView : MonoBehaviour
     {
         ClearTable();
         
-        SetTableSize(table);
+        SetTableSize(table.TableCells.GetLength(0), table.TableCells.GetLength(1));
 
         if (_customFirstColumIsActive) FirstColumnWidth(table);
        
@@ -114,105 +111,55 @@ public class TableView : MonoBehaviour
 
     }   
 
-    private void CreateColumnBasedTable(Table table, Action action, List<Operation> operations)
+    private void CreateColumnBasedTable(List<Operation> operations, Action OnOperationAdded, Action OnToolAdded, Action<PartCardData> CellClicked)
     {
         ClearTable();
 
         Debug.Log("CreateColumnBasedTable");
 
-        SetTableSize(table);
+        var headerFields = new List<string>();  
+        int maxStatisticsCount = 0;
+        
+        foreach (var operation in operations)
+        {            
+            headerFields.Add(operation.Name);
+                      
+            if (operation.Statistics.Count > maxStatisticsCount)
+                maxStatisticsCount = operation.Statistics.Count;
+        }  
+
+        int spacersCountHorizontal = operations.Count - 1;
+        int additionalColumns = Mathf.CeilToInt(spacersCountHorizontal * (_statisticSpacerWidth / _width));
+
+        int spacersCountVertical = maxStatisticsCount - 1;
+        int additionalRows = Mathf.CeilToInt(spacersCountVertical * (_statisticSpacerHeight / _height));
+
+        SetTableSize(maxStatisticsCount+1 + additionalRows, operations.Count+1 + additionalColumns);
         
         //if (_customFirstColumIsActive) FirstColumnWidth(table);
 
         _scrollbarWidth = _scrollViewObject.GetComponent<ScrollRect>().horizontalScrollbar.GetComponent<RectTransform>().sizeDelta.x;
 
-        _headerContainer = CreateHeaderContainer(_statisticTableObject);
+        _headerContainer = CreateHeaderContainer(_statisticTableObject, true);
 
         _tableContainer = CreateTableContainer(_statisticTableObject);
        
-        SetScrollRectSettings();
+        SetScrollRectSettings();        
+       
+        CreateHeaderColumns(headerFields.ToArray(), false,true);
+             
+        CreateTableColumnsForColumnBasedTable(operations, OnToolAdded, CellClicked);
 
-        var layoutGroup = AddHorizontalLayoutGroup(_scrollRect.content.gameObject);
-        layoutGroup.padding.right = (int)_scrollbarWidth;
+        _scrollRect.horizontal= true;
 
-
-        // GameObject horizontalContainer = new GameObject("HorizontalContainer");        
-        // RectTransform horizontalRect = horizontalContainer.AddComponent<RectTransform>();
-        // horizontalRect.SetParent(_tableContainer);
-        // horizontalRect.localScale = Vector3.one;
-        // horizontalRect.anchorMin = new Vector2(0, 0);
-        // horizontalRect.anchorMax = new Vector2(1, 1);
-        // horizontalRect.sizeDelta = Vector2.zero;
-        // horizontalRect.anchoredPosition = Vector2.zero;
-        
-        // // Добавляем HorizontalLayoutGroup
-        // HorizontalLayoutGroup horizontalLayout = AddHorizontalLayoutGroup(horizontalContainer);
-        // horizontalLayout.padding = _tableRectOffset;
-        // horizontalLayout.childForceExpandHeight = true;
-
-        CreateHeaderColumns(table.HeaderFields, false);
-        
-        // Создаем колонки
-        // for (int c = 0; c < columns; c++)
-        // {
-        //     // Создаем вертикальный контейнер для колонки
-        //     GameObject columnContainer = new GameObject($"Column_{c}");
-        //     RectTransform columnRect = columnContainer.AddComponent<RectTransform>();
-        //     columnRect.SetParent(horizontalRect);
-        //     columnRect.localScale = Vector3.one;
-            
-        //     // Учитываем кастомную первую колонку если она активна
-        //     float columnWidth = (c == 0 && _customFirstColumIsActive) ? _customFirstColumWidth : _width;
-        //     columnRect.sizeDelta = new Vector2(columnWidth, 0);
-            
-        //     // Добавляем VerticalLayoutGroup
-        //     VerticalLayoutGroup verticalLayout = AddVerticallLayoutGroup(columnContainer);
-        //     verticalLayout.childForceExpandWidth = true;
-            
-        //     // Добавляем заголовок колонки в виде ячейки
-        //     var headerCell = _cellCreator.CreateCell(parent: columnRect, itsHeader: true);
-        //     headerCell.text.text = table.HeaderFields[c];
-        //     headerCell.rectTransform.sizeDelta = new Vector2(columnWidth, _height);
-        //     headerCell.image.color = _headerBackgroundColor;
-            
-        //     // Создаем ячейки данных для колонки
-        //     for (int r = 0; r < rows; r++)
-        //     {
-        //         TableCell cell;
-                
-        //         // Используем кастомную ячейку если это первая колонка и кастомная колонка активна
-        //         if (c == 0 && _customFirstColumIsActive)
-        //         {
-        //             cell = _cellCreator.CreateCell(parent: columnRect, customTableCell: _customFirstColum);
-        //             cell.rectTransform.sizeDelta = new Vector2(_customFirstColumWidth, _height);
-        //         }
-        //         else
-        //         {
-        //             cell = _cellCreator.CreateCell(parent: columnRect);
-        //             cell.rectTransform.sizeDelta = new Vector2(_width, _height);
-        //             cell.image.color = _tableBackgroundColor;
-        //         }
-                
-        //         cell.text.text = table.TableCells[r, c];
-        //         cell.rectTransform.localScale = Vector3.one;
-                
-        //         int currentRow = r;
-        //         cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => _table.OnCellClicked(currentRow));
-                
-        //         // Сохраняем ячейку в массиве
-        //         _tableCells[r, c] = cell;
-        //     }
-        // }
-        CreateAddOperationButton(_headerContainer, action);
-        // Обновляем лейаут
-        //LayoutRebuilder.ForceRebuildLayoutImmediate(horizontalRect);
+        CreateAddButton(_headerContainer, OnOperationAdded, "Add Operation", true);
+       
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_headerContainer);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_tableContainer);
     }
 
-    private void SetTableSize(Table table)
-    {
-        int rows = table.TableCells.GetLength(0);
-        int columns = table.TableCells.GetLength(1);
-
+    private void SetTableSize(int rows, int columns)
+    {  
         _tableCells = new TableCell[rows, columns];
 
         _totalRowsHeight = rows * (_height + _verticalSpacing);
@@ -227,19 +174,29 @@ public class TableView : MonoBehaviour
             _totalColumnsWidth = rectWidth;
     }
 
-    private void CreateAddOperationButton(Transform parent, Action action)
+    private void CreateAddButton(Transform parent, Action OnAdded, string buttonText, bool isHeader = false)
     {
-        var addOperationButton = _cellCreator.CreateCell(parent: parent, itsHeader: true);
-        addOperationButton.text.text = "+";
-        var button = addOperationButton.rectTransform.gameObject.AddComponent<Button>();
-        addOperationButton.rectTransform.gameObject.GetComponent<Image>().raycastTarget = true;
-        button.onClick.AddListener(() => action());
+        var addButton = _cellCreator.CreateCell(parent: parent, itsHeader: isHeader);
+        addButton.text.text = buttonText;
+        addButton.rectTransform.sizeDelta = new Vector2(_width, _height);
+        var button = addButton.rectTransform.gameObject.AddComponent<Button>();
+        addButton.rectTransform.gameObject.GetComponent<Image>().raycastTarget = true;
+        button.onClick.AddListener(() => OnAdded());
     }
+
    
-    private RectTransform CreateHeaderContainer(Transform parent)
+   
+    private RectTransform CreateHeaderContainer(Transform parent, bool isColumnBasedTable = false)
     {
-        var headerHeight = _height + _headerRectOffset.top + _headerRectOffset.bottom;
-        var headerWidth = _totalColumnsWidth + _scrollbarWidth;
+        var headerHeight = _height + _headerRectOffset.bottom;
+        headerHeight+= isColumnBasedTable ? _headerRectOffset.bottom : _headerRectOffset.top;      
+
+        var headerWidth = _totalColumnsWidth + _scrollbarWidth + _headerRectOffset.right + _headerRectOffset.left;
+              
+        float screenWidth = Screen.width;
+               
+        if (headerWidth < screenWidth)headerWidth = screenWidth;        
+        
         var headerSize = new Vector2(headerWidth, headerHeight);
 
         var header = new GameObject("Table Header");
@@ -260,7 +217,7 @@ public class TableView : MonoBehaviour
         var layoutGroup = AddHorizontalLayoutGroup(header);
 
         layoutGroup.padding.right = _headerRectOffset.right + (int)_scrollbarWidth;
-        layoutGroup.padding.top = _headerRectOffset.top;
+        layoutGroup.padding.top = isColumnBasedTable ? _headerRectOffset.bottom : _headerRectOffset.top;
         layoutGroup.padding.left = _headerRectOffset.left;
         layoutGroup.padding.bottom = _headerRectOffset.bottom;
 
@@ -297,10 +254,10 @@ public class TableView : MonoBehaviour
         content.pivot = new Vector2(0, 1);
         content.anchoredPosition = Vector2.zero;
         content.localScale = Vector3.one;
-        content.sizeDelta = new Vector2(_totalColumnsWidth, _totalRowsHeight);
+        content.sizeDelta = new Vector2(_totalColumnsWidth +_tableRectOffset.left, _totalRowsHeight);
     }
 
-    private void CreateHeaderColumns(string[] fields, bool isCustomFirstColumnActive)
+    private void CreateHeaderColumns(string[] fields, bool isCustomFirstColumnActive, bool isColumnBasedTable = false)
     {
         foreach (var item in fields)
         {
@@ -310,6 +267,9 @@ public class TableView : MonoBehaviour
 
             if (isCustomFirstColumnActive == true && fields[0] == item)
                 cell.rectTransform.sizeDelta = new Vector2(_customFirstColumWidth, _height);
+
+            if (isColumnBasedTable == true)
+                CreateStatisticSpacer(_headerContainer, arrowChar:'→');
         }
     }
 
@@ -350,7 +310,38 @@ public class TableView : MonoBehaviour
             }
         }
     }
-    
+    private void CreateTableColumnsForColumnBasedTable(List<Operation> operations, Action OnToolAdded, Action<PartCardData> CellClicked)
+    {        
+        var layoutGroup = AddHorizontalLayoutGroup(_scrollRect.content.gameObject);    
+        layoutGroup.spacing = _horizontalSpacing *2 + _statisticSpacerWidth;
+        layoutGroup.padding = _tableRectOffset;
+        layoutGroup.padding.right += (int)_scrollbarWidth;
+        
+        foreach (var operation in operations)
+        {
+            var column = AddColumn(layoutGroup.transform);
+            var columnGroup = AddVerticallLayoutGroup(column.gameObject);
+           
+           foreach (var statistic in operation.Statistics)
+           {
+                CreateStatisticSpacer(column.transform, arrowChar:'↓');
+
+                TableCell cell = new TableCell();
+               
+                cell = _cellCreator.CreateCell(parent: column.transform);
+                cell.rectTransform.sizeDelta = new Vector2(_width, _height);
+
+                cell.text.text = $"Tool: {statistic.Tool.Name} \nProcessing Type: {statistic.ProcessingType}";
+                cell.rectTransform.localScale = Vector3.one;
+
+                //cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => _table.OnCellClicked(currentRow));
+            
+           }
+            CreateStatisticSpacer(column.transform, arrowChar:'↓');
+            CreateAddButton(column.transform, OnToolAdded, "Add Tool", true);
+        }  
+    }
+   
     public RectTransform AddRow(Transform container)
     {
         var row = new GameObject("Row");
@@ -361,6 +352,17 @@ public class TableView : MonoBehaviour
 
         var rect = rectTransform.rect;
         rect.height = _height;
+
+        return rectTransform;
+    }
+    private RectTransform AddColumn(Transform container)
+    {
+        var column = new GameObject("Column");
+        var rectTransform = column.AddComponent<RectTransform>();
+        column.transform.SetParent(container);
+
+        rectTransform.localScale = Vector3.one;
+        rectTransform.sizeDelta = new Vector2(_width, 0);
 
         return rectTransform;
     }
@@ -385,7 +387,7 @@ public class TableView : MonoBehaviour
         layoutCroup.spacing = _verticalSpacing;
         layoutCroup.childControlHeight = false;
         layoutCroup.childForceExpandHeight = false;
-        layoutCroup.childControlHeight = true;
+        layoutCroup.childControlHeight = false;
 
         return layoutCroup;
     }
@@ -402,6 +404,16 @@ public class TableView : MonoBehaviour
     {
         _headerContainer.anchoredPosition = new Vector2(value * (_headerContainer.rect.width - _scrollRect.viewport.rect.width) * -1, _headerContainer.anchoredPosition.y);
     }   
+
+    private void CreateStatisticSpacer(Transform parent,char arrowChar)
+    {
+        var spacerObject = Instantiate(_statisticSpacer);
+        var statisticSpacer = spacerObject.GetComponent<StatisticSpacerElements>();
+
+        statisticSpacer.transform.SetParent(parent);
+        statisticSpacer.rectTransform.sizeDelta = new Vector2(_statisticSpacerWidth, _statisticSpacerHeight); 
+        statisticSpacer.text.text = arrowChar.ToString();
+    }
 }
 public class Table
 {

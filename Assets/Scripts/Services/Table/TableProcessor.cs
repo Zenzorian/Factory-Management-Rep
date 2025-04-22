@@ -47,9 +47,9 @@ namespace Scripts.Services
 
             _tableView.CreateTable(table);
         }
-        public void CreateColumnBasedTable(Part part, Action action, Transform container, Action<PartCardData> CellClicked = null)
+        public void CreateColumnBasedTable(Part part, Action OnOperationAdded, Action OnToolAdded, Transform container, Action<PartCardData> onCellClicked = null)
         {
-            _tableView.CreateTable(part,action, container, CellClicked);            
+            _tableView.CreateTable(part,OnOperationAdded, OnToolAdded, container, onCellClicked);            
         }
 
         private void OnCellClicked(int rowIndex)

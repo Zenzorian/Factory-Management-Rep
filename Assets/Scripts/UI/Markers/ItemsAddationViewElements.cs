@@ -11,5 +11,8 @@ namespace Scripts.UI.Markers
         public InputFieldCreator inputFieldCreator = new InputFieldCreator();
         public Button addButton;
         public Button closeButton;
+
+        public Dropdown dropdown;
+        public Button button;
     }
 }

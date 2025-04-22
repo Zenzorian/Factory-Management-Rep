@@ -16,6 +16,7 @@ namespace Scripts.Services.Statistics
         private readonly ChoiceOfStatisticDataView _view;
 
         private OperationAddation _operationAddation;
+        private ToolStatisticAddation _toolStatisticAddation;
 
         public ChoiceOfStatisticService
          (
@@ -33,6 +34,7 @@ namespace Scripts.Services.Statistics
 
             _view = new ChoiceOfStatisticDataView(elementsProvider.StatisticViewElements, _tableProcessorService);
             _operationAddation = new OperationAddation(saveloadDataService, elementsProvider.ItemsAddationViewElements, elementsProvider.GlobalUIElements);
+            _toolStatisticAddation = new ToolStatisticAddation(saveloadDataService, elementsProvider.ItemsAddationViewElements, elementsProvider.GlobalUIElements);
         }
         private void RegisterEvents()
         {
@@ -105,7 +107,7 @@ namespace Scripts.Services.Statistics
 
                 _view.ShowPartSelection(text);
 
-                _view.ShowOperations(selectedStatisticData.selectedPart, OnAddOperationButtonClicked);         
+                _view.ShowOperations(selectedStatisticData.selectedPart, OnAddOperationButtonClicked, OnAddToolButtonClicked);         
             }            
         }
 
@@ -114,6 +116,13 @@ namespace Scripts.Services.Statistics
             var addationData = new AddationData(MainMenuTypes.Statistic, 0, null, _selectedStatisticData.selectedPart);
             _operationAddation.Open(addationData, () => CheckSelectedData(_selectedStatisticData));
         }
+
+        private void OnAddToolButtonClicked()
+        {
+            var addationData = new AddationData(MainMenuTypes.Statistic, 0, null, _selectedStatisticData.selectedPart);
+            _toolStatisticAddation.Open(addationData, () => CheckSelectedData(_selectedStatisticData));
+        }
+
         // private void OnGoToStatisticsButtonClicked()
         // { 
         //     if (HasValidStatistics())

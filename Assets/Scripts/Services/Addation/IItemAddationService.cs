@@ -15,7 +15,8 @@ namespace Scripts.Services
             MainMenuTypes mainMenuType,
             int indexOfSelectedCategory, 
             List<StatisticData> statisticsData = null,
-             Part part = null
+            Part part = null,
+            Operation operation = null
         )
         {
             this.menuType = mainMenuType;
@@ -23,10 +24,13 @@ namespace Scripts.Services
            
             this.statisticsData = statisticsData;
             this.part = part;
+            this.operation = operation;
         }
         public MainMenuTypes menuType;
         public int indexOfSelectedCategory;        
         public List<StatisticData> statisticsData;
         public Part part;
+
+        public Operation operation;
     }
 }
