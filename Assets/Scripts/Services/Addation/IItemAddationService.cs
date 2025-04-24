@@ -1,6 +1,7 @@
 ﻿using Scripts.Data;
 using System;
 using System.Collections.Generic;
+using Scripts.Infrastructure.States;
 
 namespace Scripts.Services
 {
@@ -15,22 +16,22 @@ namespace Scripts.Services
             MainMenuTypes mainMenuType,
             int indexOfSelectedCategory, 
             List<StatisticData> statisticsData = null,
-            Part part = null,
-            Operation operation = null
+            SelectedStatisticsContext selectedStatistic = null,
+                 
+            Action onToolButtonClicked = null
         )
         {
             this.menuType = mainMenuType;
             this.indexOfSelectedCategory = indexOfSelectedCategory;
            
             this.statisticsData = statisticsData;
-            this.part = part;
-            this.operation = operation;
+            this.selectedStatistic = selectedStatistic;          
+            this.onToolButtonClicked = onToolButtonClicked;
         }
         public MainMenuTypes menuType;
         public int indexOfSelectedCategory;        
         public List<StatisticData> statisticsData;
-        public Part part;
-
-        public Operation operation;
+        public SelectedStatisticsContext selectedStatistic;        
+        public Action onToolButtonClicked;
     }
 }

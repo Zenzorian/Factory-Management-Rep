@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: 0}
-  m_SizeDelta: {x: 20, y: 20}
+  m_AnchoredPosition: {x: -60, y: 0}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2248717462337102260
 CanvasRenderer:
@@ -144,9 +144,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 85
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -192,7 +192,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 0, y: 150}
+  m_SizeDelta: {x: 0, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1316855929154947840
 CanvasRenderer:
@@ -296,8 +296,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.5, y: -0.5}
-  m_SizeDelta: {x: -35, y: -13}
+  m_AnchoredPosition: {x: -5, y: 0}
+  m_SizeDelta: {x: -40, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2154915869088941981
 CanvasRenderer:
@@ -331,9 +331,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 85
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -705,7 +705,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 20}
+  m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3844582183172073315
 MonoBehaviour:
@@ -939,7 +939,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 28}
+  m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &8490099299747775772
 GameObject:
@@ -980,7 +980,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6227772625313119040
 CanvasRenderer:

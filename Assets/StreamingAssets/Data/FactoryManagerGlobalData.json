@@ -7,6 +7,55 @@
             "Operations": [
                 {
                     "Name": "First",
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 52,
+                                "Name": "L6YF1QRW",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 2,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 52,
+                                "Name": "L6YF1QRW",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 2,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 43,
+                                "Name": "ACGHCSUX",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 2,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 43,
+                                "Name": "ACGHCSUX",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 2,
+                            "Data": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "2S",
+                    "Statistics": []
+                },
+                {
+                    "Name": "3F",
                     "Statistics": []
                 }
             ]
@@ -21,7 +70,88 @@
             "Id": 2,
             "Name": "Part Housing 3",
             "Type": "Housing",
-            "Operations": []
+            "Operations": [
+                {
+                    "Name": "1",
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 52,
+                                "Name": "L6YF1QRW",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 52,
+                                "Name": "L6YF1QRW",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 52,
+                                "Name": "L6YF1QRW",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 86,
+                                "Name": "TFWSYK7K",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 86,
+                                "Name": "TFWSYK7K",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "2",
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 94,
+                                "Name": "S8L25SFN",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 94,
+                                "Name": "S8L25SFN",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 2,
+                            "Data": []
+                        }
+                    ]
+                }
+            ]
         },
         {
             "Id": 3,
@@ -72,6 +202,26 @@
                             },
                             "ProcessingType": 0,
                             "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 77,
+                                "Name": "JQUQJZ3L",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 77,
+                                "Name": "JQUQJZ3L",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
                         }
                     ]
                 },
@@ -114,6 +264,26 @@
                                 "Name": "Grinder",
                                 "Type": "",
                                 "Note": ""
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 86,
+                                "Name": "TFWSYK7K",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 86,
+                                "Name": "TFWSYK7K",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
                             },
                             "ProcessingType": 0,
                             "Data": []
@@ -197,6 +367,26 @@
                             },
                             "ProcessingType": 0,
                             "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 86,
+                                "Name": "TFWSYK7K",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 86,
+                                "Name": "TFWSYK7K",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
                         }
                     ]
                 },
@@ -232,6 +422,26 @@
                             },
                             "ProcessingType": 0,
                             "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 86,
+                                "Name": "TFWSYK7K",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 86,
+                                "Name": "TFWSYK7K",
+                                "Type": "MillingCNC",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
                         }
                     ]
                 }
@@ -241,7 +451,65 @@
             "Id": 6,
             "Name": "Part Bushing 7",
             "Type": "Gear",
-            "Operations": []
+            "Operations": [
+                {
+                    "Name": "1",
+                    "Statistics": [
+                        {
+                            "Tool": {
+                                "Id": 43,
+                                "Name": "ACGHCSUX",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 43,
+                                "Name": "ACGHCSUX",
+                                "Type": "Grooving",
+                                "Note": "Random note for Turning Roughing Tool"
+                            },
+                            "ProcessingType": 1,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 15,
+                                "Name": "70WMIKGG",
+                                "Type": "Taps",
+                                "Note": "Random note for Tap"
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        },
+                        {
+                            "Tool": {
+                                "Id": 15,
+                                "Name": "70WMIKGG",
+                                "Type": "Taps",
+                                "Note": "Random note for Tap"
+                            },
+                            "ProcessingType": 0,
+                            "Data": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "2",
+                    "Statistics": []
+                },
+                {
+                    "Name": "3",
+                    "Statistics": []
+                },
+                {
+                    "Name": "4",
+                    "Statistics": []
+                }
+            ]
         },
         {
             "Id": 7,

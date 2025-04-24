@@ -29,8 +29,8 @@ public class TableView : MonoBehaviour
     [SerializeField] private RectOffset _headerRectOffset = new RectOffset();
     [SerializeField] private RectOffset _tableRectOffset = new RectOffset();
     [Header("SPACING")]
-    [SerializeField] private float _horizontalSpacing = 5;
-    [SerializeField] private float _verticalSpacing = 5;
+    [SerializeField] private float _horizontalSpacing = 15;
+    [SerializeField] private float _verticalSpacing = 15;
 
     [Header("STATISTIC SPACER")]
     [SerializeField] private GameObject _statisticSpacer;
@@ -55,6 +55,7 @@ public class TableView : MonoBehaviour
     {
         return _tableCells;
     }
+
     public void OpenTable()
     {
         if (_tableObject != null)
@@ -67,16 +68,19 @@ public class TableView : MonoBehaviour
             _tableObject.gameObject.SetActive(false);
     }
 
-    public void CreateTable(Part part, Action OnOperationAdded, Action OnToolAdded, Transform container, Action<PartCardData> onCellClicked = null)
-    {
+    public void CreateTable(Part part, Action OnAddOperationButtonClicked, Action<Operation> OnAddToolButtonClicked, Transform container, Action<PartCardData> onCellClicked = null)
+    {   
+        ClearTable();
+
         _statisticTableObject = container;
         if(_statisticTableObject == null) return;
 
-        CreateColumnBasedTable(part.Operations, OnOperationAdded, OnToolAdded, onCellClicked);
+        CreateColumnBasedTable(part.Operations, OnAddOperationButtonClicked, OnAddToolButtonClicked, onCellClicked);
     }
     public void CreateTable(Table table)
     {
         ClearTable();
+
         _table = table;   
 
         CreateRowBasedTable(table);       
@@ -84,10 +88,22 @@ public class TableView : MonoBehaviour
         OpenTable();
     }
 
-     private void CreateRowBasedTable(Table table)
-    {
-        ClearTable();
-        
+    public void ClearTable()
+    {     
+        if (_headerContainer != null)
+            Destroy(_headerContainer.gameObject);
+        if (_tableContainer != null)
+            Destroy(_tableContainer.gameObject);
+            
+        _tableCells = null;
+        _table = null;
+        _totalRowsHeight = 0;
+        _totalColumnsWidth = 0;
+        _scrollRect = null;
+    }
+
+    private void CreateRowBasedTable(Table table)
+    {   
         SetTableSize(table.TableCells.GetLength(0), table.TableCells.GetLength(1));
 
         if (_customFirstColumIsActive) FirstColumnWidth(table);
@@ -108,13 +124,10 @@ public class TableView : MonoBehaviour
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(_headerContainer);
         LayoutRebuilder.ForceRebuildLayoutImmediate(_tableContainer);
-
     }   
 
-    private void CreateColumnBasedTable(List<Operation> operations, Action OnOperationAdded, Action OnToolAdded, Action<PartCardData> CellClicked)
-    {
-        ClearTable();
-
+    private void CreateColumnBasedTable(List<Operation> operations, Action OnAddOperationButtonClicked, Action<Operation> OnAddToolButtonClicked, Action<PartCardData> CellClicked)
+    {  
         Debug.Log("CreateColumnBasedTable");
 
         var headerFields = new List<string>();  
@@ -148,14 +161,24 @@ public class TableView : MonoBehaviour
        
         CreateHeaderColumns(headerFields.ToArray(), false,true);
              
-        CreateTableColumnsForColumnBasedTable(operations, OnToolAdded, CellClicked);
+        CreateTableColumnsForColumnBasedTable(operations, OnAddToolButtonClicked, CellClicked);
 
-        _scrollRect.horizontal= true;
+        _scrollRect.horizontal = true;
 
-        CreateAddButton(_headerContainer, OnOperationAdded, "Add Operation", true);
+        var addButton = _cellCreator.CreateCell(parent: _headerContainer, itsHeader: true);
+        addButton.text.text = "Add Operation";
+        addButton.rectTransform.sizeDelta = new Vector2(_width, _height);
+        var button = addButton.rectTransform.gameObject.AddComponent<Button>();
+        addButton.rectTransform.gameObject.GetComponent<Image>().raycastTarget = true;
+        button.onClick.AddListener(() => OnAddOperationButtonClicked());
        
         LayoutRebuilder.ForceRebuildLayoutImmediate(_headerContainer);
         LayoutRebuilder.ForceRebuildLayoutImmediate(_tableContainer);
+        
+        // Принудительное обновление скролла для исправления бага
+        Canvas.ForceUpdateCanvases();
+        _scrollRect.enabled = false;
+        _scrollRect.enabled = true;
     }
 
     private void SetTableSize(int rows, int columns)
@@ -173,19 +196,7 @@ public class TableView : MonoBehaviour
         if (_totalColumnsWidth < rectWidth)
             _totalColumnsWidth = rectWidth;
     }
-
-    private void CreateAddButton(Transform parent, Action OnAdded, string buttonText, bool isHeader = false)
-    {
-        var addButton = _cellCreator.CreateCell(parent: parent, itsHeader: isHeader);
-        addButton.text.text = buttonText;
-        addButton.rectTransform.sizeDelta = new Vector2(_width, _height);
-        var button = addButton.rectTransform.gameObject.AddComponent<Button>();
-        addButton.rectTransform.gameObject.GetComponent<Image>().raycastTarget = true;
-        button.onClick.AddListener(() => OnAdded());
-    }
-
-   
-   
+  
     private RectTransform CreateHeaderContainer(Transform parent, bool isColumnBasedTable = false)
     {
         var headerHeight = _height + _headerRectOffset.bottom;
@@ -310,7 +321,7 @@ public class TableView : MonoBehaviour
             }
         }
     }
-    private void CreateTableColumnsForColumnBasedTable(List<Operation> operations, Action OnToolAdded, Action<PartCardData> CellClicked)
+    private void CreateTableColumnsForColumnBasedTable(List<Operation> operations, Action<Operation> OnAddToolButtonClicked, Action<PartCardData> CellClicked)
     {        
         var layoutGroup = AddHorizontalLayoutGroup(_scrollRect.content.gameObject);    
         layoutGroup.spacing = _horizontalSpacing *2 + _statisticSpacerWidth;
@@ -338,11 +349,11 @@ public class TableView : MonoBehaviour
             
            }
             CreateStatisticSpacer(column.transform, arrowChar:'↓');
-            CreateAddButton(column.transform, OnToolAdded, "Add Tool", true);
+            CreateAddToolButton(column.transform, OnAddToolButtonClicked, "Add Tool", operation);
         }  
     }
    
-    public RectTransform AddRow(Transform container)
+    private RectTransform AddRow(Transform container)
     {
         var row = new GameObject("Row");
         var rectTransform = row.AddComponent<RectTransform>();
@@ -355,6 +366,7 @@ public class TableView : MonoBehaviour
 
         return rectTransform;
     }
+     
     private RectTransform AddColumn(Transform container)
     {
         var column = new GameObject("Column");
@@ -391,20 +403,32 @@ public class TableView : MonoBehaviour
 
         return layoutCroup;
     }
-    public void ClearTable()
-    {     
-        if (_headerContainer != null)
-            Destroy(_headerContainer.gameObject);
-        if (_tableContainer != null)
-            Destroy(_tableContainer.gameObject);
-            
-        _tableCells = null;
-    }
+   
     private void HandleHorizontalScroll(float value)
     {
         _headerContainer.anchoredPosition = new Vector2(value * (_headerContainer.rect.width - _scrollRect.viewport.rect.width) * -1, _headerContainer.anchoredPosition.y);
     }   
 
+    private void CreateAddOperationButton(Transform parent, Action OnAddOperationButtonClicked, string buttonText)
+    {
+        var button = CreateAddButton(parent, buttonText, true);
+        button.onClick.AddListener(() => OnAddOperationButtonClicked());
+    }
+    private void CreateAddToolButton(Transform parent, Action<Operation> OnAddToolClicked, string buttonText, Operation operation)
+    {
+        var button = CreateAddButton(parent, buttonText, true);
+        button.onClick.AddListener(() => OnAddToolClicked(operation));
+    }
+    private Button CreateAddButton(Transform parent, string buttonText, bool isHeader = false)
+    {
+        var addButton = _cellCreator.CreateCell(parent: parent, itsHeader: isHeader);
+        addButton.text.text = buttonText;
+        addButton.rectTransform.sizeDelta = new Vector2(_width, _height);
+        var button = addButton.rectTransform.gameObject.AddComponent<Button>();
+        addButton.rectTransform.gameObject.GetComponent<Image>().raycastTarget = true;
+        
+        return button;
+    }
     private void CreateStatisticSpacer(Transform parent,char arrowChar)
     {
         var spacerObject = Instantiate(_statisticSpacer);

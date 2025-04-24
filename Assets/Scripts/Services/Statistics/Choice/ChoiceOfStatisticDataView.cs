@@ -65,11 +65,11 @@ namespace Scripts.Services.Statistics
         {
             GoToStatisticsButton.gameObject.SetActive(false);
             EditStatisticsButton.gameObject.SetActive(false);
-        }
+        }       
 
-        public void ShowOperations(Part part, Action onOperationAdded, Action onToolAdded)
+        public void ShowOperations(Part part, Action OnAddOperationButtonClicked, Action<Operation> OnAddToolButtonClicked)
         {
-            _tableProcessorService.CreateColumnBasedTable(part, onOperationAdded, onToolAdded, _statisticViewContainer);
+            _tableProcessorService.CreateColumnBasedTable(part, OnAddOperationButtonClicked, OnAddToolButtonClicked, _statisticViewContainer);
         }
     }
 }

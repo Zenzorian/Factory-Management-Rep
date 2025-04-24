@@ -12,7 +12,13 @@ namespace Scripts.UI.Markers
         public Button addButton;
         public Button closeButton;
 
+        public StatisticAddationViewElements statisticAddationViewElements;
+    }
+    [System.Serializable]
+    public class StatisticAddationViewElements
+    {
         public Dropdown dropdown;
         public Button button;
+        public Text lableText;
     }
 }

@@ -1,6 +1,6 @@
 using Scripts.Infrastructure.States;
-using Scripts.UI.Markers;
 using Scripts.Infrastructure.AssetManagement;
+using Scripts.Data;
 
 namespace Scripts.Services.Statistics
 {
@@ -17,6 +17,8 @@ namespace Scripts.Services.Statistics
 
         private OperationAddation _operationAddation;
         private ToolStatisticAddation _toolStatisticAddation;
+
+        private bool _isToolStartSelection = false;
 
         public ChoiceOfStatisticService
          (
@@ -68,7 +70,7 @@ namespace Scripts.Services.Statistics
             _view.ShowPanel(_selectedStatisticData);
 
             if(_selectedStatisticData.selectedPart == null)
-            OnPartButtonClicked();
+            OnPartButtonClicked();         
         }
         public void HidePanel()
         {
@@ -81,7 +83,15 @@ namespace Scripts.Services.Statistics
         {
             var stateData = CreateStateData(MainMenuTypes.Parts);
             _stateMachine.Enter<StatisticSelectionChoiceOfCategoryState, StatisticChoiceOfCategoryStateData>(stateData);
-        }       
+        }    
+
+        private void OnToolButtonClicked()
+        {
+            _isToolStartSelection = true;
+            _operationAddation.Close();
+            var stateData = CreateStateData(MainMenuTypes.Tools);
+            _stateMachine.Enter<StatisticSelectionChoiceOfCategoryState, StatisticChoiceOfCategoryStateData>(stateData);
+        }   
 
         private StatisticChoiceOfCategoryStateData CreateStateData(MainMenuTypes menuType)
         {
@@ -108,19 +118,31 @@ namespace Scripts.Services.Statistics
                 _view.ShowPartSelection(text);
 
                 _view.ShowOperations(selectedStatisticData.selectedPart, OnAddOperationButtonClicked, OnAddToolButtonClicked);         
-            }            
+            }   
+
+            if(_isToolStartSelection == true)
+            {
+                OnAddToolButtonClicked();
+            }
         }
 
         private void OnAddOperationButtonClicked()
         {
-            var addationData = new AddationData(MainMenuTypes.Statistic, 0, null, _selectedStatisticData.selectedPart);
+            var addationData = new AddationData(MainMenuTypes.Statistic, 0, null, _selectedStatisticData);
             _operationAddation.Open(addationData, () => CheckSelectedData(_selectedStatisticData));
         }
 
-        private void OnAddToolButtonClicked()
+        private void OnAddToolButtonClicked(Operation operation = null)
         {
-            var addationData = new AddationData(MainMenuTypes.Statistic, 0, null, _selectedStatisticData.selectedPart);
-            _toolStatisticAddation.Open(addationData, () => CheckSelectedData(_selectedStatisticData));
+            if(operation != null)_selectedStatisticData.selectedOperation = operation;
+           
+            var addationData = new AddationData(MainMenuTypes.Statistic, 0, null, _selectedStatisticData, OnToolButtonClicked);
+            _toolStatisticAddation.Open(addationData, () => OnToolAdded(_selectedStatisticData));          
+        }
+        private void OnToolAdded(SelectedStatisticsContext selectedStatisticData)
+        {
+            _isToolStartSelection = false;
+            CheckSelectedData(selectedStatisticData);
         }
 
         // private void OnGoToStatisticsButtonClicked()

@@ -156,5 +156,10 @@ namespace Scripts.Services
             _globalData.listOfParts.Find(p => p.Id == part.Id).Operations.Add(new Operation(operationName));
             SaveData();
         }
+        public void AddStatistic(Part part, string operationName, Tool tool, ProcessingType processingType)
+        {
+            _globalData.listOfParts.Find(p => p.Id == part.Id).Operations.Find(o => o.Name == operationName).Statistics.Add(new Statistic(tool, processingType));
+            SaveData();
+        }
     }
 }

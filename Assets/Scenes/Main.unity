@@ -5208,6 +5208,18 @@ PrefabInstance:
       propertyPath: dropdown
       value: 
       objectReference: {fileID: 5165993529733776051, guid: 07cf05b2f27130f4a883b42b02673000, type: 3}
+    - target: {fileID: 4731314167606862397, guid: f69f4acd25c226a48a47760f7af8b9f7, type: 3}
+      propertyPath: statisticAddationViewElements.button
+      value: 
+      objectReference: {fileID: 1814436887395549295, guid: 558fb56bf76f1d2419884425e19e2031, type: 3}
+    - target: {fileID: 4731314167606862397, guid: f69f4acd25c226a48a47760f7af8b9f7, type: 3}
+      propertyPath: statisticAddationViewElements.dropdown
+      value: 
+      objectReference: {fileID: 5165993529733776051, guid: 07cf05b2f27130f4a883b42b02673000, type: 3}
+    - target: {fileID: 4731314167606862397, guid: f69f4acd25c226a48a47760f7af8b9f7, type: 3}
+      propertyPath: statisticAddationViewElements.lableText
+      value: 
+      objectReference: {fileID: 1288860190880379461, guid: c7069ffecdda09845ab410ff1bf2d4c3, type: 3}
     - target: {fileID: 6623041265209993904, guid: f69f4acd25c226a48a47760f7af8b9f7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

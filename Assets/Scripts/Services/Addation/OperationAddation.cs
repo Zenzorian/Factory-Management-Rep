@@ -2,13 +2,14 @@ using Scripts.Data;
 using Scripts.Infrastructure.AssetManagement;
 using Scripts.UI.Markers;
 using System;
+using Scripts.Infrastructure.States;
 
 namespace Scripts.Services
 {
     [System.Serializable]
     public class OperationAddation : BaseAddition, IItemAddationService
     {      
-        private Part _part;
+        private SelectedStatisticsContext _selectedStatistic;
         public OperationAddation
         (
             ISaveloadDataService saveloadDataService,
@@ -21,7 +22,7 @@ namespace Scripts.Services
 
         public void Open(AddationData addationData, Action onAdded)
         {
-            _part = addationData.part;
+            _selectedStatistic = addationData.selectedStatistic;
             Initialize(addationData.menuType, onAdded);
 
             _addButton.onClick.AddListener(AddToList);
@@ -36,7 +37,7 @@ namespace Scripts.Services
             string name = await _validator.ValidateStringInput(_inputField);
             if (name == null) return;
 
-            _saveloadDataService.AddOperation(_part, _inputField.text);   
+            _saveloadDataService.AddOperation(_selectedStatistic.selectedPart, _inputField.text);   
             
             Added();
         }       
