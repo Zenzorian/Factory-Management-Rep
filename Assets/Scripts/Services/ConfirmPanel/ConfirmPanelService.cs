@@ -8,6 +8,7 @@ namespace Scripts.Services
     public class ConfirmPanelService : IConfirmPanelService
     {
         private Transform _confirmationPanel;
+        private Text _messageText;
         private Button _confirmButton;
         private Button _cancelButton;
 
@@ -16,6 +17,7 @@ namespace Scripts.Services
         public ConfirmPanelService(ConfirmPanelElements confirmationPanelElements)
         {
             _confirmationPanel = confirmationPanelElements.confirmationPanel;
+            _messageText = confirmationPanelElements.messageText;
             _confirmButton = confirmationPanelElements.confirmButton;
             _cancelButton = confirmationPanelElements.cancelButton;
 
@@ -28,8 +30,9 @@ namespace Scripts.Services
             _confirmationPanel.gameObject.SetActive(false); // Initially hidden
         }
 
-        public void Show(Action onConfirmed)
-        {
+        public void Show(string message, Action onConfirmed)
+        {           
+            _messageText.text = message;
             _confirmationPanel.gameObject.SetActive(true);
             _onConfirmed = onConfirmed;
         }

@@ -1,6 +1,7 @@
 using Scripts.Infrastructure.States;
 using Scripts.Infrastructure.AssetManagement;
 using Scripts.Data;
+using System.Collections.Generic;
 
 namespace Scripts.Services.Statistics
 {
@@ -14,6 +15,7 @@ namespace Scripts.Services.Statistics
         private readonly IConfirmPanelService _confirmPanelService;
         private readonly ITableProcessorService _tableProcessorService;
         private readonly ChoiceOfStatisticDataView _view;
+        private readonly IElementsProvider _elementsProvider;
 
         private OperationAddation _operationAddation;
         private ToolStatisticAddation _toolStatisticAddation;
@@ -33,6 +35,7 @@ namespace Scripts.Services.Statistics
             _popUpMassageService = popUpMassageService;
             _confirmPanelService = confirmPanelService;
             _tableProcessorService = tableProcessorService;
+            _elementsProvider = elementsProvider;
 
             _view = new ChoiceOfStatisticDataView(elementsProvider.StatisticViewElements, _tableProcessorService);
             _operationAddation = new OperationAddation(saveloadDataService, elementsProvider.ItemsAddationViewElements, elementsProvider.GlobalUIElements);
@@ -40,10 +43,9 @@ namespace Scripts.Services.Statistics
         }
         private void RegisterEvents()
         {
-            _view.SelectPartButton.onClick.AddListener(OnPartButtonClicked);            
-
-            //_view.GoToStatisticsButton.onClick.AddListener(OnGoToStatisticsButtonClicked);
-            //_view.EditStatisticsButton.onClick.AddListener(EditStatisticsButtonClicked);
+            _view.SelectPartButton.onClick.AddListener(OnPartButtonClicked);
+           
+            _elementsProvider.GlobalUIElements.editButton.onClick.AddListener(_view.OnEditMode);
         }
 
         private void AnregisterEvents()
@@ -51,11 +53,11 @@ namespace Scripts.Services.Statistics
             _view.SelectPartButton.onClick.RemoveAllListeners();
 
             _view.GoToStatisticsButton.onClick.RemoveAllListeners();
-            _view.EditStatisticsButton.onClick.RemoveAllListeners();
+            _elementsProvider.GlobalUIElements.editButton.onClick.RemoveAllListeners();
         }
 
         public void ShowPanel(IStateMachine stateMachine, SelectedStatisticsContext selectedStatisticData = null)
-        {           
+        {                       
             AnregisterEvents();
 
             _stateMachine = stateMachine;
@@ -117,7 +119,16 @@ namespace Scripts.Services.Statistics
 
                 _view.ShowPartSelection(text);
 
-                _view.ShowOperations(selectedStatisticData.selectedPart, OnAddOperationButtonClicked, OnAddToolButtonClicked);         
+                var statisticTableActions = new StatisticTableActions
+                (
+                    OnAddOperationButtonClicked,
+                    OnAddToolButtonClicked,
+                    OnStatisticsSelected,
+                    OnDeleteOperation,
+                    OnDeleteStatistic
+                );
+
+                _view.ShowOperations(selectedStatisticData.selectedPart, statisticTableActions);         
             }   
 
             if(_isToolStartSelection == true)
@@ -145,56 +156,51 @@ namespace Scripts.Services.Statistics
             CheckSelectedData(selectedStatisticData);
         }
 
-        // private void OnGoToStatisticsButtonClicked()
-        // { 
-        //     if (HasValidStatistics())
-        //     {
-        //         var statistic = GetCurrentStatistic();
+        private void OnStatisticsSelected(PartCardData partCardData)
+        {            
+            if (partCardData.statistic.Data == null)
+            { 
+                _confirmPanelService.Show("Statistic not found", () => partCardData.statistic.Data = new List<StatisticData>());
 
-        //         var statisticGrafViewStateData = new StatisticGrafViewStateData(statistic, _selectedStatisticData);
-        //         _stateMachine.Enter<StatisticGrafViewState, StatisticGrafViewStateData>(statisticGrafViewStateData);
-        //     }
-        //     else
-        //         _popUpMassageService.Show("Statistic not found");
-        // }
-        // private void EditStatisticsButtonClicked()
-        // {
-        //     if (HasValidStatistics())
-        //     {
-        //         var lastStateData = CreateStateData(MainMenuTypes.Statistic);
+                // var statistic = GetCurrentStatistic();
 
-        //         var stateData = new ChoiceOfStatisticDataStateData(lastStateData.menuType, null, lastStateData.selectedStatistic, GetCurrentStatistic());
-        //         _stateMachine.Enter<ChoiceOfStatisticDataState, ChoiceOfStatisticDataStateData>(stateData);
-        //     }
-        //     else
-        //     {
-        //         _confirmPanelService.Show(CreateStatistic);
-        //     }
-        // }        
-        // public bool HasValidStatistics()
-        // {
-        //     return _selectedStatisticData.selectedPart != null &&
-        //         //    _selectedStatisticData.selectedTool != null &&                   
-        //            GetCurrentStatistic() != null;
-        // }
+                // var statisticGrafViewStateData = new StatisticGrafViewStateData(statistic, _selectedStatisticData);
+                // _stateMachine.Enter<StatisticGrafViewState, StatisticGrafViewStateData>(statisticGrafViewStateData);
+            }
+            else
+            {
+                var lastStateData = CreateStateData(MainMenuTypes.Statistic);
 
-        // public Statistic GetCurrentStatistic()
-        // {
-        //     List<Statistic> listOfStatistic = _selectedStatisticData.selectedPart.Operations.Find(item => item.Statistics.Count > 0).Statistics;
-        //    // ProcessingType processingType = _selectedStatisticData.selectedProcessingType;
-        //    // Tool tool = _selectedStatisticData.selectedTool;
-
-        //     Statistic statistick = listOfStatistic.Find(item => item.Tool.Equals(tool) && item.ProcessingType == processingType);
-             
-        //     return statistick;
-        // }
-        private void CreateStatistic()
+                var stateData = new ChoiceOfStatisticDataStateData(lastStateData.menuType, null, lastStateData.selectedStatistic, partCardData.statistic);
+                _stateMachine.Enter<ChoiceOfStatisticDataState, ChoiceOfStatisticDataStateData>(stateData);
+            }                
+        }
+        private void OnDeleteOperation(PartCardData partCardData)
+        {           
+            _confirmPanelService.Show("Are you sure you want to delete this operation?", 
+                () => DeleteOperation(partCardData));
+        }
+        private void DeleteOperation(PartCardData partCardData)
         {
-           // var statistics = _selectedStatisticData.selectedPart.Statistic;
-
-            //statistics.Add(new Statistic(_selectedStatisticData.selectedTool, _selectedStatisticData.selectedProcessingType));
-
-            //EditStatisticsButtonClicked();
+            _saveloadDataService.DeleteOperation(partCardData.part, partCardData.operation.Name);
+            CheckSelectedData(_selectedStatisticData);
+        }
+        
+        private void OnDeleteStatistic(PartCardData partCardData)
+        { 
+            _confirmPanelService.Show("Are you sure you want to delete this statistic?", 
+                    () => DeleteStatistic(partCardData));
+        }
+        private void DeleteStatistic(PartCardData partCardData)
+        {           
+            _saveloadDataService.DeleteStatistic
+            (
+                partCardData.part,
+                partCardData.operation,
+                partCardData.statistic.Tool,
+                partCardData.statistic.ProcessingType
+            );
+           CheckSelectedData(_selectedStatisticData);
         }
     }
 }

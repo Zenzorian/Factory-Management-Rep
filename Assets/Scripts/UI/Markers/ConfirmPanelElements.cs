@@ -7,6 +7,7 @@ namespace Scripts.UI.Markers
     public class ConfirmPanelElements : MonoBehaviour 
     {
         public Transform confirmationPanel;
+        public Text messageText;
         public Button confirmButton;
         public Button cancelButton;
     }

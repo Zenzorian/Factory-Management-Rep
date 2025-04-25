@@ -10,6 +10,7 @@ namespace Scripts.UI.Markers
         public Text sectionNameText;
         public Transform content;
 
-        public GameObject choiceButtonPrefab;
+        public Button choiceButtonPrefab;
+        public Button deleteButtonPrefab;
     }
 }

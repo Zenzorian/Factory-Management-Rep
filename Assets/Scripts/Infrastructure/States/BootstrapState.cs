@@ -43,7 +43,11 @@ namespace Scripts.Infrastructure.States
 
             _services.RegisterSingle<IButtonCreator>
             (
-                new ButtonCreator(elementsProvider.ChoiceOfCategoryElements.choiceButtonPrefab)
+                new ButtonCreator
+                (
+                    elementsProvider.ChoiceOfCategoryElements.choiceButtonPrefab,
+                    elementsProvider.ChoiceOfCategoryElements.deleteButtonPrefab
+                )
             );
             Debug.Log("SaveloadDataService Initialized");
 
@@ -122,7 +126,11 @@ namespace Scripts.Infrastructure.States
                 Debug.LogError("tableView not found");
                 return null;
             }
-            else return tableView;
+            else 
+            {
+                tableView.buttonCreator = _services.Single<IButtonCreator>();
+                return tableView;
+            }
         }
 
         private void RegisterElementsProvider()

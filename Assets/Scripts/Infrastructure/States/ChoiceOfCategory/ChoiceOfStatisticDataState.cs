@@ -12,12 +12,17 @@ namespace Scripts.Infrastructure.States
 
         private readonly IItemAddationService _addationService;
         private readonly IStatisticsInputService _statisticsInputService;
+        private readonly ISaveloadDataService _saveloadDataService;
+        private readonly IConfirmPanelService _confirmPanelService;
+
 
         private List<StatisticData> _currentStatisticData = new List<StatisticData>();
         public ChoiceOfStatisticDataState
         (
-            StateMachine stateMachine, 
+            StateMachine stateMachine,
             IChoiceOfCategoryService choiceOfCategoryService,
+            ISaveloadDataService saveloadDataService,
+            IConfirmPanelService confirmPanelService,   
             IPopUpMassageService popUpMassageService,
             IItemAddationService addationService,
             IStatisticsInputService statisticsInputService,
@@ -26,6 +31,8 @@ namespace Scripts.Infrastructure.States
         {
             _addationService = addationService;
             _statisticsInputService = statisticsInputService;
+            _saveloadDataService = saveloadDataService;
+            _confirmPanelService = confirmPanelService;
         }
 
         public override void Enter(ChoiceOfStatisticDataStateData stateData)
@@ -67,14 +74,14 @@ namespace Scripts.Infrastructure.States
         protected override void AddUIListeners()
         {
             base.AddUIListeners();
-            _globalUIElements.addationButton.onClick.AddListener(OnAddation);
+            _globalUIElements.addationButton.onClick.AddListener(OnAddation);           
         }
           
         private void OnAddation()
         {
             var addationData = new AddationData(_currentStateData.menuType, -1,_currentStatisticData);
             _addationService.Open(addationData, () => Enter(_currentStateData));
-        }
+        }       
     }
     public class ChoiceOfStatisticDataStateData : StatisticChoiceOfCategoryStateData
     {

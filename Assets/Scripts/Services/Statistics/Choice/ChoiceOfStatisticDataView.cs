@@ -32,6 +32,8 @@ namespace Scripts.Services.Statistics
                 
             _statisticPanel = elements.gameObject;
             _statisticViewContainer = elements.statisticViewContainer;  
+
+
         }
 
         public void ShowPanel(SelectedStatisticsContext selectedStatisticData)
@@ -67,9 +69,13 @@ namespace Scripts.Services.Statistics
             EditStatisticsButton.gameObject.SetActive(false);
         }       
 
-        public void ShowOperations(Part part, Action OnAddOperationButtonClicked, Action<Operation> OnAddToolButtonClicked)
+        public void ShowOperations(Part part, StatisticTableActions statisticTableActions)
         {
-            _tableProcessorService.CreateColumnBasedTable(part, OnAddOperationButtonClicked, OnAddToolButtonClicked, _statisticViewContainer);
+            _tableProcessorService.CreateColumnBasedTable(part, statisticTableActions, _statisticViewContainer);
+        }
+        public void OnEditMode()
+        {
+            _tableProcessorService.SetEditMode();
         }
     }
 }

@@ -45,10 +45,12 @@ namespace Scripts.Infrastructure.States
         {
             base.AddUIListeners();
             _globalUIElements.addationButton.gameObject.SetActive(false);
+            _globalUIElements.editButton.gameObject.SetActive(false);
         }
         protected override void RemoveUIListeners()
         {
             _globalUIElements.addationButton.gameObject.SetActive(true);
+            _globalUIElements.editButton.gameObject.SetActive(true);
             base.RemoveUIListeners();
         }
     }

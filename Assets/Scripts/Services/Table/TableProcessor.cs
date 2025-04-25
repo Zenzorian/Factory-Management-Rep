@@ -47,9 +47,9 @@ namespace Scripts.Services
 
             _tableView.CreateTable(table);
         }
-        public void CreateColumnBasedTable(Part part, Action OnAddOperationButtonClicked, Action<Operation> OnAddToolButtonClicked, Transform container, Action<PartCardData> onCellClicked = null)
+        public void CreateColumnBasedTable(Part part, StatisticTableActions statisticTableActions, Transform container)
         {
-            _tableView.CreateTable(part,OnAddOperationButtonClicked, OnAddToolButtonClicked, container, onCellClicked);            
+            _tableView.CreateTable(part, statisticTableActions, container);            
         }
 
         private void OnCellClicked(int rowIndex)
@@ -64,6 +64,7 @@ namespace Scripts.Services
 
         public void CloseTable() => _tableView.CloseTable();
       
+        public void SetEditMode() => _tableView.SetEditMode();
                    
     }
 }    

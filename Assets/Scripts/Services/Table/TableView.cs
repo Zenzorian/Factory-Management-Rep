@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Scripts.Data;
+using Scripts.Services;
 
 [System.Serializable]
 public class TableView : MonoBehaviour
 {
+    [HideInInspector] public IButtonCreator buttonCreator;
+
     [Header("TABLE OBJECT")]
     [SerializeField] private Transform _tableObject;
     [Header("SCROLL RECT PREFAB")]
@@ -23,7 +26,7 @@ public class TableView : MonoBehaviour
     [SerializeField] private float _width = 400;
     [SerializeField] private bool _customFirstColumIsActive = false;
     [SerializeField] private GameObject _customFirstColum;
-    [SerializeField] private float _customFirstColumWidth;
+    [SerializeField] private float _customFirstColumWidth;   
 
     [Header("PADDING")]
     [SerializeField] private RectOffset _headerRectOffset = new RectOffset();
@@ -35,7 +38,7 @@ public class TableView : MonoBehaviour
     [Header("STATISTIC SPACER")]
     [SerializeField] private GameObject _statisticSpacer;
     [SerializeField] private float _statisticSpacerWidth = 60;
-    [SerializeField] private float _statisticSpacerHeight = 60;
+    [SerializeField] private float _statisticSpacerHeight = 60;    
 
     private ScrollRect _scrollRect;
 
@@ -51,6 +54,13 @@ public class TableView : MonoBehaviour
     private TableCell[,] _tableCells;
 
     private Table _table;
+
+    private List<Button> _deleteButtons = new List<Button>();
+
+    private Part _part;
+
+    private bool _onEditMode = false;
+
     public TableCell[,] GetTableCells()
     {
         return _tableCells;
@@ -68,14 +78,14 @@ public class TableView : MonoBehaviour
             _tableObject.gameObject.SetActive(false);
     }
 
-    public void CreateTable(Part part, Action OnAddOperationButtonClicked, Action<Operation> OnAddToolButtonClicked, Transform container, Action<PartCardData> onCellClicked = null)
+    public void CreateTable(Part part, StatisticTableActions statisticTableActions, Transform container)
     {   
         ClearTable();
 
         _statisticTableObject = container;
-        if(_statisticTableObject == null) return;
+        if(_statisticTableObject == null) return;       
 
-        CreateColumnBasedTable(part.Operations, OnAddOperationButtonClicked, OnAddToolButtonClicked, onCellClicked);
+        CreateColumnBasedTable(part, statisticTableActions);
     }
     public void CreateTable(Table table)
     {
@@ -100,6 +110,20 @@ public class TableView : MonoBehaviour
         _totalRowsHeight = 0;
         _totalColumnsWidth = 0;
         _scrollRect = null;
+
+        _deleteButtons.RemoveAll(button => button == null);
+        _onEditMode = false;
+    }
+
+    public void SetEditMode()
+    {
+        _onEditMode = !_onEditMode;      
+        
+        foreach (var cell in _deleteButtons)
+        {
+            if (cell != null)
+                cell.gameObject.SetActive(_onEditMode);
+        }      
     }
 
     private void CreateRowBasedTable(Table table)
@@ -126,14 +150,16 @@ public class TableView : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(_tableContainer);
     }   
 
-    private void CreateColumnBasedTable(List<Operation> operations, Action OnAddOperationButtonClicked, Action<Operation> OnAddToolButtonClicked, Action<PartCardData> CellClicked)
+    private void CreateColumnBasedTable(Part part, StatisticTableActions statisticTableActions)
     {  
-        Debug.Log("CreateColumnBasedTable");
+        Debug.Log("CreateColumnBasedTable");   
+
+        _part = part;
 
         var headerFields = new List<string>();  
         int maxStatisticsCount = 0;
         
-        foreach (var operation in operations)
+        foreach (var operation in part.Operations)
         {            
             headerFields.Add(operation.Name);
                       
@@ -141,13 +167,13 @@ public class TableView : MonoBehaviour
                 maxStatisticsCount = operation.Statistics.Count;
         }  
 
-        int spacersCountHorizontal = operations.Count - 1;
+        int spacersCountHorizontal = part.Operations.Count - 1;
         int additionalColumns = Mathf.CeilToInt(spacersCountHorizontal * (_statisticSpacerWidth / _width));
 
         int spacersCountVertical = maxStatisticsCount - 1;
         int additionalRows = Mathf.CeilToInt(spacersCountVertical * (_statisticSpacerHeight / _height));
 
-        SetTableSize(maxStatisticsCount+1 + additionalRows, operations.Count+1 + additionalColumns);
+        SetTableSize(maxStatisticsCount+1 + additionalRows, part.Operations.Count+1 + additionalColumns);
         
         //if (_customFirstColumIsActive) FirstColumnWidth(table);
 
@@ -157,11 +183,11 @@ public class TableView : MonoBehaviour
 
         _tableContainer = CreateTableContainer(_statisticTableObject);
        
-        SetScrollRectSettings();        
-       
-        CreateHeaderColumns(headerFields.ToArray(), false,true);
+        SetScrollRectSettings();
+        
+        CreateHeaderColumns(headerFields.ToArray(), false,true, statisticTableActions.onDeleteOperation);
              
-        CreateTableColumnsForColumnBasedTable(operations, OnAddToolButtonClicked, CellClicked);
+        CreateTableColumnsForColumnBasedTable(part, statisticTableActions);
 
         _scrollRect.horizontal = true;
 
@@ -170,7 +196,7 @@ public class TableView : MonoBehaviour
         addButton.rectTransform.sizeDelta = new Vector2(_width, _height);
         var button = addButton.rectTransform.gameObject.AddComponent<Button>();
         addButton.rectTransform.gameObject.GetComponent<Image>().raycastTarget = true;
-        button.onClick.AddListener(() => OnAddOperationButtonClicked());
+        button.onClick.AddListener(() => statisticTableActions.OnAddOperationButtonClicked());
        
         LayoutRebuilder.ForceRebuildLayoutImmediate(_headerContainer);
         LayoutRebuilder.ForceRebuildLayoutImmediate(_tableContainer);
@@ -268,7 +294,7 @@ public class TableView : MonoBehaviour
         content.sizeDelta = new Vector2(_totalColumnsWidth +_tableRectOffset.left, _totalRowsHeight);
     }
 
-    private void CreateHeaderColumns(string[] fields, bool isCustomFirstColumnActive, bool isColumnBasedTable = false)
+    private void CreateHeaderColumns(string[] fields, bool isCustomFirstColumnActive, bool isColumnBasedTable = false, Action<PartCardData> onDeleteOperation = null)
     {
         foreach (var item in fields)
         {
@@ -280,10 +306,17 @@ public class TableView : MonoBehaviour
                 cell.rectTransform.sizeDelta = new Vector2(_customFirstColumWidth, _height);
 
             if (isColumnBasedTable == true)
+            {
                 CreateStatisticSpacer(_headerContainer, arrowChar:'→');
+
+                var deleteButton = buttonCreator.CreateDeleteButton(cell.rectTransform);
+                _deleteButtons.Add(deleteButton);     
+                var partCardData = new PartCardData(_part, _part.Operations[Array.IndexOf(fields, item)], null);           
+                deleteButton.onClick.AddListener(() => onDeleteOperation(partCardData));
+            }
         }
     }
-
+   
     private void CreateTableColumns(string[,] tableData)
     {
         int rows = tableData.GetLength(0);
@@ -321,14 +354,14 @@ public class TableView : MonoBehaviour
             }
         }
     }
-    private void CreateTableColumnsForColumnBasedTable(List<Operation> operations, Action<Operation> OnAddToolButtonClicked, Action<PartCardData> CellClicked)
+    private void CreateTableColumnsForColumnBasedTable(Part part, StatisticTableActions statisticTableActions)
     {        
         var layoutGroup = AddHorizontalLayoutGroup(_scrollRect.content.gameObject);    
         layoutGroup.spacing = _horizontalSpacing *2 + _statisticSpacerWidth;
         layoutGroup.padding = _tableRectOffset;
         layoutGroup.padding.right += (int)_scrollbarWidth;
         
-        foreach (var operation in operations)
+        foreach (var operation in part.Operations)
         {
             var column = AddColumn(layoutGroup.transform);
             var columnGroup = AddVerticallLayoutGroup(column.gameObject);
@@ -345,11 +378,17 @@ public class TableView : MonoBehaviour
                 cell.text.text = $"Tool: {statistic.Tool.Name} \nProcessing Type: {statistic.ProcessingType}";
                 cell.rectTransform.localScale = Vector3.one;
 
-                //cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => _table.OnCellClicked(currentRow));
+                var partCardData = new PartCardData(part, operation, statistic);
+
+                cell.rectTransform.GetComponent<Button>().onClick.AddListener(() => statisticTableActions.OnCellClicked(partCardData));
             
+                var deleteButton = buttonCreator.CreateDeleteButton(cell.rectTransform);
+                _deleteButtons.Add(deleteButton);
+                deleteButton.onClick.AddListener(() => statisticTableActions.onDeleteStatisticButtonClicked(partCardData));
+
            }
             CreateStatisticSpacer(column.transform, arrowChar:'↓');
-            CreateAddToolButton(column.transform, OnAddToolButtonClicked, "Add Tool", operation);
+            CreateAddToolButton(column.transform, statisticTableActions.OnAddToolButtonClicked, "Add Tool", operation);
         }  
     }
    
@@ -438,6 +477,7 @@ public class TableView : MonoBehaviour
         statisticSpacer.rectTransform.sizeDelta = new Vector2(_statisticSpacerWidth, _statisticSpacerHeight); 
         statisticSpacer.text.text = arrowChar.ToString();
     }
+    
 }
 public class Table
 {
@@ -450,4 +490,28 @@ public class Table
     public string[] HeaderFields { get; private set; }
     public string[,] TableCells { get; private set; }
     public Action<int> OnCellClicked { get; set; }
+}
+public class StatisticTableActions
+{
+   public Action OnAddOperationButtonClicked;
+   public Action<Operation> OnAddToolButtonClicked;
+   public Action<PartCardData> OnCellClicked; 
+   public Action<PartCardData> onDeleteOperation;
+   public Action<PartCardData> onDeleteStatisticButtonClicked;
+
+   public StatisticTableActions
+   (
+    Action OnAddOperationButtonClicked,
+    Action<Operation> OnAddToolButtonClicked,
+    Action<PartCardData> OnCellClicked,
+    Action<PartCardData> onDeleteOperation,
+    Action<PartCardData> onDeleteStatisticButtonClicked
+    )
+   {
+        this.OnAddOperationButtonClicked = OnAddOperationButtonClicked;
+        this.OnAddToolButtonClicked = OnAddToolButtonClicked;
+        this.OnCellClicked = OnCellClicked;
+        this.onDeleteOperation = onDeleteOperation;
+        this.onDeleteStatisticButtonClicked = onDeleteStatisticButtonClicked;
+   }
 }

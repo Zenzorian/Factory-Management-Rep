@@ -32,7 +32,8 @@ namespace Scripts.Infrastructure.AssetManagement
     public class GlobalUIElements    
     {
         public Button backButton;
-        public Button addationButton;
+        public Button addationButton;       
+        public Button editButton;
     }       
    
     

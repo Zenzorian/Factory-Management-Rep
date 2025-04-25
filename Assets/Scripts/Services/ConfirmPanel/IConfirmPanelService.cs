@@ -4,6 +4,6 @@ namespace Scripts.Services
 {
     public interface IConfirmPanelService : IService
     {       
-        void Show(Action onConfirmed);
+        void Show(string message, Action onConfirmed);
     }
 }

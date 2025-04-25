@@ -156,10 +156,35 @@ namespace Scripts.Services
             _globalData.listOfParts.Find(p => p.Id == part.Id).Operations.Add(new Operation(operationName));
             SaveData();
         }
+
+        public void DeleteOperation(Part part, string operationName)
+        {
+            _globalData.listOfParts.Find(p => p.Id == part.Id).Operations.RemoveAll(o => o.Name == operationName);
+            SaveData();
+        }
+
         public void AddStatistic(Part part, string operationName, Tool tool, ProcessingType processingType)
         {
             _globalData.listOfParts.Find(p => p.Id == part.Id).Operations.Find(o => o.Name == operationName).Statistics.Add(new Statistic(tool, processingType));
             SaveData();
         }
+
+        public void DeleteStatistic(Part part, Operation operation, Tool tool, ProcessingType processingType)
+        {        
+            var partOperation = _globalData.listOfParts.Find(p => p.Id == part.Id)
+                .Operations.Find(o => o.Name == operation.Name);               
+          
+            var statistics = partOperation.Statistics;
+            for (int i = statistics.Count - 1; i >= 0; i--)
+            {
+                if (statistics[i].Tool == tool && statistics[i].ProcessingType == processingType)
+                {
+                    statistics.RemoveAt(i);
+                    break; 
+                }
+            }
+            
+            SaveData();
+        }       
     }
 }

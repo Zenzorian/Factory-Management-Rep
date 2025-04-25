@@ -3,22 +3,19 @@ namespace Scripts.Data
     public class PartCardData
     {
         public Part part;
-        public Operation operations;
-        public bool itsOperationsAddationButton = false;
-        public bool itsStatisticAddationButton = false;
+        public Operation operation;
+        public Statistic statistic;       
 
         public PartCardData
         (
             Part part,
-            Operation operations,
-            bool itsOperationsAddationButton,
-            bool itsStatisticAddationButton
+            Operation operation,
+            Statistic statistic           
         )
         {   
             this.part = part;
-            this.operations = operations;
-            this.itsOperationsAddationButton = itsOperationsAddationButton;
-            this.itsStatisticAddationButton = itsStatisticAddationButton;
+            this.operation = operation;
+            this.statistic = statistic;           
         }
     }
 }

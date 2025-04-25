@@ -73,6 +73,8 @@ namespace Scripts.Infrastructure.States
                 (
                     this,
                     services.Single<IChoiceOfCategoryService>(),
+                    services.Single<ISaveloadDataService>(),
+                    services.Single<IConfirmPanelService>(),
                     services.Single<IPopUpMassageService>(),
                     new StatisticDataItemAddation
                     (

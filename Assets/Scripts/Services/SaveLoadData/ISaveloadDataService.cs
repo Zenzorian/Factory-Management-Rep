@@ -18,7 +18,9 @@ namespace Scripts.Services
         List<TableItem> GetItemsListWithFilter(MainMenuTypes menuType, int indexOfSelectedCategoty);
 
         void AddOperation(Part part, string operationName);
+        void DeleteOperation(Part part, string operationName);
+        
         void AddStatistic(Part part, string operationName, Tool tool, ProcessingType processingType);
-
+        void DeleteStatistic(Part part, Operation operation, Tool tool, ProcessingType processingType);
     }
 }

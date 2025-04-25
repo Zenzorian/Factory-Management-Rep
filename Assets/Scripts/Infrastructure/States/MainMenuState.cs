@@ -35,11 +35,13 @@ namespace Scripts.Infrastructure.States
             SetMenuButtonsEvents();
 
             _assetProvider.GlobalUIElements.addationButton.gameObject.SetActive(false);
+            _assetProvider.GlobalUIElements.editButton.gameObject.SetActive(false);
         }
         public void Exit()
         {
             RemoveMenuButtonsEvents();
             _assetProvider.GlobalUIElements.addationButton.gameObject.SetActive(true);
+            _assetProvider.GlobalUIElements.editButton.gameObject.SetActive(true);
         }
 
         private void SetMenuButtonsEvents()

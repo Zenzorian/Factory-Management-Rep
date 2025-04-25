@@ -45,12 +45,14 @@ namespace Scripts.Infrastructure.States
         {
             _globalUIElements.backButton.onClick.AddListener(Back);
             _globalUIElements.addationButton.gameObject.SetActive(false);
+            _globalUIElements.editButton.gameObject.SetActive(false);
         }
 
         private void RemoveUIListeners()
         {
             _globalUIElements.backButton.onClick.RemoveListener(Back);
             _globalUIElements.addationButton.gameObject.SetActive(true);
+            _globalUIElements.editButton.gameObject.SetActive(true);
         }
           
         private void Back()
