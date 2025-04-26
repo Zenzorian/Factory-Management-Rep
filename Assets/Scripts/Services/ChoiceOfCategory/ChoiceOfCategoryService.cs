@@ -26,6 +26,9 @@ namespace Scripts.Services
 
         private MainMenuTypes _menuType;
 
+        private List<Button> _deleteButtons = new List<Button>();
+        
+        private bool _isEditMode = false;
         public ChoiceOfCategoryService
         (
             ISaveloadDataService saveloadDataService,
@@ -56,6 +59,7 @@ namespace Scripts.Services
             {
                 GameObject.Destroy(item.gameObject);
             }
+            _deleteButtons.Clear();
         }
         public void Create(List<string> list, MainMenuTypes menuType, UnityEvent<MainMenuTypes,int> choiceButtonPresed)
         {
@@ -82,12 +86,32 @@ namespace Scripts.Services
                     buttonText.text = $"{buttonText.text} - ({count})";   
                 else
                     buttonText.text = $"{buttonText.text}";
+
+                var deleteButton = _buttonCreator.CreateDeleteButton(buttons[index].transform);
+                deleteButton.onClick.AddListener(delegate { OnDeleteButtonPressed(menuType, index); });
+                _deleteButtons.Add(deleteButton);
             }
         }
         
         public void ButtonPressed(int indexOfSelectedCategoty)
         {     
             _choiceButtonPressed?.Invoke(_menuType, indexOfSelectedCategoty);                       
+        }
+
+        public void Edit()
+        {
+            _isEditMode = !_isEditMode;
+            if(_deleteButtons == null || _deleteButtons.Count == 0)return;
+            foreach (var button in _deleteButtons)
+            {
+                button.gameObject.SetActive(_isEditMode);
+            }
+        }
+        private void OnDeleteButtonPressed(MainMenuTypes menuType, int indexOfSelectedCategoty)
+        {
+            _saveloadDataService.DeleteCategory(menuType, indexOfSelectedCategoty);
+            Create(_selectedCategories, _menuType, _choiceButtonPressed);
+            _isEditMode = false;
         }
     }
 }

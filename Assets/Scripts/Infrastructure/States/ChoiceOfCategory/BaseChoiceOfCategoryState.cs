@@ -51,6 +51,7 @@ namespace Scripts.Infrastructure.States
         {           
             _globalUIElements.backButton.onClick.RemoveListener(OnBack);
             _globalUIElements.addationButton.onClick.RemoveAllListeners();
+            _globalUIElements.editButton.onClick.RemoveAllListeners();
             _choiceButtonPressed.RemoveAllListeners();
         }
 

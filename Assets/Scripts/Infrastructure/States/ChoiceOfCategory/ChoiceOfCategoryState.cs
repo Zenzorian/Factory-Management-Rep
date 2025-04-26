@@ -54,6 +54,7 @@ namespace Scripts.Infrastructure.States
         {
             base.AddUIListeners();
             _globalUIElements.addationButton.onClick.AddListener(OnAddation);
+            _globalUIElements.editButton.onClick.AddListener(OnEdit);
         }
     
         private void OnAddation()
@@ -61,6 +62,11 @@ namespace Scripts.Infrastructure.States
             Debug.Log("OnAddation");
             var addationData = new AddationData(_currentStateData.menuType, -1);
             _addationService.Open(addationData, () => Enter(_currentStateData));
+        }
+
+        private void OnEdit()
+        {           
+            _choiceOfCategoryService.Edit();
         }
     }
 

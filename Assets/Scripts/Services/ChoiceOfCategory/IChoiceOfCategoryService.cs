@@ -10,5 +10,6 @@ namespace Scripts.Services
         void Deactivate();              
         public void ButtonPressed(int index);
         void Create(List<string> list, MainMenuTypes menuType, UnityEvent<MainMenuTypes, int> choiceButtonPresed);
+        void Edit();
     }
 }

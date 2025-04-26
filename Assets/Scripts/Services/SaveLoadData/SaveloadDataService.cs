@@ -186,5 +186,28 @@ namespace Scripts.Services
             
             SaveData();
         }       
+
+        public void DeleteCategory(MainMenuTypes menuType, int indexOfSelectedCategoty)
+        {
+            switch (menuType)
+            {   
+                case MainMenuTypes.Workspaces:
+                    _globalData.typesOfWorkspace.RemoveAt(indexOfSelectedCategoty);
+                    break;
+                case MainMenuTypes.Tools:
+                    _globalData.typesOfTools.RemoveAt(indexOfSelectedCategoty);
+                    break;
+                case MainMenuTypes.Workers:
+                    _globalData.typesOfWorkers.RemoveAt(indexOfSelectedCategoty);
+                    break;
+                case MainMenuTypes.Parts:
+                    _globalData.typesOfParts.RemoveAt(indexOfSelectedCategoty);
+                    break;
+                default:
+                    Debug.LogWarning("Unsupported MainMenuType");
+                    break;
+            }
+            SaveData();
+        }
     }
 }

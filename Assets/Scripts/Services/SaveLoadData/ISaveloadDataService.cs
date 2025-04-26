@@ -22,5 +22,7 @@ namespace Scripts.Services
         
         void AddStatistic(Part part, string operationName, Tool tool, ProcessingType processingType);
         void DeleteStatistic(Part part, Operation operation, Tool tool, ProcessingType processingType);
+
+        void DeleteCategory(MainMenuTypes menuType, int indexOfSelectedCategoty);
     }
 }
