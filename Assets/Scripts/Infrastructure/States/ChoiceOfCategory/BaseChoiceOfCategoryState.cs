@@ -8,7 +8,7 @@ namespace Scripts.Infrastructure.States
     {
         protected readonly StateMachine _stateMachine;
         protected readonly IChoiceOfCategoryService _choiceOfCategoryService;
-        protected readonly IPopUpMassageService _popUpMassageService;
+        protected readonly IPopUpService _popUpService;
         protected readonly GlobalUIElements _globalUIElements;
 
         protected UnityEvent<MainMenuTypes, int> _choiceButtonPressed = new UnityEvent<MainMenuTypes, int>();
@@ -17,12 +17,12 @@ namespace Scripts.Infrastructure.States
         (
             StateMachine stateMachine,
             IChoiceOfCategoryService choiceOfCategoryService,
-            IPopUpMassageService popUpMassageService,
+            IPopUpService popUpService,
             GlobalUIElements globalUIElements)
         {
             _stateMachine = stateMachine;
             _choiceOfCategoryService = choiceOfCategoryService;
-            _popUpMassageService = popUpMassageService;
+            _popUpService = popUpService;
             _globalUIElements = globalUIElements;
         }
 

@@ -13,7 +13,7 @@ namespace Scripts.Infrastructure.States
         private readonly IItemAddationService _addationService;
         private readonly IStatisticsInputService _statisticsInputService;
         private readonly ISaveloadDataService _saveloadDataService;
-        private readonly IConfirmPanelService _confirmPanelService;
+        private readonly IPopUpService _popUpService;
 
 
         private List<StatisticData> _currentStatisticData = new List<StatisticData>();
@@ -22,17 +22,16 @@ namespace Scripts.Infrastructure.States
             StateMachine stateMachine,
             IChoiceOfCategoryService choiceOfCategoryService,
             ISaveloadDataService saveloadDataService,
-            IConfirmPanelService confirmPanelService,   
-            IPopUpMassageService popUpMassageService,
+            IPopUpService popUpService,   
             IItemAddationService addationService,
             IStatisticsInputService statisticsInputService,
             GlobalUIElements globalUIElements)
-            : base(stateMachine, choiceOfCategoryService, popUpMassageService, globalUIElements)
+            : base(stateMachine, choiceOfCategoryService, popUpService, globalUIElements)
         {
             _addationService = addationService;
             _statisticsInputService = statisticsInputService;
             _saveloadDataService = saveloadDataService;
-            _confirmPanelService = confirmPanelService;
+            _popUpService = popUpService;
         }
 
         public override void Enter(ChoiceOfStatisticDataStateData stateData)

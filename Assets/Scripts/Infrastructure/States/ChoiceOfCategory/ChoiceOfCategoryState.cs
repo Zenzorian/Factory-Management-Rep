@@ -13,10 +13,10 @@ namespace Scripts.Infrastructure.States
         public ChoiceOfCategoryState(
             StateMachine stateMachine,
             IChoiceOfCategoryService choiceOfCategoryService,
-            IPopUpMassageService popUpMassageService,
+            IPopUpService popUpService,
             IItemAddationService addationService,
             GlobalUIElements globalUIElements)
-            : base(stateMachine, choiceOfCategoryService, popUpMassageService, globalUIElements)
+            : base(stateMachine, choiceOfCategoryService, popUpService, globalUIElements)
         {
             _addationService = addationService;
         }

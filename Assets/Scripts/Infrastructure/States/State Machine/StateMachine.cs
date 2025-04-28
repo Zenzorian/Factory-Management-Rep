@@ -12,11 +12,11 @@ namespace Scripts.Infrastructure.States
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
 
-        public StateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, AllServices services)
+        public StateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, AllServices services, ICoroutineRunner сoroutineRunner)
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, services),
+                [typeof(BootstrapState)] = new BootstrapState(this, services, сoroutineRunner),
 
                 [typeof(MainMenuState)] = new MainMenuState
                 (
@@ -29,7 +29,7 @@ namespace Scripts.Infrastructure.States
                 (
                     this,
                     services.Single<IChoiceOfCategoryService>(),
-                    services.Single<IPopUpMassageService>(),
+                    services.Single<IPopUpService>(),
                     new ChioceListAddation
                     (
                         services.Single<ISaveloadDataService>(),
@@ -39,8 +39,8 @@ namespace Scripts.Infrastructure.States
                     services.Single<IElementsProvider>().GlobalUIElements
                 ),
                 [typeof(TableProcessorState)] = new TableProcessorState
-                (
-                    this,
+                    (
+                        this,
                     services.Single<ITableProcessorService>(),
                     new TableItemAddation
                     (
@@ -60,7 +60,7 @@ namespace Scripts.Infrastructure.States
                 (
                     this,
                     services.Single<IChoiceOfCategoryService>(),
-                    services.Single<IPopUpMassageService>(),
+                    services.Single<IPopUpService>(),
                     services.Single<IElementsProvider>().GlobalUIElements
                 ),
                 [typeof(StatisticTableProcessorState)] = new StatisticTableProcessorState
@@ -74,8 +74,7 @@ namespace Scripts.Infrastructure.States
                     this,
                     services.Single<IChoiceOfCategoryService>(),
                     services.Single<ISaveloadDataService>(),
-                    services.Single<IConfirmPanelService>(),
-                    services.Single<IPopUpMassageService>(),
+                    services.Single<IPopUpService>(),
                     new StatisticDataItemAddation
                     (
                         services.Single<ISaveloadDataService>(),

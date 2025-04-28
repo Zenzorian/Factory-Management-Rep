@@ -7,8 +7,7 @@ namespace Scripts.Infrastructure.AssetManagement
     {
         GlobalUIElements GlobalUIElements { get; }
         MainMenu MainMenu { get; }
-        ConfirmPanelElements ConfirmationPanelElements { get; }
-        PopupMessageElements PopupMessageElements { get; }
+        PopupElements PopupElements { get; }
         ChoiceOfCategoryElements ChoiceOfCategoryElements { get; }
         ItemsAddationViewElements ItemsAddationViewElements { get; }
         StatisticViewElements StatisticViewElements { get; }

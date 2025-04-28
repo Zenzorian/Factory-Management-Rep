@@ -10,11 +10,13 @@ namespace Scripts.Infrastructure.States
     {
         private readonly StateMachine _stateMachine;
         private readonly AllServices _services;
+        private readonly ICoroutineRunner _сoroutineRunner;
 
-        public BootstrapState(StateMachine stateMachine, AllServices services)
+        public BootstrapState(StateMachine stateMachine, AllServices services, ICoroutineRunner сoroutineRunner)
         {
             _stateMachine = stateMachine;
             _services = services;
+            _сoroutineRunner = сoroutineRunner;
 
             RegisterServices();
         }
@@ -38,7 +40,11 @@ namespace Scripts.Infrastructure.States
 
             var elementsProvider = _services.Single<IElementsProvider>();
 
-            _services.RegisterSingle<ISaveloadDataService>(new SaveloadDataService());
+            _services.RegisterSingle<IPopUpService>
+                (new PopUpService(elementsProvider.PopupElements, _сoroutineRunner));
+            Debug.Log("PopUpService Initialized");
+
+            _services.RegisterSingle<ISaveloadDataService>(new SaveloadDataService(_services.Single<IPopUpService>(), _сoroutineRunner));
             Debug.Log("SaveloadDataService Initialized");
 
             _services.RegisterSingle<IButtonCreator>
@@ -60,21 +66,14 @@ namespace Scripts.Infrastructure.States
                 )
             );
             Debug.Log("TutorialService Initialized");
-
-            _services.RegisterSingle<IPopUpMassageService>
-                (new PopupMessageService(elementsProvider.PopupMessageElements));
-            Debug.Log("PopUpMassageService Initialized");
-
-            _services.RegisterSingle<IConfirmPanelService>
-                (new ConfirmPanelService(elementsProvider.ConfirmationPanelElements));
-            Debug.Log("ConfirmationPanelService Initialized");
-
+              
             _services.RegisterSingle<IChoiceOfCategoryService>
             (
                 new ChoiceOfCategoryService
                 (
                     _services.Single<ISaveloadDataService>(),
                     _services.Single<IButtonCreator>(),
+                    _services.Single<IPopUpService>(),
                     elementsProvider.ChoiceOfCategoryElements
                 )
             );
@@ -104,8 +103,7 @@ namespace Scripts.Infrastructure.States
                 new ChoiceOfStatisticService
                 (
                     _services.Single<ISaveloadDataService>(),
-                    _services.Single<IPopUpMassageService>(),
-                    _services.Single<IConfirmPanelService>(),
+                    _services.Single<IPopUpService>(),
                     _services.Single<ITableProcessorService>(),
                     elementsProvider                    
                 )

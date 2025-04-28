@@ -10,7 +10,7 @@ namespace Scripts.Infrastructure
 
         public Program(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
         {
-            StateMachine = new StateMachine(new SceneLoader(coroutineRunner), curtain, AllServices.Container);
+            StateMachine = new StateMachine(new SceneLoader(coroutineRunner), curtain, AllServices.Container, coroutineRunner);
         }
     }
 }

@@ -3,6 +3,10 @@ using System.IO;
 using System.Linq;
 using Scripts.Data;
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+using Scripts.Infrastructure;
+using System;
 
 namespace Scripts.Services
 {
@@ -11,32 +15,62 @@ namespace Scripts.Services
         private const string _fileName = "FactoryManagerGlobalData.json";
         private string _filePath;
         private GlobalData _globalData = new GlobalData();
+        private readonly IPopUpService _popupService;
+        private readonly ICoroutineRunner _сoroutineRunner;
 
-        public SaveloadDataService()
+        public SaveloadDataService(IPopUpService popupService, ICoroutineRunner coroutineRunner)
         {
+            _popupService = popupService;
             _filePath = Path.Combine(Application.streamingAssetsPath, $"Data/{_fileName}");
+            _сoroutineRunner = coroutineRunner;
         }
 
         public void SaveData()
         {
             string json = JsonUtility.ToJson(_globalData, true);
-            File.WriteAllText(_filePath, json);
-            Debug.Log("Data saved to " + _filePath);
+         
+            _popupService.ShowMessage("Saving data...", MessageType.message);            
+            try
+            {
+                File.WriteAllText(_filePath, json);
+                _popupService.ShowMessageAutoClose("Data saved successfully", MessageType.message);                
+            }
+            catch (Exception e)
+            {
+                _popupService.ShowMessageAutoClose("Error saving data", MessageType.error);
+                Debug.LogError("Error saving data: " + e.Message);
+            }
         }
 
         public void LoadData()
-        {         
-            if (File.Exists(_filePath))
+        { 
+            _popupService.ShowMessage("Loading data...", MessageType.message);
+            
+            UnityWebRequest request = UnityWebRequest.Get(_filePath);
+            request.SendWebRequest();
+            
+            _сoroutineRunner.StartCoroutine(LoadDataCoroutine(request));
+        }
+
+        private IEnumerator LoadDataCoroutine(UnityWebRequest request)
+        {
+            while (!request.isDone)
             {
-                string json = File.ReadAllText(_filePath);
+                yield return null;
+            }
+            _popupService.CloseMessage();
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string json = request.downloadHandler.text;
                 JsonUtility.FromJsonOverwrite(json, _globalData);
-                Debug.Log("Data loaded from " + _filePath);
+                _popupService.ShowMessageAutoClose("Data loaded successfully", MessageType.message);
             }
             else
             {
-                Debug.LogWarning("Save file not found at " + _filePath);
+                _popupService.ShowMessageAutoClose("Error loading data", MessageType.error);
             }
         }
+
         public void AddItemInCategory(MainMenuTypes menuType, string categoryName)
         {
             switch (menuType)

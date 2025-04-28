@@ -29,7 +29,7 @@ namespace Scripts.Services
         (
             ISaveloadDataService saveloadDataService,
             ItemsAddationViewElements itemsAddationViewElements,
-            GlobalUIElements globalUIElements = null
+            GlobalUIElements globalUIElements
         )
         {
             _inputFieldCreator = itemsAddationViewElements.inputFieldCreator;
@@ -46,11 +46,11 @@ namespace Scripts.Services
         public void Initialize(MainMenuTypes menuType, Action onAdded)
         {    
             _addationPanel.gameObject.SetActive(true);
-            if( _globalUIElements != null)
-            {
-                _globalUIElements.addationButton.gameObject.SetActive(false);
-                _globalUIElements.backButton.gameObject.SetActive(false);
-            }
+           
+            _globalUIElements.addationButton.gameObject.SetActive(false);
+            _globalUIElements.editButton.gameObject.SetActive(false);
+            _globalUIElements.backButton.gameObject.SetActive(false);
+            
 
             _menuType = menuType;
             _onAdded = onAdded;
@@ -58,12 +58,11 @@ namespace Scripts.Services
         public void Close()
         {
             _addationPanel.gameObject.SetActive(false);
-
-            if( _globalUIElements != null)  
-            {
-                _globalUIElements.addationButton.gameObject.SetActive(true);
-                _globalUIElements.backButton.gameObject.SetActive(true);
-            }           
+           
+            _globalUIElements.addationButton.gameObject.SetActive(true);
+            _globalUIElements.editButton.gameObject.SetActive(true);
+            _globalUIElements.backButton.gameObject.SetActive(true);
+                      
             _addButton.onClick.RemoveAllListeners();
 
             Clear();

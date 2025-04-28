@@ -9,12 +9,13 @@ namespace Scripts.Infrastructure.States
     {
         private StatisticChoiceOfCategoryStateData _currentStateData;
 
-        public StatisticSelectionChoiceOfCategoryState(
+        public StatisticSelectionChoiceOfCategoryState
+        (
             StateMachine stateMachine,
             IChoiceOfCategoryService choiceOfCategoryService,
-            IPopUpMassageService popUpMassageService,
-            GlobalUIElements globalUIElements)
-            : base(stateMachine, choiceOfCategoryService, popUpMassageService, globalUIElements) { }
+            IPopUpService popUpService,
+            GlobalUIElements globalUIElements
+        ) : base(stateMachine, choiceOfCategoryService, popUpService, globalUIElements) { }
 
         public override void Enter(StatisticChoiceOfCategoryStateData stateData)
         {

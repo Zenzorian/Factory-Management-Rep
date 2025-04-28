@@ -9,8 +9,7 @@ namespace Scripts.Infrastructure.AssetManagement
 
         [SerializeField] private MainMenu _mainMenu;
         [SerializeField] private GlobalUIElements _globalUIElements;
-        [SerializeField] private PopupMessageElements _popupMessageElements;
-        [SerializeField] private ConfirmPanelElements _confirmationPanelElements;
+        [SerializeField] private PopupElements _popupElements;
         [SerializeField] private ChoiceOfCategoryElements _choiceOfCategoryElements;
         [SerializeField] private ItemsAddationViewElements _itemsAddationViewElements;
         [SerializeField] private StatisticViewElements _statisticViewElements;
@@ -19,8 +18,7 @@ namespace Scripts.Infrastructure.AssetManagement
 
         public MainMenu MainMenu => _mainMenu;
         public GlobalUIElements GlobalUIElements => _globalUIElements;
-        public PopupMessageElements PopupMessageElements => _popupMessageElements;
-        public ConfirmPanelElements ConfirmationPanelElements => _confirmationPanelElements;
+        public PopupElements PopupElements => _popupElements;
 
         public ChoiceOfCategoryElements ChoiceOfCategoryElements => _choiceOfCategoryElements;
         public ItemsAddationViewElements ItemsAddationViewElements => _itemsAddationViewElements;

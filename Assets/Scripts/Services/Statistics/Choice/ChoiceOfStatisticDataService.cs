@@ -11,8 +11,7 @@ namespace Scripts.Services.Statistics
 
         private IStateMachine _stateMachine;
         private readonly ISaveloadDataService _saveloadDataService;
-        private readonly IPopUpMassageService _popUpMassageService;
-        private readonly IConfirmPanelService _confirmPanelService;
+        private readonly IPopUpService _popUpService;
         private readonly ITableProcessorService _tableProcessorService;
         private readonly ChoiceOfStatisticDataView _view;
         private readonly IElementsProvider _elementsProvider;
@@ -25,15 +24,13 @@ namespace Scripts.Services.Statistics
         public ChoiceOfStatisticService
          (
             ISaveloadDataService saveloadDataService,
-            IPopUpMassageService popUpMassageService,
-            IConfirmPanelService confirmPanelService,
+            IPopUpService popUpService,
             ITableProcessorService tableProcessorService,
             IElementsProvider elementsProvider            
         )
         {
             _saveloadDataService = saveloadDataService;
-            _popUpMassageService = popUpMassageService;
-            _confirmPanelService = confirmPanelService;
+            _popUpService = popUpService;
             _tableProcessorService = tableProcessorService;
             _elementsProvider = elementsProvider;
 
@@ -160,7 +157,7 @@ namespace Scripts.Services.Statistics
         {            
             if (partCardData.statistic.Data == null)
             { 
-                _confirmPanelService.Show("Statistic not found", () => partCardData.statistic.Data = new List<StatisticData>());
+                _popUpService.ShowMessageAutoClose("Statistic not found", MessageType.warning);
 
                 // var statistic = GetCurrentStatistic();
 
@@ -177,7 +174,7 @@ namespace Scripts.Services.Statistics
         }
         private void OnDeleteOperation(PartCardData partCardData)
         {           
-            _confirmPanelService.Show("Are you sure you want to delete this operation?", 
+            _popUpService.ShowConfirm("Are you sure you want to delete this operation?", 
                 () => DeleteOperation(partCardData));
         }
         private void DeleteOperation(PartCardData partCardData)
@@ -188,7 +185,7 @@ namespace Scripts.Services.Statistics
         
         private void OnDeleteStatistic(PartCardData partCardData)
         { 
-            _confirmPanelService.Show("Are you sure you want to delete this statistic?", 
+            _popUpService.ShowConfirm("Are you sure you want to delete this statistic?", 
                     () => DeleteStatistic(partCardData));
         }
         private void DeleteStatistic(PartCardData partCardData)

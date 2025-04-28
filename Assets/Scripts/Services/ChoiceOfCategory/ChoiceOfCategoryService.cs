@@ -12,7 +12,8 @@ namespace Scripts.Services
     {
         private readonly ISaveloadDataService _saveloadDataService;
         private readonly IButtonCreator _buttonCreator;
-
+        private readonly IPopUpService _popUpService;
+        
         private readonly Transform _panel;
         private readonly Text _sectionNameText;
         private readonly Transform _content;
@@ -33,9 +34,11 @@ namespace Scripts.Services
         (
             ISaveloadDataService saveloadDataService,
             IButtonCreator buttonCreator,
+            IPopUpService popUpService,
             ChoiceOfCategoryElements choiceOfCategoryElements          
         )
         {
+            _popUpService = popUpService;
             _panel = choiceOfCategoryElements.panel;
             _sectionNameText = choiceOfCategoryElements.sectionNameText;
             _content = choiceOfCategoryElements.content;
@@ -108,6 +111,11 @@ namespace Scripts.Services
             }
         }
         private void OnDeleteButtonPressed(MainMenuTypes menuType, int indexOfSelectedCategoty)
+        {
+            _popUpService.ShowConfirm("Are you sure you want to delete this category?",
+                ()=>DeleteCategory(menuType, indexOfSelectedCategoty));
+        }
+        private void DeleteCategory(MainMenuTypes menuType, int indexOfSelectedCategoty)
         {
             _saveloadDataService.DeleteCategory(menuType, indexOfSelectedCategoty);
             Create(_selectedCategories, _menuType, _choiceButtonPressed);
