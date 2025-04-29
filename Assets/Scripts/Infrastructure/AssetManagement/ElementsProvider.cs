@@ -1,6 +1,5 @@
 using Scripts.UI.Markers;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Scripts.Infrastructure.AssetManagement
 {
@@ -25,14 +24,5 @@ namespace Scripts.Infrastructure.AssetManagement
         public StatisticViewElements StatisticViewElements => _statisticViewElements;
         public StatisticsInputElements StatisticsInputElements => _statisticsInputElements;
         public GraphPlane GraphPlane => _graphPlane;
-    }
-    [System.Serializable]
-    public class GlobalUIElements    
-    {
-        public Button backButton;
-        public Button addationButton;       
-        public Button editButton;
-    }       
-   
-    
+    }   
 }

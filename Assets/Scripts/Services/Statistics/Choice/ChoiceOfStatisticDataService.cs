@@ -75,9 +75,10 @@ namespace Scripts.Services.Statistics
         {
             AnregisterEvents();
 
-            _view.HidePanel();
+            _view.HidePanel(); 
+            _selectedStatisticData = null;          
         }
-
+      
         private void OnPartButtonClicked()
         {
             var stateData = CreateStateData(MainMenuTypes.Parts);
@@ -109,6 +110,7 @@ namespace Scripts.Services.Statistics
             if (selectedStatisticData.selectedPart == null)
             {
                 _view.ShowPartSelection("Select part");
+                _isToolStartSelection = false;
             }
             else
             {

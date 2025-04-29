@@ -7,6 +7,7 @@ namespace Scripts.UI.Markers
     {
         public Text fText;
         public Text vText;
+        public Button editButton;
         public Button addButton;
         public Button backButton;
         public InputField addInput;

@@ -92,6 +92,7 @@ namespace Scripts.Infrastructure.States
                 (
                     _services.Single<ISaveloadDataService>(),
                     _services.Single<IButtonCreator>(),
+                    _services.Single<IPopUpService>(),
                     elementsProvider.StatisticsInputElements,
                     elementsProvider.GlobalUIElements
                 )

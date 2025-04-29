@@ -12,10 +12,10 @@ namespace Scripts.Data
         public List<Tool> listOfTools = new List<Tool>();
         public List<Employee> listOfWorkers = new List<Employee>();      
 
-        public List<string> typesOfTools;
-        public List<string> typesOfWorkers;
-        public List<string> typesOfWorkspace;
-        public List<string> typesOfParts;
+        public List<string> typesOfTools = new List<string>();
+        public List<string> typesOfWorkers = new List<string>();
+        public List<string> typesOfWorkspace = new List<string>();
+        public List<string> typesOfParts = new List<string>();
     }
     public enum DataType
     {

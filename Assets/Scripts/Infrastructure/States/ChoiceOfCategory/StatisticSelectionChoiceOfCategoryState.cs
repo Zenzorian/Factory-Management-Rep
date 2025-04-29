@@ -1,8 +1,7 @@
-﻿using Scripts.Infrastructure.AssetManagement;
-using Scripts.Services;
+﻿using Scripts.Services;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Scripts.UI.Markers;
 namespace Scripts.Infrastructure.States
 {
     public class StatisticSelectionChoiceOfCategoryState : BaseChoiceOfCategoryState<StatisticChoiceOfCategoryStateData>

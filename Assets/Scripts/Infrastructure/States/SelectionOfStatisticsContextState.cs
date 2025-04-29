@@ -1,7 +1,7 @@
 ﻿using Scripts.Data;
-using Scripts.Infrastructure.AssetManagement;
 using Scripts.Services.Statistics;
 using UnityEngine;
+using Scripts.UI.Markers;
 
 namespace Scripts.Infrastructure.States
 {
@@ -33,7 +33,7 @@ namespace Scripts.Infrastructure.States
         }
         public void Exit()
         {
-            PutOff();
+            PutOff();            
         }
 
         private void Initialize()

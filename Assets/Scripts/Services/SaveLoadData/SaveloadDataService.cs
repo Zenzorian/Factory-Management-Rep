@@ -3,8 +3,6 @@ using System.IO;
 using System.Linq;
 using Scripts.Data;
 using UnityEngine;
-using UnityEngine.Networking;
-using System.Collections;
 using Scripts.Infrastructure;
 using System;
 
@@ -12,28 +10,39 @@ namespace Scripts.Services
 {
     public class SaveloadDataService:  ISaveloadDataService
     {        
-        private const string _fileName = "FactoryManagerGlobalData.json";
+        
+#if UNITY_EDITOR
+        private string _directoryPath = Path.Combine(Application.streamingAssetsPath, "Data");
+#else
+        private string _directoryPath = Path.Combine(Application.persistentDataPath, "Data");
+#endif
         private string _filePath;
+        private const string _fileName = "FactoryGlobalData.json";
+
         private GlobalData _globalData = new GlobalData();
+
         private readonly IPopUpService _popupService;
         private readonly ICoroutineRunner _сoroutineRunner;
 
         public SaveloadDataService(IPopUpService popupService, ICoroutineRunner coroutineRunner)
         {
             _popupService = popupService;
-            _filePath = Path.Combine(Application.streamingAssetsPath, $"Data/{_fileName}");
             _сoroutineRunner = coroutineRunner;
+            
+            if (!Directory.Exists(_directoryPath))
+            {
+                Directory.CreateDirectory(_directoryPath);
+            }
+            _filePath = Path.Combine(_directoryPath, _fileName);
         }
 
         public void SaveData()
         {
             string json = JsonUtility.ToJson(_globalData, true);
-         
-            _popupService.ShowMessage("Saving data...", MessageType.message);            
+
             try
             {
-                File.WriteAllText(_filePath, json);
-                _popupService.ShowMessageAutoClose("Data saved successfully", MessageType.message);                
+                File.WriteAllText(_filePath, json);                            
             }
             catch (Exception e)
             {
@@ -44,30 +53,23 @@ namespace Scripts.Services
 
         public void LoadData()
         { 
-            _popupService.ShowMessage("Loading data...", MessageType.message);
-            
-            UnityWebRequest request = UnityWebRequest.Get(_filePath);
-            request.SendWebRequest();
-            
-            _сoroutineRunner.StartCoroutine(LoadDataCoroutine(request));
-        }
-
-        private IEnumerator LoadDataCoroutine(UnityWebRequest request)
-        {
-            while (!request.isDone)
+            try
             {
-                yield return null;
+                if (File.Exists(_filePath))
+                {
+                    string json = File.ReadAllText(_filePath);
+                    JsonUtility.FromJsonOverwrite(json, _globalData);                   
+                }
+                else
+                {                    
+                    _popupService.ShowMessageAutoClose("No saved data found", MessageType.warning);
+                }  
             }
-            _popupService.CloseMessage();
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                string json = request.downloadHandler.text;
-                JsonUtility.FromJsonOverwrite(json, _globalData);
-                _popupService.ShowMessageAutoClose("Data loaded successfully", MessageType.message);
-            }
-            else
-            {
+            catch (System.Exception e)
+            {             
+                _popupService.CloseMessage();
                 _popupService.ShowMessageAutoClose("Error loading data", MessageType.error);
+                Debug.LogError("Error loading data: " + e.Message);
             }
         }
 
@@ -241,6 +243,12 @@ namespace Scripts.Services
                     Debug.LogWarning("Unsupported MainMenuType");
                     break;
             }
+            SaveData();
+        }
+        
+        public void DeletePartCounter(StatisticData statisticData, int index)
+        {
+            statisticData.PartCounter.RemoveAt(index);
             SaveData();
         }
     }

@@ -1,5 +1,5 @@
 ﻿using Scripts.Data;
-using Scripts.Infrastructure.AssetManagement;
+using Scripts.UI.Markers;
 using UnityEngine;
 
 namespace Scripts.Infrastructure.States

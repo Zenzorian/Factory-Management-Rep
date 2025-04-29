@@ -3,6 +3,7 @@ using Scripts.MyTools;
 using Scripts.Services;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace Scripts.Infrastructure.States
 {
@@ -83,8 +84,8 @@ namespace Scripts.Infrastructure.States
         {
             if (categoryData.selectedListOfCategotyElements == null)
             {
-                Debug.LogError("Category List Is Null");
-                return;
+                Debug.LogWarning("Category List Is Null");
+                categoryData.selectedListOfCategotyElements = new List<string>();
             }
             _stateMachine.Enter<ChoiceOfCategoryState, ChoiceOfCategoryStateData>(categoryData);
         }

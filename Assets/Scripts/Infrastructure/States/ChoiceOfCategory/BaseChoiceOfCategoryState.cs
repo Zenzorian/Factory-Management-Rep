@@ -1,6 +1,6 @@
-﻿using Scripts.Infrastructure.AssetManagement;
-using Scripts.Services;
+﻿using Scripts.Services;
 using UnityEngine.Events;
+using Scripts.UI.Markers;
 
 namespace Scripts.Infrastructure.States
 {
@@ -53,6 +53,8 @@ namespace Scripts.Infrastructure.States
             _globalUIElements.addationButton.onClick.RemoveAllListeners();
             _globalUIElements.editButton.onClick.RemoveAllListeners();
             _choiceButtonPressed.RemoveAllListeners();
+            _globalUIElements.showGraphButton.gameObject.SetActive(false);
+            _globalUIElements.showGraphButton.onClick.RemoveAllListeners(); 
         }
 
         protected abstract void OnBack();

@@ -3,6 +3,7 @@ using Scripts.Infrastructure.AssetManagement;
 using Scripts.Services;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts.UI.Markers;
 
 namespace Scripts.Infrastructure.States
 {
@@ -12,11 +13,8 @@ namespace Scripts.Infrastructure.States
 
         private readonly IItemAddationService _addationService;
         private readonly IStatisticsInputService _statisticsInputService;
-        private readonly ISaveloadDataService _saveloadDataService;
-        private readonly IPopUpService _popUpService;
-
-
-        private List<StatisticData> _currentStatisticData = new List<StatisticData>();
+        private readonly ISaveloadDataService _saveloadDataService;       
+        
         public ChoiceOfStatisticDataState
         (
             StateMachine stateMachine,
@@ -30,8 +28,7 @@ namespace Scripts.Infrastructure.States
         {
             _addationService = addationService;
             _statisticsInputService = statisticsInputService;
-            _saveloadDataService = saveloadDataService;
-            _popUpService = popUpService;
+            _saveloadDataService = saveloadDataService;           
         }
 
         public override void Enter(ChoiceOfStatisticDataStateData stateData)
@@ -39,24 +36,27 @@ namespace Scripts.Infrastructure.States
             Debug.Log("=> Enter on  Choice Of Statistic Data State <=");
 
             _currentStateData = stateData;           
+          
+            SetData();           
 
+            base.Enter(_currentStateData);
+            _choiceOfCategoryService.Create(_currentStateData.selectedListOfCategotyElements, _currentStateData.menuType, _choiceButtonPressed, OnDelete);
+            AddUIListeners();
+        }
 
-            _currentStatisticData = _currentStateData.selectedStatisticData.Data;
-
+        private void SetData()
+        {
             var categoryNames = new List<string>();
-            foreach (var item in _currentStatisticData)
+            foreach (var item in  _currentStateData.selectedStatisticData.Data)
             {
                 categoryNames.Add($"F = {item.F} V = {item.V}");
             }
             _currentStateData.selectedListOfCategotyElements = categoryNames;
-
-            base.Enter(_currentStateData);
-            AddUIListeners();
         }
 
         protected override void OnChoiceMade(MainMenuTypes menuType, int index)
         {
-            StatisticData temporaryData = _currentStatisticData[index];
+            StatisticData temporaryData =  _currentStateData.selectedStatisticData.Data[index];
             _statisticsInputService.ShowPanel(temporaryData);
         }
 
@@ -73,14 +73,46 @@ namespace Scripts.Infrastructure.States
         protected override void AddUIListeners()
         {
             base.AddUIListeners();
-            _globalUIElements.addationButton.onClick.AddListener(OnAddation);           
+            _globalUIElements.addationButton.onClick.AddListener(OnAddation);
+            _globalUIElements.editButton.onClick.AddListener(OnEdit);
+            _globalUIElements.showGraphButton.gameObject.SetActive(true);
+            _globalUIElements.showGraphButton.onClick.AddListener(OnShowGraph);
         }
           
         private void OnAddation()
         {
-            var addationData = new AddationData(_currentStateData.menuType, -1,_currentStatisticData);
+            var addationData = new AddationData(_currentStateData.menuType, -1,_currentStateData.selectedStatisticData.Data);
             _addationService.Open(addationData, () => Enter(_currentStateData));
-        }       
+        }   
+
+        private void OnEdit()
+        {
+            _choiceOfCategoryService.Edit();
+        }
+        private void OnDelete(int index)
+        {           
+            _popUpService.ShowConfirm("Are you sure you want to delete this category?",
+                ()=>DeleteCategory(index));
+        }
+        private void DeleteCategory(int index)
+        {
+            _currentStateData.selectedStatisticData.Data.RemoveAt(index);
+           
+            SetData();   
+
+            _choiceOfCategoryService.Create
+            (
+                _currentStateData.selectedListOfCategotyElements,
+                _currentStateData.menuType,
+                _choiceButtonPressed, 
+                OnDelete
+            );
+        }
+        private void OnShowGraph()
+        {
+            var statisticGrafViewStateData = new StatisticGrafViewStateData(_currentStateData.selectedStatisticData, _currentStateData.selectedStatistic);  
+            _stateMachine.Enter<StatisticGrafViewState, StatisticGrafViewStateData>(statisticGrafViewStateData);
+        }
     }
     public class ChoiceOfStatisticDataStateData : StatisticChoiceOfCategoryStateData
     {

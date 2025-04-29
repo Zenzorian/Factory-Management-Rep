@@ -24,5 +24,6 @@ namespace Scripts.Services
         void DeleteStatistic(Part part, Operation operation, Tool tool, ProcessingType processingType);
 
         void DeleteCategory(MainMenuTypes menuType, int indexOfSelectedCategoty);
+        void DeletePartCounter(StatisticData statisticData, int index);
     }
 }

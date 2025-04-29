@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System;
 
 namespace Scripts.Services
 {
-    public class ChoiceOfCategoryService : IChoiceOfCategoryService
+    public class ChoiceOfCategoryService : IChoiceOfCategoryService 
     {
         private readonly ISaveloadDataService _saveloadDataService;
         private readonly IButtonCreator _buttonCreator;
@@ -63,8 +64,9 @@ namespace Scripts.Services
                 GameObject.Destroy(item.gameObject);
             }
             _deleteButtons.Clear();
+            _isEditMode = false;
         }
-        public void Create(List<string> list, MainMenuTypes menuType, UnityEvent<MainMenuTypes,int> choiceButtonPresed)
+        public void Create(List<string> list, MainMenuTypes menuType, UnityEvent<MainMenuTypes,int> choiceButtonPresed,Action<int> onDelete = null)
         {
             _menuType = menuType;
 
@@ -91,7 +93,10 @@ namespace Scripts.Services
                     buttonText.text = $"{buttonText.text}";
 
                 var deleteButton = _buttonCreator.CreateDeleteButton(buttons[index].transform);
-                deleteButton.onClick.AddListener(delegate { OnDeleteButtonPressed(menuType, index); });
+                if(onDelete == null)
+                    deleteButton.onClick.AddListener(delegate { OnDeleteButtonPressed(menuType, index); });
+                else
+                    deleteButton.onClick.AddListener(delegate { onDelete(index); });
                 _deleteButtons.Add(deleteButton);
             }
         }
@@ -105,13 +110,11 @@ namespace Scripts.Services
         {
             _isEditMode = !_isEditMode;
             if(_deleteButtons == null || _deleteButtons.Count == 0)return;
-            foreach (var button in _deleteButtons)
-            {
-                button.gameObject.SetActive(_isEditMode);
-            }
+            foreach (var button in _deleteButtons)            
+                button.gameObject.SetActive(_isEditMode);                      
         }
         private void OnDeleteButtonPressed(MainMenuTypes menuType, int indexOfSelectedCategoty)
-        {
+        {            
             _popUpService.ShowConfirm("Are you sure you want to delete this category?",
                 ()=>DeleteCategory(menuType, indexOfSelectedCategoty));
         }

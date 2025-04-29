@@ -44,7 +44,7 @@ namespace Scripts.Services
 
         public void ShowConfirm(string message, Action onConfirmed)
         {
-            _message.messageText.text = message;
+            _confirm.messageText.text = message;
             _confirm.panel.gameObject.SetActive(true);
             _onConfirmed = onConfirmed;
             _background.gameObject.SetActive(true);

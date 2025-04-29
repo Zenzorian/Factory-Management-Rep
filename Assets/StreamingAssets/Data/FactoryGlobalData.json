@@ -113,7 +113,7 @@
                             "ProcessingType": 0,
                             "Data": [
                                 {
-                                    "F": 0.1,
+                                    "F": 5.0,
                                     "V": 5.0,
                                     "PartCounter": []
                                 }
@@ -1131,8 +1131,7 @@
         "QualityControl",
         "Maintenance",
         "ForkliftOperator",
-        "Painter",
-        "Packer"
+        "Painter"
     ],
     "typesOfWorkspace": [
         "AssemblyLine",
